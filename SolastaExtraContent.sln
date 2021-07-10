@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E3E2FE97-34E6-4704-8099-E3BA9C38594A}") = "SolastaExtraContent", "SolastaExtraContent\SolastaExtraContent.csproj", "{E3E2FE97-34E6-4704-8099-E3BA9C38594A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Install|Any CPU = Debug Install|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release Install|Any CPU = Release Install|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Debug Install|Any CPU.ActiveCfg = Debug Install|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Debug Install|Any CPU.Build.0 = Debug Install|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Release Install|Any CPU.ActiveCfg = Release Install|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Release Install|Any CPU.Build.0 = Release Install|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E2FE97-34E6-4704-8099-E3BA9C38594A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72A74A8E-D4AB-4C28-B389-AD1BA031A590}
+	EndGlobalSection
+EndGlobal
