@@ -18,7 +18,7 @@ namespace SolastaExtraContent
 {
     public class Cantrips
     {
-        public static NewFeatureDefinitions.SpellFollowedByAttack sunlight_blade;
+        public static NewFeatureDefinitions.SpellFollowedByMeleeAttack sunlight_blade;
 
 
         internal static void create()
@@ -29,6 +29,10 @@ namespace SolastaExtraContent
 
         static void createSunlightBlade()
         {
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("SunlightBladeCantripImage",
+                                                                $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SunlightBlade.png",
+                                                                128, 128);
+
             var title_string = "Spell/&SunlightBladeTitle";
             var description_string = "Spell/&SunlightBladeDescription";
             var levels = new int[] { 4, 10, 16, 20 };
@@ -81,7 +85,7 @@ namespace SolastaExtraContent
                                                                                                                    );
                 extra_damage.SetAddLightSource(true);
                 extra_damage.lightSourceForm = DatabaseHelper.FeatureDefinitionAdditionalDamages.AdditionalDamageBrandingSmite.LightSourceForm;
-                var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("GlacialBladeCasterCondition" + lvl.ToString(),
+                var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("SunlightBladeCasterCondition" + lvl.ToString(),
                                                                                           "",
                                                                                           title_string,
                                                                                           description_string,
@@ -113,11 +117,11 @@ namespace SolastaExtraContent
 
                 effects.Add((lvl, effect));
             }
-            sunlight_blade = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellFollowedByAttack>.createSpell("SunlightBladeSpell",
+            sunlight_blade = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellFollowedByMeleeAttack>.createSpell("SunlightBladeSpell",
                                                                                         "",
                                                                                         title_string,
                                                                                         description_string,
-                                                                                        DatabaseHelper.SpellDefinitions.FlameBlade.GuiPresentation.SpriteReference,
+                                                                                        sprite, //DatabaseHelper.SpellDefinitions.FlameBlade.GuiPresentation.SpriteReference,
                                                                                         effects[0].Item2,
                                                                                         RuleDefinitions.ActivationTime.Action,
                                                                                         0,

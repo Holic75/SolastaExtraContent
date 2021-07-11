@@ -26,3 +26,7 @@ SunlightBladeExtraDamage10	90e7c2f8-bf78-4c41-b9bc-771cf89afb96
 SunlightBladeExtraDamage16	6eea0d9e-06d3-42dc-8078-234bf3fcef16
 SunlightBladeExtraDamage20	8a845a33-55d5-4964-961a-4a3559656d5c
 SunlightBladeSpell	645fdef3-aa64-4944-8ae3-7619f9fb0815
+SunlightBladeCasterCondition4	9a0bc992-5484-4a51-8c35-c5942a5f82fc
+SunlightBladeCasterCondition10	00510dbf-7040-4e21-9d26-278462a60e8f
+SunlightBladeCasterCondition16	1479307f-aecf-49f0-b8d1-9a45abc1a53a
+SunlightBladeCasterCondition20	902db63f-6b77-4afa-94f9-92a0d1f311c8
