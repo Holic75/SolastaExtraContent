@@ -8,6 +8,6 @@
   "LoadAfter": [ "SolastaModApi", "SolastaModHelpers" ],
   "AssemblyName": "SolastaExtraContent.dll",
   "EntryMethod": "SolastaExtraContent.Main.Load",
-  "Repository": "https://github.com/Holic75/SolastaMonk",
+  "Repository": "https://github.com/Holic75/SolastaExtraContent",
   "HomePage": ""
 }
