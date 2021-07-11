@@ -1,7 +1,7 @@
 # Extra Content for Solasta
 
 This is a mod for the game Solasta: Crown of the Magister.
-It adds Eldritch Knight fighter archetype and a homebrew "blade cantrip" Sunlight Blade.
+It adds Arcane Knight fighter archetype and a homebrew "blade cantrip" Sunlight Blade.
 It requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
 
 # How to Install

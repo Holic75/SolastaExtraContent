@@ -1,18 +1,16 @@
-Subclass/&MartialEldritchKnightTitle Eldritch Knight
-Subclass/&MartialEldritchKnightDescripton Fearsome warriors and spellcasters, eldritch knights are rare among magic-users in their ability to wade into battle alongside fighters, barbarians, and other martial classes. Those who must face eldritch knights in combat fear them greatly, for their versatility on the battlefield is tremendous; against heavily armed and armored opponents they may level crippling spells, while opposing spellcasters meet their ends on an eldritch knight's blade.
-Feature/&FighterSubclassEldritchKnightAccursedStrikeTitle Accursed Strike
-Feature/&FighterSubclassEldritchKnightAccursedStrikeDescription At 10th level, you infuse your weapons with arcane might to make foes you hit less resistant to your magic. When you hit a creature with a weapon attack, that creature has disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn.
-Rules/&FighterSubclassEldritchKnightAccursedStrikeConditionTitle Accursed
-Rules/&FighterSubclassEldritchKnightAccursedStrikeConditionDescription Target has a disadvantage on savingthrows against spells cast by Eldritch Knight.
-Feature/&FighterSubclassEldritchKnightSpellCombatTitle Spell Combat
-Feature/&FighterSubclassEldritchKnightSpellCombatDescription Beginning at 7th level, when you use your action to cast a cantrip, you can make one weapon attack as a bonus action.
-Feature/&FighterSubclassEldritchKnightMagicWeaponTitle Magic Weapon
-Feature/&FighterSubclassEldritchKnightMagicWeaponDescription Your weapon attacks count as magical against creatures that are resistant or immune to non-magical attacks.
-Feature/&FighterSubclassEldritchKnightSpellcastingTitle Spellcasting
-Feature/&FighterSubclassEldritchKnightSpellcastingDescription Spontaneously cast wizard cantrips and spells from abjuration and evocation schools. Intelligence is your spellcasting ability for your wizard spells,
-Feature/&FighterSubclassEldritchKnightAnySpellSelectionTitle Extra Spell
-Feature/&FighterSubclassEldritchKnightAnySpellSelectionDescription At 3rd, 8th, 14th and 20th level< you can add a wizard spells of any school to your list of known spells.
-Spell/&SunlightBladeTitle Sunlight Blade
-Spell/&SunlightBladeDescription As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell's range, otherwise the spell fails. On a hit, the target suffers the attack's normal effects, and is enveloped in glowing radiant energy, shedding bright light in a 5 foot radius around them and dim light an additional 5 feet until the spell ends. Until the end of your next turn, next attack against this creature is done with advantage until your next turn, and the spell ends.\n At 5th level, the melee attack deals an extra 1d8 radiant damage to the target. The damage increases by another 1d8 at 11th level and 17th level.
-Feedback/&AdditionalDamageSunlightBladeFormat Extra damage due to Sunlight Blade
-Feedback/&AdditionalDamageSunlightBladeLine Extra damage due to Sunlight Blade
+Subclass/&MartialEldritchKnightTitle	Arcane Knight
+Subclass/&MartialEldritchKnightDescripton	Fearsome warriors and spellcasters, arcane knights are rare among magic-users in their ability to wade into battle alongside fighters, barbarians, and other martial classes. Those who must face arcane knights in combat fear them greatly, for their versatility on the battlefield is tremendous; against heavily armed and armored opponents they may level crippling spells, while opposing spellcasters meet their ends on an arcane knight's blade.
+Feature/&FighterSubclassEldritchKnightAccursedStrikeTitle	Accursed Strike
+Feature/&FighterSubclassEldritchKnightAccursedStrikeDescription	At 10th level, you infuse your weapons with arcane might to make foes you hit less resistant to your magic. When you hit a creature with a weapon attack, that creature has disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn.
+Rules/&FighterSubclassEldritchKnightAccursedStrikeConditionTitle	Accursed
+Rules/&FighterSubclassEldritchKnightAccursedStrikeConditionDescription	Target has a disadvantage on savingthrows against spells cast by Arcane Knight.
+Feature/&FighterSubclassEldritchKnightSpellCombatTitle	Spell Combat
+Feature/&FighterSubclassEldritchKnightSpellCombatDescription	Beginning at 7th level, when you use your action to cast a cantrip, you can make one weapon attack as a bonus action.
+Feature/&FighterSubclassEldritchKnightSpellcastingTitle	Spellcasting
+Feature/&FighterSubclassEldritchKnightSpellcastingDescription	Spontaneously cast wizard cantrips and spells from abjuration and evocation schools. Intelligence is your spellcasting ability for your wizard spells,
+Feature/&FighterSubclassEldritchKnightAnySpellSelectionTitle	Extra Spell
+Feature/&FighterSubclassEldritchKnightAnySpellSelectionDescription	At 3rd, 8th, 14th and 20th level< you can add a wizard spells of any school to your list of known spells.
+Spell/&SunlightBladeTitle	Sunlight Blade
+Spell/&SunlightBladeDescription	As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell's range, otherwise the spell fails. On a hit, the target suffers the attack's normal effects, and is enveloped in glowing radiant energy, shedding bright light in a 5 foot radius around them and dim light an additional 5 feet until the spell ends. Until the end of your next turn, next attack against this creature is done with advantage until your next turn, and the spell ends.\n At 5th level, the melee attack deals an extra 1d8 radiant damage to the target. The damage increases by another 1d8 at 11th level and 17th level.
+Feedback/&AdditionalDamageSunlightBladeFormat	Extra damage due to Sunlight Blade
+Feedback/&AdditionalDamageSunlightBladeLine	Extra damage due to Sunlight Blade
