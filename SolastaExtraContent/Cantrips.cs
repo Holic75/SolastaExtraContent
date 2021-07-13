@@ -134,6 +134,7 @@ namespace SolastaExtraContent
             sunlight_blade.levelEffectList = effects.Skip(1).ToList();
             sunlight_blade.minCustomEffectLevel = 5;
             DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(sunlight_blade);
+            DatabaseHelper.SpellListDefinitions.SpellListSorcerer.spellsByLevel[0].spells.Add(sunlight_blade);
         }
     }
 }
