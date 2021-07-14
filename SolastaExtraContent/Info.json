@@ -2,7 +2,7 @@
   "Id": "SolastaExtraContent",
   "DisplayName": "SolastaExtraContent",
   "Author": "Holic92",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "ManagerVersion": "0.23.4",
   "Requirements": [ "SolastaModApi", "SolastaModHelpers" ],
   "LoadAfter": [ "SolastaModApi", "SolastaModHelpers" ],
