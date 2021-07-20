@@ -14,3 +14,8 @@ Spell/&SunlightBladeTitle	Sunlight Blade
 Spell/&SunlightBladeDescription	As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell's range, otherwise the spell fails. On a hit, the target suffers the attack's normal effects, and is enveloped in glowing radiant energy, shedding bright light in a 5 foot radius around them and dim light an additional 5 feet until the spell ends. Until the end of your next turn, next attack against this creature is done with advantage until your next turn, and the spell ends.\n At 5th level, the melee attack deals an extra 1d8 radiant damage to the target. The damage increases by another 1d8 at 11th level and 17th level.
 Feedback/&AdditionalDamageSunlightBladeFormat	Extra damage due to Sunlight Blade
 Feedback/&AdditionalDamageSunlightBladeLine	Extra damage due to Sunlight Blade
+Spell/&ViciousMockeryTitle	Vicious Mockery
+Spell/&ViciousMockeryDescription	You unleash a string of insults laced with subtle enchantments at a creature you can see within range. If the target can hear you (though it need not understand you), it must succeed on a Wisdom saving throw or take 1d4 psychic damage and have disadvantage on the next attack roll it makes before the end of its next turn.
+Spell/&HellishRebukeTitle	Hellish Rebuke
+Spell/&HellishRebukeDescription	You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.
+Reaction/&SubitemSelectHellishRebukeSpellTitle	Select spell slot to use

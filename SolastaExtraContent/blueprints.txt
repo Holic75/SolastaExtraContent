@@ -30,3 +30,7 @@ SunlightBladeCasterCondition4	9a0bc992-5484-4a51-8c35-c5942a5f82fc
 SunlightBladeCasterCondition10	00510dbf-7040-4e21-9d26-278462a60e8f
 SunlightBladeCasterCondition16	1479307f-aecf-49f0-b8d1-9a45abc1a53a
 SunlightBladeCasterCondition20	902db63f-6b77-4afa-94f9-92a0d1f311c8
+ViciousMockeryFeature	ee90a7fe-f083-4161-824e-d1033c05f53b
+ViciousMockeryCondition	d3341a8e-c27b-494f-8c51-1200c7dd4a34
+ViciousMockerySpell	196cbcfd-c446-4a78-b251-2c233efaf1c5
+HellishRebukeSpell	a2091c15-dbb3-40f6-8573-5629b9bc0536

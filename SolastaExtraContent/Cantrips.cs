@@ -19,11 +19,93 @@ namespace SolastaExtraContent
     public class Cantrips
     {
         public static NewFeatureDefinitions.SpellFollowedByMeleeAttack sunlight_blade;
-
+        public static SpellDefinition vicious_mockery;
 
         internal static void create()
         {
             createSunlightBlade();
+            createViciousMockery();
+        }
+
+
+        static void createViciousMockery()
+        {
+            var title_string = "Spell/&ViciousMockeryTitle";
+            var description_string = "Spell/&ViciousMockeryDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("ViciousMockeryCantripImage",
+                                                    $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/ViciousMockery.png",
+                                                    128, 128);
+
+            var disadvantage = Helpers.CopyFeatureBuilder<FeatureDefinitionCombatAffinity>.createFeatureCopy("ViciousMockeryFeature",
+                                                                                                             "",
+                                                                                                             Common.common_no_title,
+                                                                                                             Common.common_no_title,
+                                                                                                             Common.common_no_icon,
+                                                                                                             DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityChilledByTouch,
+                                                                                                             a =>
+                                                                                                             {
+                                                                                                                 a.myselfFamilyRestrictions = new List<string>();
+                                                                                                                 a.situationalContext = RuleDefinitions.SituationalContext.None;
+                                                                                                             }
+                                                                                                             );
+            var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("ViciousMockeryCondition",
+                                                                                      "",
+                                                                                      title_string,
+                                                                                      Common.common_no_title,
+                                                                                      null,
+                                                                                      DatabaseHelper.ConditionDefinitions.ConditionCursedByBestowCurseAttackRoll,
+                                                                                      new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.Attacks },
+                                                                                      disadvantage
+                                                                                      );
+            condition.conditionTags.Clear();
+            condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition);
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.HideousLaughter.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.rangeParameter = 12;
+            effect.durationType = RuleDefinitions.DurationType.Round;
+            
+
+            var effect_form = new EffectForm();
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 1;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D4;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Psychic;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
+
+            vicious_mockery = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("ViciousMockerySpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       0,
+                                                                                       false,
+                                                                                       true,
+                                                                                       false,
+                                                                                       Helpers.SpellSchools.Enchantment
+                                                                                       );
+            vicious_mockery.materialComponentType = RuleDefinitions.MaterialComponentType.None;
         }
 
 

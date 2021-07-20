@@ -72,6 +72,7 @@ namespace SolastaExtraContent
         internal static void ModEntryPoint()
         {
             Cantrips.create();
+            Spells.create();
             EldritchKnight.create();
         }
     }
