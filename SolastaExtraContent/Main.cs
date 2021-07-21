@@ -74,6 +74,7 @@ namespace SolastaExtraContent
             Cantrips.create();
             Spells.create();
             EldritchKnight.create();
+            LoremasterFix.run();
         }
     }
 }

@@ -34,3 +34,8 @@ ViciousMockeryFeature	ee90a7fe-f083-4161-824e-d1033c05f53b
 ViciousMockeryCondition	d3341a8e-c27b-494f-8c51-1200c7dd4a34
 ViciousMockerySpell	196cbcfd-c446-4a78-b251-2c233efaf1c5
 HellishRebukeSpell	a2091c15-dbb3-40f6-8573-5629b9bc0536
+TraditionLoremasterSubclassPursuitOfKnowledgeCantripSpelllist	93bc0290-286e-4142-8a8f-af80f723c0fe
+TraditionLoremasterSubclassPursuitOfKnowledgeCantrip	810c3176-a524-4069-8569-b1647e1184f7
+TraditionLoremasterSubclassPursuitOfKnowledgeLvl1Spelllist	cf4c9b2e-085a-4c2b-9227-b453abf2309c
+TraditionLoremasterSubclassPursuitOfKnowledgeSpell	eda542b4-89c6-428c-a11a-95ff494a907d
+TraditionLoremasterSubclassPursuitOfKnowledge	8e598c2b-b0ee-4905-90aa-1f79103c4d2c

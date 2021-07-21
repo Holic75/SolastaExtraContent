@@ -8,7 +8,6 @@ using SolastaModHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.AddressableAssets;
-using static FeatureDefinitionSavingThrowAffinity;
 
 using Helpers = SolastaModHelpers.Helpers;
 using NewFeatureDefinitions = SolastaModHelpers.NewFeatureDefinitions;

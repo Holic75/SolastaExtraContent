@@ -19,3 +19,5 @@ Spell/&ViciousMockeryDescription	You unleash a string of insults laced with subt
 Spell/&HellishRebukeTitle	Hellish Rebuke
 Spell/&HellishRebukeDescription	You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.
 Reaction/&SubitemSelectHellishRebukeSpellTitle	Select spell slot to use
+Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeTitle	Pursuit of Knowledge
+Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeDescription	Choose one additional spell of the level you can cast and one additional cantrip from any class. The coosen spells count as wizard spells for you and are added to your spellbook.
