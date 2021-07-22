@@ -20,11 +20,127 @@ namespace SolastaExtraContent
     {
         public static NewFeatureDefinitions.SpellFollowedByMeleeAttack sunlight_blade;
         public static SpellDefinition vicious_mockery;
+        public static NewFeatureDefinitions.SpellWithRestricitons shillelagh;
 
         internal static void create()
         {
             createSunlightBlade();
             createViciousMockery();
+            createShillelagh();
+        }
+
+
+        static void createShillelagh()
+        {
+            var title_string = "Spell/&ShillelaghTitle";
+            var description_string = "Spell/&ShillelaghDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("ShillelaghCantripImage",
+                                                    $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/Shillelagh.png",
+                                                    128, 128);
+            var feature = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("ShillelaghWeaponFeature",
+                                                                                             "",
+                                                                                             title_string,
+                                                                                             description_string,
+                                                                                             sprite);
+
+            var caster_stat_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ReplaceWeaponAbilityScoreWithHighestStatIfWeaponHasFeature>
+                                                  .createFeature("ShillelaghAbilityScoreFeature",
+                                                                 "",
+                                                                 Common.common_no_title,
+                                                                 Common.common_no_title,
+                                                                 Common.common_no_icon,
+                                                                 a =>
+                                                                 {
+                                                                     a.abilityScores = new List<string> { Helpers.Stats.Charisma, Helpers.Stats.Intelligence, Helpers.Stats.Wisdom };
+                                                                     a.weaponFeature = feature;
+                                                                 }
+                                                                 );
+
+            var damage_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.OverwriteDamageOnWeaponWithFeature>
+                                                              .createFeature("ShillelaghDamageFeature",
+                                                                             "",
+                                                                             Common.common_no_title,
+                                                                             Common.common_no_title,
+                                                                             Common.common_no_icon,
+                                                                             a =>
+                                                                             {
+                                                                                 a.numDice = 1;
+                                                                                 a.dieType = RuleDefinitions.DieType.D8;
+                                                                                 a.weaponFeature = feature;
+                                                                             }
+                                                                             );
+
+
+            var tag_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.AddAttackTagonWeaponWithFeature>
+                                                  .createFeature("ShillelaghTagFeature",
+                                                                 "",
+                                                                 Common.common_no_title,
+                                                                 Common.common_no_title,
+                                                                 Common.common_no_icon,
+                                                                 a =>
+                                                                 {
+                                                                     a.tag = "Magical";
+                                                                     a.weaponFeature = feature;
+                                                                 }
+                                                                 );
+
+            var condition = Helpers.ConditionBuilder.createCondition("ShillelaghCondition",
+                                                                    "",
+                                                                    title_string,
+                                                                    Common.common_no_title,
+                                                                    null,
+                                                                    DatabaseHelper.ConditionDefinitions.ConditionMagicalWeapon,
+                                                                    caster_stat_feature,
+                                                                    damage_feature,
+                                                                    tag_feature
+                                                                    );
+            condition.conditionTags.Clear();
+            condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+           
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.rangeParameter = 1;
+            effect.durationParameter = 1;
+            effect.itemSelectionType = ActionDefinitions.ItemSelectionType.Weapon;
+            effect.targetType = RuleDefinitions.TargetType.Self;
+            effect.rangeType = RuleDefinitions.RangeType.Self;
+            
+            effect.durationType = RuleDefinitions.DurationType.Minute;           
+
+            var effect_form = new EffectForm();
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition;
+            effect_form.ConditionForm.applyToSelf = true;
+            effect.EffectForms.Add(effect_form);
+
+            effect_form = new EffectForm();
+            effect_form.itemPropertyForm = new ItemPropertyForm();
+            effect_form.FormType = EffectForm.EffectFormType.ItemProperty;
+            effect_form.itemPropertyForm.featureBySlotLevel = new List<FeatureUnlockByLevel> { new FeatureUnlockByLevel(feature, 0) };
+            effect.EffectForms.Add(effect_form);
+            effect.effectAdvancement.Clear();
+
+            shillelagh = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithRestricitons>.createSpell("ShillelaghSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.BonusAction,
+                                                                                       0,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Transmutation
+                                                                                       );
+            shillelagh.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            shillelagh.uniqueInstance = true;
+            var allowed_weapons = new List<string> { Helpers.WeaponProficiencies.Club, Helpers.WeaponProficiencies.QuarterStaff };
+            shillelagh.restrictions = new List<NewFeatureDefinitions.IRestriction> { new NewFeatureDefinitions.SpecificWeaponInMainHandRestriction(allowed_weapons) };
         }
 
 

@@ -39,3 +39,9 @@ TraditionLoremasterSubclassPursuitOfKnowledgeCantrip	810c3176-a524-4069-8569-b16
 TraditionLoremasterSubclassPursuitOfKnowledgeLvl1Spelllist	cf4c9b2e-085a-4c2b-9227-b453abf2309c
 TraditionLoremasterSubclassPursuitOfKnowledgeSpell	eda542b4-89c6-428c-a11a-95ff494a907d
 TraditionLoremasterSubclassPursuitOfKnowledge	8e598c2b-b0ee-4905-90aa-1f79103c4d2c
+ShillelaghWeaponFeature	46fe44ac-bfe4-49ff-ab99-0c2a4620bcfb
+ShillelaghAbilityScoreFeature	7922bc9f-55ef-431c-92fb-ead1775abb01
+ShillelaghDamageFeature	dbd7d080-c350-43ec-ad7c-71fd33dbf4de
+ShillelaghTagFeature	c770c202-13e4-4719-b269-39c783a494bc
+ShillelaghCondition	191ab568-374a-4343-a748-464307fc3c27
+ShillelaghSpell	8ccfb62d-5119-4a1c-afc4-042e18fb02ca

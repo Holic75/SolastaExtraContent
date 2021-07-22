@@ -33,6 +33,7 @@ namespace SolastaExtraContent
                                                                          (DatabaseHelper.SpellListDefinitions.SpellListWizard, 0)
                                                                          );
             Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.vicious_mockery);
+            Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.shillelagh);
             var extra_cantrip = Helpers.ExtraSpellSelectionBuilder.createExtraCantripSelection("TraditionLoremasterSubclassPursuitOfKnowledgeCantrip",
                                                                                             "",
                                                                                             Common.common_no_title,
