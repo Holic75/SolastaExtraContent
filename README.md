@@ -1,8 +1,14 @@
 # Extra Content for Solasta
 
 This is a mod for the game Solasta: Crown of the Magister.
-It adds Arcane Knight fighter archetype and a homebrew "blade cantrip" Sunlight Blade.
-It requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
+This mod adds Arcane Knight fighter archetype and following spells:
+Cantrips: Vicious Mockery, Sunlight Blade,
+
+Lvl 1: Hellish Rebuke.
+
+In addition it gives loremaster wizard a lvl 2 feature that allows to add one cantrip and one spell of any class to his/her spellbook.
+
+Mod requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
 
 # How to Install
 
