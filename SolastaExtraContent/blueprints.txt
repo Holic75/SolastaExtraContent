@@ -45,3 +45,9 @@ ShillelaghDamageFeature	dbd7d080-c350-43ec-ad7c-71fd33dbf4de
 ShillelaghTagFeature	c770c202-13e4-4719-b269-39c783a494bc
 ShillelaghCondition	191ab568-374a-4343-a748-464307fc3c27
 ShillelaghSpell	8ccfb62d-5119-4a1c-afc4-042e18fb02ca
+PolymorphTestFeature	457d6721-7d6d-48ea-9316-b758267beaa8
+PolymorphTestCondition	df57d6d4-a666-4846-a109-98d337a6ae39
+PolymorphTestSpell	2cf30fb2-ab3b-4bf9-8347-340af78655fa
+WildshapeMergeCondition	8a14cfb5-34c9-46af-bf4c-bb6e4046f46e
+PolymorphCondition	6e384541-f048-470f-bcab-d89f3756c822
+PolymorphTestWolf	4ab4fc25-7f3d-478f-a8ac-7ee768a849cb

@@ -18,10 +18,74 @@ namespace SolastaExtraContent
     public class Spells
     {
         static public NewFeatureDefinitions.ReactionOnDamageSpell hellish_rebuke;
+        static public SpellDefinition polymorph;
 
         internal static void create()
         {
             createHellishRebuke();
+            createPolymorph();
+        }
+
+
+        static void createPolymorph()
+        {
+            var title_string = "Spell/&PolymorphTitle";
+            var description_string = "Spell/&PolymorphDescription";
+            var sprite = DatabaseHelper.SpellDefinitions.IdentifyCreatures.GuiPresentation.spriteReference;
+            DatabaseHelper.MonsterDefinitions.ConjuredOneBeastTiger_Drake.SetFullyControlledWhenAllied(true);
+
+            var wolf = Common.createPolymoprhUnit(DatabaseHelper.MonsterDefinitions.Wolf, "PolymorphTestWolf", "", "", "");
+            var feature = Helpers.FeatureBuilder<NewFeatureDefinitions.Polymorph>.createFeature("PolymorphTestFeature",
+                                                                                                 "",
+                                                                                                 title_string,
+                                                                                                 description_string,
+                                                                                                 null,
+                                                                                                 a =>
+                                                                                                 {
+                                                                                                     a.monster = wolf;
+                                                                                                     a.transfer_features = true;
+                                                                                                 });
+            
+            var condition = Helpers.ConditionBuilder.createCondition("PolymorphCondition",
+                                                                    "",
+                                                                    title_string,
+                                                                    Common.common_no_title,
+                                                                    null,
+                                                                    DatabaseHelper.ConditionDefinitions.ConditionBarkskin,
+                                                                    feature
+                                                                    );
+
+            
+            condition.conditionTags.Clear();
+            condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.Barkskin.EffectDescription);
+            effect.EffectForms.Clear();
+
+            effect.durationType = RuleDefinitions.DurationType.Minute;
+
+            var effect_form = new EffectForm();
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition;
+            effect.EffectForms.Add(effect_form);
+            
+            polymorph = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithRestricitons>.createSpell("PolymorphTestSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       wolf.GuiPresentation.spriteReference,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       1,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Transmutation
+                                                                                       );
+            polymorph.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizard, polymorph);
         }
 
         static void createHellishRebuke()
