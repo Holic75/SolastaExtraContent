@@ -45,7 +45,7 @@ namespace SolastaExtraContent
                                                                                                      a.monster = wolf;
                                                                                                      a.transferFeatures = true;
                                                                                                      a.statsToTransfer = new string[] { Helpers.Stats.Charisma, Helpers.Stats.Intelligence, Helpers.Stats.Wisdom };
-                                                                                                     a.transferSpells = true;
+                                                                                                     a.allowSpellcasting = false;
                                                                                                  });
             
             var condition = Helpers.ConditionBuilder.createCondition("PolymorphCondition",
@@ -63,7 +63,9 @@ namespace SolastaExtraContent
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.SpellDefinitions.Barkskin.EffectDescription);
             effect.EffectForms.Clear();
-
+            effect.RangeType = RuleDefinitions.RangeType.Self;
+            effect.TargetSide = RuleDefinitions.Side.Ally;
+            effect.targetType = RuleDefinitions.TargetType.Self;
             effect.durationType = RuleDefinitions.DurationType.Minute;
 
             var effect_form = new EffectForm();
