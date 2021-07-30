@@ -28,7 +28,7 @@ namespace SolastaExtraContent
             createHellishRebuke();
             createCallLightning();
             createHeatMetal();
-            //createPolymorph();
+            createPolymorph();
         }
 
 
