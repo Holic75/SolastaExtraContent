@@ -43,7 +43,9 @@ namespace SolastaExtraContent
                                                                                                  a =>
                                                                                                  {
                                                                                                      a.monster = wolf;
-                                                                                                     a.transfer_features = true;
+                                                                                                     a.transferFeatures = true;
+                                                                                                     a.statsToTransfer = new string[] { Helpers.Stats.Charisma, Helpers.Stats.Intelligence, Helpers.Stats.Wisdom };
+                                                                                                     a.transferSpells = true;
                                                                                                  });
             
             var condition = Helpers.ConditionBuilder.createCondition("PolymorphCondition",
