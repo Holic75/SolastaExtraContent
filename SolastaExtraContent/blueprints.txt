@@ -51,3 +51,16 @@ PolymorphTestSpell	2cf30fb2-ab3b-4bf9-8347-340af78655fa
 WildshapeMergeCondition	8a14cfb5-34c9-46af-bf4c-bb6e4046f46e
 PolymorphCondition	6e384541-f048-470f-bcab-d89f3756c822
 PolymorphTestWolf	4ab4fc25-7f3d-478f-a8ac-7ee768a849cb
+CallLightningSpell	746fbfa7-b9e7-4b07-986f-31d1e47adc7e
+CallLightningCondition	0127211b-8cc0-41c3-9aa2-5627dad989a0
+CallLightingPower	5312add7-8c2a-4221-8090-82cceb9bbb72
+CallLightingGrantPowerFeature	9ea0fd40-efde-457e-b479-1461a3dd4c8f
+HeatMetalCasterCondition	ef9bfc49-4a39-4e76-ab31-5d476b868565
+HeatMetalTargetCondition	6f9534f9-af81-477e-bc5c-35e70c049cae
+HeatMetalTargetCondition2	0263c0cb-d662-4447-9022-be9123eea70f
+HeatMetalSpell	8a8d6cdf-51c9-45bd-893b-cbaf278c8f31
+HeatMetalPower	d542dfb6-a1f8-41c6-8303-941218aeb908
+HeatMetalGrantPowerFeature	04c5bbdd-2556-485a-a9e4-f6cf4ac0e9fc
+HeatMetalCasterCooldownCondition	11a67801-21b8-4a94-abc1-7352d1a56d22
+HeatMetalTooHotAttackRollsFeature	145cf50c-0445-40aa-bb41-1a90b5bb6637
+HeatMetalTooHotAbilityChecksFeature	860ba3df-b28b-4b54-bb88-feb20e5eeb5c

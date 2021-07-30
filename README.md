@@ -5,7 +5,9 @@ This mod adds Arcane Knight fighter archetype and following spells:
 
 Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh,
 
-Lvl 1: Hellish Rebuke.
+Lvl 1: Hellish Rebuke,
+Lvl 2: Heat Metal,
+Lvl 3: Call Lightning.
 
 In addition it gives loremaster wizard a lvl 2 feature that allows to add one cantrip and one spell of any class to his/her spellbook.
 

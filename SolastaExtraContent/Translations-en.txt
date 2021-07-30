@@ -23,3 +23,10 @@ Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeTitle	Pursuit of Knowledge
 Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeDescription	Choose one additional spell of the level you can cast and one additional cantrip from any class. The coosen spells count as wizard spells for you and are added to your spellbook.
 Spell/&ShillelaghTitle	Shillelagh
 Spell/&ShillelaghDescription	The wood of a club or quarterstaff you are holding is imbued with nature's power. For the duration, you can use your spellcasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a d8. The weapon also becomes magical, if it isn't already. The spell ends if you cast it again or if you let go of the weapon.
+Spell/&CallLightningTitle	Call Lightning
+Spell/&CallLightningDescription	 When you cast the spell, choose a point you can see within range. A bolt of lightning flashes down to that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one. 
+Spell/&HeatMetalTitle	Heat Metal
+Spell/&HeatMetalDescription	 You cause the target's armor to glow red-hot. The target takes 2d8 fire damage when you cast the spell. Until the spell ends, you can use a bonus action on each of your subsequent turns to cause this damage again. The target must also succeed on a Constitution saving, otherwise it has disadvantage on attack rolls and ability checks until the start of your next turn.
+Rules/&HeatMetalTargetConditionTitle	Armor Heated
+Rules/&HeatMetalTargetConditionDescription	Your armor is heated.
+Rules/&HeatMetalTargetCondition2Title	Too Hot!

@@ -20,7 +20,7 @@ namespace SolastaExtraContent
     {
         public static NewFeatureDefinitions.SpellFollowedByMeleeAttack sunlight_blade;
         public static SpellDefinition vicious_mockery;
-        public static NewFeatureDefinitions.SpellWithRestricitons shillelagh;
+        public static NewFeatureDefinitions.SpellWithRestrictions shillelagh;
 
         internal static void create()
         {
@@ -124,7 +124,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Add(effect_form);
             effect.effectAdvancement.Clear();
 
-            shillelagh = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithRestricitons>.createSpell("ShillelaghSpell",
+            shillelagh = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithRestrictions>.createSpell("ShillelaghSpell",
                                                                                        "",
                                                                                        title_string,
                                                                                        description_string,
