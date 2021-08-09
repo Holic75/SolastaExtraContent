@@ -7,8 +7,8 @@
 		<AssemblyVersion>0.0.2.0</AssemblyVersion>
 		<FileVersion>0.0.2.0</FileVersion>
 		<Description></Description>
-		<PackageProjectUrl>https://github.com/jsnell89/SolastaExtraContent</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/jsnell89/SolastaExtraContent</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Holic75/SolastaExtraContent</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Holic75/SolastaExtraContent</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Configurations>Debug;Release;Debug Install;Release Install</Configurations>
 		<Authors>Acehigh</Authors>

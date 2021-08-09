@@ -64,3 +64,8 @@ HeatMetalGrantPowerFeature	04c5bbdd-2556-485a-a9e4-f6cf4ac0e9fc
 HeatMetalCasterCooldownCondition	11a67801-21b8-4a94-abc1-7352d1a56d22
 HeatMetalTooHotAttackRollsFeature	145cf50c-0445-40aa-bb41-1a90b5bb6637
 HeatMetalTooHotAbilityChecksFeature	860ba3df-b28b-4b54-bb88-feb20e5eeb5c
+IceStrikeFeature	68b32160-1d4d-4ab6-9ebb-06bfbe3ee8fe
+IceStrikeCondition	61f0c347-aa7f-48eb-bed5-1c2c41b72d8f
+IceStrikeSpell	d3b748d3-9c3d-42d1-94a4-17ef6d960bac
+AirBlastSpell	4009f514-8c30-4bda-ad64-b8e28d6c427c
+ThunderStrikeSpell	1f3d7348-0e18-4d08-b6bb-221cc01e0472

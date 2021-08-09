@@ -21,12 +21,217 @@ namespace SolastaExtraContent
         public static NewFeatureDefinitions.SpellFollowedByMeleeAttack sunlight_blade;
         public static SpellDefinition vicious_mockery;
         public static NewFeatureDefinitions.SpellWithRestrictions shillelagh;
+        public static SpellDefinition frostbite;
+        //public static SpellDefinition produce_flame;
+        public static SpellDefinition thunder_strike;
+        public static SpellDefinition air_blast;
 
         internal static void create()
         {
             createSunlightBlade();
             createViciousMockery();
             createShillelagh();
+            createFrostbite();
+            createAirBlast();
+            createThunderstrike();
+        }
+
+        static void createThunderstrike()
+        {
+            var title_string = "Spell/&ThunderStrikeTitle";
+            var description_string = "Spell/&ThunderStrikeDescription";
+            var sprite = DatabaseHelper.SpellDefinitions.Shield.guiPresentation.spriteReference;
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.Shatter.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.rangeParameter = 0;
+            effect.targetParameter = 2;
+            effect.targetParameter2 = 2;
+            effect.durationType = RuleDefinitions.DurationType.Instantaneous;
+            effect.savingThrowAbility = Helpers.Stats.Constitution;
+            effect.rangeType = RuleDefinitions.RangeType.Self;
+            effect.targetType = RuleDefinitions.TargetType.Sphere;
+            effect.targetSide = RuleDefinitions.Side.All;
+            effect.targetExcludeCaster = true;
+
+
+            var effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 1;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D6;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Thundering;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
+
+            thunder_strike = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("ThunderStrikeSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       0,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Evocation
+                                                                                       );
+            thunder_strike.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(thunder_strike);
+            DatabaseHelper.SpellListDefinitions.SpellListSorcerer.spellsByLevel[0].spells.Add(thunder_strike);
+        }
+
+
+        static void createAirBlast()
+        {
+            var title_string = "Spell/&AirBlastTitle";
+            var description_string = "Spell/&AirBlastDescription";
+            var sprite = DatabaseHelper.SpellDefinitions.GustOfWind.guiPresentation.spriteReference;
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.ShadowDagger.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.rangeParameter = 6;
+            effect.durationType = RuleDefinitions.DurationType.Instantaneous;
+            effect.savingThrowAbility = Helpers.Stats.Strength;
+            effect.rangeType = RuleDefinitions.RangeType.Distance;
+            effect.targetType = RuleDefinitions.TargetType.Individuals;
+            effect.targetSide = RuleDefinitions.Side.Enemy;
+
+
+            var effect_form = new EffectForm();
+            effect_form.motionForm = new MotionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Motion;
+            effect_form.motionForm.distance = 1;
+            effect_form.motionForm.type = MotionForm.MotionType.PushFromOrigin;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 1;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D4;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Bludgeoning;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
+
+            air_blast = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("AirBlastSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       0,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Transmutation
+                                                                                       );
+            air_blast.materialComponentType = RuleDefinitions.MaterialComponentType.None;
+            DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(air_blast);
+            DatabaseHelper.SpellListDefinitions.SpellListSorcerer.spellsByLevel[0].spells.Add(air_blast);
+        }
+
+
+        static void createFrostbite()
+        {
+            var title_string = "Spell/&IceStrikeTitle";
+            var description_string = "Spell/&IceStrikeDescription";
+            var sprite = DatabaseHelper.SpellDefinitions.SacredFlame_B.guiPresentation.spriteReference;
+
+            var disadvantage = Helpers.CopyFeatureBuilder<FeatureDefinitionCombatAffinity>.createFeatureCopy("IceStrikeFeature",
+                                                                                                             "",
+                                                                                                             Common.common_no_title,
+                                                                                                             Common.common_no_title,
+                                                                                                             Common.common_no_icon,
+                                                                                                             DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityChilledByTouch,
+                                                                                                             a =>
+                                                                                                             {
+                                                                                                                 a.myselfFamilyRestrictions = new List<string>();
+                                                                                                                 a.situationalContext = RuleDefinitions.SituationalContext.None;
+                                                                                                             }
+                                                                                                             );
+            var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("IceStrikeCondition",
+                                                                                      "",
+                                                                                      title_string,
+                                                                                      "Rules/&ConditionAttackDisadvantageDescription",
+                                                                                      null,
+                                                                                      DatabaseHelper.ConditionDefinitions.ConditionCursedByBestowCurseAttackRoll,
+                                                                                      new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.Attacks },
+                                                                                      disadvantage
+                                                                                      );
+            condition.conditionTags.Clear();
+            condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition);
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.RayOfFrost.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.rangeParameter = 12;
+            effect.durationType = RuleDefinitions.DurationType.Round;
+            effect.savingThrowAbility = Helpers.Stats.Constitution;
+            effect.rangeType = RuleDefinitions.RangeType.Distance;
+            effect.targetType = RuleDefinitions.TargetType.Individuals;
+            effect.targetSide = RuleDefinitions.Side.Enemy;
+
+
+            var effect_form = new EffectForm();
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 1;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D6;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Cold;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
+
+            frostbite = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("IceStrikeSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       0,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Evocation
+                                                                                       );
+            frostbite.materialComponentType = RuleDefinitions.MaterialComponentType.None;
+            DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(frostbite);
+            DatabaseHelper.SpellListDefinitions.SpellListSorcerer.spellsByLevel[0].spells.Add(frostbite);
         }
 
 
@@ -96,7 +301,7 @@ namespace SolastaExtraContent
                                                                     );
             condition.conditionTags.Clear();
             condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
-           
+            condition.conditionType = RuleDefinitions.ConditionType.Beneficial;
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
             effect.EffectForms.Clear();
@@ -167,7 +372,7 @@ namespace SolastaExtraContent
             var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("ViciousMockeryCondition",
                                                                                       "",
                                                                                       title_string,
-                                                                                      Common.common_no_title,
+                                                                                      "Rules/&ConditionAttackDisadvantageDescription",
                                                                                       null,
                                                                                       DatabaseHelper.ConditionDefinitions.ConditionCursedByBestowCurseAttackRoll,
                                                                                       new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.Attacks },
