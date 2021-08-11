@@ -3,7 +3,7 @@
 This is a mod for the game Solasta: Crown of the Magister.
 This mod adds Arcane Knight fighter archetype and following spells:
 
-Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh, Bite of Frost, Air Blast, Sound Burst.
+Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh, Touch of Frost, Air Blast, Sound Burst.
 
 Lvl 1: Hellish Rebuke,
 Lvl 2: Heat Metal,
