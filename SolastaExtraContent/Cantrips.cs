@@ -186,6 +186,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Clear();
             effect.EffectAdvancement.Clear();
             effect.rangeParameter = 12;
+            effect.hasSavingThrow = true;
             effect.durationType = RuleDefinitions.DurationType.Round;
             effect.savingThrowAbility = Helpers.Stats.Constitution;
             effect.rangeType = RuleDefinitions.RangeType.Distance;
