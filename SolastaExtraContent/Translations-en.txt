@@ -37,3 +37,12 @@ Rules/&HeatMetalTargetConditionTitle	Armor Heated
 Rules/&HeatMetalTargetConditionDescription	Your armor is heated.
 Rules/&HeatMetalTargetCondition2Title	Too Hot!
 Rules/&ConditionAttackDisadvantageDescription	Disadvantage on next attack.
+Race/&ForestGnomeTitle	Woodland Gnome
+Race/&ForestGnomeDescription	A constant hum of busy activity pervades the warrens and neighborhoods where gnomes form their close-knit communities. Louder sounds punctuate the hum: a crunch of grinding gears here, a minor explosion there, a yelp of surprise or triumph, and especially bursts of laughter. Gnomes take delight in life, enjoying every moment of invention, exploration, investigation, creation, and play.
+Language/&GnomishDescription	An old Solastan language, preserved by gnomes living in deep forests of Solasta, it has survived the Cataclysm.
+Language/&GnomishTitle	Gnomish
+Feature/&GnomeLanguagesDescription	Common, Gnomish
+Feature/&GnomeCunningTitle	Gnomish Cunning
+Feature/&GnomeCunningDescription	You have advantage on all Intelligence, Wisdom, and Charisma saves against magic.
+Feature/&GnomeNaturalIllusionistTitle	Natural Magic
+Feature/&GnomeNaturalIllusionistDescription	You know the Annoying Bee cantrip. Intelligence is your spellcasting modifier for it.

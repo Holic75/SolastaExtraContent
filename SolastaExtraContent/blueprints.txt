@@ -69,3 +69,12 @@ IceStrikeCondition	61f0c347-aa7f-48eb-bed5-1c2c41b72d8f
 IceStrikeSpell	d3b748d3-9c3d-42d1-94a4-17ef6d960bac
 AirBlastSpell	4009f514-8c30-4bda-ad64-b8e28d6c427c
 ThunderStrikeSpell	1f3d7348-0e18-4d08-b6bb-221cc01e0472
+GNomeProxyRace	81a336b3-f8c9-48a1-9a70-a06a37e2f0c6
+GnomeRace	ce63140e-c018-4f83-8e6e-bc7bbc815a17
+AttributeModifierGnomeAbilityScoreIncrease	b1475c33-f9ba-4224-b4b1-a55621f4dcd1
+AttributeModifierForestGnomeAbilityScoreIncrease	b7f18e2f-532f-46bf-96d2-f3612026295f
+GnomishLanguage	ca2c78df-6308-4fd6-b0ae-0204b8e5ff6f
+ProficiencyGnomishLanguages	c497f363-c5d9-4255-9549-2db054976361
+GnomeCunningFeature	8804963d-8214-480a-be62-98a5652f69e5
+NaturalIllusionistSpellList	ead60aeb-3a72-4296-af36-2e14b110bb0b
+GnomeNaturalIllusionist	bfb1b55f-dbce-49b7-b76d-5b5b3c4fe992
