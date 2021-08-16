@@ -218,18 +218,18 @@ namespace SolastaExtraContent
             effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
 
             frostbite = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("IceStrikeSpell",
-                                                                                       "",
-                                                                                       title_string,
-                                                                                       description_string,
-                                                                                       sprite,
-                                                                                       effect,
-                                                                                       RuleDefinitions.ActivationTime.Action,
-                                                                                       0,
-                                                                                       false,
-                                                                                       true,
-                                                                                       true,
-                                                                                       Helpers.SpellSchools.Evocation
-                                                                                       );
+                                                                                "",
+                                                                                title_string,
+                                                                                description_string,
+                                                                                sprite,
+                                                                                effect,
+                                                                                RuleDefinitions.ActivationTime.Action,
+                                                                                0,
+                                                                                false,
+                                                                                true,
+                                                                                true,
+                                                                                Helpers.SpellSchools.Evocation
+                                                                                );
             frostbite.materialComponentType = RuleDefinitions.MaterialComponentType.None;
             DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(frostbite);
             DatabaseHelper.SpellListDefinitions.SpellListSorcerer.spellsByLevel[0].spells.Add(frostbite);
@@ -330,7 +330,8 @@ namespace SolastaExtraContent
             effect.EffectForms.Add(effect_form);
             effect.effectAdvancement.Clear();
 
-            shillelagh = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithRestrictions>.createSpell("ShillelaghSpell",
+            shillelagh = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithRestrictions>
+                                                                        .createSpell("ShillelaghSpell",
                                                                                        "",
                                                                                        title_string,
                                                                                        description_string,

@@ -112,6 +112,8 @@ namespace SolastaExtraContent
                                                                                       a.sizeDefinition = DatabaseHelper.CharacterSizeDefinitions.Small;
                                                                                       a.minimalAge = 40;
                                                                                       a.maximalAge = 350;
+                                                                                      a.baseHeight = 47;
+                                                                                      a.baseWeight = 35;
                                                                                       a.featureUnlocks.Clear();
                                                                                       a.featureUnlocks.Add(new FeatureUnlockByLevel(DatabaseHelper.FeatureDefinitionMoveModes.MoveModeMove5, 1));
                                                                                       a.featureUnlocks.Add(new FeatureUnlockByLevel(ability_score_modifer, 1));
