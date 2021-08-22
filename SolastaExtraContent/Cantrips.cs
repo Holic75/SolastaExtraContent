@@ -531,11 +531,11 @@ namespace SolastaExtraContent
                                                                                         RuleDefinitions.ActivationTime.Action,
                                                                                         0,
                                                                                         false,
-                                                                                        true,
+                                                                                        false,
                                                                                         true,
                                                                                         Helpers.SpellSchools.Evocation
                                                                                         );
-            sunlight_blade.materialComponentType = RuleDefinitions.MaterialComponentType.None;
+            sunlight_blade.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
             sunlight_blade.levelEffectList = effects.Skip(1).ToList();
             sunlight_blade.minCustomEffectLevel = 5;
             DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(sunlight_blade);
