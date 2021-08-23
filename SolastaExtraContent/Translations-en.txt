@@ -37,6 +37,8 @@ Rules/&HeatMetalTargetConditionTitle	Armor Heated
 Rules/&HeatMetalTargetConditionDescription	Your armor is heated.
 Rules/&HeatMetalTargetCondition2Title	Too Hot!
 Rules/&ConditionAttackDisadvantageDescription	Disadvantage on next attack.
+Spell/&FlameBladeSpellTitle Flame Blade
+Spell/&FlameBladeSpellDescription	The scimitar you are holding is imbued with fire's wrath. For the duration of the spell it deals fire damage, in addition you can use your spellcasting ability instead of Strength or Dexterity for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a 2d6. The flaming blade sheds bright light in a 10-foot radius and dim light for an additional 10 feet.\nWhen you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for every two slot levels above 2nd.
 Race/&ForestGnomeTitle	Woodland Gnome
 Race/&ForestGnomeDescription	A constant hum of busy activity pervades the warrens and neighborhoods where gnomes form their close-knit communities. Louder sounds punctuate the hum: a crunch of grinding gears here, a minor explosion there, a yelp of surprise or triumph, and especially bursts of laughter. Gnomes take delight in life, enjoying every moment of invention, exploration, investigation, creation, and play.
 Language/&GnomishDescription	An old Solastan language, preserved by gnomes living in deep forests of Solasta, it has survived the Cataclysm.

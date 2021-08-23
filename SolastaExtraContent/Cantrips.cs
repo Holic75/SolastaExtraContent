@@ -246,7 +246,7 @@ namespace SolastaExtraContent
             var feature = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("ShillelaghWeaponFeature",
                                                                                              "",
                                                                                              title_string,
-                                                                                             description_string,
+                                                                                             Common.common_no_title,
                                                                                              sprite);
 
             var caster_stat_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ReplaceWeaponAbilityScoreWithHighestStatIfWeaponHasFeature>

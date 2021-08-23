@@ -5,8 +5,6 @@ using System.Linq;
 using SolastaModApi;
 using SolastaModApi.Extensions;
 using SolastaModHelpers;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.AddressableAssets;
 
 using Helpers = SolastaModHelpers.Helpers;
@@ -20,6 +18,7 @@ namespace SolastaExtraContent
         static public NewFeatureDefinitions.ReactionOnDamageSpell hellish_rebuke;
         static public SpellDefinition call_lightning;
         static public SpellDefinition heat_metal;
+        static public NewFeatureDefinitions.SpellWithSlotLevelDependentEffects flame_blade;
 
         static public SpellDefinition polymorph;
 
@@ -28,7 +27,137 @@ namespace SolastaExtraContent
             createHellishRebuke();
             createCallLightning();
             createHeatMetal();
+            createFlameBlade();
             //createPolymorph();
+        }
+
+
+        static void createFlameBlade()
+        {
+            var title_string = "Spell/&FlameBladeSpellTitle";
+            var description_string = "Spell/&FlameBladeSpellDescription";
+            var sprite = DatabaseHelper.SpellDefinitions.FlameBlade.guiPresentation.spriteReference;
+            var feature = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("FlameBladeSpellWeaponFeature",
+                                                                                             "",
+                                                                                             title_string,
+                                                                                             Common.common_no_title,
+                                                                                             sprite);
+
+            var caster_stat_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ReplaceWeaponAbilityScoreWithHighestStatIfWeaponHasFeature>
+                                                  .createFeature("FlameBladeAbilityScoreFeature",
+                                                                 "",
+                                                                 Common.common_no_title,
+                                                                 Common.common_no_title,
+                                                                 Common.common_no_icon,
+                                                                 a =>
+                                                                 {
+                                                                     a.abilityScores = new List<string> { Helpers.Stats.Charisma, Helpers.Stats.Intelligence, Helpers.Stats.Wisdom };
+                                                                     a.weaponFeature = feature;
+                                                                 }
+                                                                 );
+
+
+
+            var effects = new List<EffectDescription>();
+            for (int i = 2; i <= 5; i++)
+            {
+                var damage_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.OverwriteDamageOnWeaponWithFeature>
+                                                                  .createFeature($"FlameBladeSpell{i}DamageFeature",
+                                                                                 "",
+                                                                                 Common.common_no_title,
+                                                                                 Common.common_no_title,
+                                                                                 Common.common_no_icon,
+                                                                                 a =>
+                                                                                 {
+                                                                                     a.numDice = i;
+                                                                                     a.dieType = RuleDefinitions.DieType.D6;
+                                                                                     a.weaponFeature = feature;
+                                                                                     a.ovewriteDamageType = Helpers.DamageTypes.Fire;
+                                                                                 }
+                                                                                 );
+
+
+                var condition = Helpers.ConditionBuilder.createCondition($"FlameBladeSpell{i}Condition",
+                                                                        "",
+                                                                        title_string,
+                                                                        Common.common_no_title,
+                                                                        DatabaseHelper.ConditionDefinitions.ConditionBrandingSmite.guiPresentation.spriteReference,
+                                                                        DatabaseHelper.ConditionDefinitions.ConditionDivineFavor,
+                                                                        caster_stat_feature,
+                                                                        damage_feature
+                                                                        );
+                condition.conditionTags.Clear();
+                condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+                condition.conditionType = RuleDefinitions.ConditionType.Beneficial;
+                var effect = new EffectDescription();
+                effect.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
+                effect.EffectForms.Clear();
+                effect.EffectAdvancement.Clear();
+                effect.rangeParameter = 1;
+                effect.durationParameter = 10;
+                effect.itemSelectionType = ActionDefinitions.ItemSelectionType.Weapon;
+                effect.targetType = RuleDefinitions.TargetType.Self;
+                effect.rangeType = RuleDefinitions.RangeType.Self;
+                effect.durationType = RuleDefinitions.DurationType.Minute;
+                effect.effectParticleParameters = DatabaseHelper.SpellDefinitions.DivineFavor.effectDescription.effectParticleParameters;
+
+                var effect_form = new EffectForm();
+                effect_form.createdByCharacter = true;
+                effect_form.ConditionForm = new ConditionForm();
+                effect_form.FormType = EffectForm.EffectFormType.Condition;
+                effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+                effect_form.ConditionForm.ConditionDefinition = condition;
+                effect_form.ConditionForm.applyToSelf = true;
+                effect.EffectForms.Add(effect_form);
+
+                effect_form = new EffectForm();
+                effect_form.lightSourceForm = new LightSourceForm();
+                effect_form.createdByCharacter = true;
+                effect_form.FormType = EffectForm.EffectFormType.LightSource;
+                effect_form.lightSourceForm.brightRange = 2;
+                effect_form.lightSourceForm.dimAdditionalRange = 2;
+                effect_form.lightSourceForm.color = DatabaseHelper.SpellDefinitions.Light.effectDescription.effectForms[0].lightSourceForm.color;
+                effect_form.lightSourceForm.graphicsPrefabReference = DatabaseHelper.SpellDefinitions.Light.effectDescription.effectForms[0].lightSourceForm.graphicsPrefabReference;
+                effect.EffectForms.Add(effect_form);
+
+                effect_form = new EffectForm();
+                effect_form.createdByCharacter = true;
+                effect_form.itemPropertyForm = new ItemPropertyForm();
+                effect_form.FormType = EffectForm.EffectFormType.ItemProperty;
+                effect_form.itemPropertyForm.featureBySlotLevel = new List<FeatureUnlockByLevel>(){ new FeatureUnlockByLevel(feature, 0) };
+                effect.EffectForms.Add(effect_form);
+                effect.effectAdvancement.Clear();
+                effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
+                effect.EffectAdvancement.additionalDicePerIncrement = 1;
+                effect.EffectAdvancement.incrementMultiplier = 2;
+                effects.Add(effect);
+            }
+
+
+            flame_blade = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithSlotLevelDependentEffects>
+                                                                        .createSpell("FlameBladeSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effects[0],
+                                                                                       RuleDefinitions.ActivationTime.BonusAction,
+                                                                                       2,
+                                                                                       true,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Evocation
+                                                                                       );
+            flame_blade.minCustomEffectLevel = 4;
+            for (int i = 1; i < effects.Count(); i++)
+            {
+                flame_blade.levelEffectList.Add((2 + 2*i, effects[i]));
+            }
+            flame_blade.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+
+            var allowed_weapons = new List<string> { Helpers.WeaponProficiencies.Scimitar};
+            flame_blade.restrictions = new List<NewFeatureDefinitions.IRestriction> { new NewFeatureDefinitions.SpecificWeaponInMainHandRestriction(allowed_weapons) };
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, flame_blade);
         }
 
 
