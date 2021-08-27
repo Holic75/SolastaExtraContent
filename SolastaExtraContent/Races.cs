@@ -126,6 +126,9 @@ namespace SolastaExtraContent
                                                                                       a.racePresentation = DatabaseHelper.CharacterRaceDefinitions.Halfling.racePresentation;
                                                                                   }                                                                               
                                                                                   );
+
+            var focused_sleeper = DatabaseHelper.FeatDefinitions.FocusedSleeper;
+            focused_sleeper.CompatibleRacesPrerequisite.Add(gnomes.name);
         }
     }
 }

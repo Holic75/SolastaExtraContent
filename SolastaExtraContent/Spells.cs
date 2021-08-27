@@ -69,7 +69,7 @@ namespace SolastaExtraContent
                                                                                  Common.common_no_icon,
                                                                                  a =>
                                                                                  {
-                                                                                     a.numDice = i;
+                                                                                     a.numDice = i + 1;
                                                                                      a.dieType = RuleDefinitions.DieType.D6;
                                                                                      a.weaponFeature = feature;
                                                                                      a.ovewriteDamageType = Helpers.DamageTypes.Fire;
@@ -99,7 +99,6 @@ namespace SolastaExtraContent
                 effect.targetType = RuleDefinitions.TargetType.Self;
                 effect.rangeType = RuleDefinitions.RangeType.Self;
                 effect.durationType = RuleDefinitions.DurationType.Minute;
-                effect.effectParticleParameters = DatabaseHelper.SpellDefinitions.DivineFavor.effectDescription.effectParticleParameters;
 
                 var effect_form = new EffectForm();
                 effect_form.createdByCharacter = true;
