@@ -19,6 +19,7 @@ namespace SolastaExtraContent
         static public SpellDefinition call_lightning;
         static public SpellDefinition heat_metal;
         static public NewFeatureDefinitions.SpellWithSlotLevelDependentEffects flame_blade;
+        static public SpellDefinition conjure_spirit_animal;
 
         static public SpellDefinition polymorph;
 
@@ -29,6 +30,180 @@ namespace SolastaExtraContent
             createHeatMetal();
             createFlameBlade();
             //createPolymorph();
+            createConjureSpiritAnimal();
+        }
+
+
+        static void createConjureSpiritAnimal()
+        {
+            var attack_bonus = Helpers.FeatureBuilder<NewFeatureDefinitions.AttackBonusEqualToCasterSpellcastingBonus>
+                                                       .createFeature("ConjureSpiritBeastAttackBonus",
+                                                                       "",
+                                                                       "Spell/&ConjureSpiritAnimalSpellTitle",
+                                                                       Common.common_no_title,
+                                                                       Common.common_no_icon
+                                                                       );
+
+            var condition = Helpers.ConditionBuilder.createCondition("ConjureSpiritBeastAttackBonusCondition",
+                                                                        "",
+                                                                        "Spell/&ConjureSpiritAnimalSpellTitle",
+                                                                        Common.common_no_title,
+                                                                        null,
+                                                                        DatabaseHelper.ConditionDefinitions.ConditionDummy,
+                                                                        attack_bonus
+                                                                        );
+
+            List<SpellDefinition> variants = new List<SpellDefinition>();
+
+            List<(MonsterDefinition base_monster, MonsterDefinition fx_monster, string prefix, int base_hd, FeatureDefinition[] features)> summon_infos
+                = new List<(MonsterDefinition base_monster, MonsterDefinition fx_monster, string prefix, int base_hd, FeatureDefinition[] features)>()
+                {
+                    (DatabaseHelper.MonsterDefinitions.Wolf, DatabaseHelper.MonsterDefinitions.Earth_Elemental, "Land", 4, new FeatureDefinition[]{DatabaseHelper.FeatureDefinitionMoveModes.MoveModeMove6, DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityPackTactics }),
+                    (DatabaseHelper.MonsterDefinitions.Giant_Eagle, DatabaseHelper.MonsterDefinitions.Air_Elemental, "Air", 2, new FeatureDefinition[]{DatabaseHelper.FeatureDefinitionMoveModes.MoveModeFly12, DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityFlyby }),
+                };
+
+            foreach (var summon_info in summon_infos)
+            {
+                var prefix = "ConjureSpiritAnimal" + summon_info.prefix + "Spell";
+                List<EffectDescription> effect_descriptions = new List<EffectDescription>();
+                for (int i = 2; i <= 9; i++)
+                {
+                    var monster = createSpiritAnimal(prefix, i, summon_info.base_hd, summon_info.base_monster, summon_info.fx_monster, summon_info.features);
+                    var effect_description = new EffectDescription();
+                    effect_description.Copy(DatabaseHelper.SpellDefinitions.ConjureAnimalsOneBeast.EffectDescription);
+                    effect_description.SetDurationType(RuleDefinitions.DurationType.Hour);
+                    effect_description.durationParameter = 1;
+                    effect_description.effectForms.Clear();
+                    var form = new EffectForm();
+                    form.formType = EffectForm.EffectFormType.Summon;
+                    form.summonForm = new SummonForm();
+                    form.summonForm.conditionDefinition = condition;
+                    form.summonForm.decisionPackage = DatabaseHelper.DecisionPackageDefinitions.IdleGuard_Default;
+                    form.summonForm.monsterDefinitionName = monster.name;
+                    effect_description.effectForms.Add(form);
+
+                    effect_descriptions.Add(effect_description);
+                    effect_description.effectAdvancement.Clear();
+                    effect_description.effectAdvancement.additionalDicePerIncrement = 1;
+                    effect_description.effectAdvancement.incrementMultiplier = 1;
+                }
+
+
+                var variant = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithSlotLevelDependentEffects>
+                                                                                    .createSpell(prefix,
+                                                                                                "",
+                                                                                                $"Spell/&{prefix}Title",
+                                                                                                $"Spell/&{prefix}Description",
+                                                                                                DatabaseHelper.SpellDefinitions.ConjureAnimals.GuiPresentation.spriteReference,
+                                                                                                effect_descriptions[0],
+                                                                                                RuleDefinitions.ActivationTime.Action,
+                                                                                                2,
+                                                                                                true,
+                                                                                                true,
+                                                                                                true,
+                                                                                                Helpers.SpellSchools.Conjuration
+                                                                                                );
+                variant.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+
+
+                variant.minCustomEffectLevel = 3;
+                for (int i = 3; i <= 9; i++)
+                {
+                    variant.levelEffectList.Add((i, effect_descriptions[i - 2]));
+                }
+                variants.Add(variant);
+            }
+
+            conjure_spirit_animal = Helpers.CopyFeatureBuilder<SpellDefinition>.createFeatureCopy("ConjureSpiritAnimalSpell",
+                                                                                                  "",
+                                                                                                  "Spell/&ConjureSpiritAnimalSpellTitle",
+                                                                                                  "Spell/&ConjureSpiritAnimalSpellDescription",
+                                                                                                  null,
+                                                                                                  DatabaseHelper.SpellDefinitions.ConjureAnimals,
+                                                                                                  a =>
+                                                                                                  {
+                                                                                                      a.subspellsList = variants;
+                                                                                                      a.spellLevel = 2;
+                                                                                                  }
+                                                                                                  );
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, conjure_spirit_animal);
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListRanger, conjure_spirit_animal);
+            NewFeatureDefinitions.SpellData.registerSpell(conjure_spirit_animal);
+        }
+
+
+        static MonsterDefinition createSpiritAnimal(string prefix, int level, int base_hd, MonsterDefinition base_monster, MonsterDefinition fx_monster, params FeatureDefinition[] extra_features)
+        {
+            var attack = Helpers.CopyFeatureBuilder<MonsterAttackDefinition>.createFeatureCopy(prefix + "Attack" + level.ToString(),
+                                                                                               "",
+                                                                                               "",
+                                                                                               "",
+                                                                                               null,
+                                                                                               base_monster.AttackIterations[0].monsterAttackDefinition,
+                                                                                               a =>
+                                                                                               {
+                                                                                                   a.toHitBonus = 0;
+                                                                                                   var effect = new EffectDescription();
+                                                                                                   effect.Copy(a.EffectDescription);
+                                                                                                   effect.EffectForms.Clear();
+                                                                                                   effect.HasSavingThrow = false;
+
+                                                                                                   var dmg = new EffectForm();
+                                                                                                   dmg.FormType = EffectForm.EffectFormType.Damage;
+                                                                                                   dmg.DamageForm = new DamageForm();
+                                                                                                   dmg.DamageForm.bonusDamage = 4 + level;
+                                                                                                   dmg.DamageForm.diceNumber = 1;
+                                                                                                   dmg.DamageForm.dieType = RuleDefinitions.DieType.D8;
+                                                                                                   dmg.DamageForm.damageType = Helpers.DamageTypes.Piercing;
+                                                                                                   effect.EffectForms.Add(dmg);
+                                                                                                   a.effectDescription = effect;
+                                                                                               }
+                                                                                               );
+
+
+            var unit = Helpers.CopyFeatureBuilder<MonsterDefinition>.createFeatureCopy(prefix + "Unit" + level.ToString(),
+                                                                                             "",
+                                                                                             $"Monster/&{prefix}Title",
+                                                                                             $"Spell/&{prefix}Description",
+                                                                                             null,
+                                                                                             base_monster,
+                                                                                             a =>
+                                                                                             {
+                                                                                                 a.SetDefaultFaction("Party");
+                                                                                                 a.fullyControlledWhenAllied = true;
+                                                                                                 a.armorClass = 11 + level;
+                                                                                                 a.hitDice = level + base_hd;
+                                                                                                 a.hitPointsBonus = 0;
+                                                                                                 a.standardHitPoints = a.hitDice * 5 ;
+                                                                                                 a.skillScores = new List<MonsterSkillProficiency>
+                                                                                                 {
+                                                                                                 };
+                                                                                                 a.savingThrowScores = new List<MonsterSavingThrowProficiency>
+                                                                                                 {
+                                                                                                 };
+                                                                                                 a.abilityScores = new int[] { 18, 12, 16, 4, 14, 4 };
+                                                                                                 a.features = new List<FeatureDefinition>
+                                                                                                 {
+                                                                                                     DatabaseHelper.FeatureDefinitionSenses.SenseNormalVision,
+                                                                                                     DatabaseHelper.FeatureDefinitionSenses.SenseDarkvision,
+                                                                                                 };
+                                                                                                 a.features.AddRange(extra_features);
+                                                                                                 a.attackIterations = new List<MonsterAttackIteration>
+                                                                                                 {
+                                                                                                     new MonsterAttackIteration
+                                                                                                     {
+                                                                                                         monsterAttackDefinition = attack,
+                                                                                                         number = level / 2
+                                                                                                     }
+                                                                                                 };
+                                                                                                 a.characterFamily = "Beast";
+                                                                                                 a.challengeRating = (level / 2);
+                                                                                                 a.droppedLootDefinition = null;
+                                                                                                 //a.monsterPresentation.attachedParticlesReference = fx_monster.monsterPresentation.attachedParticlesReference;
+                                                                                             }
+                                                                                             );
+            unit.bestiaryEntry = BestiaryDefinitions.BestiaryEntry.None;
+            return unit;
         }
 
 
