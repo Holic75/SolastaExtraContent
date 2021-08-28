@@ -84,7 +84,7 @@ namespace SolastaExtraContent
 
                     effect_descriptions.Add(effect_description);
                     effect_description.effectAdvancement.Clear();
-                    effect_description.effectAdvancement.additionalDicePerIncrement = 1;
+                    effect_description.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
                     effect_description.effectAdvancement.incrementMultiplier = 1;
                 }
 
@@ -124,8 +124,11 @@ namespace SolastaExtraContent
                                                                                                   {
                                                                                                       a.subspellsList = variants;
                                                                                                       a.spellLevel = 2;
+                                                                                                      a.effectDescription.Copy(a.EffectDescription);
+                                                                                                      a.effectDescription.SetEffectAdvancement(variants[0].effectDescription.EffectAdvancement);
                                                                                                   }
                                                                                                   );
+
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, conjure_spirit_animal);
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListRanger, conjure_spirit_animal);
             NewFeatureDefinitions.SpellData.registerSpell(conjure_spirit_animal);

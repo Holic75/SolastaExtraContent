@@ -25,6 +25,8 @@ namespace SolastaExtraContent
         //public static SpellDefinition produce_flame;
         public static SpellDefinition thunder_strike;
         public static SpellDefinition air_blast;
+        public static SpellDefinition burst_of_radiance;
+        public static SpellDefinition acid_claws;
 
         internal static void create()
         {
@@ -34,7 +36,62 @@ namespace SolastaExtraContent
             createFrostbite();
             createAirBlast();
             createThunderstrike();
+            createBurstOfRadiance();
+            createAcidClaws();
         }
+
+
+        static void createAcidClaws()
+        {
+            var title_string = "Spell/&AcidClawsTitle";
+            var description_string = "Spell/&AcidClawsDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("AcidClawsCantripImage",
+                                                    $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/AcidCLaws.png",
+                                                    128, 128);
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.VampiricTouchIntelligence.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.durationParameter = 1;
+            effect.hasSavingThrow = false;
+            effect.durationType = RuleDefinitions.DurationType.Instantaneous;
+            effect.rangeType = RuleDefinitions.RangeType.MeleeHit;
+            effect.targetType = RuleDefinitions.TargetType.Individuals;
+            effect.targetSide = RuleDefinitions.Side.Enemy;
+
+
+            var effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 1;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D10;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Acid;
+            effect_form.hasSavingThrow = false;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.None;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
+            effect.effectParticleParameters.casterParticleReference = DatabaseHelper.SpellDefinitions.EnhanceAbilityBullsStrength.effectDescription.effectParticleParameters.casterParticleReference;
+
+            acid_claws = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("AcidClawsSpell",
+                                                                                "",
+                                                                                title_string,
+                                                                                description_string,
+                                                                                sprite,
+                                                                                effect,
+                                                                                RuleDefinitions.ActivationTime.Action,
+                                                                                0,
+                                                                                false,
+                                                                                false,
+                                                                                true,
+                                                                                Helpers.SpellSchools.Transmutation
+                                                                                );
+            acid_claws.materialComponentType = RuleDefinitions.MaterialComponentType.None;
+        }
+
 
         static void createThunderstrike()
         {
@@ -87,6 +144,62 @@ namespace SolastaExtraContent
             thunder_strike.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
             DatabaseHelper.SpellListDefinitions.SpellListWizard.spellsByLevel[0].spells.Add(thunder_strike);
             DatabaseHelper.SpellListDefinitions.SpellListSorcerer.spellsByLevel[0].spells.Add(thunder_strike);
+        }
+
+
+        static void createBurstOfRadiance()
+        {
+            var title_string = "Spell/&BurstOfRadianceTitle";
+            var description_string = "Spell/&BurstOfRadianceDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("BurstOfRadianceCantripImage",
+                                                    $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/BurstOfRadiance.png",
+                                                    128, 128);
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.FaerieFire.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.rangeParameter = 0;
+            effect.targetParameter = 2;
+            effect.targetParameter2 = 2;
+            effect.durationType = RuleDefinitions.DurationType.Instantaneous;
+            effect.savingThrowAbility = Helpers.Stats.Constitution;
+            effect.rangeType = RuleDefinitions.RangeType.Self;
+            effect.targetType = RuleDefinitions.TargetType.Sphere;
+            effect.targetSide = RuleDefinitions.Side.Enemy;
+            effect.targetExcludeCaster = true;
+            effect.restrictedCreatureFamilies = new List<string>();
+
+            var effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 1;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D6;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Radiant;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
+
+            burst_of_radiance = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("BurstOfRadianceSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       0,
+                                                                                       false,
+                                                                                       true,
+                                                                                       false,
+                                                                                       Helpers.SpellSchools.Evocation
+                                                                                       );
+            burst_of_radiance.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            DatabaseHelper.SpellListDefinitions.SpellListCleric.spellsByLevel[0].spells.Add(burst_of_radiance);
+            
         }
 
 

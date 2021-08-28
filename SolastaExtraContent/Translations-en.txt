@@ -22,6 +22,10 @@ Spell/&AirBlastTitle Air Blast
 Spell/&AirBlastDescription Fire a blast of focused air at your target.
 Spell/&ThunderStrikeTitle	Sound Burst
 Spell/&ThunderStrikeDescription	Create a burst of thundering sound, damaging everyone around you.
+Spell/&BurstOfRadianceTitle	Burst of Radiance
+Spell/&BurstOfRadianceDescription	Create a brilliant flash of shimmering light, damaging all enemies around you.
+Spell/&AcidClawsTitle	Corrosive Claws
+Spell/&AcidClawsDescription	Deliver a corrosive attack with your sharpened claws.
 Spell/&HellishRebukeTitle	Hellish Rebuke
 Spell/&HellishRebukeDescription	You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.
 Reaction/&SubitemSelectHellishRebukeSpellTitle	Select spell slot to use
@@ -40,7 +44,7 @@ Rules/&ConditionAttackDisadvantageDescription	Disadvantage on next attack.
 Spell/&FlameBladeSpellTitle Flame Blade
 Spell/&FlameBladeSpellDescription	The scimitar you are holding is imbued with fire's wrath. For the duration of the spell it deals fire damage, in addition you can use your spellcasting ability instead of Strength or Dexterity for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a 3d6. The flaming blade sheds bright light in a 10-foot radius and dim light for an additional 10 feet.\nWhen you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for every two slot levels above 2nd.
 Spell/&ConjureSpiritAnimalSpellTitle	Conjure Spirit Animal
-Spell/&ConjureSpiritAnimalSpellDescription	Summon spirit in the form of beast to help you in battle.  The beast attack bonus is equal to your spell attacl bonus. When you cast this spell using a spell slot of 3rd level or higher, the beast AC, HP and number of attacks increase.
+Spell/&ConjureSpiritAnimalSpellDescription	Summon spirit in the form of a beast to help you in battle.  The beast attack bonus is equal to your spell attack bonus. When you cast this spell using a spell slot of 3rd level or higher, the beast AC, HP, damage and number of attacks increase.
 Spell/&ConjureSpiritAnimalLandSpellTitle	Conjure Land Spirit Animal
 Monster/&ConjureSpiritAnimalLandSpellTitle	Land Spirit Animal
 Spell/&ConjureSpiritAnimalLandSpellDescription	The beast has more hit points and pack tactics feature.

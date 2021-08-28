@@ -133,3 +133,5 @@ ConjureSpiritAnimalAirSpellAttack9	7bed860f-b54c-47c9-bb02-43dad336ed37
 ConjureSpiritAnimalAirSpellUnit9	caf2c1e8-3bb0-4365-b3de-0c652889536e
 ConjureSpiritAnimalAirSpell	f70473df-46b0-4484-b138-fc54cdff76ff
 ConjureSpiritAnimalSpell	b45ddc83-9bcb-4ca4-9947-73f782d2d668
+BurstOfRadianceSpell	b321eb8e-6330-43f4-aebd-a2f9a66b943d
+AcidClawsSpell	f2f4bf15-fcd0-4f2a-b7a1-e887c869cd1e
