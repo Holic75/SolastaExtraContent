@@ -20,6 +20,8 @@ namespace SolastaExtraContent
         static public SpellDefinition heat_metal;
         static public NewFeatureDefinitions.SpellWithSlotLevelDependentEffects flame_blade;
         static public SpellDefinition conjure_spirit_animal;
+        static public SpellDefinition winter_blast;
+        static public SpellDefinition spike_growth;
 
         static public SpellDefinition polymorph;
 
@@ -31,6 +33,159 @@ namespace SolastaExtraContent
             createFlameBlade();
             //createPolymorph();
             createConjureSpiritAnimal();
+            createWinterBlast();
+
+            var entangle_effect = DatabaseHelper.SpellDefinitions.Entangle.effectDescription;
+            entangle_effect.targetType = RuleDefinitions.TargetType.Cylinder;
+            entangle_effect.targetParameter = 3;
+            entangle_effect.targetParameter2 = 1;
+            entangle_effect.effectParticleParameters.zoneParticleReference = null;
+
+            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Entangle);
+            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Grease);
+            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
+
+            createSpikeGrowth();
+        }
+
+
+        static void fixSurfaceSpell(SpellDefinition spell)
+        {
+            var effect = spell.effectDescription;
+            effect.targetType = RuleDefinitions.TargetType.Cylinder;
+            effect.targetParameter--;
+            effect.targetParameter2 = 1;
+            effect.effectParticleParameters.zoneParticleReference = null;            
+        }
+
+
+        static void createSpikeGrowth()
+        {
+            var title_string = "Spell/&SpikeGrowthTitle";
+            var description_string = "Spell/&SpikeGrowthDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("SpikeGrowthSpellImage",
+                                         $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SpikeGrowth.png",
+                                         128, 128);
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.Entangle.effectDescription);
+            effect.hasSavingThrow = false;
+            effect.effectForms.Clear();
+            effect.effectForms.Add(DatabaseHelper.SpellDefinitions.Entangle.effectDescription.effectForms.Find(e => e.formType == EffectForm.EffectFormType.Summon));
+            effect.effectForms.Add(DatabaseHelper.SpellDefinitions.Entangle.effectDescription.effectForms.Find(e => e.formType == EffectForm.EffectFormType.Topology));
+
+            var damage_form = new EffectForm();
+            damage_form.formType = EffectForm.EffectFormType.Damage;
+            damage_form.damageForm = new DamageForm();
+            damage_form.damageForm.dieType = RuleDefinitions.DieType.D4;
+            damage_form.damageForm.diceNumber = 2;
+            damage_form.damageForm.damageType = Helpers.DamageTypes.Piercing;
+
+            var feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyEffectFormsOnTargetMoved>.createFeature("SpikeGrowthDamageFeature",
+                                                                                                                    "",
+                                                                                                                    title_string,
+                                                                                                                    title_string,
+                                                                                                                    Common.common_no_icon,
+                                                                                                                    a =>
+                                                                                                                    {
+                                                                                                                        a.effectForms = new List<EffectForm> { damage_form };
+                                                                                                                    }
+                                                                                                                    );
+
+            var condition = Helpers.ConditionBuilder.createCondition("SpikeGrowthDamageCondition",
+                                                            "",
+                                                            "Rules/&SpikeGrowthDamageConditionTitle",
+                                                            "Rules/&SpikeGrowthDamageConditionDescription",
+                                                            DatabaseHelper.ConditionDefinitions.ConditionSlowed.guiPresentation.spriteReference,
+                                                            DatabaseHelper.ConditionDefinitions.ConditionSlowed,
+                                                            feature
+                                                            );
+            condition.interruptionRequiresSavingThrow = false;
+
+            var effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition;
+            effect.EffectForms.Add(effect_form);
+            effect.durationParameter = 10;
+            effect.rangeParameter = 30;
+            spike_growth = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("SpikeGrowthSpell",
+                                                                           "",
+                                                                           title_string,
+                                                                           description_string,
+                                                                           sprite,
+                                                                           effect,
+                                                                           RuleDefinitions.ActivationTime.Action,
+                                                                           2,
+                                                                           true,
+                                                                           true,
+                                                                           true,
+                                                                           Helpers.SpellSchools.Transmutation
+                                                                           );
+            spike_growth.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, spike_growth);
+        }
+
+
+
+        static void createWinterBlast()
+        {
+            var title_string = "Spell/&WinterBlastTitle";
+            var description_string = "Spell/&WinterBlastDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("WinterBlastSpellImage",
+                                         $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/WinterBlast.png",
+                                         128, 128);
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerWinterWolfBreath.EffectDescription);
+            effect.EffectForms.Clear();
+            effect.EffectAdvancement.Clear();
+            effect.durationType = RuleDefinitions.DurationType.Instantaneous;
+            effect.hasSavingThrow = true;
+            effect.savingThrowAbility = Helpers.Stats.Dexterity;
+            effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
+            effect.effectParticleParameters.casterParticleReference = DatabaseHelper.SpellDefinitions.ConeOfCold.effectDescription.effectParticleParameters.casterParticleReference;
+
+            var effect_form = new EffectForm();
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 4;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D8;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Cold;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.HalfDamage;
+            effect.EffectForms.Add(effect_form);
+
+
+            effect_form = new EffectForm();
+            effect_form.motionForm = new MotionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Motion;
+            effect_form.MotionForm.type = MotionForm.MotionType.FallProne;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
+
+            winter_blast = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("WinterBlastSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       3,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Conjuration
+                                                                                       );
+            winter_blast.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, winter_blast);
         }
 
 
@@ -247,8 +402,8 @@ namespace SolastaExtraContent
                                                                                  Common.common_no_icon,
                                                                                  a =>
                                                                                  {
-                                                                                     a.numDice = i + 1;
-                                                                                     a.dieType = RuleDefinitions.DieType.D6;
+                                                                                     a.numDice = i;
+                                                                                     a.dieType = RuleDefinitions.DieType.D8;
                                                                                      a.weaponFeature = feature;
                                                                                      a.ovewriteDamageType = Helpers.DamageTypes.Fire;
                                                                                  }
@@ -258,7 +413,7 @@ namespace SolastaExtraContent
                 var condition = Helpers.ConditionBuilder.createCondition($"FlameBladeSpell{i}Condition",
                                                                         "",
                                                                         title_string,
-                                                                        Common.common_no_title,
+                                                                        description_string,
                                                                         DatabaseHelper.ConditionDefinitions.ConditionBrandingSmite.guiPresentation.spriteReference,
                                                                         DatabaseHelper.ConditionDefinitions.ConditionDivineFavor,
                                                                         caster_stat_feature,
@@ -653,7 +808,9 @@ namespace SolastaExtraContent
             var title_string = "Spell/&CallLightningTitle";
             var description_string = "Spell/&CallLightningDescription";
 
-            var sprite = DatabaseHelper.SpellDefinitions.Shatter.guiPresentation.spriteReference;
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("CallLightninglSpellImage",
+                                         $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/CallLightning.png",
+                                         128, 128);
 
 
             var condition = Helpers.ConditionBuilder.createCondition("CallLightningCondition",
