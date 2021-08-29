@@ -74,7 +74,7 @@ namespace SolastaExtraContent
             effect.effectAdvancement.additionalDicePerIncrement = 1;
             effect.effectAdvancement.incrementMultiplier = 1;
             effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
-            effect.effectParticleParameters.casterParticleReference = DatabaseHelper.SpellDefinitions.EnhanceAbilityBullsStrength.effectDescription.effectParticleParameters.casterParticleReference;
+            //effect.effectParticleParameters.casterParticleReference = DatabaseHelper.SpellDefinitions.EnhanceAbilityBullsStrength.effectDescription.effectParticleParameters.casterParticleReference;
 
             acid_claws = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("AcidClawsSpell",
                                                                                 "",
@@ -87,7 +87,7 @@ namespace SolastaExtraContent
                                                                                 false,
                                                                                 false,
                                                                                 true,
-                                                                                Helpers.SpellSchools.Transmutation
+                                                                                Helpers.SpellSchools.Necromancy
                                                                                 );
             acid_claws.materialComponentType = RuleDefinitions.MaterialComponentType.None;
         }

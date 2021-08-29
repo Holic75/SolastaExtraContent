@@ -3,7 +3,7 @@
 This is a mod for the game Solasta: Crown of the Magister.
 This mod adds Gnome race, Arcane Knight fighter archetype and following spells:
 
-Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh, Touch of Frost, Air Blast, Sound Burst, Burst of Radiance, Corrosive Claws.
+Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh, Touch of Frost, Air Blast, Sound Burst, Burst of Radiance, Bloody Claws.
 
 Lvl 1: Hellish Rebuke
 Lvl 2: Heat Metal, Flame Blade, Conjure Spirit Beast
