@@ -66,7 +66,7 @@ namespace SolastaExtraContent
             effect_form.FormType = EffectForm.EffectFormType.Damage;
             effect_form.damageForm.diceNumber = 1;
             effect_form.DamageForm.dieType = RuleDefinitions.DieType.D10;
-            effect_form.damageForm.damageType = Helpers.DamageTypes.Acid;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Necrotic;
             effect_form.hasSavingThrow = false;
             effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.None;
             effect.EffectForms.Add(effect_form);
