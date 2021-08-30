@@ -156,10 +156,11 @@ namespace SolastaExtraContent
                                                     128, 128);
 
             var effect = new EffectDescription();
-            effect.Copy(DatabaseHelper.SpellDefinitions.FaerieFire.EffectDescription);
+            effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerFireOspreyBlast.EffectDescription);
             effect.EffectForms.Clear();
             effect.EffectAdvancement.Clear();
             effect.rangeParameter = 0;
+            effect.targetParameter = 2;
             effect.targetParameter = 2;
             effect.targetParameter2 = 2;
             effect.durationType = RuleDefinitions.DurationType.Instantaneous;
@@ -169,6 +170,7 @@ namespace SolastaExtraContent
             effect.targetSide = RuleDefinitions.Side.Enemy;
             effect.targetExcludeCaster = true;
             effect.restrictedCreatureFamilies = new List<string>();
+            effect.effectParticleParameters.casterParticleReference = DatabaseHelper.SpellDefinitions.BurningHands.effectDescription.effectParticleParameters.casterParticleReference;
 
             var effect_form = new EffectForm();
             effect_form.damageForm = new DamageForm();
@@ -234,7 +236,7 @@ namespace SolastaExtraContent
             effect_form.damageForm = new DamageForm();
             effect_form.FormType = EffectForm.EffectFormType.Damage;
             effect_form.damageForm.diceNumber = 1;
-            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D4;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D6;
             effect_form.damageForm.damageType = Helpers.DamageTypes.Bludgeoning;
             effect_form.hasSavingThrow = true;
             effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
@@ -269,22 +271,16 @@ namespace SolastaExtraContent
             var description_string = "Spell/&IceStrikeDescription";
             var sprite = DatabaseHelper.SpellDefinitions.SacredFlame_B.guiPresentation.spriteReference;
 
-            var disadvantage = Helpers.CopyFeatureBuilder<FeatureDefinitionCombatAffinity>.createFeatureCopy("IceStrikeFeature",
+            var disadvantage = Helpers.FeatureBuilder<NewFeatureDefinitions.DisadvantageOnWeaponAttack>.createFeature("IceStrikeFeature",
                                                                                                              "",
                                                                                                              Common.common_no_title,
                                                                                                              Common.common_no_title,
-                                                                                                             Common.common_no_icon,
-                                                                                                             DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityChilledByTouch,
-                                                                                                             a =>
-                                                                                                             {
-                                                                                                                 a.myselfFamilyRestrictions = new List<string>();
-                                                                                                                 a.situationalContext = RuleDefinitions.SituationalContext.None;
-                                                                                                             }
+                                                                                                             Common.common_no_icon                                                                                                         
                                                                                                              );
             var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("IceStrikeCondition",
                                                                                       "",
                                                                                       title_string,
-                                                                                      "Rules/&ConditionAttackDisadvantageDescription",
+                                                                                      "Rules/&ConditionWeaponAttackDisadvantageDescription",
                                                                                       null,
                                                                                       DatabaseHelper.ConditionDefinitions.ConditionCursedByBestowCurseAttackRoll,
                                                                                       new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.Attacks },
@@ -406,7 +402,7 @@ namespace SolastaExtraContent
             var condition = Helpers.ConditionBuilder.createCondition("ShillelaghCondition",
                                                                     "",
                                                                     title_string,
-                                                                    Common.common_no_title,
+                                                                    title_string,
                                                                     null,
                                                                     DatabaseHelper.ConditionDefinitions.ConditionMagicalWeapon,
                                                                     caster_stat_feature,
@@ -416,6 +412,7 @@ namespace SolastaExtraContent
             condition.conditionTags.Clear();
             condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
             condition.conditionType = RuleDefinitions.ConditionType.Beneficial;
+            condition.possessive = true;
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
             effect.EffectForms.Clear();

@@ -15,9 +15,9 @@ Spell/&SunlightBladeDescription	Make a melee attack with a weapon against one cr
 Feedback/&AdditionalDamageSunlightBladeFormat	Extra damage due to Sunlight Blade
 Feedback/&AdditionalDamageSunlightBladeLine	Extra damage due to Sunlight Blade
 Spell/&ViciousMockeryTitle	Vicious Mockery
-Spell/&ViciousMockeryDescription	You unleash a string of insults laced with subtle enchantments at a creature you can see within range. The target must succeed on a Wisdom saving throw or take 1d4 psychic damage and have disadvantage on the next attack roll it makes before the end of its next turn.
+Spell/&ViciousMockeryDescription	Unleash a string of insults laced with subtle enchantments at a creature.
 Spell/&IceStrikeTitle	Touch of Frost
-Spell/&IceStrikeDescription	Freeze air around the target to deal cold damage and impose a disadvantage on its next attack roll.
+Spell/&IceStrikeDescription	Freeze air around the target to deal cold damage and impose a disadvantage on its next weapon attack roll.
 Spell/&AirBlastTitle Air Blast
 Spell/&AirBlastDescription Fire a blast of focused air at your target.
 Spell/&ThunderStrikeTitle	Sound Burst
@@ -27,20 +27,22 @@ Spell/&BurstOfRadianceDescription	Create a brilliant flash of shimmering light, 
 Spell/&AcidClawsTitle	Bloody Claws
 Spell/&AcidClawsDescription	Make a deadly attack with your sharpened claws.
 Spell/&HellishRebukeTitle	Hellish Rebuke
-Spell/&HellishRebukeDescription	You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.
+Spell/&HellishRebukeDescription	Burn creature that damaged you in hellish flames.
 Reaction/&SubitemSelectHellishRebukeSpellTitle	Select spell slot to use
 Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeTitle	Pursuit of Knowledge
 Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeDescription	Choose one additional spell of the level you can cast and one additional cantrip from any class. The coosen spells count as wizard spells for you and are added to your spellbook.
 Spell/&ShillelaghTitle	Shillelagh
-Spell/&ShillelaghDescription	The wood of a club or quarterstaff you are holding is imbued with nature's power. For the duration, you can use your spellcasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a d8. The weapon also becomes magical, if it isn't already. The spell ends if you cast it again or if you let go of the weapon.
+Spell/&ShillelaghDescription	Imbue a wood of club or quarterstaff with nature's power. You can use your spellcasting ability for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a d8. The weapon also becomes magical, if it isn't already.
 Spell/&CallLightningTitle	Call Lightning
 Spell/&CallLightningDescription	A bolt of lightning strikes down from the sky. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one. 
 Spell/&HeatMetalTitle	Heat Metal
-Spell/&HeatMetalDescription	 You cause the target's armor to glow red-hot. The target takes 2d8 fire damage when you cast the spell. Until the spell ends, you can use a bonus action on each of your subsequent turns to cause this damage again. The target must also succeed on a Constitution saving, otherwise it has disadvantage on attack rolls and ability checks until the start of your next turn.
+Spell/&HeatMetalDescription	Overheat target's armor. Can be reused on subsequent turns to deal more damage.
 Rules/&HeatMetalTargetConditionTitle	Armor Heated
 Rules/&HeatMetalTargetConditionDescription	Your armor is heated.
 Rules/&HeatMetalTargetCondition2Title	Too Hot!
 Rules/&ConditionAttackDisadvantageDescription	Disadvantage on next attack.
+Rules/&ConditionAllAttacsksStatsDisadvantageDescription	Disadvantage on attack rolls and ability checks.
+Rules/&ConditionWeaponAttackDisadvantageDescription	Disadvantage on next weapon attack.
 Spell/&FlameBladeSpellTitle Flame Blade
 Spell/&FlameBladeSpellDescription	The scimitar you are holding is imbued with fire's wrath. It deals fire damage, in addition you can use your spellcasting ability for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes 2d8.
 Spell/&ConjureSpiritAnimalSpellTitle	Conjure Spirit Animal
@@ -57,6 +59,12 @@ Spell/&SpikeGrowthTitle	Spike Growth
 Spell/&SpikeGrowthDescription	Cover ground with thorny vegetation and spiked roots, damaging anyone passing through.
 Rules/&SpikeGrowthDamageConditionTitle	On Spikes
 Rules/&SpikeGrowthDamageConditionDescription	Suffer 2d4 piercing damage for every 5 feet you move.
+Spell/&VulnerabilityHexTitle	Vulnerability Hex
+Spell/&VulnerabilityHexDescription	Curse target to make it more susceptible to your attacks.
+Rules/&ConditionVulnerabilityHexTitle	Hexed
+Rules/&ConditionVulnerabilityHexDescription	Suffer extra 1d6 damage from hexer's attacks.
+Feedback/&AdditionalDamageVulnerabilityHexFormat	Vulnerability Hex!
+Feedback/&AdditionalDamageVulnerabilityHexLine	{0} deals more damage to {1} as a marked target (+{2})
 Race/&ForestGnomeTitle	Woodland Gnome
 Race/&ForestGnomeDescription	A constant hum of busy activity pervades the warrens and neighborhoods where gnomes form their close-knit communities. Louder sounds punctuate the hum: a crunch of grinding gears here, a minor explosion there, a yelp of surprise or triumph, and especially bursts of laughter. Gnomes take delight in life, enjoying every moment of invention, exploration, investigation, creation, and play.
 Language/&GnomishDescription	An old Solastan language, preserved by gnomes living in deep forests of Solasta, it has survived the Cataclysm.

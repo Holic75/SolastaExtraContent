@@ -34,6 +34,7 @@ namespace SolastaExtraContent
                                                                          );
             Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.vicious_mockery);
             Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.shillelagh);
+            Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.acid_claws);
             var extra_cantrip = Helpers.ExtraSpellSelectionBuilder.createExtraCantripSelection("TraditionLoremasterSubclassPursuitOfKnowledgeCantrip",
                                                                                             "",
                                                                                             Common.common_no_title,
@@ -53,6 +54,7 @@ namespace SolastaExtraContent
                                                              (DatabaseHelper.SpellListDefinitions.SpellListWizard, 10)
                                                              );
             Helpers.Misc.addSpellToSpelllist(lvl1_spelllist, Spells.hellish_rebuke);
+            Helpers.Misc.addSpellToSpelllist(lvl1_spelllist, Spells.vulnerability_hex);
             lvl1_spelllist.spellsByLevel[0].spells.Clear();
             var extra_lvl1_spell = Helpers.ExtraSpellSelectionBuilder.createExtraSpellSelection("TraditionLoremasterSubclassPursuitOfKnowledgeSpell",
                                                                                                 "",

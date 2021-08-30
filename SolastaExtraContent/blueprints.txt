@@ -139,3 +139,8 @@ WinterBlastSpell	9a99298d-2c78-488f-8a67-0578303e6e6b
 SpikeGrowthDamageFeature	05f631a7-41eb-4b23-b5b2-89d77e385cc7
 SpikeGrowthDamageCondition	c91cf89f-4a18-457b-a94c-93613051a9c6
 SpikeGrowthSpell	cf9c6cd4-f7cc-4454-b4ca-60173628e6e8
+AdditionalDamageVulnerabilityHexSpell	f00198cb-0921-409c-baaa-97fcd3c777f0
+HexSpellTargetCondition	abfe04f7-c44f-4548-b32f-3d2ee8a42085
+HexSpellCasterCondition	19ace79d-4e97-4072-977c-ed950bd42a54
+VulnerabilityHexSpell	229b20be-d8e7-4d43-be86-65913322a2b8
+AdditionalDamageVulnerabilityHexWeapon	76099f1b-3023-4f42-82ab-26c2d484b2c4

@@ -22,6 +22,7 @@ namespace SolastaExtraContent
         static public SpellDefinition conjure_spirit_animal;
         static public SpellDefinition winter_blast;
         static public SpellDefinition spike_growth;
+        static public SpellDefinition vulnerability_hex;
 
         static public SpellDefinition polymorph;
 
@@ -46,6 +47,107 @@ namespace SolastaExtraContent
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
 
             createSpikeGrowth();
+            createVulnerabilityHex();
+        }
+
+
+        static void createVulnerabilityHex()
+        {
+            var title_string = "Spell/&VulnerabilityHexTitle";
+            var description_string = "Spell/&VulnerabilityHexDescription";
+            var sprite = DatabaseHelper.SpellDefinitions.HuntersMark.guiPresentation.spriteReference;
+
+            var weapon_feature = Helpers.CopyFeatureBuilder<FeatureDefinitionAdditionalDamage>.createFeatureCopy("AdditionalDamageVulnerabilityHexWeapon",
+                                                                                                         "",
+                                                                                                         Common.common_no_title,
+                                                                                                         Common.common_no_title,
+                                                                                                         Common.common_no_icon,
+                                                                                                         DatabaseHelper.FeatureDefinitionAdditionalDamages.AdditionalDamageHuntersMark,
+                                                                                                         a =>
+                                                                                                         {
+                                                                                                             a.requiredTargetCondition = null;
+                                                                                                             a.notificationTag = "VulnerabilityHex";
+                                                                                                         }
+                                                                                                         );
+            
+            var spells_feature = Helpers.CopyFeatureBuilder<FeatureDefinitionAdditionalDamage>.createFeatureCopy("AdditionalDamageVulnerabilityHexSpell",
+                                                                                                         "",
+                                                                                                         Common.common_no_title,
+                                                                                                         Common.common_no_title,
+                                                                                                         Common.common_no_icon,
+                                                                                                         weapon_feature,
+                                                                                                         a =>
+                                                                                                         {
+                                                                                                             a.triggerCondition = (RuleDefinitions.AdditionalDamageTriggerCondition)ExtendedEnums.AdditionalDamageTriggerCondition.MagicalAttacksOnTargetWithConditionFromMe;
+                                                                                                             a.requiredTargetCondition = null;
+                                                                                                             a.attackModeOnly = false;
+                                                                                                             a.notificationTag = "VulnerabilityHex";
+                                                                                                         }
+                                                                                                         );
+            var condition = Helpers.CopyFeatureBuilder<ConditionDefinition>.createFeatureCopy("HexSpellTargetCondition",
+                                                                                              "",
+                                                                                              "Rules/&ConditionVulnerabilityHexTitle",
+                                                                                              "Rules/&ConditionVulnerabilityHexDescription",
+                                                                                              null,
+                                                                                              DatabaseHelper.ConditionDefinitions.ConditionMarkedByHunter,
+                                                                                              a =>
+                                                                                              {
+                                                                                                  a.conditionTags = new List<string> { "Curse" };
+                                                                                              }
+                                                                                              );
+            spells_feature.requiredTargetCondition = condition;
+            weapon_feature.requiredTargetCondition = condition;
+
+            var caster_condition = Helpers.CopyFeatureBuilder<ConditionDefinition>.createFeatureCopy("HexSpellCasterCondition",
+                                                                                              "",
+                                                                                              "",
+                                                                                              "",
+                                                                                              null,
+                                                                                              DatabaseHelper.ConditionDefinitions.ConditionHuntersMark,
+                                                                                              a =>
+                                                                                              {
+                                                                                                  a.features = new List<FeatureDefinition>
+                                                                                                  {
+                                                                                                      weapon_feature,
+                                                                                                      spells_feature
+                                                                                                  };
+                                                                                              }
+                                                                                              );
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.HuntersMark.EffectDescription);
+            effect.effectForms.Clear();
+
+            var effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = caster_condition;
+            effect_form.ConditionForm.applyToSelf = true;
+            effect.EffectForms.Add(effect_form);
+
+            effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition;
+            effect.EffectForms.Add(effect_form);
+
+            vulnerability_hex = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("VulnerabilityHexSpell",
+                                                               "",
+                                                               title_string,
+                                                               description_string,
+                                                               sprite,
+                                                               effect,
+                                                               RuleDefinitions.ActivationTime.BonusAction,
+                                                               1,
+                                                               true,
+                                                               true,
+                                                               true,
+                                                               Helpers.SpellSchools.Enchantment
+                                                               );
+            vulnerability_hex.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
         }
 
 
@@ -422,6 +524,7 @@ namespace SolastaExtraContent
                 condition.conditionTags.Clear();
                 condition.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
                 condition.conditionType = RuleDefinitions.ConditionType.Beneficial;
+                condition.possessive = true;
                 var effect = new EffectDescription();
                 effect.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
                 effect.EffectForms.Clear();
@@ -477,7 +580,7 @@ namespace SolastaExtraContent
                                                                                        2,
                                                                                        true,
                                                                                        true,
-                                                                                       true,
+                                                                                       false,
                                                                                        Helpers.SpellSchools.Evocation
                                                                                        );
             flame_blade.minCustomEffectLevel = 4;
@@ -485,7 +588,7 @@ namespace SolastaExtraContent
             {
                 flame_blade.levelEffectList.Add((2 + 2*i, effects[i]));
             }
-            flame_blade.materialComponentType = RuleDefinitions.MaterialComponentType.Mundane;
+            flame_blade.materialComponentType = RuleDefinitions.MaterialComponentType.None;
 
             var allowed_weapons = new List<string> { Helpers.WeaponProficiencies.Scimitar};
             flame_blade.restrictions = new List<NewFeatureDefinitions.IRestriction> { new NewFeatureDefinitions.SpecificWeaponInMainHandRestriction(allowed_weapons) };
@@ -581,6 +684,7 @@ namespace SolastaExtraContent
                                                                     DatabaseHelper.ConditionDefinitions.ConditionTraditionShockArcanistArcaneShocked
                                                                     );
             condition.conditionType = RuleDefinitions.ConditionType.Beneficial;
+            condition.possessive = true;
 
             var condition_cooldown = Helpers.ConditionBuilder.createCondition("HeatMetalCasterCooldownCondition",
                                                                         "",
@@ -632,7 +736,7 @@ namespace SolastaExtraContent
             var condition_target2 = Helpers.ConditionBuilder.createCondition("HeatMetalTargetCondition2",
                                             "",
                                             title_string_condition2,
-                                            Common.common_no_title,
+                                            "Rules/&ConditionAllAttacsksStatsDisadvantageDescription",
                                             DatabaseHelper.ConditionDefinitions.ConditionOnFire.guiPresentation.SpriteReference,
                                             DatabaseHelper.ConditionDefinitions.ConditionTraditionShockArcanistArcaneShocked,
                                             attack_disadvantage,
@@ -821,6 +925,7 @@ namespace SolastaExtraContent
                                                                     DatabaseHelper.ConditionDefinitions.ConditionTraditionShockArcanistArcaneShocked
                                                                     );
             condition.conditionType = RuleDefinitions.ConditionType.Beneficial;
+            condition.possessive = true;
 
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalLightningBlade.effectDescription);
