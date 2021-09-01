@@ -144,3 +144,6 @@ HexSpellTargetCondition	abfe04f7-c44f-4548-b32f-3d2ee8a42085
 HexSpellCasterCondition	19ace79d-4e97-4072-977c-ed950bd42a54
 VulnerabilityHexSpell	229b20be-d8e7-4d43-be86-65913322a2b8
 AdditionalDamageVulnerabilityHexWeapon	76099f1b-3023-4f42-82ab-26c2d484b2c4
+EarthTremorSpell	c4154fdf-e795-47e4-a765-cad63893eea5
+SpikeGrowthProxy	b402dad6-e61c-489d-bbdc-38bcd4f4eafd
+RubbleProxy	45b6023c-72c9-4a38-8fb5-7908d09c0425

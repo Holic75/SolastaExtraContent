@@ -23,6 +23,7 @@ namespace SolastaExtraContent
         static public SpellDefinition winter_blast;
         static public SpellDefinition spike_growth;
         static public SpellDefinition vulnerability_hex;
+        static public SpellDefinition earth_tremor;
 
         static public SpellDefinition polymorph;
 
@@ -48,6 +49,96 @@ namespace SolastaExtraContent
 
             createSpikeGrowth();
             createVulnerabilityHex();
+            createEarthTremor();
+        }
+
+
+        static void createEarthTremor()
+        {
+            var title_string = "Spell/&EarthTremorTitle";
+            var description_string = "Spell/&EarthTremorDescription";
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("EarthTremorSpellImage",
+                                         $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/EarthTremor.png",
+                                         128, 128);
+
+            var rubble_proxy = Helpers.CopyFeatureBuilder<EffectProxyDefinition>.createFeatureCopy("RubbleProxy",
+                                                                                                   "",
+                                                                                                   title_string,
+                                                                                                   description_string,
+                                                                                                   sprite,
+                                                                                                   DatabaseHelper.EffectProxyDefinitions.ProxyGrease
+                                                                                                   );
+
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.SpellDefinitions.Shatter.EffectDescription);
+            effect.targetType = RuleDefinitions.TargetType.Cylinder;
+            effect.rangeParameter = 24;
+            effect.rangeType = RuleDefinitions.RangeType.Distance;
+            effect.targetParameter = 2;
+            effect.targetParameter2 = 1;
+            effect.EffectForms.Clear();
+            effect.targetExcludeCaster = false;
+            effect.durationType = RuleDefinitions.DurationType.Minute;
+            effect.durationParameter = 10;
+            effect.hasSavingThrow = true;
+            effect.savingThrowAbility = Helpers.Stats.Dexterity;
+            effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
+            effect.effectParticleParameters.activeEffectSurfaceStartParticleReference = DatabaseHelper.SpellDefinitions.Grease.effectDescription.effectParticleParameters.activeEffectSurfaceStartParticleReference;
+            effect.effectParticleParameters.activeEffectSurfaceParticleReference = DatabaseHelper.SpellDefinitions.Grease.effectDescription.effectParticleParameters.activeEffectSurfaceParticleReference;
+            effect.effectParticleParameters.activeEffectSurfaceEndParticleReference = DatabaseHelper.SpellDefinitions.Grease.effectDescription.effectParticleParameters.activeEffectSurfaceEndParticleReference;
+
+            var effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.damageForm = new DamageForm();
+            effect_form.FormType = EffectForm.EffectFormType.Damage;
+            effect_form.damageForm.diceNumber = 3;
+            effect_form.DamageForm.dieType = RuleDefinitions.DieType.D12;
+            effect_form.damageForm.damageType = Helpers.DamageTypes.Bludgeoning;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.HalfDamage;
+            effect.EffectForms.Add(effect_form);
+
+
+            effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.motionForm = new MotionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Motion;
+            effect_form.MotionForm.type = MotionForm.MotionType.FallProne;
+            effect_form.hasSavingThrow = true;
+            effect_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
+            effect.EffectForms.Add(effect_form);
+
+            effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.summonForm = new SummonForm();
+            effect_form.FormType = EffectForm.EffectFormType.Summon;
+            effect_form.summonForm.summonType = SummonForm.Type.EffectProxy;
+            effect_form.summonForm.effectProxyDefinitionName = rubble_proxy.name;
+            effect.EffectForms.Add(effect_form);
+
+            effect.EffectForms.Add(DatabaseHelper.SpellDefinitions.Grease.effectDescription.effectForms.Find(e => e.formType == EffectForm.EffectFormType.Topology));
+
+            effect.effectAdvancement.additionalDicePerIncrement = 1;
+            effect.effectAdvancement.incrementMultiplier = 1;
+            effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
+
+            earth_tremor = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("EarthTremorSpell",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       effect,
+                                                                                       RuleDefinitions.ActivationTime.Action,
+                                                                                       3,
+                                                                                       false,
+                                                                                       true,
+                                                                                       true,
+                                                                                       Helpers.SpellSchools.Transmutation
+                                                                                       );
+            earth_tremor.materialComponentType = RuleDefinitions.MaterialComponentType.None;
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, earth_tremor);
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizard, earth_tremor);
+            Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListSorcerer, earth_tremor);
         }
 
 
@@ -169,11 +260,25 @@ namespace SolastaExtraContent
                                          $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SpikeGrowth.png",
                                          128, 128);
 
+            var spikes_proxy = Helpers.CopyFeatureBuilder<EffectProxyDefinition>.createFeatureCopy("SpikeGrowthProxy",
+                                                                                       "",
+                                                                                       title_string,
+                                                                                       description_string,
+                                                                                       sprite,
+                                                                                       DatabaseHelper.EffectProxyDefinitions.ProxyEntangle
+                                                                                       );
+
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.SpellDefinitions.Entangle.effectDescription);
             effect.hasSavingThrow = false;
             effect.effectForms.Clear();
-            effect.effectForms.Add(DatabaseHelper.SpellDefinitions.Entangle.effectDescription.effectForms.Find(e => e.formType == EffectForm.EffectFormType.Summon));
+            var effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.summonForm = new SummonForm();
+            effect_form.FormType = EffectForm.EffectFormType.Summon;
+            effect_form.summonForm.summonType = SummonForm.Type.EffectProxy;
+            effect_form.summonForm.effectProxyDefinitionName = spikes_proxy.name;
+            effect.EffectForms.Add(effect_form);
             effect.effectForms.Add(DatabaseHelper.SpellDefinitions.Entangle.effectDescription.effectForms.Find(e => e.formType == EffectForm.EffectFormType.Topology));
 
             var damage_form = new EffectForm();
@@ -204,7 +309,7 @@ namespace SolastaExtraContent
                                                             );
             condition.interruptionRequiresSavingThrow = false;
 
-            var effect_form = new EffectForm();
+            effect_form = new EffectForm();
             effect_form.createdByCharacter = true;
             effect_form.ConditionForm = new ConditionForm();
             effect_form.FormType = EffectForm.EffectFormType.Condition;

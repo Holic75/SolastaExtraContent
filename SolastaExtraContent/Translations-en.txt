@@ -61,6 +61,8 @@ Rules/&SpikeGrowthDamageConditionTitle	On Spikes
 Rules/&SpikeGrowthDamageConditionDescription	Suffer 2d4 piercing damage for every 5 feet you move.
 Spell/&VulnerabilityHexTitle	Vulnerability Hex
 Spell/&VulnerabilityHexDescription	Curse target to make it more susceptible to your attacks.
+Spell/&EarthTremorTitle	Earth Tremor
+Spell/&EarthTremorDescription	You strike the ground and unleash a tremor of seismic force, hurling up earth, rock, and sand.
 Rules/&ConditionVulnerabilityHexTitle	Hexed
 Rules/&ConditionVulnerabilityHexDescription	Suffer extra 1d6 damage from hexer's attacks.
 Feedback/&AdditionalDamageVulnerabilityHexFormat	Vulnerability Hex!
