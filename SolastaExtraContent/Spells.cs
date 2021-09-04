@@ -46,12 +46,32 @@ namespace SolastaExtraContent
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Entangle);
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Grease);
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
+            fixGiantInsects();
+            fixConjureMinorElemental();
 
             createSpikeGrowth();
             createVulnerabilityHex();
             createEarthTremor();
         }
 
+        static void fixConjureMinorElemental()
+        {
+           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsTwo.guiPresentation.description = "Spell/&SolastaExtraContentConjureMinorElementalsTwoDescription";
+           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.guiPresentation.description = "Spell/&SolastaExtraContentConjureMinorElementalsOneDescription";
+           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsOne.guiPresentation.description = "Spell/&SolastaExtraContentConjureMinorElementalsOne2Description";
+           //DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.effectDescription.effectForms.Find(f => f.formType == EffectForm.EffectFormType.Summon).summonForm.number = 1;
+           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.effectDescription.targetParameter = 1;
+            DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.guiPresentation.title = DatabaseHelper.SpellDefinitions.ConjureMinorElementalsOne.guiPresentation.title;
+        }
+
+
+
+        static void fixGiantInsects()
+        {
+            //Deep spider is actually similar in stats to giant spider (even worse since it has light sensitivity), dnd spell allows to su
+            var spell = DatabaseHelper.SpellDefinitions.GiantInsect;
+            spell.effectDescription.effectForms.Find(f => f.formType == EffectForm.EffectFormType.Summon).summonForm.number = 3;
+        }
 
         static void createEarthTremor()
         {
