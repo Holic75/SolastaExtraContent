@@ -31,7 +31,8 @@ namespace SolastaExtraContent
 
         static void fixSun()
         {
-
+            DatabaseHelper.FeatureDefinitionBonusCantripss.BonusCantripsDomainSun.bonusCantrips[0] = DatabaseHelper.SpellDefinitions.SacredFlame;
+            DatabaseHelper.FeatureDefinitionBonusCantripss.BonusCantripsDomainSun.guiPresentation.description = DatabaseHelper.SpellDefinitions.SacredFlame.guiPresentation.title;
 
             var power = DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight;
             power.rechargeRate = RuleDefinitions.RechargeRate.ChannelDivinity;
@@ -86,6 +87,7 @@ namespace SolastaExtraContent
             feature_set.featureSet.Add(apply_proxy_power);
             DatabaseHelper.CharacterSubclassDefinitions.DomainSun.featureUnlocks.RemoveAll(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight);
             DatabaseHelper.CharacterSubclassDefinitions.DomainSun.featureUnlocks.Find(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunHeraldOfTheSun).featureDefinition = feature_set;
+            DatabaseHelper.CharacterSubclassDefinitions.DomainSun.featureUnlocks.Find(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionAdditionalDamages.AdditionalDamageDomainLifeDivineStrike).featureDefinition = potent_spellcasting;
         }
 
 
