@@ -11,7 +11,8 @@ Lvl 2: Heat Metal, Flame Blade, Conjure Spirit Beast, Spike Growth.
 
 Lvl 3: Call Lightning, Earth Tremor, Winter's Breath.
 
-In addition it gives loremaster wizard a lvl 2 feature that allows to add one cantrip and one spell of any class to his/her spellbook.
+In addition it gives loremaster wizard a lvl 2 feature that allows to add one cantrip and one spell of any class to his/her spellbook,
+and changes cleric subclasses to match better Solasta sourcebook description.
 
 Mod requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
 

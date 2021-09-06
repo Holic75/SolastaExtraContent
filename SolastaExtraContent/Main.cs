@@ -77,6 +77,7 @@ namespace SolastaExtraContent
             Spells.create();
             EldritchKnight.create();
             LoremasterFix.run();
+            FixCleric.run();
         }
     }
 }

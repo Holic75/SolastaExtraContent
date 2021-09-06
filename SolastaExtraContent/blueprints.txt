@@ -147,3 +147,8 @@ AdditionalDamageVulnerabilityHexWeapon	76099f1b-3023-4f42-82ab-26c2d484b2c4
 EarthTremorSpell	c4154fdf-e795-47e4-a765-cad63893eea5
 SpikeGrowthProxy	b402dad6-e61c-489d-bbdc-38bcd4f4eafd
 RubbleProxy	45b6023c-72c9-4a38-8fb5-7908d09c0425
+PotentSpellcastingCantirpExtraDamage	848ad21c-886d-4def-9a98-4aa0acd51c22
+AdditionalDamageDomainLawForceStrikeOblivion	f7d34c5e-bc29-4ecf-b441-009af90e2986
+HeraldOfTheSunFeatureSet	e54397e3-1eb1-4147-b651-0fbc1a2a0342
+HeraldOfTheSunProxyPower	ce19c58f-7bde-4da1-8f66-654254742de6
+HeralOfTheSunApplyProxyPowerFeature	c6856fa6-ed4e-4eb7-a889-a3f9b25686e3

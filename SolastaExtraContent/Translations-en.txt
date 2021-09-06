@@ -79,3 +79,10 @@ Feature/&GnomeNaturalIllusionistDescription	You know the Annoying Bee cantrip. I
 Spell/&SolastaExtraContentConjureMinorElementalsTwoDescription	2 elementals are conjured (CR 1).
 Spell/&SolastaExtraContentConjureMinorElementalsOneDescription  Conjure Wind Snake (CR2)
 Spell/&SolastaExtraContentConjureMinorElementalsOne2Description  Conjure Skarn Ghoul (CR2)
+Feature/&PotentSpellcastingCantirpTitle	Potent Spellcasting
+Feature/&PotentSpellcastingCantirpDescription	Add your Wisdom modifier to the damage you deal with any cleric cantrip.
+Feedback/&AdditionalDamagePotentSpellcastingFormat	Extra damage due to Potent Spellcasting
+Feedback/&AdditionalDamagePotentSpellcastingLine	Extra damage due to Potent Spellcasting
+Feature/&AdditionalDamageDomainLawForceStrikeOblivionDescription	+1D8 force damage on weapon attacks, once per turn.
+Feature/&PowerDomainOblivionHeraldOfPainLevelDescription	Channel Divinity to cause pain to enemies within 6 cells. Enemies failing a Wisdom save receive 1d8 + your cleric level necrotic damage and are posioned.
+Feature/&DomainSunIndomitableLightFixedDescription	Channel divinity to summon a sphere of sunlight, which affects light sensitive creatures and negates areas of darkness.	The sphere blinds hostile creatures for one minute, when appears.
