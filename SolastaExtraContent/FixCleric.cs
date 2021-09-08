@@ -22,7 +22,7 @@ namespace SolastaExtraContent
         static public FeatureDefinitionFeatureSet wrath_of_the_elements;
         static public FeatureDefinitionPower wind_channel;
         static public FeatureDefinitionPower cold_channel;
-        static public FeatureDefinitionFeatureSet thunder_channel;
+        static public FeatureDefinitionFeatureSet fire_channel;
 
 
         static internal void run()
@@ -34,7 +34,7 @@ namespace SolastaExtraContent
             fixSun();
             createWindChannel();
             createColdChannel();
-            createThunderChannel();
+            createFireChannel();
             fixElemental();
         }
 
@@ -50,6 +50,9 @@ namespace SolastaExtraContent
             wind_effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
             wind_effect.savingThrowDifficultyAbility = Helpers.Stats.Wisdom;
             wind_effect.effectForms.Clear();
+            wind_effect.recurrentEffect = RuleDefinitions.RecurrentEffect.No;
+            wind_effect.durationParameter = 0;
+            wind_effect.effectParticleParameters.zoneParticleReference = null;
 
             var damage_form = new EffectForm();
             damage_form.createdByCharacter = true;
@@ -94,26 +97,22 @@ namespace SolastaExtraContent
                                                                                            RuleDefinitions.UsesDetermination.Fixed,
                                                                                            RuleDefinitions.RechargeRate.ChannelDivinity,
                                                                                            ability: Helpers.Stats.Wisdom);
+            wind_channel.effectDescription.effectParticleParameters.casterParticleReference = null;
         }
 
 
-        static void createThunderChannel()
+        static void createFireChannel()
         {
-            var thunder_effect = new EffectDescription();
-            thunder_effect.Copy(DatabaseHelper.SpellDefinitions.Shatter.effectDescription);
-            thunder_effect.targetSide = RuleDefinitions.Side.Enemy;
-            thunder_effect.durationType = RuleDefinitions.DurationType.Instantaneous;
-            thunder_effect.hasSavingThrow = true;
-            thunder_effect.savingThrowAbility = Helpers.Stats.Constitution;
-            thunder_effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
-            thunder_effect.savingThrowDifficultyAbility = Helpers.Stats.Wisdom;
-            thunder_effect.targetExcludeCaster = true;
-            thunder_effect.targetType = RuleDefinitions.TargetType.Sphere;
-            thunder_effect.rangeParameter = 0;
-            thunder_effect.targetParameter = 2;
-            thunder_effect.targetParameter2 = 2;
-            thunder_effect.effectAdvancement.Clear();
-            thunder_effect.effectForms.Clear();
+            var fire_effect = new EffectDescription();
+            fire_effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerFireOspreyBlast.effectDescription);
+            fire_effect.targetSide = RuleDefinitions.Side.Enemy;
+            fire_effect.hasSavingThrow = true;
+            fire_effect.savingThrowAbility = Helpers.Stats.Constitution;
+            fire_effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
+            fire_effect.savingThrowDifficultyAbility = Helpers.Stats.Wisdom;
+            fire_effect.rangeType = RuleDefinitions.RangeType.Self;
+            fire_effect.effectAdvancement.Clear();
+            fire_effect.effectForms.Clear();
 
             var damage_form = new EffectForm();
             damage_form.createdByCharacter = true;
@@ -123,56 +122,56 @@ namespace SolastaExtraContent
             damage_form.hasSavingThrow = true;
             damage_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.HalfDamage;
             damage_form.damageForm = new DamageForm();
-            damage_form.damageForm.damageType = Helpers.DamageTypes.Thundering;
+            damage_form.damageForm.damageType = Helpers.DamageTypes.Fire;
             damage_form.damageForm.dieType = RuleDefinitions.DieType.D8;
             damage_form.damageForm.diceNumber = 2;
-            thunder_effect.effectForms.Add(damage_form);
+            fire_effect.effectForms.Add(damage_form);
 
-            var thunder_channel_damage  = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower("DomainElementalCallUponThunderDamage",
+            var fire_channel_damage = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower("DomainElementalCallUponFireDamage",
                                                                                                    "",
-                                                                                                   "Feature/&DomainElementalCallUponThunderTitle",
-                                                                                                   "Feature/&DomainElementalCallUponThunderDescription",
-                                                                                                   DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalLightningBlade.guiPresentation.spriteReference,
-                                                                                                   thunder_effect,
+                                                                                                   "Feature/&DomainElementalCallUponFireTitle",
+                                                                                                   "Feature/&DomainElementalCallUponFireDescription",
+                                                                                                   DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalFireBurst.guiPresentation.spriteReference,
+                                                                                                   fire_effect,
                                                                                                    RuleDefinitions.ActivationTime.NoCost,
                                                                                                    1,
                                                                                                    RuleDefinitions.UsesDetermination.Fixed,
                                                                                                    RuleDefinitions.RechargeRate.AtWill,
                                                                                                    ability: Helpers.Stats.Wisdom);
-
-            var thunder_channel_power = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower("DomainElementalCallUponThunder",
+            fire_channel_damage.showCasting = false;
+            var fire_channel_power = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower("DomainElementalCallUponFire",
                                                                                        "",
-                                                                                       "Feature/&DomainElementalCallUponThunderTitle",
-                                                                                       "Feature/&DomainElementalCallUponThunderDescription",
-                                                                                       DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalLightningBlade.guiPresentation.spriteReference,
+                                                                                       "Feature/&DomainElementalCallUponFireTitle",
+                                                                                       "Feature/&DomainElementalCallUponFireDescription",
+                                                                                       DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalFireBurst.guiPresentation.spriteReference,
                                                                                        DatabaseHelper.SpellDefinitions.MistyStep.effectDescription,
                                                                                        RuleDefinitions.ActivationTime.Action,
                                                                                        1,
                                                                                        RuleDefinitions.UsesDetermination.Fixed,
                                                                                        RuleDefinitions.RechargeRate.ChannelDivinity,
                                                                                        ability: Helpers.Stats.Wisdom);
-
-            var feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyPowerAfterPowerUseToCaster>.createFeature("DomainElementalCallUponThunderFeature",
+            fire_channel_power.effectDescription.effectParticleParameters.casterParticleReference = null;
+            var feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyPowerAfterPowerUseToCaster>.createFeature("DomainElementalCallUponFireFeature",
                                                                                                                       "",
                                                                                                                       Common.common_no_title,
                                                                                                                       Common.common_no_title,
                                                                                                                       Common.common_no_icon,
                                                                                                                       a =>
                                                                                                                       {
-                                                                                                                          a.usedPower = thunder_channel_power;
-                                                                                                                          a.power = thunder_channel_power;
+                                                                                                                          a.usedPower = fire_channel_power;
+                                                                                                                          a.power = fire_channel_damage;
                                                                                                                       }
                                                                                                                       );
 
-            thunder_channel = Helpers.FeatureSetBuilder.createFeatureSet("DomainElementalCallUponThunderFeatureSet",
+            fire_channel = Helpers.FeatureSetBuilder.createFeatureSet("DomainElementalCallUponThunderFeatureSet",
                                                                          "",
-                                                                         thunder_channel_power.guiPresentation.title,
-                                                                         thunder_channel_power.guiPresentation.description,
+                                                                         fire_channel_power.guiPresentation.title,
+                                                                         fire_channel_power.guiPresentation.description,
                                                                          false,
                                                                          FeatureDefinitionFeatureSet.FeatureSetMode.Union,
                                                                          false,
-                                                                         thunder_channel_power,
-                                                                         thunder_channel_damage,
+                                                                         fire_channel_power,
+                                                                         fire_channel_damage,
                                                                          feature
                                                                          );
         }
@@ -184,11 +183,13 @@ namespace SolastaExtraContent
                                                                                                "Feature/&DomainElementalCallUponColdTitle",
                                                                                                "Feature/&DomainElementalCallUponColdDescription",
                                                                                                DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalIceLance.guiPresentation.spriteReference,
-                                                                                               DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalHeraldOfTheElementsCold,
+                                                                                               DatabaseHelper.FeatureDefinitionPowers.PowerWinterWolfBreath,
                                                                                                a =>
                                                                                                {
                                                                                                    a.fixedUsesPerRecharge = 1;
                                                                                                    a.rechargeRate = RuleDefinitions.RechargeRate.ChannelDivinity;
+                                                                                                   a.effectDescription.effectForms.Clear();
+                                                                                                   a.effectDescription.effectForms.AddRange(DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalHeraldOfTheElementsCold.effectDescription.effectForms);
                                                                                                }
                                                                                                );
         }
@@ -254,8 +255,8 @@ namespace SolastaExtraContent
 
                 var condition = Helpers.ConditionBuilder.createCondition($"DomainElementalHeraldOfTheElements{d.damage_type}Condition",
                                                                          "",
-                                                                         $"Feature/&DomainElementalDiscipleOfTheElements{d.damage_type}Title",
-                                                                         $"Feature/&DomainElementalDiscipleOfTheElements{d.damage_type}Description",
+                                                                         $"Feature/&DomainElementalPrimalHarmony{d.damage_type}Title",
+                                                                         $"Feature/&DomainElementalPrimalHarmony{d.damage_type}Description",
                                                                          null,
                                                                          DatabaseHelper.ConditionDefinitions.ConditionTraditionShockArcanistArcaneFury,
                                                                          feature
@@ -278,8 +279,8 @@ namespace SolastaExtraContent
 
                 var power = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower($"DomainElementalHeraldOfTheElements{d.damage_type}Power",
                                                                                             "",
-                                                                                            $"Feature/&DomainElementalDiscipleOfTheElements{d.damage_type}Title",
-                                                                                            $"Feature/&DomainElementalDiscipleOfTheElements{d.damage_type}Description",
+                                                                                            $"Feature/&DomainElementalPrimalHarmony{d.damage_type}Title",
+                                                                                            $"Feature/&DomainElementalPrimalHarmony{d.damage_type}Description",
                                                                                             d.sprite,
                                                                                             effect,
                                                                                             RuleDefinitions.ActivationTime.BonusAction,
@@ -331,7 +332,7 @@ namespace SolastaExtraContent
                                                                                             .AddFeatureAtLevel(bonus_elemental_cantrip, 1)
                                                                                             .AddFeatureAtLevel(primal_harmony, 1)
                                                                                             .AddFeatureAtLevel(cold_channel, 2)
-                                                                                            .AddFeatureAtLevel(thunder_channel, 2)
+                                                                                            .AddFeatureAtLevel(fire_channel, 2)
                                                                                             .AddFeatureAtLevel(wind_channel, 2)
                                                                                             .AddFeatureAtLevel(herald_of_the_elements, 6)
                                                                                             .AddFeatureAtLevel(potent_spellcasting, 8)

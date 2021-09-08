@@ -101,8 +101,8 @@ Feature/&DomainElementalPrimalHarmonyDamageColdDescription	The damage type of al
 Feature/&DomainElementalPrimalHarmonyDamageLightningTitle	Primal Harmony: Lightning
 Feature/&DomainElementalPrimalHarmonyDamageLightningDescription	The damage type of all your spells is changed to lightning, until end of your turn.
 Feature/&DomainElementalCallUponColdTitle	Channel Divinity: Call Upon Ice
-Feature/&DomainElementalCallUponColdDescription	Deal 2d8 + your cleric level cold damage to target and restrain it if it fails a Constitution savingthrow.
+Feature/&DomainElementalCallUponColdDescription	Deal 2d8 + your cleric level cold damage to all hostile creatures in 15-foot cone and restrain them if they fails a Constitution saving throw.
 Feature/&DomainElementalCallUponWindTitle	Channel Divinity: Call Upon Wind
 Feature/&DomainElementalCallUponWindDescription	Create a blast of wind dealing 2d8 + your cleric level bludgeoning damage and knocking down all enemies in its way.
-Feature/&DomainElementalCallUponThunderTitle	Channel Divinity: Call Upon Thunder
-Feature/&DomainElementalCallUponThunderDescription	Teleport up to 6 cells and deal 2d8 + your cleric level thunder damage to hostile creatures within 5 feet of your destiantion.
+Feature/&DomainElementalCallUponFireTitle	Channel Divinity: Call Upon Fire
+Feature/&DomainElementalCallUponFireDescription	Teleport up to 6 cells and deal 2d8 + your cleric level fire damage to all hostile creatures within 5 feet of the space you left.

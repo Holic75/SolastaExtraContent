@@ -174,3 +174,6 @@ DomainElementalCallUponThunderDamage	ebb49e4a-79b1-4130-a172-2ac752e789d0
 DomainElementalCallUponThunder	3001fcee-4d31-473c-9358-0705d50a03e2
 DomainElementalCallUponThunderFeature	664bdcbc-9136-42de-9737-097efbcb583a
 DomainElementalCallUponThunderFeatureSet	9925f38e-5cab-48e2-8fd5-d33d095ba246
+DomainElementalCallUponFireDamage	03039f24-7ab4-46f3-99e6-9f4f90f8ebbd
+DomainElementalCallUponFire	4df7926b-e5f0-4474-b9a2-df6ddf30bd69
+DomainElementalCallUponFireFeature	f42e7ded-d2fe-4d41-9190-73e55e42623f
