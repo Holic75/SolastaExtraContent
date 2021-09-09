@@ -359,7 +359,7 @@ namespace SolastaExtraContent
             var feature_set = Helpers.FeatureSetBuilder.createFeatureSet("HeraldOfTheSunFeatureSet",
                                                                          "",
                                                                          DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.GuiPresentation.title,
-                                                                         DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.GuiPresentation.description,
+                                                                         "Feature/&DomainSunIndomitableLightFixedDescription",
                                                                          false,
                                                                          FeatureDefinitionFeatureSet.FeatureSetMode.Union,
                                                                          false,
