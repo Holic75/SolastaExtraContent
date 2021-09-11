@@ -48,11 +48,31 @@ namespace SolastaExtraContent
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
             fixGiantInsects();
             fixConjureMinorElemental();
+            fixConjureAnimals();
 
             createSpikeGrowth();
             createVulnerabilityHex();
             createEarthTremor();
         }
+
+
+        static void fixConjureAnimals()
+        {
+
+            for (int i = 0; i <  DatabaseHelper.SpellDefinitions.ConjureAnimals.subspellsList.Count; i++)
+            {
+                var variant = DatabaseHelper.SpellDefinitions.ConjureAnimals.subspellsList[i];
+                variant.effectDescription.effectAdvancement.Clear();
+                variant.effectDescription.effectAdvancement.incrementMultiplier = 2;
+                variant.effectDescription.effectAdvancement.additionalSummonsPerIncrement = variant.effectDescription.targetParameter;
+                variant.effectDescription.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
+            }
+            DatabaseHelper.SpellDefinitions.ConjureAnimals.effectDescription.effectAdvancement.Clear();
+            DatabaseHelper.SpellDefinitions.ConjureAnimals.effectDescription.effectAdvancement.incrementMultiplier = 2;
+            DatabaseHelper.SpellDefinitions.ConjureAnimals.effectDescription.effectAdvancement.additionalSummonsPerIncrement = 1;
+            DatabaseHelper.SpellDefinitions.ConjureAnimals.effectDescription.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
+        }
+
 
         static void fixConjureMinorElemental()
         {
