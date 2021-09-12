@@ -9,6 +9,8 @@ using SolastaModApi;
 using SolastaModApi.Extensions;
 using SolastaExtraContent;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SolastaExtraContent
 {
@@ -19,6 +21,23 @@ namespace SolastaExtraContent
         internal static void Error(Exception ex) => Logger?.Error(ex.ToString());
         internal static void Error(string msg) => Logger?.Error(msg);
         internal static UnityModManager.ModEntry.ModLogger Logger { get; private set; }
+
+        public class Settings
+        {
+            public bool fix_cleric_subclasses { get; }
+
+            internal Settings()
+            {
+
+                using (StreamReader settings_file = File.OpenText(UnityModManager.modsPath + @"/SolastaExtraContent/settings.json"))
+                using (JsonTextReader reader = new JsonTextReader(settings_file))
+                {
+                    JObject jo = (JObject)JToken.ReadFrom(reader);
+                    fix_cleric_subclasses = (bool)jo["fix_cleric_subclasses"];
+                }
+            }
+        }
+        static public Settings settings = new Settings();
 
         internal static void LoadTranslations()
         {
@@ -77,7 +96,10 @@ namespace SolastaExtraContent
             Spells.create();
             EldritchKnight.create();
             LoremasterFix.run();
-            FixCleric.run();
+            if (settings.fix_cleric_subclasses)
+            {
+                FixCleric.run();
+            }
         }
     }
 }
