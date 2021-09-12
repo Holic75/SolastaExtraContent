@@ -98,6 +98,7 @@ namespace SolastaExtraContent
             LoremasterFix.run();
             if (settings.fix_cleric_subclasses)
             {
+                Main.Logger.Log("Fixing cleric subclasses");
                 FixCleric.run();
             }
         }
