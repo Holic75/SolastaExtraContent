@@ -37,6 +37,7 @@ namespace SolastaExtraContent
             staff_focus.guiPresentation.hidden = true;
             DatabaseHelper.CharacterClassDefinitions.Wizard.FeatureUnlocks.Insert(0, new FeatureUnlockByLevel(staff_focus, 1));
             DatabaseHelper.CharacterClassDefinitions.Sorcerer.FeatureUnlocks.Insert(0, new FeatureUnlockByLevel(staff_focus, 1));
+            DatabaseHelper.CharacterClassDefinitions.Druid.FeatureUnlocks.Insert(0, new FeatureUnlockByLevel(staff_focus, 1));
 
             Action<RulesetCharacterHero> fix_action = c =>
             {

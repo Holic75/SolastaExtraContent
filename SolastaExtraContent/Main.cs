@@ -101,6 +101,8 @@ namespace SolastaExtraContent
                 Main.Logger.Log("Fixing cleric subclasses");
                 FixCleric.run();
             }
+            Barbarian.create();
+            Druid.create();
         }
     }
 }

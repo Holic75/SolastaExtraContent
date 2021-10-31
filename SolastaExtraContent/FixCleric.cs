@@ -42,7 +42,7 @@ namespace SolastaExtraContent
         static void createWindChannel()
         {
             var wind_effect = new EffectDescription();
-            wind_effect.Copy(DatabaseHelper.SpellDefinitions.GustOfWind.effectDescription);
+            wind_effect.Copy(DatabaseHelper.SpellDefinitions.LightningBolt.effectDescription);
             wind_effect.targetSide = RuleDefinitions.Side.Enemy;
             wind_effect.durationType = RuleDefinitions.DurationType.Instantaneous;
             wind_effect.hasSavingThrow = true;
@@ -50,9 +50,9 @@ namespace SolastaExtraContent
             wind_effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
             wind_effect.savingThrowDifficultyAbility = Helpers.Stats.Wisdom;
             wind_effect.effectForms.Clear();
-            wind_effect.recurrentEffect = RuleDefinitions.RecurrentEffect.No;
-            wind_effect.durationParameter = 0;
-            wind_effect.effectParticleParameters.zoneParticleReference = null;
+            //wind_effect.recurrentEffect = RuleDefinitions.RecurrentEffect.No;
+            //wind_effect.durationParameter = 0;
+            //wind_effect.effectParticleParameters.zoneParticleReference = null;
 
             var damage_form = new EffectForm();
             damage_form.createdByCharacter = true;
@@ -62,7 +62,7 @@ namespace SolastaExtraContent
             damage_form.hasSavingThrow = true;
             damage_form.savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.HalfDamage;
             damage_form.damageForm = new DamageForm();
-            damage_form.damageForm.damageType = Helpers.DamageTypes.Bludgeoning;
+            damage_form.damageForm.damageType = Helpers.DamageTypes.Lightning;
             damage_form.damageForm.dieType = RuleDefinitions.DieType.D8;
             damage_form.damageForm.diceNumber = 2;
             wind_effect.effectForms.Add(damage_form);

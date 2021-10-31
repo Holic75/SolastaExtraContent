@@ -30,11 +30,10 @@ namespace SolastaExtraContent
             var cantrip_spelllist = Helpers.SpelllistBuilder.createCombinedSpellListWithLevelRestriction("TraditionLoremasterSubclassPursuitOfKnowledgeCantripSpelllist", "", "",
                                                                          (DatabaseHelper.SpellListDefinitions.SpellListCleric, 0),
                                                                          (DatabaseHelper.SpellListDefinitions.SpellListSorcerer, 0),
-                                                                         (DatabaseHelper.SpellListDefinitions.SpellListWizard, 0)
+                                                                         (DatabaseHelper.SpellListDefinitions.SpellListWizard, 0),
+                                                                         (DatabaseHelper.SpellListDefinitions.SpellListDruid, 0)
                                                                          );
             Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.vicious_mockery);
-            Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.shillelagh);
-            Helpers.Misc.addSpellToSpelllist(cantrip_spelllist, Cantrips.acid_claws);
             var extra_cantrip = Helpers.ExtraSpellSelectionBuilder.createExtraCantripSelection("TraditionLoremasterSubclassPursuitOfKnowledgeCantrip",
                                                                                             "",
                                                                                             Common.common_no_title,
@@ -51,7 +50,8 @@ namespace SolastaExtraContent
                                                              (DatabaseHelper.SpellListDefinitions.SpellListRanger, 10),
                                                              (DatabaseHelper.SpellListDefinitions.SpellListPaladin, 10),
                                                              (DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, 10),
-                                                             (DatabaseHelper.SpellListDefinitions.SpellListWizard, 10)
+                                                             (DatabaseHelper.SpellListDefinitions.SpellListWizard, 10),
+                                                             (DatabaseHelper.SpellListDefinitions.SpellListDruid, 10)
                                                              );
             Helpers.Misc.addSpellToSpelllist(lvl1_spelllist, Spells.hellish_rebuke);
             Helpers.Misc.addSpellToSpelllist(lvl1_spelllist, Spells.vulnerability_hex);

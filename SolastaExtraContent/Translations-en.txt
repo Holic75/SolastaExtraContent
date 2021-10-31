@@ -1,4 +1,4 @@
-Subclass/&MartialEldritchKnightTitle	Arcane Knight
+﻿Subclass/&MartialEldritchKnightTitle	Arcane Knight
 Subclass/&MartialEldritchKnightDescripton	Fearsome warriors and spellcasters, arcane knights are rare among magic-users in their ability to wade into battle alongside fighters, barbarians, and other martial classes. Those who must face arcane knights in combat fear them greatly, for their versatility on the battlefield is tremendous; against heavily armed and armored opponents they may level crippling spells, while opposing spellcasters meet their ends on an arcane knight's blade.
 Feature/&FighterSubclassEldritchKnightAccursedStrikeTitle	Accursed Strike
 Feature/&FighterSubclassEldritchKnightAccursedStrikeDescription	At 10th level, you infuse your weapons with arcane might to make foes you hit less resistant to your magic. When you hit a creature with a weapon attack, that creature has disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn.
@@ -30,7 +30,7 @@ Spell/&HellishRebukeTitle	Hellish Rebuke
 Spell/&HellishRebukeDescription	Burn creature that damaged you in hellish flames.
 Reaction/&SubitemSelectHellishRebukeSpellTitle	Select spell slot to use
 Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeTitle	Pursuit of Knowledge
-Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeDescription	Choose one additional spell of the level you can cast and one additional cantrip from any class. The coosen spells count as wizard spells for you and are added to your spellbook.
+Feature/&TraditionLoremasterSubclassPursuitOfKnowledgeDescription	Choose one additional spell of the level you can cast and one additional cantrip from any class. The chosen spells count as wizard spells for you and are added to your spellbook.
 Spell/&ShillelaghTitle	Shillelagh
 Spell/&ShillelaghDescription	Imbue a wood of club or quarterstaff with nature's power. You can use your spellcasting ability for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a d8. The weapon also becomes magical, if it isn't already.
 Spell/&CallLightningTitle	Call Lightning
@@ -102,7 +102,46 @@ Feature/&DomainElementalPrimalHarmonyDamageLightningTitle	Primal Harmony: Lightn
 Feature/&DomainElementalPrimalHarmonyDamageLightningDescription	The damage type of all your spells is changed to lightning, until end of your turn.
 Feature/&DomainElementalCallUponColdTitle	Channel Divinity: Call Upon Ice
 Feature/&DomainElementalCallUponColdDescription	Deal 2d8 + your cleric level cold damage to all hostile creatures in 15-foot cone and restrain them if they fails a Constitution saving throw.
-Feature/&DomainElementalCallUponWindTitle	Channel Divinity: Call Upon Wind
-Feature/&DomainElementalCallUponWindDescription	Create a blast of wind dealing 2d8 + your cleric level bludgeoning damage and knocking down all enemies in its way.
+Feature/&DomainElementalCallUponWindTitle	Channel Divinity: Call Upon Lightning
+Feature/&DomainElementalCallUponWindDescription	Hurl a bolt of lightning dealing 2d8 + your cleric level lightning damage and knocking down all enemies in its way.
 Feature/&DomainElementalCallUponFireTitle	Channel Divinity: Call Upon Fire
 Feature/&DomainElementalCallUponFireDescription	Teleport up to 6 cells and deal 2d8 + your cleric level fire damage to all hostile creatures within 5 feet of the space you left.
+Subclass/&BarbarianSubclassPrimalPathOfWarShamanTitle	War Shaman
+Subclass/&BarbarianSubclassPrimalPathOfWarShamanDescription	The Path of the War Shaman is an ancient one, said to have first been practiced by long-forgotten warrior-druids.\nBarbarians who follow this primal path have spellcasting ability to augment their considerable combat prowess. Like druids, war shamans may be shunned in some societies or by certain worshipers of the gods, who consider all titan worship anathema.
+Feature/&BarbarianSubclassWarShamanClassSpellcastingTitle	War Shaman Spellcasting
+Feature/&BarbarianSubclassWarShamanClassSpellcastingDescription	When you choose this path at 3rd level, you gain the ability to cast a limited selection of druid spells and cantrips. While you cannot cast spells while raging, you can maintain concentration on druid spells while doing so.\nWisdom is your spellcasting ability for your druid spells. You use Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast, or when you make an attack roll with one.
+Feature/&BarbarianSubclassWarShamanClassShareRageTitle	Share Rage
+Feature/&BarbarianSubclassWarShamanClassShareRageDescription	As part of the same bonus action you use to enter a rage, you can expend a spell slot of 1st level or higher. If you do so, choose a willing creature you can see within 30 feet of you. Provided your target can see or hear you, and it isn't wearing heavy armor, it also rages. It gains the effects of the Rage feature, including your Rage Damage bonus. 
+Feature/&BarbarianSubclassWarShamanClassRagecasterTitle	Ragecaster
+Feature/&BarbarianSubclassWarShamanClassRagecasterDescription	You can cast druid spells while raging. The range of your Share Rage feature increases to 60 feet.
+Subclass/&BarbarianSubclassPrimalPathOfFrozenFuryTitle	Frozen Fury
+Subclass/&BarbarianSubclassPrimalPathOfFrozenFuryDescription	Barbarians that wander the frozen north are said to have ice in their veins. Their rage does not burn within them so much as blind them to every emotion except bloodlust�their only care is for violence. They shut out pain, fear, and winter's chill alike to finish a battle.
+Feature/&BarbarianSubclassFrozenFuryWintersFuryTitle	Winter's Fury
+Feature/&BarbarianSubclassFrozenFuryWintersFuryDescription	Once you choose this path at 3rd level, the very air around you freezes when you enter a rage. All creatures within 5 feet of you at the end of your turn take 1d6 points of cold damage. This damage increases to 1d10 at 6th level, 2d6 at 10th level, and 2d10 at 14th level. You are immune to this damage.
+Feature/&BarbarianSubclassFrozenFuryFrigidBodyTitle	Frigid Body
+Feature/&BarbarianSubclassFrozenFuryFrigidBodyDescription	Frigid winds buffet the space around you when you enter a rage, knocking away missiles targeting you. Your Armor Class increases by 2 against ranged weapon attacks.
+Feature/&BarbarianSubclassFrozenFuryNumbTitle	Numb
+Feature/&BarbarianSubclassFrozenFuryNumbDescription	Your mind shuts out all pain and fear, filling you with a cold resolve to fight on. You cannot be frightened or poisoned while raging. If you are frightened or poisoned when you enter your rage, any such effects are removed.
+Subclass/&DruidSubclassCircleOfSpiritsTitle	Circle of the Spirits
+Subclass/&DruidSubclassCircleOfSpiritsDescription	Certain druids develop a particular relationship with the guardian spirits of nature. Holders of secular shamanic traditions, such druids can call upon these powerful allies, though only under certain conditions. Usually enigmatic, sometimes troubling, members of the Circle of the Spirits are respected and feared by those able to see in them beings who can communicate with the dangerous spirit world.
+Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetTitle	Spirit Call
+Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetDescription	Starting at 2nd level, you gain the ability to call forth nature spirits and use them to influence the world around you. As a bonus action, by spending one use of your wildshape ability, you can magically summon an spirit to a point you can see within 60 feet of you. The spirit creates an aura in a 20-foot radius around that point for 1 minute. The effect of the spirit's aura depends on the type of spirit you summon.
+Feature/&DruidSubclassCircleOfSpiritProxyTitle	Spirit
+Feature/&DruidSubclassCircleOfSpiritsProtectionSpiritTitle Call Protection Spirit
+Feature/&DruidSubclassCircleOfSpiritsProtectionSpiritDescription	This spirit protects you and your allies from enemies. Each ally in the aura receives +1 bonus to AC, saving throws and has an advantage on Constitution checks to maintain concentration.
+Rules/&ConditionDruidSubclassCircleOfSpiritsProtectionSpiritTitle	Empowered by Protection Spirit
+Rules/&ConditionDruidSubclassCircleOfSpiritsProtectionSpiritDescription	Gain +1 bonus to AC, saving throws and an advantage on Constitution checks to maintain concentration.
+Feature/&DruidSubclassCircleOfSpiritsHuntSpiritTitle Call Hunt Spirit
+Feature/&DruidSubclassCircleOfSpiritsHuntSpiritDescription This spirit helps you and your allies to strike your opponents. Each ally in the aura receives +1 bonus to attack and damage rolls and has advantage on Wisdom (Perception) checks.
+Rules/&ConditionDruidSubclassCircleOfSpiritsHuntSpiritTitle Empowered by Hunt Spirit
+Rules/&ConditionDruidSubclassCircleOfSpiritsHuntSpiritDescription	Gain +1 bonus to attack and damage rolls and advantage on Wisdom (Perception) checks.
+Feature/&DruidSubclassCircleOfSpiritsHealingSpiritTitle	Call Healing Spirit
+Feature/&DruidSubclassCircleOfSpiritsHealingSpiritDescription	This spirit takes care of your allies' wounds. Each ally in the aura has advantage on death saving throws, and regains the maximum number of hit points possible from any healing.
+Rules/&ConditionDruidSubclassCircleOfSpiritsHealingSpiritTitle	Empowered by Healing Spirit
+Rules/&ConditionDruidSubclassCircleOfSpiritsHealingSpiritDescription	Gain advantage on death saving throws, and regain the maximum number of hit points possible from any healing.
+Feature/&DruidSubclassCircleOfSpiritsSpiritSummonerTitle	Spirit Summoner
+Feature/&DruidSubclassCircleOfSpiritsSpiritSummonerDescription	The creatures you summon are infused with the power of spirits. They receive 2 extra hit points per Hit Die they have and their attacks are considered magical for the purpose of overcoming immunity and resistance to nonmagical attacks and damage.
+Rules/&DruidSubclassCircleOfSpiritsSpiritSummonerConditionDescription	This summoned creature has increased Hit Points and its attacks count as magical for purpose of overcoming damage resistance.
+Feature/&DruidSubclassCircleOfSpiritsGuardianSpiritsTitle	Guardian Spirits
+Feature/&DruidSubclassCircleOfSpiritsGuardianSpiritsDescription	The spirits safeguard the creatures you summon with your magic. When the creature you summoned ends its turn in your spirit area, that creature regains a number of hit points equal to half your druid level.
+Rules/&DruidSubclassCircleOfSpiritsGuardianSpiritsConditionDescription	The creature regains a number of hit points equal to half its summoner's druid level if it ends its turn in the summoners's spirit area.
