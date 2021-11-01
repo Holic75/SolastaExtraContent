@@ -296,6 +296,7 @@ namespace SolastaExtraContent
             war_shaman_spellcasting.spellCastingOrigin = FeatureDefinitionCastSpell.CastingOrigin.Subclass;
             war_shaman_spellcasting.replacedSpells = new List<int> {0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
                                                                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+            war_shaman_spellcasting.focusType = EquipmentDefinitions.FocusType.Druidic;
             rage_spellcasting_forbiden.concentrationExceptionFeatures.Add(war_shaman_spellcasting);
         }
 
