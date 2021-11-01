@@ -19,7 +19,8 @@ namespace SolastaExtraContent
         static public SpellListDefinition war_shaman_spelllist;
         static public FeatureDefinitionCastSpell war_shaman_spellcasting;
         static public NewFeatureDefinitions.PowerWithRestrictions share_rage_power;
-        static public FeatureDefinition ragecaster;
+        static public NewFeatureDefinitions.PowerWithRestrictions share_rage_power_60;
+        static public FeatureDefinitionFeatureSet ragecaster;
 
         //Frozen Fury
         static NewFeatureDefinitions.ApplyPowerOnTurnEndBasedOnClassLevel frozen_fury_rage_feature;
@@ -247,7 +248,7 @@ namespace SolastaExtraContent
                                                                                                         }
                                                                                                         );
             DatabaseHelper.ConditionDefinitions.ConditionRaging.features.Remove(DatabaseHelper.FeatureDefinitionMagicAffinitys.MagicAffinityConditionRaging);
-            DatabaseHelper.ConditionDefinitions.ConditionRaging.features.Remove(rage_spellcasting_forbiden);
+            DatabaseHelper.ConditionDefinitions.ConditionRaging.features.Add(rage_spellcasting_forbiden);
 
             war_shaman_spelllist = Helpers.SpelllistBuilder.create9LevelSpelllist("BarbarianSubclassWarshamanSpelllist", "", "",
                                                                         DatabaseHelper.SpellListDefinitions.SpellListDruid.spellsByLevel[0].spells.ToArray().ToList(),
@@ -294,8 +295,8 @@ namespace SolastaExtraContent
                                                                                               );
             war_shaman_spellcasting.spellCastingLevel = -1;
             war_shaman_spellcasting.spellCastingOrigin = FeatureDefinitionCastSpell.CastingOrigin.Subclass;
-            war_shaman_spellcasting.replacedSpells = new List<int> {0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
-                                                                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+            war_shaman_spellcasting.replacedSpells = new List<int> {0, 0, 0, 1, 0, 0, 1, 1, 0, 1,
+                                                                    1, 0, 1, 1, 0, 1, 0, 0, 1, 1};
             war_shaman_spellcasting.focusType = EquipmentDefinitions.FocusType.Druidic;
             rage_spellcasting_forbiden.concentrationExceptionFeatures.Add(war_shaman_spellcasting);
         }
@@ -306,21 +307,33 @@ namespace SolastaExtraContent
             string ragecaster_title_string = "Feature/&BarbarianSubclassWarShamanClassRagecasterTitle";
             string ragecaster_description_string = "Feature/&BarbarianSubclassWarShamanClassRagecasterDescription";
 
-            ragecaster = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("BarbarianSubclassWarshamanRagecaster",
+            var ragecaster_feature = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("BarbarianSubclassWarshamanRagecaster",
                                                                                             "",
                                                                                             ragecaster_title_string,
                                                                                             ragecaster_description_string
                                                                                             );
-            rage_spellcasting_forbiden.spellcastingExceptionFeatures.Add(ragecaster);
+            rage_spellcasting_forbiden.spellcastingExceptionFeatures.Add(ragecaster_feature);
+
+            ragecaster = Helpers.FeatureSetBuilder.createFeatureSet("BarbarianSubclassWarshamanRagecasterFeatureSet",
+                                                    "",
+                                                    ragecaster_title_string,
+                                                    ragecaster_description_string,
+                                                    false,
+                                                    FeatureDefinitionFeatureSet.FeatureSetMode.Union,
+                                                    false,
+                                                    ragecaster_feature,
+                                                    share_rage_power_60
+                                                    );
         }
 
 
         static void createShareRage()
         {
-            //TODO fix daamge calculation
+            //TODO fix damage calculation
             string share_rage_title_string = "Feature/&BarbarianSubclassWarShamanClassShareRageTitle";
             string share_rage_description_string = "Feature/&BarbarianSubclassWarShamanClassShareRageDescription";
 
+            DatabaseHelper.FeatureDefinitionActionAffinitys.ActionAffinityConditionRaging.authorizedActions.Add(ActionDefinitions.Id.RageStop);
             var condition_started_rage = Helpers.CopyFeatureBuilder<ConditionDefinition>.createFeatureCopy("BarbarianStartedRageCondition",
                                                                                                            "",
                                                                                                            Common.common_no_title,
@@ -340,35 +353,42 @@ namespace SolastaExtraContent
             condition_started_rage.specialInterruptions = new List<RuleDefinitions.ConditionInterruption> {RuleDefinitions.ConditionInterruption.AnyBattleTurnEnd,
                                                                                                            RuleDefinitions.ConditionInterruption.Attacked,
                                                                                                            RuleDefinitions.ConditionInterruption.UsePower};
+            var share_rage_powers = new NewFeatureDefinitions.PowerWithRestrictions[2];
+            for (int i = 0; i < share_rage_powers.Length; i++)
+            {
+                share_rage_powers[i] = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+                                                                                    .createPower($"BarbarianSubclassWarshamanShareRagePower{(i + 1) * 60}",
+                                                                                                    "",
+                                                                                                    share_rage_title_string,
+                                                                                                    share_rage_description_string,
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainLawHolyRetribution.GuiPresentation.SpriteReference,
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.effectDescription,
+                                                                                                    RuleDefinitions.ActivationTime.NoCost,
+                                                                                                    10,
+                                                                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                                                                    RuleDefinitions.RechargeRate.SpellSlot
+                                                                                                    );
 
-            share_rage_power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
-                                                                                .createPower("BarbarianSubclassWarshamanShareRagePower",
-                                                                                                "",
-                                                                                                share_rage_title_string,
-                                                                                                share_rage_description_string,
-                                                                                                DatabaseHelper.FeatureDefinitionPowers.PowerDomainLawHolyRetribution.GuiPresentation.SpriteReference,
-                                                                                                DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.effectDescription,
-                                                                                                RuleDefinitions.ActivationTime.NoCost,
-                                                                                                10,
-                                                                                                RuleDefinitions.UsesDetermination.Fixed,
-                                                                                                RuleDefinitions.RechargeRate.SpellSlot
-                                                                                                );
-
-            var effect = new EffectDescription();
-            effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.EffectDescription);
-            effect.rangeType = RuleDefinitions.RangeType.Distance;
-            effect.rangeParameter =  6;
-            effect.targetParameter = 1;
-            effect.targetParameter2 = 1;
-            effect.DurationParameter = 1;
-            effect.DurationType = RuleDefinitions.DurationType.Minute;
-            effect.EffectForms.Clear();
-            effect.targetType = RuleDefinitions.TargetType.Individuals;
-            effect.targetSide = RuleDefinitions.Side.Ally;
-            effect.targetFilteringTag = (RuleDefinitions.TargetFilteringTag)(ExtendedEnums.ExtraTargetFilteringTag.NonCaster | ExtendedEnums.ExtraTargetFilteringTag.NoHeavyArmor);
-            share_rage_power.restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionRaging));
-            share_rage_power.restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(condition_started_rage));
-            share_rage_power.effectDescription.immuneCreatureFamilies = new List<string> { Helpers.Misc.createImmuneIfHasConditionFamily(DatabaseHelper.ConditionDefinitions.ConditionRaging) };
+                var effect = new EffectDescription();
+                effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.EffectDescription);
+                effect.rangeType = RuleDefinitions.RangeType.Distance;
+                effect.rangeParameter = 6 + 6*i;
+                effect.targetParameter = 1;
+                effect.targetParameter2 = 1;
+                effect.DurationParameter = 1;
+                effect.DurationType = RuleDefinitions.DurationType.Minute;
+                effect.targetType = RuleDefinitions.TargetType.Individuals;
+                effect.targetSide = RuleDefinitions.Side.Ally;
+                effect.targetFilteringTag = (RuleDefinitions.TargetFilteringTag)(ExtendedEnums.ExtraTargetFilteringTag.NonCaster | ExtendedEnums.ExtraTargetFilteringTag.NoHeavyArmor);
+                share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionRaging));
+                share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(condition_started_rage));
+                share_rage_powers[i].effectDescription = effect;
+                share_rage_powers[i].effectDescription.immuneCreatureFamilies = new List<string> { Helpers.Misc.createImmuneIfHasConditionFamily(DatabaseHelper.ConditionDefinitions.ConditionRaging) };
+                share_rage_powers[i].spellcastingFeature = war_shaman_spellcasting;
+            }
+            share_rage_power = share_rage_powers[0];
+            share_rage_power_60 = share_rage_powers[1];
+            share_rage_power_60.overriddenPower = share_rage_power;
         }
     }
 }

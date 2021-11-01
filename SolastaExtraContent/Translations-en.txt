@@ -106,15 +106,15 @@ Feature/&DomainElementalCallUponWindTitle	Channel Divinity: Call Upon Lightning
 Feature/&DomainElementalCallUponWindDescription	Hurl a bolt of lightning dealing 2d8 + your cleric level lightning damage and knocking down all enemies in its way.
 Feature/&DomainElementalCallUponFireTitle	Channel Divinity: Call Upon Fire
 Feature/&DomainElementalCallUponFireDescription	Teleport up to 6 cells and deal 2d8 + your cleric level fire damage to all hostile creatures within 5 feet of the space you left.
-Subclass/&BarbarianSubclassPrimalPathOfWarShamanTitle	War Shaman
+Subclass/&BarbarianSubclassPrimalPathOfWarShamanTitle	Path of the War Shaman
 Subclass/&BarbarianSubclassPrimalPathOfWarShamanDescription	The Path of the War Shaman is an ancient one, said to have first been practiced by long-forgotten warrior-druids.\nBarbarians who follow this primal path have spellcasting ability to augment their considerable combat prowess. Like druids, war shamans may be shunned in some societies or by certain worshipers of the gods, who consider all titan worship anathema.
 Feature/&BarbarianSubclassWarShamanClassSpellcastingTitle	War Shaman Spellcasting
 Feature/&BarbarianSubclassWarShamanClassSpellcastingDescription	When you choose this path at 3rd level, you gain the ability to cast a limited selection of druid spells and cantrips. While you cannot cast spells while raging, you can maintain concentration on druid spells while doing so.\nWisdom is your spellcasting ability for your druid spells. You use Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast, or when you make an attack roll with one.
 Feature/&BarbarianSubclassWarShamanClassShareRageTitle	Share Rage
 Feature/&BarbarianSubclassWarShamanClassShareRageDescription	As part of the same bonus action you use to enter a rage, you can expend a spell slot of 1st level or higher. If you do so, choose a willing creature you can see within 30 feet of you. Provided your target can see or hear you, and it isn't wearing heavy armor, it also rages. It gains the effects of the Rage feature, including your Rage Damage bonus. 
 Feature/&BarbarianSubclassWarShamanClassRagecasterTitle	Ragecaster
-Feature/&BarbarianSubclassWarShamanClassRagecasterDescription	You can cast druid spells while raging. The range of your Share Rage feature increases to 60 feet.
-Subclass/&BarbarianSubclassPrimalPathOfFrozenFuryTitle	Frozen Fury
+Feature/&BarbarianSubclassWarShamanClassRagecasterDescription	You can cast druid spells while raging. The range of your share rage power increases to 120 feet.
+Subclass/&BarbarianSubclassPrimalPathOfFrozenFuryTitle	Path of the Frozen Fury
 Subclass/&BarbarianSubclassPrimalPathOfFrozenFuryDescription	Barbarians that wander the frozen north are said to have ice in their veins. Their rage does not burn within them so much as blind them to every emotion except bloodlust�their only care is for violence. They shut out pain, fear, and winter's chill alike to finish a battle.
 Feature/&BarbarianSubclassFrozenFuryWintersFuryTitle	Winter's Fury
 Feature/&BarbarianSubclassFrozenFuryWintersFuryDescription	Once you choose this path at 3rd level, the very air around you freezes when you enter a rage. All creatures within 5 feet of you at the end of your turn take 1d6 points of cold damage. This damage increases to 1d10 at 6th level, 2d6 at 10th level, and 2d10 at 14th level. You are immune to this damage.
