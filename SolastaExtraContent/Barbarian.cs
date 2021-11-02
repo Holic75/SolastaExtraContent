@@ -27,6 +27,7 @@ namespace SolastaExtraContent
         static public FeatureDefinition frozen_fury;
         static public NewFeatureDefinitions.ArmorBonusAgainstAttackType frigid_body;
         static public FeatureDefinitionFeatureSet numb;
+        static public ConditionDefinition shared_rage_condition;
 
         public static void create()
         {
@@ -340,6 +341,19 @@ namespace SolastaExtraContent
                                                                                                            Common.common_no_title,
                                                                                                            Common.common_no_icon,
                                                                                                            DatabaseHelper.ConditionDefinitions.ConditionDummy);
+            shared_rage_condition = Helpers.CopyFeatureBuilder<ConditionDefinition>.createFeatureCopy("BarbarianShareRageCondition",
+                                                                                               "",
+                                                                                               Common.common_no_title,
+                                                                                               Common.common_no_title,
+                                                                                               Common.common_no_icon,
+                                                                                               DatabaseHelper.ConditionDefinitions.ConditionDummy,
+                                                                                               a =>
+                                                                                               {
+                                                                                                   a.specialDuration = true;
+                                                                                                   a.durationParameter = 2;
+                                                                                                   a.durationType = RuleDefinitions.DurationType.Round;
+                                                                                               });
+
             condition_started_rage.durationType = RuleDefinitions.DurationType.Turn;
             condition_started_rage.specialDuration = true;
             condition_started_rage.durationParameter = 1;
@@ -380,6 +394,15 @@ namespace SolastaExtraContent
                 effect.targetType = RuleDefinitions.TargetType.Individuals;
                 effect.targetSide = RuleDefinitions.Side.Ally;
                 effect.targetFilteringTag = (RuleDefinitions.TargetFilteringTag)(ExtendedEnums.ExtraTargetFilteringTag.NonCaster | ExtendedEnums.ExtraTargetFilteringTag.NoHeavyArmor);
+
+
+                var effect_form_share = new EffectForm();
+                effect_form_share.ConditionForm = new ConditionForm();
+                effect_form_share.FormType = EffectForm.EffectFormType.Condition;
+                effect_form_share.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+                effect_form_share.ConditionForm.ConditionDefinition = shared_rage_condition;
+                effect.EffectForms.Add(effect_form_share);
+
                 share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionRaging));
                 share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(condition_started_rage));
                 share_rage_powers[i].effectDescription = effect;

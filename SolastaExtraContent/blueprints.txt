@@ -216,3 +216,4 @@ DruidSubclassCircleOfSpiritsGuardianSpiritsApplyCondition	75f437fa-912e-4c7d-85a
 BarbarianSubclassWarshamanShareRagePower60	8a8358c9-fb5f-4762-91ce-f8ee9f5e39f1
 BarbarianSubclassWarshamanShareRagePower120	97900103-1360-44c1-b9f7-3ba9f46a1ae1
 BarbarianSubclassWarshamanRagecasterFeatureSet	a3ba1468-6975-46e2-a49e-71323cc1485f
+BarbarianShareRageCondition	bf6a5036-aee4-4357-aa80-56d2343924b7
