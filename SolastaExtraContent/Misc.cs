@@ -20,6 +20,37 @@ namespace SolastaExtraContent
         static internal void run()
         {
             createStaffFocus();
+            fixBarbarianUnarmoredDefense();
+        }
+
+
+        static void fixBarbarianUnarmoredDefense()
+        {
+            //fix barbarian unarmored defense not to stack with other ac calcualtion methods
+            var unarmored_defense = Helpers.FeatureBuilder<NewFeatureDefinitions.ArmorClassStatBonus>.createFeature("BarbarianClassUnarmoredDefense",
+                                                                                                    "dcb2cd61-8453-4e45-9df6-9475ebeff88e",
+                                                                                                    "Feature/&UnarmoredDefenseTitle",
+                                                                                                    "Feature/&UnarmoredDefenseDescription",
+                                                                                                    null,
+                                                                                                    a =>
+                                                                                                    {
+                                                                                                        a.armorAllowed = false;
+                                                                                                        a.shieldAlowed = true;
+                                                                                                        a.stat = Helpers.Stats.Constitution;
+                                                                                                        a.exclusive = true;
+                                                                                                        a.forbiddenFeatures = new List<FeatureDefinition>
+                                                                                                        {
+                                                                                                            DatabaseHelper.FeatureDefinitionAttributeModifiers.AttributeModifierSorcererDraconicResilienceAC,
+                                                                                                            DatabaseHelper.FeatureDefinitionAttributeModifiers.AttributeModifierMageArmor,
+                                                                                                            DatabaseHelper.FeatureDefinitionAttributeModifiers.AttributeModifierBarkskin
+                                                                                                        };
+                                                                                                    }
+                                                                                                    );
+
+            DatabaseHelper.CharacterClassDefinitions.Barbarian.featureUnlocks
+                .First(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionAttributeModifiers.AttributeModifierBarbarianUnarmoredDefense)
+                .featureDefinition = unarmored_defense;
+
         }
 
         static void createStaffFocus()
