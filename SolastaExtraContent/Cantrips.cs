@@ -96,8 +96,8 @@ namespace SolastaExtraContent
             effect.EffectForms.Clear();
             effect.EffectAdvancement.Clear();
             effect.rangeParameter = 0;
-            effect.targetParameter = 2;
-            effect.targetParameter2 = 2;
+            effect.targetParameter = 1;
+            effect.targetParameter2 = 1;
             effect.durationType = RuleDefinitions.DurationType.Instantaneous;
             effect.savingThrowAbility = Helpers.Stats.Constitution;
             effect.rangeType = RuleDefinitions.RangeType.Self;
@@ -153,8 +153,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Clear();
             effect.EffectAdvancement.Clear();
             effect.rangeParameter = 0;
-            effect.targetParameter = 2;
-            effect.targetParameter = 2;
+            effect.targetParameter = 1;
             effect.targetParameter2 = 2;
             effect.durationType = RuleDefinitions.DurationType.Instantaneous;
             effect.savingThrowAbility = Helpers.Stats.Constitution;

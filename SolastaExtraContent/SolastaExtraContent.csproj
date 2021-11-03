@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk" InitialTargets="CheckEnvironmentVars">
     <PropertyGroup>
          <SolastaInstallDir Condition=" '$(SolastaInstallDir)' == '' ">C:\Program Files (x86)\Steam\steamapps\common\Slasta_COTM</SolastaInstallDir>
+         <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
@@ -51,9 +52,20 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Install|x64'">
+	  <Optimize>true</Optimize>
+	  <DefineConstants>TRACE</DefineConstants>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Install|AnyCPU'">
 		<Optimize>false</Optimize>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Install|x64'">
+	  <Optimize>false</Optimize>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -61,7 +73,16 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <DefineConstants>TRACE</DefineConstants>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 

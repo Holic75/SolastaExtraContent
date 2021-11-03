@@ -28,6 +28,7 @@ namespace SolastaExtraContent
             public bool use_intelligence_as_main_stat_for_warlock { get; }
             public bool fix_barbarian_unarmed_defense_stacking { get; }
             public bool use_staff_as_arcane_or_druidic_focus { get; }
+            public bool allow_control_summoned_creatures { get; }
 
             internal Settings()
             {
@@ -40,6 +41,7 @@ namespace SolastaExtraContent
                     use_intelligence_as_main_stat_for_warlock = (bool)jo["use_intelligence_as_main_stat_for_warlock"];
                     fix_barbarian_unarmed_defense_stacking = (bool)jo["fix_barbarian_unarmed_defense_stacking"];
                     use_staff_as_arcane_or_druidic_focus = (bool)jo["use_staff_as_arcane_or_druidic_focus"];
+                    allow_control_summoned_creatures = (bool)jo["allow_control_summoned_creatures"];
                 }
             }
         }

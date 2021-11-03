@@ -154,9 +154,9 @@ namespace SolastaExtraContent
                 effect.rangeType = RuleDefinitions.RangeType.Self;
                 effect.targetType = RuleDefinitions.TargetType.Sphere;
                 effect.targetSide = RuleDefinitions.Side.All;
-                effect.targetParameter = 2;
+                effect.targetParameter = 1;
                 effect.targetParameter2 = 1;
-                effect.rangeParameter = 1;
+                effect.rangeParameter = 0;
                 effect.canBePlacedOnCharacter = true;
                 effect.DurationType = RuleDefinitions.DurationType.Instantaneous;
                 effect.DurationParameter = 0;

@@ -27,12 +27,6 @@ namespace SolastaExtraContent
             createConjureSpiritAnimal();
             createWinterBlast();
 
-            var entangle_effect = DatabaseHelper.SpellDefinitions.Entangle.effectDescription;
-            entangle_effect.targetType = RuleDefinitions.TargetType.Cylinder;
-            entangle_effect.targetParameter = 3;
-            entangle_effect.targetParameter2 = 1;
-            entangle_effect.effectParticleParameters.zoneParticleReference = null;
-
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Entangle);
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Grease);
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);

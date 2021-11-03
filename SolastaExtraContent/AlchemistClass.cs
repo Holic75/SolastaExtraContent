@@ -1060,7 +1060,7 @@ namespace SolastaExtraContent
             var uncontrolled_condition = Helpers.ConditionBuilder.createCondition("AlchemistVivisectionistSubclassHomunculusUncontrolledCondition",
                                                                  "",
                                                                  "Rules/&AlchemistVivisectionistSubclassHomunculusUncontrolledConditionTitle",
-                                                                 "Feature/&AlchemistVivisectionistSubclassHomunculusUncontrolledConditionDescription",
+                                                                 "Rules/&AlchemistVivisectionistSubclassHomunculusUncontrolledConditionDescription",
                                                                  null,
                                                                  DatabaseHelper.ConditionDefinitions.ConditionRestrained,
                                                                  uncontrolled_action_feature

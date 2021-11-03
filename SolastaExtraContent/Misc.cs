@@ -28,6 +28,46 @@ namespace SolastaExtraContent
             {
                 fixBarbarianUnarmoredDefense();
             }
+
+            fixConjureAnimalDuration();
+
+            if (Main.settings.allow_control_summoned_creatures)
+            {
+                allowToControlSummonedCreatures();
+            }
+        }
+
+
+        static void allowToControlSummonedCreatures()
+        {
+            var monsters = DatabaseRepository.GetDatabase<MonsterDefinition>().GetAllElements();
+            foreach (var m in monsters)
+            {
+                if (m.defaultFaction == DatabaseHelper.FactionDefinitions.Party.Name)
+                {
+                    m.fullyControlledWhenAllied = true;
+                }
+            }
+
+            var summon_elemental_spells = new List<SpellDefinition> { DatabaseHelper.SpellDefinitions.ConjureMinorElementals, DatabaseHelper.SpellDefinitions.ConjureElemental, DatabaseHelper.SpellDefinitions.ConjureFey };
+            foreach (var s in summon_elemental_spells)
+            {
+                foreach (var ss in s.subspellsList)
+                {
+                    var monster_name = ss.effectDescription.effectForms.Find(f => f.formType == EffectForm.EffectFormType.Summon).summonForm.monsterDefinitionName;
+                    var monster = DatabaseRepository.GetDatabase<MonsterDefinition>().GetElement(monster_name);
+                    monster.fullyControlledWhenAllied = true;
+                }
+            }
+        }
+
+
+        static void fixConjureAnimalDuration()
+        {
+            foreach (var s in DatabaseHelper.SpellDefinitions.ConjureAnimals.subspellsList)
+            {
+                s.effectDescription.durationType = RuleDefinitions.DurationType.Hour;
+            }
         }
 
 

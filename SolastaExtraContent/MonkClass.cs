@@ -672,11 +672,6 @@ namespace SolastaExtraContent
                                                                                                                            }
                                                                                                                            );
 
-            whirlwind_of_iron = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("MonkSubclassWayOfIronWhirlwindOfIronFeature",
-                                                                                                   "",
-                                                                                                   "Feature/&MonkSubclassWayOfIronWhirlwindOfIronTitle",
-                                                                                                   "Feature/&MonkSubclassWayOfIronWhirlwindOfIronDescription",
-                                                                                                   Common.common_no_icon);
             var unarmed_attack = Helpers.FeatureBuilder<NewFeatureDefinitions.ExtraUnarmedAttack>.createFeature("MonkClassFlurryOfBlowsUnarmedAttack",
                                                                                                                     "",
                                                                                                                     Common.common_no_title,
@@ -861,6 +856,12 @@ namespace SolastaExtraContent
         {
             string martial_arts_title_string = "Feature/&MonkClassMartialArtsTitle";
             string martial_arts_description_string = "Feature/&MonkClassMartialArtsDescription";
+
+            whirlwind_of_iron = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("MonkSubclassWayOfIronWhirlwindOfIronFeature",
+                                                                                       "",
+                                                                                       "Feature/&MonkSubclassWayOfIronWhirlwindOfIronTitle",
+                                                                                       "Feature/&MonkSubclassWayOfIronWhirlwindOfIronDescription",
+                                                                                       Common.common_no_icon);
 
             var attacked_with_monk_weapon_condition = Helpers.ConditionBuilder.createConditionWithInterruptions("MonkClassMartialArtsAttackedWithMonkWeaponCondition",
                                                                                                                 "",

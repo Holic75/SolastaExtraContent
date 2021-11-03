@@ -43,7 +43,7 @@ Feature/&WarlockThirstingBladeInvocationDescription	You can attack with a melee 
 Feature/&WarlockEldritchArcheryInvocationTitle	Eldritch Archery
 Feature/&WarlockEldritchArcheryInvocationDescription	You can attack with a bow twice, instead of once, whenever you take the Attack action on your turn.
 Feature/&WarlockEldritchStrikeInvocationTitle	Eldritch Strike
-Feature/&WarlockEldritchStrikeInvocationDescription	Once per turn when you hit a creature with a melee weapon (if you have Pact of The Blade boon), or with an arrow (if you have Pact of the Arrow boon), you can expend a warlock spell slot to deal an extra 1d10 force damage to the target per level of the spell slot, the target is also knocked prone.
+Feature/&WarlockEldritchStrikeInvocationDescription	Once per turn when you hit a creature with a melee weapon (if you have Pact of the Blade boon), or with an arrow (if you have Pact of the Arrow boon), you can expend a warlock spell slot to deal an extra 1d10 force damage to the target per level of the spell slot, the target is also knocked prone.
 Reaction/&SpendWarlockEldritchStrikeInvocationPowerReactDescription	Expend warlock spell slot to deal 1d10 force damage per slot level and knock target prone.
 Feature/&WarlockClassPactBoonTitle	Pact Boon
 Feature/&WarlockClassPactBoonDescription	Your otherworldly patron bestows a gift upon you for your loyal service.
