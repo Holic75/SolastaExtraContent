@@ -15,9 +15,10 @@ Lvl 3: Earth Tremor, Winter's Breath.
 Extra Features:  
 Loremaster wizard can add one cantrip and one spell of any class to his/her spellbook at lvl 2,  
 Cleric subclasses are modified to match better Solasta sourcebook description (optional),  
-Quarterstaves can be used as arcane/druidic foci.
+Quarterstaves can be used as arcane/druidic foci (optional).  
+Controllable summons (optional).
 
-
+All optional features can be enabled/disabled in /your_solasta_game_folder/Mods/SolastaExtraContent/settings.json  
 Mod requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
 
 # How to Install
