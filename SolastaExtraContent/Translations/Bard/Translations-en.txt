@@ -1,0 +1,82 @@
+Subclass/&BardSubclassCollegeTitle	College
+Subclass/&BardSubclassCollegeDescription	Select a Bard college
+Class/&BardClassTitle	Bard
+Class/&BardClassDescription	Untold wonders and secrets exist for those skillful enough to discover them. Through cleverness, talent, and magic, these cunning few unravel the wiles of the world, becoming adept in the arts of persuasion, manipulation, and inspiration. Typically masters of one or many forms of artistry, bards possess an uncanny ability to know more than they should and use what they learn to keep themselves and their allies ever one step ahead of danger. Bards are quick-witted and captivating, and their skills might lead them down many paths, be they gamblers or jacks-of-all-trades, scholars or performers, leaders or scoundrels, or even all of the above. For bards, every day brings its own opportunities, adventures, and challenges, and only by bucking the odds, knowing the most, and being the best might they claim the treasures of each.
+Feature/&BardWeaponProficiencyTitle	Bard Weapon Proficiencies
+Feature/&BardArmorProficiencyTitle	Bard Armor Proficiencies
+Feature/&BardToolsProficiencyTitle	Bard Tool Proficiencies
+Feature/&BardToolsProficiencyDescription	Lyre and either Manacalon Rosary or Thieves' Tools
+Feature/&BardClassSkillPointPoolTitle	Bard Skills
+Feature/&BardClassSkillPointPoolDescription	Choose any 3 skills
+Feature/&BardClassSpellcastingTitle	Bard Spellcasting
+Feature/&BardClassSpellcastingDescription	Can cast spells from Bard Spells list
+Rules/&BardClassInspiredCondition Inspired
+Rules/&BardClassInspiredConditionDescription You can add an inspiraiton die to one attack or saving throw roll.
+Reaction/&UseBardInspirationUsePowerDescription You are about to miss an attack. You can spend an inspirtion to add the inspiration die to the resulting roll.
+Reaction/&UseBardInspirationSavesUsePowerDescription	You are about to fail a saving throw against {0}. You can spend an inspirtion to add the inspiration die to the resulting roll.
+Feature/&BardClassInspirationUsePowerTitle	Spend Bardic Inspiration 
+Reaction/&UseBardInspirationUsePowerReactDescription Spend Inspiraiton
+Feature/&BardClassInspirationPowerTitle	Bardic Inspiration
+Feature/&BardClassInspirationPowerDescription	Inspire others through stirring words or music as a bonus action. Inspired creature can add an inspiration die to one attack roll or saving throw it makes.
+Feature/&BardClassInspirationUsePowerDescription	Spend Bardic Inspirtaion to get inspiration bonus on one attack roll or saving throw.
+Feature/&BardClassFontOfInspirationFeatureTitle	Font of Inspiration
+Feature/&BardClassFontOfInspirationFeatureDescription	Beginning when you reach 5th level, you regain all of your expended uses of Bardic Inspiration when you finish a short or long rest.
+Feature/&BardClassRitualCastingDescription	You can cast a known spell as a ritual if the spell has the ritual tag.
+Feature/&BardClassExpertisePointPoolTitle	Expertise
+Feature/&BardClassExpertisePointPoolDescription	Choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\nAt 10th level, you can choose another two skill proficiencies to gain this benefit.
+Feature/&BardClassJackOfAllTradesFeatureTitle	Jack of All Trades
+Feature/&BardClassJackOfAllTradesFeatureDescription	Starting at 2nd level, you can add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus.
+Feature/&BardClassSongOfRestTitle	Song of Rest
+Feature/&BardClassSongOfRestDescription	You can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance spend one or more Hit Dice to regain hit points at the end of the short rest, each of those creatures regains an extra 1d6 hit points.\nThe extra Hit Points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level.
+Feature/&BardClassMagicalSecretsTitle	Magical Secrets
+Feature/&BardClassMagicalSecretsDescription	You have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast.\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table.\nYou learn two additional spells from any class at 14th level and again at 18th level.
+Feature/&BardClassCountercharmPowerTitle	Countercharm
+Feature/&BardClassCountercharmPowerDescription	You gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within 30 feet of you have advantage on saving throws against being frightened or charmed.
+Feature/&BardClassCountercharmPowerEffectDescription	You have advantage on saving throws against being frightened or charmed.
+Stage/&SubclassSelectionStageCollegeHeader	Bard Colleges
+Stage/&SubclassSelectionStageCollegeTitle	Bard College
+Stage/&SubclassSelectionStageCollegeFeatures	College Features
+Subclass/&BardSubclassCollegeOfLoreTitle	College of Lore
+Subclass/&BardSubclassCollegeOfLoreDescription	Bards of the College of Lore know something about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales. Whether singing folk ballads in taverns or elaborate compositions in royal courts, these bards use their gifts to hold audiences spellbound. When the applause dies down, the audience members might find themselves questioning everything they held to be true, from their faith in the priesthood of the local temple to their loyalty to the king.
+Feature/&BardLoreSublclassExtraSkillPointPoolTitle	Bonus Proficiencies
+Feature/&BardLoreSublclassExtraSkillPointPoolDescription	When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.
+Feature/&BardClassCuttingWordsTitle	Cutting Words
+Feature/&BardClassCuttingWordsPowerAttackRollTitle	Cutting Words: Attack Rolls Penalty
+Feature/&BardClassCuttingWordsPowerDamageRollTitle	Cutting Words: Damage Rolls Penalty
+Feature/&BardClassCuttingWordsDescription	You learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others. When a creature that you can see within 60 feet of you makes an attack roll, an ability check, or a damage roll, you can use your reaction to expend one of your uses of Bardic Inspiration, rolling a Bardic Inspiration die and subtracting the number rolled from the creature's roll. The creature is immune if it can't hear you or if it's immune to being charmed.
+Reaction/&UseBardClassCuttingWordsAttackRollsPenaltyPowerReactDescription	Your ally is about to be hit by the target. Expend one use of your inspiration to substract your inspiration die from target's attack roll. This uses your reaction until your next turn.
+Reaction/&UseBardClassCuttingWordsDamageRollsPenaltyPowerReactDescription	Expend one use of your inspiration to substract your inspiration die from target's damage roll. This uses your reaction until your next turn.
+Feature/&BardLoreSubclassAdditionalMagicalSecretsTitle	Additional Magical Secrets
+Feature/&BardLoreSubclassAdditionalMagicalSecretsDescription	Yyou learn two spells of your choice from any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you but don't count against the number of bard spells you know.
+Subclass/&BardSubclassCollegeOfVirtueTitle	College of Virtue
+Subclass/&BardSubclassCollegeOfVirtueDescription	The movements of the celestial bodies and the delicate dance of the planes of existence create a form of music, one reflected in the orderly universe. The College of Virtue emerged as an institution devoted to its study and to preserve the universe's harmony against those forces of chaos and destruction that would disrupt it. Steeped in religious mysticism, the College's bards act as forces of good and order in the world, working to thwart evil wherever they find it and uplift others with the music they create. Most see themselves as holy warriors, champions of the gods, and they commit their lives to furthering their interests in the material plane.
+Feature/&BardVirtueSublclassBonusProficiencieslTitle	Bonus Proficiencies
+Feature/&BardVirtueSublclassBonusProficiencieslDescription	Upon joining the College of Virtue at 3rd level, you gain proficiency in medium armor and shields. Additionally, you gain proficiency in Wisdom saving throws.
+Rules/&BardVirtueSubclassMusicOfTheSpheresConditionTitle Inspired by Music of the Spheres
+Feature/&BardVirtueSubclassMusicOfTheSpheresTitle	Music of the Spheres
+Feature/&BardVirtueSubclassMusicOfTheSpheresDescription	Use the music of the heavens and inspire others to greatness. When a creature you can see within 60 feet of you makes an attack roll, you can use your reaction to expend one of your uses of Bardic Inspiration. Roll a Bardic Inspiration die and add the number to the total of the creature's attack roll. You can use this feature after the creature makes the roll, but before the GM determines whether the attack roll succeeds or fails. If the target of the attack is a fiend or undead, it takes extra radiant damage equal to the number rolled on the Bardic Inspiration die.
+Reaction/&UseBardVirtueSubclassMusicOfTheSpheresPowerReactDescription	Your ally is about to miss. Expend one use of your inspiration to add your inspiration die to your ally's attack roll. This uses your reaction until your next turn. Against undead and fiends this attack deals an extra amount of damage equal to inspiration die value.
+Feedback/&AdditionalDamageBardVirtueSubclassMusicOfTheSpheresLine	Extra damage due to Music of the Spheres
+Feedback/&AdditionalDamageBardVirtueSubclassMusicOfTheSpheresFormat	Extra damage due to Music of the Spheres
+Subclass/&BardSubclassCollegeOfNatureTitle	College of Nature
+Subclass/&BardSubclassCollegeOfNatureDescription	Bards from the College of Nature endeavor to protect the balance that exists between all living things. Members of this college are more at home in the wilderness than a rowdy tavern or royal court. They feel the connection that binds all life together and sustain its harmony.\nMost of these bards revere the forces of nature themselves, but some devote themselves to Aubori or one of the many nature gods in the multiverse. While all life is precious to College of Nature bards, they also know that nature can provide sustenance and utility to those who only take life when needed.\nWhen a member of this college performs, it can seem as if nature itself joins in with rustling leaves, whistling winds, crashing waves, and singing birds. They harm only those who needlessly take lives, despoil nature, or use dark magic to go against nature's balance. For their protection of nature, they receive magical energy in return.
+Feature/&BardNatureSubclassBonusProficiencieslTitle	Bonus Proficiencies
+Feature/&BardNatureSubclassBonusProficiencieslDescription	You gain proficiency in two skills of your choice selected from Animal Handling, Medicine, Nature, and Survival. In addition, you gain proficiency with the herbalism kit.
+Feature/&BardNatureSubclassBonusCantripTitle	Bonus Cantrip
+Feature/&BardNatureSubclassBonusCantripDescription	You learn one druid cantrip of your choice. This counts as a bard cantrip for you.
+Feature/&BardNatureSubclassNaturalFocusTitle	Natural Focus
+Feature/&BardNatureSubclassNaturalFocusDescription	You gain a natural focus, a specific environment that you feel a connection with. It provides you with extra spells and abilities.
+Feature/&BardNatureSubclassArcticNaturalFocusTitle	Natural Focus - Arctic
+Feature/&BardNatureSubclassArcticNaturalFocusDescription	Frozen wastelands are a second home to you. You have resistance to cold damage. At 6th level, you add Hold Person and Sleet Storm to your list of known spells.
+Feature/&BardNatureSubclassDesertNaturalFocusTitle	Natural Focus - Desert
+Feature/&BardNatureSubclassDesertNaturalFocusDescription	The blazing sun and blistering heat of the desert is a comfort. You have resistance to fire damage. At 6th level, you add Scorching Ray and Wind Wall to your list of known spells.
+Feature/&BardNatureSubclassMountainNaturalFocusTitle	Natural Focus - Mountain
+Feature/&BardNatureSubclassMountainNaturalFocusDescription	The storming skies high above the mountains bring you calm and peace. You have resistance to lightning damage. At 6th level, you add Spider Climb and Fly to your list of known spells.
+Feature/&BardNatureSubclassSwampNaturalFocusTitle	Natural Focus - Swamp
+Feature/&BardNatureSubclassSwampNaturalFocusDescription	 You enjoy spending time in thick, foggy swamps. You have resistance to poison damage. At 6th level, you add Acid Arrow and Stinking Cloud to your list of known spells.
+Feature/&BardNatureSubclassEnvironmentalMagicalSecretsTitle	Environmental Magical Secrets
+Feature/&BardNatureSubclassEnvironmentalMagicalSecretsDescription	Starting at 6th level, whenever you learn a new bard spell, you may instead choose a spell from the druid or ranger spell list. A spell you choose must be of a level you can cast, and must be of 1st level or higher. A chosen spell counts as a bard spell for you.
+Feature/&BardNatureSubclassGrasslandNaturalFocusTitle	Natural Focus - Grassland
+Feature/&BardNatureSubclassGrasslandNaturalFocusDescription	The vast grasslands have taught you to travel quickly and quietly. Your speed increases by 5 feet while you are not wearing heavy armor. At 6th level, you add Pass Without a Trace and Wind Wall to your list of known spells.
+Feature/&BardNatureSubclassForestNaturalFocusTitle	Natural Focus - Forest
+Feature/&BardNatureSubclassForestNaturalFocusDescription	You feel at home high in the tallest trees. Climbing no longer costs you extra movement. At 6th level, you add Barkskin and Conjure Animals to your list of known spells.

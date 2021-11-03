@@ -1,3 +1,6 @@
 {
-  "fix_cleric_subclasses": true
+  "fix_cleric_subclasses": true,
+  "use_intelligence_as_main_stat_for_warlock": true,
+  "fix_barbarian_unarmed_defense_stacking": true,
+  "use_staff_as_arcane_or_druidic_focus":  true
 }

@@ -25,6 +25,9 @@ namespace SolastaExtraContent
         public class Settings
         {
             public bool fix_cleric_subclasses { get; }
+            public bool use_intelligence_as_main_stat_for_warlock { get; }
+            public bool fix_barbarian_unarmed_defense_stacking { get; }
+            public bool use_staff_as_arcane_or_druidic_focus { get; }
 
             internal Settings()
             {
@@ -34,6 +37,9 @@ namespace SolastaExtraContent
                 {
                     JObject jo = (JObject)JToken.ReadFrom(reader);
                     fix_cleric_subclasses = (bool)jo["fix_cleric_subclasses"];
+                    use_intelligence_as_main_stat_for_warlock = (bool)jo["use_intelligence_as_main_stat_for_warlock"];
+                    fix_barbarian_unarmed_defense_stacking = (bool)jo["fix_barbarian_unarmed_defense_stacking"];
+                    use_staff_as_arcane_or_druidic_focus = (bool)jo["use_staff_as_arcane_or_druidic_focus"];
                 }
             }
         }
@@ -41,30 +47,12 @@ namespace SolastaExtraContent
 
         internal static void LoadTranslations()
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo($@"{UnityModManager.modsPath}/SolastaExtraContent");
-            FileInfo[] files = directoryInfo.GetFiles($"Translations-??.txt");
+            DirectoryInfo directoryInfo = new DirectoryInfo($@"{UnityModManager.modsPath}/SolastaExtraContent/Translations");
+            var directories = directoryInfo.GetDirectories();
 
-            foreach (var file in files)
+            foreach (var dir in directories)
             {
-                var filename = $@"{UnityModManager.modsPath}/SolastaExtraContent/{file.Name}";
-                var code = file.Name.Substring(13, 2);
-                var languageSourceData = LocalizationManager.Sources[0];
-                var languageIndex = languageSourceData.GetLanguageIndexFromCode(code);
-
-                if (languageIndex < 0)
-                    Main.Error($"language {code} not currently loaded.");
-                else
-                    using (var sr = new StreamReader(filename))
-                    {
-                        String line;
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            var splitted = line.Split(new[] { '\t', ' ' }, 2);
-                            var term = splitted[0];
-                            var text = splitted[1];
-                            languageSourceData.AddTerm(term).Languages[languageIndex] = text;
-                        }
-                    }
+                SolastaModHelpers.Translations.Load(dir.FullName);
             }
         }
 
@@ -103,6 +91,11 @@ namespace SolastaExtraContent
             }
             Barbarian.create();
             Druid.create();
+
+            AlchemistClassBuilder.BuildAndAddClassToDB();
+            BardClassBuilder.BuildAndAddClassToDB();
+            MonkClassBuilder.BuildAndAddClassToDB();
+            WarlockClassBuilder.BuildAndAddClassToDB();
         }
     }
 }

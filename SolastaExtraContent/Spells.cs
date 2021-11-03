@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SolastaModApi;
 using SolastaModApi.Extensions;
 using SolastaModHelpers;
 using UnityEngine.AddressableAssets;
@@ -16,16 +15,11 @@ namespace SolastaExtraContent
     public class Spells
     {
         static public NewFeatureDefinitions.ReactionOnDamageSpell hellish_rebuke;
-        static public SpellDefinition call_lightning;
-        static public SpellDefinition heat_metal;
-        static public NewFeatureDefinitions.SpellWithSlotLevelDependentEffects flame_blade;
         static public SpellDefinition conjure_spirit_animal;
         static public SpellDefinition winter_blast;
         static public SpellDefinition spike_growth;
         static public SpellDefinition vulnerability_hex;
         static public SpellDefinition earth_tremor;
-
-        static public SpellDefinition polymorph;
 
         internal static void create()
         {
@@ -447,7 +441,6 @@ namespace SolastaExtraContent
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, conjure_spirit_animal);
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListRanger, conjure_spirit_animal);
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListDruid, conjure_spirit_animal);
-            NewFeatureDefinitions.SpellData.registerSpell(conjure_spirit_animal);
         }
 
 

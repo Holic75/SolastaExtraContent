@@ -1,0 +1,99 @@
+Subclass/&WarlockSubclassPatronTitle	Otherworldly Patron
+Subclass/&WarlockSubclassPatronDescription	Select a Warlock Patron
+Stage/&SubclassSelectionStagePatronHeader	Warlock Patrons
+Stage/&SubclassSelectionStagePatronTitle	Warlock Patrons
+Stage/&SubclassSelectionStagePatronFeatures	Otherwordly Patron Features
+Class/&WarlockClassTitle	Warlock
+Class/&WarlockClassDescription	Warlocks are seekers of the knowledge that lies hidden in the fabric of the multiverse. Through pacts made with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular.
+Feature/&WarlockWeaponProficiencyTitle	Warlock Weapon Proficiencies
+Feature/&WarlockArmorProficiencyTitle	Warlock Armor Proficiencies
+Feature/&WarlockClassSkillPointPoolTitle	Warlock Skills
+Feature/&WarlockClassSpellcastingTitle	Warlock Spellcasting
+Feature/&WarlockClassSpellcastingDescription	Can cast level 1 - 5 spells from Warlock Spells list. Your spell slots recharge after short rest.
+Feature/&WarlockClassMysticArcanumTitle	Mystic Arcanum (<LEVEL>th-level)
+Feature/&WarlockClassMysticArcanumDescription	Choose one <LEVEL>th-level spell from the warlock spell list. You can cast your arcanum spell once. You must finish a long rest before you can do so again.
+Feature/&WarlockAgonizingBlastInvocationTitle	Agonizing Blast
+Feature/&WarlockAgonizingBlastInvocationDescription	When you cast eldritch blast, add your <MAIN_STAT> modifier to the damage it deals on a hit.
+Feature/&WarlockMiringBlastInvocationTitle	Miring Blast
+Feature/&WarlockMiringBlastInvocationDescription	When you hit a creature with eldritch blast, its speed is reduced by 10 feet until the start of your next turn.
+Feature/&WarlockInvocationsTitle	Eldritch Invocations
+Feature/&WarlockInvocationsDescription	In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you with an abiding magical ability. At 2nd level, you gain two eldritch invocations of your choice. When you gain certain warlock levels, you gain additional invocations of your choice. 
+Feature/&WarlockRepellingBlastInvocationTitle	Repelling Blast
+Feature/&WarlockRepellingBlastInvocationDescription	When you hit a creature with eldritch blast, you can push the creature up to 10 feet away from you in a straight line.
+Feature/&WarlockAlienEctoplasmInvocationsTitle	Alien Ectoplasm
+Feature/&WarlockAlienEctoplasmInvocationsDescription	You can cast grease at will, without expending a spell slot or requiring any material components.
+Feature/&WarlockShadowArmorInvocationsTitle	Armor of Shadows
+Feature/&WarlockShadowArmorInvocationsDescription	You can cast mage armor on yourself at will, without expending a spell slot or material components.
+Feature/&WarlockEldritchSightInvocationsTitle	Eldritch Sight
+Feature/&WarlockEldritchSightInvocationsDescription	You can cast detect magic at will, without expending a spell slot.
+Feature/&WarlockFiendishVigorInvocationsTitle	Fiendish Vigor
+Feature/&WarlockFiendishVigorInvocationsDescription	You can cast false life on yourself at will as a 1st-level spell, without expending a spell slot or material components.
+Feature/&WarlockOtherWordlyLeapInvocationsTitle	Otherworldly Leap
+Feature/&WarlockOtherWordlyLeapInvocationsDescription	You can cast jump on yourself at will, without expending a spell slot or material components.
+Feature/&WarlockAscendantStepInvocationsTitle	Ascendant Step
+Feature/&WarlockAscendantStepInvocationsDescription	You can cast levitate on yourself at will, without expending a spell slot or material components.
+Feature/&WarlockClassBookOfEldritchSecretsInvocationTitle	Eldritch Secrets
+Feature/&WarlockClassBookOfEldritchSecretsInvocationDescription	You can add one spell from warlock or wizard spells list to your list of known spells.
+Feature/&WarlockBeguilingInfluenceInvocationTitle	Beguiling Influence
+Feature/&WarlockBeguilingInfluenceInvocationDescription	You gain proficiency in the Deception and Persuasion skills.
+Feature/&WarlockDevilsSightInvocationTitle	Devil's Sight
+Feature/&WarlockDevilsSightInvocationDescription	You can see normally in darkness, both magical and nonmagical, to a distance of 120 feet.
+Feature/&WarlockThirstingBladeInvocationTitle	Thirsting Blade
+Feature/&WarlockThirstingBladeInvocationDescription	You can attack with a melee weapon twice, instead of once, whenever you take the Attack action on your turn.
+Feature/&WarlockEldritchArcheryInvocationTitle	Eldritch Archery
+Feature/&WarlockEldritchArcheryInvocationDescription	You can attack with a bow twice, instead of once, whenever you take the Attack action on your turn.
+Feature/&WarlockEldritchStrikeInvocationTitle	Eldritch Strike
+Feature/&WarlockEldritchStrikeInvocationDescription	Once per turn when you hit a creature with a melee weapon (if you have Pact of The Blade boon), or with an arrow (if you have Pact of the Arrow boon), you can expend a warlock spell slot to deal an extra 1d10 force damage to the target per level of the spell slot, the target is also knocked prone.
+Reaction/&SpendWarlockEldritchStrikeInvocationPowerReactDescription	Expend warlock spell slot to deal 1d10 force damage per slot level and knock target prone.
+Feature/&WarlockClassPactBoonTitle	Pact Boon
+Feature/&WarlockClassPactBoonDescription	Your otherworldly patron bestows a gift upon you for your loyal service.
+Feature/&WarlockClassPactOfBladeTitle	Pact of the Blade
+Feature/&WarlockClassPactOfBladeDescription	You gain proficiency with all melee weapons. In addition, every melee weapon you hold counts as magical for purpose of overcoming resistance and immunity to nonmagical attacks and damage.
+Feature/&WarlockClassPactOfTomeTitle	Pact of the Tome
+Feature/&WarlockClassPactOfTomeDescription	You learn three cantrips from any class's spell list (the three needn't be from the same list). They don't count against your number of cantrips known.
+Feature/&WarlockClassPactOfArrowTitle	Pact of the Arrow
+Feature/&WarlockClassPactOfArrowDescription	You gain proficiency with all bows. In  addition, every bow you hold counts as magical for purpose of overcoming resistance and immunity to nonmagical attacks and damage. You can also create arrows at will.
+Spell/&EldritchBlastTitle	Eldritch Blast
+Spell/&EldritchBlastDescription	Send a beam of crackling energy toward your enemy.
+Subclass/&WarlockSubclassPatronFiendTitle	Fiend Patron
+Subclass/&WarlockSubclassPatronFiendDescription	You have made a pact with a fiend from the lower planes of existence, a being whose aims are evil, even if you strive against those aims. Such beings desire the corruption or destruction of all things, ultimately including you. Fiends powerful enough to forge a pact include demon lords such as Demogorgon, Orcus, Fraz'Urb-luu, and Baphomet; archdevils such as Asmodeus, Dispater, Mephistopheles, and Belial; pit fiends and balors that are especially mighty; and ultroloths and other lords of the yugoloths.
+Feature/&WarlockFiendSubclassFiendSpellsTitle	Expanded Spell List
+Feature/&WarlockFiendSubclassFiendSpellsDescription	The Fiend lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.\n1st level: burning hands, bane\n2nd level: blindness, scorching ray\n3rd level: fireball, stinking cloud\n4th level: fire shield, wall of fire\n5th level: flame strike, cloudkill.
+Feature/&WarlockFiendSubclassDarkOnesBlessingTitle	Dark One's Blessing
+Feature/&WarlockFiendSubclassDarkOnesBlessingDescription	Starting at 1st level, when you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your <MAIN_STAT> modifier + your warlock level (minimum of 1).
+Feature/&WarlockFiendSubclassDarkOnesOwnLuckTitle	Dark One's Own Luck
+Feature/&WarlockFiendSubclassDarkOnesOwnLuckDescription	You can reroll a failed savingthrow. Once you use this feature, you can't use it again until you finish a short or long rest.
+Reaction/&ConsumePowerUseWarlockFiendSubclassDarkOnesOwnLuckPowerDescription	You have failed a saving throw against {0} but can attempt to reroll it.
+Feature/&WarlockFiendFiendishResilenceTitle	Fiendish Resilience
+Feature/&WarlockFiendFiendishResilenceDescription	At 10th level, you gain Resistance to one damage type of your choice.
+Subclass/&WarlockSubclassPatronAngelTitle	Angel Patron
+Subclass/&WarlockSubclassPatronAngelDescription	Your power is the result of a divine contract between yourself and a minor Celestial. In return for a promise of godly favor after death, you are given a mission to complete while alive - often involving the destruction of evil. The Angel in question will provide what aid it can to help you complete this mission.
+Feature/&WarlockAngelSubclassAngelSpellsTitle	Expanded Spell List
+Feature/&WarlockAngelSubclassAngelSpellsDescription	The Angel lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.\n1st level: bless, divine favor\n2nd level: lesser restoration, spiritual weapon\n3rd level: beacon of hope, spirit guardians\n4th level: death ward, wall of fire\n5th level: flame strike, greater restoration.
+Feature/&WarlockAngelSubclassHolyWarriorTitle	Holy Warrior
+Feature/&WarlockAngelSubclassHolyWarriorDescription	At 1st level, you acquire the training necessary to effectively arm yourself for battle. You gain proficiency with medium armor and shields. In addition, you gain proficiency with Religion.
+Feature/&WarlockAngelSubclassWrackedByDivinityTitle	Wracked with Divinity
+Feature/&WarlockAngelSubclassWrackedByDivinityDescription	Your patron can channel chaotic divine energy through your body. As a bonus action, you can touch a weapon to turn it into a magic weapon that deals an additional 1d10 radiant damage on its next hit. In addition you can use your <MAIN_STAT> for the attack and damage rolls for this attack. The effect lasts for one minute, and can be used a number of times equal to your <MAIN_STAT> modifier. Once you use up this feature, you can't use it again until you finish a short or long rest.
+Feature/&ConditionWarlockAngelSubclassWrackedByDivinityDescription	Deal 1d10 radiant damage on your next hit. You can use your <MAIN_STAT> for the attack and damage rolls.
+Feature/&WarlockAngelSubclassRadiantSoulTitle	Radiant Soul
+Feature/&WarlockAngelSubclassRadiantSoulDescription	Your link to your Patron allows you to serve as a conduit for radiant energy. You have resistance to radiant damage, and when you cast any instantaneous effect spell that deals radiant or fire damage, you add your <MAIN_STAT> modifier to one radiant or fire damage roll of that spell. 
+Feature/&WarlockAngelSubclassHealingBurstTitle	Healing Burst
+Feature/&WarlockAngelSubclassHealingBurstDescription	As a bonus action you can fill the 30-foot radius sphere around you with healing energy, restoring a number of hit points equal to your warlock level + your <MAIN_STAT> modifier to all your allies in the area. Once you use this feature, you can't use it again until you finish a short rest.
+Feedback/&AdditionalDamageWrackedByDivinityFormat	Extra damage due to Wracked with Divinity
+Feedback/&AdditionalDamageWrackedByDivinityLine	Extra damage due to Wracked with Divinity
+Feedback/&AdditionalDamageRadiantSoulLine	Extra damage due to Radiant Soul
+Feedback/&AdditionalDamageRadiantSoulFormat	Radiant Soul
+Subclass/&WarlockSubclassPatronArchmageTitle	Archmage Patron
+Subclass/&WarlockSubclassPatronArchmageDescription	A warlock beholden to an Archmage either serves an extremely powerful mage who bestows power upon them, or channels the echos of a long dead mage, one who's magical presence while alive still allows them some communication with the living. The Archmage Patron allows the warlock to increase the power of their casting ability.
+Feature/&WarlockAngelSubclassArchmageSpellsTitle	Expanded Spell List
+Feature/&WarlockAngelSubclassArchmageSpellsDescription	The Archmage lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.\n1st level: identify, magic missile\n2nd level: magic weapon, see invisibility\n3rd level: haste, lightning bolt\n4th level: identify creatures, greater invisibility\n5th level: mind twist, dominate person.
+Feature/&WarlockArchmageSubclassArcaneKnowledgeTitle	Arcane Knowledge
+Feature/&WarlockArchmageSubclassArcaneKnowledgeDescription	You gain proficiency in the Arcana skill, and you learn one cantrip and one extral level 1 spell of your choice from the Wizard spells list.
+Feature/&WarlockArchmageSubclassArcanePowerTitle	Arcane Power
+Feature/&WarlockArchmageSubclassArcanePowerDescription	Your patron grants you knowlege of a specific area of magecraft. Pick one wizard subclass, you gain the benefits of its 2nd level feature. If the feature would make certain spells count as wizard ones, you count them as warlock spells. If the feature would add certain spells to a wizard's spellbook, add them to your list of known spells instead.
+Feature/&WarlockArchmageSubclassArcaneResistanceTitle	Arcane Ward
+Feature/&WarlockArchmageSubclassArcaneResistanceDescription	You receive +1 bonus to all your savingthrows against spells. In addition, you gain resitance against force damage.
+Feedback/&AdditionalDamageLifedrinkerFormat	Lifedrinker Extra Damage
+Feedback/&AdditionalDamageLifedrinkerLine	Lifedrinker Extra Damage
+Feature/&WarlockLifedrinkerInvocationTitle	Lifedrinker
+Feature/&WarlockLifedrinkerInvocationDescription	When you hit a creature with your pact weapon, the creature takes extra necrotic damage equal to your <MAIN_STAT> modifier.

@@ -1,0 +1,141 @@
+Subclass/&AlchemistSubclassSpecializationTitle	Specialization
+Subclass/&AlchemistSubclassSpecializationDescription	Select an alchemist specialization
+Stage/&SubclassSelectionStageSpecializationHeader	Alchemsit Specializations
+Stage/&SubclassSelectionStageSpecializationTitle	Alchemsit Specializations
+Stage/&SubclassSelectionStageSpecializationFeatures	Alchemist Specialization Features
+Class/&AlchemistClassTitle	Alchemist
+Class/&AlchemistClassDescription	Whether secreted away in a smoky basement laboratory or gleefully experimenting in a well-respected school of magic, the alchemist is often regarded as being just as unstable, unpredictable, and dangerous as the concoctions he brews. While some creators of alchemical items content themselves with sedentary lives as merchants, providing tindertwigs and smokesticks, the true alchemist answers a deeper calling. Rather than cast magic like a spellcaster, the alchemist captures his own magic potential within liquids and extracts he creates, infusing his chemicals with virulent power to grant him impressive skill with poisons, explosives, and all manner of self-transformative magic.
+Feature/&AlchemistWeaponProficiencyTitle	Alchemist Weapon Proficiencies
+Feature/&AlchemistArmorProficiencyTitle	Alchemist Armor Proficiencies
+Feature/&AlchemistToolsProficiencyTitle	Alchemist Tool Proficiencies
+Feature/&AlchemistToolsProficiencyDescription	Herbalism kit and either Manacalon Rosary, Thieves' Tools, Poisoner's Kit or Smith's Tools
+Feature/&AlchemistClassSkillPointPoolTitle	Alchemist Skills
+Feature/&AlchemistClassSpellcastingTitle	Alchemist Spellcasting
+Feature/&AlchemistClassSpellcastingDescription	Can cast spells from Alchemist Spells list
+Feature/&AlchemistClassRitualCastingDescription	You can cast a prepared spell as a ritual if the spell has the ritual tag.
+Feature/&AlchemistClassMutagenFeatureSetTitle	Mutagencraft
+Feature/&AlchemistClassMutagenFeatureSetDescription	You can prepare up to 2 mutagens when you finish a long rest. You can prepare one more mutagen at 6th level, and every 4 levels thereafter. You can administer these mutagens to yourself or other characters. Upon being imbibed, the mutagen provides a +2 bonus to either Strength, Dexterity or Constitution until next long rest. As alchemist gain levels he learns to prepare more complex mutagens, prooviding different effects. The mutagens are unstable by nature, losing their potency over time and becoming inert if not used before you finish your next long rest.
+Feature/&AlchemistClassMutagenSelectionFeatureSetTitle	Extra Mutagen
+Feature/&AlchemistClassMutagenSelectionFeatureSetDescription You learn to create a new type of mutagen.
+Feature/&AlchemistClassMutagenStrengthTitle	Strength Mutagen
+Feature/&AlchemistClassMutagenStrengthDescription	The target receives +2 bonus to Strength.
+Feature/&AlchemistClassMutagenDexterityTitle	Dexterity Mutagen
+Feature/&AlchemistClassMutagenDexterityDescription	The target receives +2 bonus to Dexterity.
+Feature/&AlchemistClassMutagenConstitutionTitle	Constitution Mutagen
+Feature/&AlchemistClassMutagenConstitutionDescription	The target receives +2 bonus to Constitution.
+Feature/&AlchemistClassMutagenIntelligenceTitle	Intelligence Mutagen
+Feature/&AlchemistClassMutagenIntelligenceDescription	The target receives +2 bonus to Intelligence.
+Feature/&AlchemistClassMutagenWisdomTitle	Wisdom Mutagen
+Feature/&AlchemistClassMutagenWisdomDescription	The target receives +2 bonus to Wisdom.
+Feature/&AlchemistClassMutagenCharismaTitle	Charisma Mutagen
+Feature/&AlchemistClassMutagenCharismaDescription	The target receives +2 bonus to Charisma.
+Feature/&AlchemistClassMutagenFireResistanceTitle	Fire Resistance Mutagen
+Feature/&AlchemistClassMutagenFireResistanceDescription	The target gains fire resistance.
+Feature/&AlchemistClassMutagenColdResistanceTitle	Cold Resistance Mutagen
+Feature/&AlchemistClassMutagenColdResistanceDescription	The target gains cold resistance.
+Feature/&AlchemistClassMutagenAcidResistanceTitle	Acid Resistance Mutagen
+Feature/&AlchemistClassMutagenAcidResistanceDescription	The target gains acid resistance.
+Feature/&AlchemistClassMutagenLightningResistanceTitle	Lightning Resistance Mutagen
+Feature/&AlchemistClassMutagenLightningResistanceDescription	The target gains lightning resistance.
+Feature/&AlchemistClassMutagenNecroticResistanceTitle	Necrotic Resistance Mutagen
+Feature/&AlchemistClassMutagenNecroticResistanceDescription	The target gains necrotic resistance.
+Feature/&AlchemistClassMutagenSlashingResistanceTitle	Slashing Resistance Mutagen
+Feature/&AlchemistClassMutagenSlashingResistanceDescription	The target gains slashing resistance.
+Feature/&AlchemistClassMutagenPiercingResistanceTitle	Piercing Resistance Mutagen
+Feature/&AlchemistClassMutagenPiercingResistanceDescription	The target gains piercing resistance.
+Feature/&AlchemistClassMutagenBludgeoningResistanceTitle	Bludgeoning Resistance Mutagen
+Feature/&AlchemistClassMutagenBludgeoningResistanceDescription	The target gains bludgeoning resistance.
+Feature/&AlchemistClassMutagenDarkvisionTitle	Darkvision Mutagen
+Feature/&AlchemistClassMutagenDarkvisionDescription	The target gains darkvision out to a range of 60 feet.
+Feature/&AlchemistClassMutagenInitiativeTitle	Initiative Mutagen
+Feature/&AlchemistClassMutagenInitiativeDescription	The target gains advantage on all initiative rolls.
+Feature/&AlchemistClassMutagenSpeedTitle	Celerity Mutagen
+Feature/&AlchemistClassMutagenSpeedDescription	The target's speed increases by 10 feet and it can jump further than normal.
+Feature/&AlchemistClassMutagenPoisonImmunityTitle	Poison Immunity Mutagen
+Feature/&AlchemistClassMutagenPoisonImmunityDescription	The target gains immunity to poison.
+Feature/&AlchemistClassMutagenSpiderClimbTitle	Spider Climbing Mutagen
+Feature/&AlchemistClassMutagenSpiderClimbDescription	The target gains ability to climb walls like a spider.
+Feature/&AlchemistClassMutagenCriticalHitImmunityTitle	Critical Hit Immunity Mutagen
+Feature/&AlchemistClassMutagenCriticalHitImmunityDescription	The target gains immunity to critical hits.
+Feature/&AlchemistClassCraftingExpertiseTitle	Crafting Expertise
+Feature/&AlchemistClassCraftingExpertiseDescription	Your proficiency bonus is now doubled for any ability check you make that uses your proficiency with a crafting tool.
+Feature/&AlchemistClassCraftingAdeptTitle	Crafting Adept
+Feature/&AlchemistClassCraftingAdeptDescription	You achieve a profound understanding of how to craft items using your tools. You need half the normal time to craft items.
+Feature/&AlchemistClassFlashOfGeniusTitle Flash of Genius
+Feature/&AlchemistClassFlashOfGeniusDescription	You've gained the ability to come up with solutions under pressure. When you or another creature you can see within 30 feet of you makes an ability check or a saving throw, you can use your reaction to add your Intelligence modifier to the roll./nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a long rest.
+Reaction/&ConsumePowerUseAlchemistClassFlashOfGeniusDescription	{2} is about to fail a saving throw against {0}. You can spend one use of your Flash of Genius ability to add your INT modifier to the resulting roll.
+Reaction/&ConsumePowerUseAlchemistClassFlashOfGeniusReactDescription Use Flash of Genius
+Feature/&AlchemistClassFastAlchemyFeatureSetTitle	Swift Alchemy
+Feature/&AlchemistClassFastAlchemyFeatureSetDescription	You gain ability to create alchemical potions with astounding speed. By spending an action you can create a potion mimicking effect of any 1st or 2nd level alchemist spell, that does not require concentration and that targets a single creature. You can use this ability a number of times per day equal to 4 + your INT modifier. You regain all expended uses when you finish a long rest. These potions are unstable and will lose their properties if not used before you finish your next long rest.
+Feature/&AlchemistClassFastAlchemyPotionTitle	Potion of
+Subclass/&AlchemistSubclassSpecializationVivisectionistTitle Vivisectionist
+Subclass/&AlchemistSubclassSpecializationVivisectionistDescription	Vivisectionist is an alchemist devoted to study of anatomy and other bodily functions in order to discover the secrets of life and death. Although the methods they use might not be appreciated by majority of people, no one denies their expertise in healing the gravest wounds, and striking where it hurts most. 
+Feature/&AlchemistSubclassBonusSpells Bonus Spells
+Screen/&SpecializationSpellDescription	This specialization spell is always considered prepared.\nIt does not count towards your spell preparation limit. 
+Screen/&SpecializationSpellTitle	Spec.
+Feature/&AlchemistVivisectionistSubclassBonusProficienciesTitle Tools of the Trade
+Feature/&AlchemistVivisectionistSubclassBonusProficienciesDescription You gain proficiency with Poisoner's Kit, Longswords, Rapiers and Shortswords.
+Feature/&AlchemistVivisectionistSubclassSneakAttackDescription	1d6 extra damage (+1d6 for every 3 levels beyond the 3rd) to one creature you hit with advantage using a finesse or ranged weapon, once per turn. No need for advantage if an active ally is next to the target.
+Feature/&AlchemistVivisectionistSubclassKnowledgeOfAnatomyTitle	Surgical Precision
+Feature/&AlchemistVivisectionistSubclassKnowledgeOfAnatomyDescription	You can use your Intelligence modifier, instead of Dexterity modifier, for the attack and damage rolls with Finesse or Ranged weapons.
+Monster/&HomunculusDescription	A monstorsity created by vivisectionist.\nSTR 14, DEX 12, CON 14, INT 4, WIS 10, CHA 6, AC 15, HP 2 + Master's INT + 5 times Alchemist Level, PB is equal to Master's Proficiency Bonus,\nSaving Throws: DEX 1 + PB, CON 2 +PB\nSkills: Athletics 2 + PB, Perception PB x 2,\nFeatures: Poison Immunity, Charm Immunity,\nAttacks:\nSlam: Master's spell attack modifier, (1d8 + PB necrotic damage),\nReactions:\nDeflect Attack: The servant imposes disadvantage on the attack roll of one creature it can see that is within 5 feet of it, provided the attack roll is against a creature other than the defender.
+Monster/&HomunculusTitle	Flesh Servant
+Feature/&AlchemistVivisectionistSubclassHomunculusDestroySelfPowerTitle	Destroy Self
+Feature/&AlchemistVivisectionistSubclassHomunculusDestroySelfPowerDescription	Flesh servant falls apart.
+Feature/&AlchemistVivisectionistSubclassSummonHomunculusPowerTitle	Flesh Servant
+Feature/&AlchemistVivisectionistSubclassSummonHomunculusPowerDescription	Your understaning of living creatures biology allows you to create a semblance of life. By expending a spell slot you can create a creature consisting of flesh of your fallen enemies (or allies).\nIn combat, Flesh Servant can move and use its reaction on its own, but the only action it takes on its turn is the Dodge action, unless you take a bonus action on your turn to command it to take another action. That action can be one in its stat block or some other action. If you are incapacitated, the defender can take any action of its choice, not just Dodge.
+Feature/&AlchemistVivisectionistSubclassSummonHomunculusControlPowerTitle	Control Flesh Servant
+Feature/&AlchemistVivisectionistSubclassSummonHomunculusControlPowerDescription	Take control of Flesh Servant.
+Rules/&AlchemistVivisectionistSubclassHomunculusUncontrolledConditionTitle Uncontrolled
+Rules/&AlchemistVivisectionistSubclassHomunculusUncontrolledConditionDescription	Flesh Servant did not receive any orders from its master. It can only move, use its reaction and take dodge action.
+Feature/&AlchemistVivisectionistSubclassDeathStrikeDamageTitle	Death Attack
+Feature/&AlchemistVivisectionistSubclassDeathStrikeDamageDescription	You learn new ways to inflict grave wounds. When you hit a target with a weapon attack you can channel the necrotic energy through your weapons and inflict an extra 2d6 points of damage.\nYou can use this ability a number of times equal to your Intelligence modifier, but you can do so no more than once on a turn. You regain all expended uses when you finish a long rest.
+Reaction/&SpendAlchemistVivisectionistSubclassDeathStrikeDamagePowerReactDescription	Deal an extra 2d6 points of necrotic damage to the target.
+Subclass/&AlchemistSubclassSpecializationGrenadierTitle	Grenadier
+Subclass/&AlchemistSubclassSpecializationGrenadierDescription	Grenadiers are fanatic demolition experts. They specialize in using magic to hurl energy, projectiles, and explosions on a battlefield.
+Feature/&AlchemistGrenadierSubclassBonusProficienciesTitle	Tools of the Trade
+Feature/&AlchemistGrenadierSubclassBonusProficienciesDescription	When you adopt this specialization at 3rd level, you gain proficiency with Scroll Kit.
+Feature/&AlchemistGrenadierSubclassBombsFeatureSetTitle	Eldritch Grenades
+Feature/&AlchemistGrenadierSubclassBombsFeatureSetDescription	You become adept at swiftly mixing various volatile chemicals and infusing them with your magic to create powerful grenades to hurl at your enemies. You can create a total number of grenades equal to your alchemsit level + your INT modifier after finishing long rest. You can use grenades as a bonus action.
+Feature/&AlchemistGrenadierSubclassPowerfulBombsFeatureSetTitle	Powerful Grenades
+Feature/&AlchemistGrenadierSubclassPowerfulBombsFeatureSetDescription	The damage (or amount of temporary HP) of your grenades increases by 1d8.
+Feature/&AlchemistGrenadierSubclassFlameBlastPowerTitle Flame Blast
+Feature/&AlchemistGrenadierSubclassFlameBlast2PowerDescription	You create a flame explosion in an adjacent 15-foot cone. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking 2d8 fire damage on a failed save or half as much damage on a successful one.
+Feature/&AlchemistGrenadierSubclassFlameBlast3PowerDescription	You create a flame explosion in an adjacent 15-foot cone. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking 3d8 fire damage on a failed save or half as much damage on a successful one.
+Feature/&AlchemistGrenadierSubclassForceGrenadePowerTitle	Force Arrow
+Feature/&AlchemistGrenadierSubclassForceGrenade2PowerDescription	You launch a ranged spell attack at a creature within 120 feet. On a hit, the target takes 2d8 force damage, and is pushed up to 5 feet away from you.
+Feature/&AlchemistGrenadierSubclassForceGrenade3PowerDescription	You launch a ranged spell attack at a creature within 120 feet. On a hit, the target takes 3d8 force damage, and is pushed up to 5 feet away from you.
+Feature/&AlchemistGrenadierSubclassProtectiveBurstPowerTitle	Healing Grenade
+Feature/&AlchemistGrenadierSubclassProtectiveBurst2PowerDescription	You emit a burst of positive energy that grants you and all your allies within 10 feet of it a number of temporary hit points equal to 1d8 + your Intelligence modifier.
+Feature/&AlchemistGrenadierSubclassProtectiveBurst3PowerDescription	You emit a burst of positive energy that grants you and all your allies within 10 feet of it a number of temporary hit points equal to 2d8 + your Intelligence modifier.
+Feature/&AlchemistGrenadierSubclassDestructionAffinityTitle	Destruction Specialist
+Feature/&AlchemistGrenadierSubclassDestructionAffinityDescription	You add 1d8 to all your evocation spells damage.
+Feedback/&AdditionalDamageAlchemistGrenadierSubclassDestructionAffinityLine	Extra 1d8 damage due to Destruction Specialist
+Feedback/&AdditionalDamageAlchemistGrenadierSubclassDestructionAffinityFormat	Destruction Specialist
+Subclass/&AlchemistSubclassSpecializationRunemasterTitle	Runemaster
+Subclass/&AlchemistSubclassSpecializationRunemasterDescription	While most alchemists practice in mainstream alchemy - extracts, mutagens, or bombs - some diverge into the obscure path of magic that combines both alchemical knowledge with arcane runes. Runemasters have adapted their alchemical magical techniques to inscribe mystical runes on their weapons or armors, in order to strengthen their skills on the battlefield.
+Feature/&AlchemistRunemasterSubclassBonusProficienciesTitle Tools of the Trade
+Feature/&AlchemistRunemasterSubclassBonusProficienciesDescription	You gain proficiency with martial weapons and armor, and Smith's Tools.
+Feature/&AlchemistRunemasterSubclassConnectionWeaponRuneTitle	Weapon Rune: Connection
+Feature/&AlchemistRunemasterSubclassConnectionWeaponRuneDescription	Inscribing this rune on your weapon allows you add your Intelligence modifier, instead of Strength or Dexterity, to the attack and damage rolls. You can also use this weapon as spellcasting focus.
+Feature/&AlchemistRunemasterSubclassDestructionWEaponRuneTitle	Weapon Rune: Destruction
+Feature/&AlchemistRunemasterSubclassDestructionWEaponRuneDescription	Once on each of your turns when you hit a creature with a weapon empowered wih this rune, you can deal an extra 1d8 radiant damage to that target.
+Feedback/&AdditionalDamageAlchemistRunemasterSubclassDestructionWeaponRuneDestructionAffinityLine	Extra 1d8 radiant damage due to Destruction Rune
+Feedback/&AdditionalDamageAlchemistRunemasterSubclassDestructionWeaponRuneDestructionAffinityFormat	Destruction Rune
+Feature/&AlchemistRunemasterSubclassGuardianRuneTitle	Weapon Rune: Ward
+Feature/&AlchemistRunemasterSubclassGuardianRuneDescription	A creature you hit with the weapon empowered with this rune, has disadvantage on attack rolls against targets other than you until the start of your next turn, as the rune emits a distracting pulse when the creature attacks someone else.
+Rules/&AlchemistRunemasterSubclassGuardianRuneConditionTitle	Affected by Weapon Rune: Ward
+Feature/&AlchemistRunemasterSubclassWeaponRunesTitle	Weapon Runes
+Feature/&AlchemistRunemasterSubclassWeaponRunesDescription	You can apply one of empowering runes to your weapon. You can change the rune you applied upon finishing a short rest.
+Feature/&AlchemistRunemasterSubclassProtectionArmorRuneTitle	Armor Rune: Protection
+Feature/&AlchemistRunemasterSubclassProtectionArmorRuneDescription	While wearing a suit of armor empowered by this rune, as a bonus action, you can gain temporary hit points equal to your level in this class, replacing any temporary hit points you already have. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.
+Feature/&AlchemistRunemasterSubclassProtectionArmorRuneUsePowerTitle Activate Protection Rune
+Feature/&AlchemistRunemasterSubclassProtectionArmorRuneUsePowerDescription	Activate rune to receive temporary hit points.
+Feature/&AlchemistRunemasterSubclassDampeningArmorRuneTitle	Armor Rune:	Dampening
+Feature/&AlchemistRunemasterSubclassDampeningArmorRuneDescription	While wearing a suit of armor empowered by this rune, you have advantage on Dexterity (Stealth) checks. If the armor normally imposes disadvantage on such checks, the advantage and disadvantage cancel each other, as normal.
+Feature/&AlchemistRunemasterSubclassPropulsionArmorRuneTitle	Armor Rune: Propulsion
+Feature/&AlchemistRunemasterSubclassPropulsionArmorRuneDescription	While wearing armor empowered by this rune, you gain a 10 feet walking speed increase.
+Feature/&AlchemistRunemasterSubclassArmorRunesTitle	Armor Runes
+Feature/&AlchemistRunemasterSubclassArmorRunesDescription	You can apply one empowering rune to your armor. You can change the rune you applied upon finishing a short rest.
+Feature/&AlchemistRunemasterSubclassRuneSpecialistTitle	Rune Specialization
+Feature/&AlchemistRunemasterSubclassRuneSpecialistDescription	You can apply up to two runes to your armor and weapon.

@@ -2,13 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SolastaModApi;
 using SolastaModApi.Extensions;
 using SolastaModHelpers;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine.AddressableAssets;
-using static FeatureDefinitionSavingThrowAffinity;
 
 using Helpers = SolastaModHelpers.Helpers;
 using NewFeatureDefinitions = SolastaModHelpers.NewFeatureDefinitions;
@@ -409,7 +404,7 @@ namespace SolastaExtraContent
             effect.effectAdvancement.additionalDicePerIncrement = 1;
             effect.effectAdvancement.incrementMultiplier = 1;
             effect.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.CasterLevelTable;
-
+            effect.restrictedCreatureFamilies = new List<string> { "Humanoid", "Dragon", "Fey", "Giant", "Undead" };
             vicious_mockery = Helpers.GenericSpellBuilder<SpellDefinition>.createSpell("ViciousMockerySpell",
                                                                                        "",
                                                                                        title_string,

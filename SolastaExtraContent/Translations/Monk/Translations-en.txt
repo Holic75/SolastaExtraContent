@@ -1,0 +1,94 @@
+Subclass/&MonkSubclassMonasticTraditionTitle	Monastic Tradition
+Subclass/&MonkSubclassMonasticTraditionDescription	Select a monastic tradition
+Stage/&SubclassSelectionStageMonasticTraditionHeader Monastic Tradion
+Stage/&SubclassSelectionStageMonasticTraditionTitle Monk Monastic Tradition
+Stage/&SubclassSelectionStageMonasticTraditionFeatures Monastic Tradition Features
+Class/&MonkClassTitle Monk
+Class/&MonkClassDescription For the truly exemplary, martial skill transcends the battlefield - it is a lifestyle, a doctrine, a state of mind. These warrior-artists search out methods of battle beyond swords and shields, finding weapons within themselves just as capable of crippling or killing as any blade. These monks (so called since they adhere to ancient philosophies and strict martial disciplines) elevate their bodies to become weapons of war, from battle-minded ascetics to self-taught brawlers. Monks tread the path of discipline, and those with the will to endure that path discover within themselves not what they are, but what they are meant to be.
+Feature/&MonkWeaponProficiencyTitle Monk Weapon Proficiencies
+Feature/&MonkArmorProficiencyTitle Monk Armor Proficiencies
+Feature/&MonkClassSkillPointPoolTitle	Monk Skills
+Feature/&MonkClassUnarmoredDefenseTitle Unarmored Defense
+Feature/&MonkClassUnarmoredDefenseDescription Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.
+Feature/&MonkClassMartialArtsTitle Martial Arts
+Feature/&MonkClassMartialArtsDescription Your practice of Martial Arts gives you mastery of Combat styles that use unarmed strikes and monk Weapons, which are shortswords and any simple melee Weapons that don't have the Two-Handed or heavy property.\nYou gain the following benefits while you are unarmed or wielding only monk Weapons and you aren't wearing armor or wielding a Shield.\n- You can use Dexterity instead of Strength for the Attack and Damage Rolls of your unarmed strikes and monk Weapons.\n- You can roll a d4 in place of the normal damage of your Unarmed Strike or monk weapon. This die changes as you gain monk levels (d6 at 5th level, d8 at 11th level, d10 at 17th level).\n- When you use the Attack action with an Unarmed Strike or a monk weapon on Your Turn, you can make one Unarmed Strike as a Bonus Action.
+Feature/&MonkClassUnarmoredMovementTitle Unarmored Movement
+Feature/&MonkClassUnarmoredMovementDescription	Your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels.
+Feature/&MonkClassUnarmoredMovementImprovementTitle Unarmored Movement Improvement
+Feature/&MonkClassUnarmoredMovementImprovementDescription At <LEVEL>th level, your Unarmored Speed speed bonus increases to <FEET> feet while you are not wearing armor or wielding a shield.
+Feature/&MonkClassKiTitle Ki
+Feature/&MonkClassKiDescription Your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points, which is equal to your monk level. You can spend these points to fuel various ki features.\nYour ki points are replenished after a short rest.\nSome of your ki features require your target to make a saving throw to resist the feature's effects. The saving throw DC is calculated as follows:\nKi save DC = 8 + your proficiency bonus + your Wisdom modifier.
+Feature/&MonkClassFlurryOfBlowsPowerTitle Flurry of Blows
+Feature/&MonkClassFlurryOfBlowsPowerDescription Immediately after you take the Attack action on your turn, you can spend 1 ki point to make two unarmed strikes as a bonus action.
+Feature/&MonkClassPatientDefensePowerTitle Patient Defense
+Feature/&MonkClassPatientDefensePowerDescription You can spend 1 ki point to take the Dodge action as a bonus action on your turn.
+Feature/&MonkClassStepOfTheWindPowerTitle Step of the Wind
+Feature/&MonkClassStepOfTheWindDashPowerTitle Step of the Wind (Dash)
+Feature/&MonkClassStepOfTheWindDisengagePowerTitle Step of the Wind (Disengage)
+Feature/&MonkClassStepOfTheWindPowerDescription You can spend 1 ki point to take the Disengage or Dash action as a bonus action on your turn, and your jump distance is doubled for the turn.
+Feature/&MonkClassDeflectMissilesTitle Deflect Missiles
+Feature/&MonkClassDeflectMissilesDescription Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.
+Feature/&MonkClasSlowfallTitle Slowfall
+Feature/&MonkClasSlowfallDescription You can use your Reaction when you fall to prevent damage from falling and land on your feet.
+Reaction/&UseMonkClasSlowfallPowerReactDescription Use your your reactionto prevent damage from fall and land on your feet.
+Feature/&MonkClassStunningStrikeTitle Stunning Strike
+Feature/&MonkClassStunningStrikeDescription You can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon Attack, you can spend 1 ki point to attempt a Stunning Strike. The target must succeed on a Constitution saving throw or be Stunned until the end of your next turn.
+Reaction/&SpendMonkClassStunningStrikePowerReactDescription Spend 1 ki point to attempt to stun the target.
+Feature/&MonkClassKiEmpoweredStrikesTitle Ki-Empowered Strikes
+Feature/&MonkClassKiEmpoweredStrikesDescription Your unarmed strikes count as magical for the Purpose of overcoming Resistance and immunity to nonmagical attacks and damage.
+Feature/&MonkClassUnarmoredMovement9Title Unarmored Movement Improvement (Vertical Surfaces)
+Feature/&MonkClassUnarmoredMovement9Description  You gain the ability to move along vertical surfaces and across liquids on your turn without falling during your move.
+Feature/&MonkClassStillnessOfMindTitle Stillness of Mind
+Feature/&MonkClassStillnessOfMindDescription You can use your action to end one effect on yourself that is causing you to be charmed or frightened.
+Feature/&MonkClassPurityOfBodyTitle Purity of Body
+Feature/&MonkClassPurityOfBodyDescription Your mastery of the ki flowing through you makes you immune to disease and poison.
+Subclass/&MonkSubclassWayOfTheOpenHandTitle Way of the Open Hand
+Subclass/&MonkSubclassWayOfTheOpenHandDescription Monks of the Way of the Open Hand are the ultimate masters of martial arts combat, whether armed or unarmed. They learn techniques to push and trip their opponents, manipulate ki to heal damage to their bodies, and practice advanced meditation that can protect them from harm.
+Feature/&MonkSubclassWayOfTheOpenHandTechniqueTitle Open Hand Technique
+Feature/&MonkSubclassWayOfTheOpenHandTechniqueDescription Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or be knocked prone.\n- It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.\n- It can't take reactions until the end of your next turn.
+Feature/&MonkSubclassWayOfTheOpenHandForbidReactionTitle Open Hand Technique: Forbid Reactions
+Feature/&MonkSubclassWayOfTheOpenHandForbidReactionDescription Target can't take reactions until the end of your next turn.
+Rules/&ConditionMonkSubclassWayOfTheOpenHandForbidReactionPowerTitle Reactions Forbidden
+Rules/&ConditionMonkSubclassWayOfTheOpenHandForbidReactionPowerDescription You can not take reactions.
+Reaction/&SpendMonkSubclassWayOfTheOpenHandForbidReactionPowerReactDescription Prevent target from using reactions.
+Feature/&MonkSubclassWayOfTheOpenHandPushTitle Open Hand Technique: Push
+Feature/&MonkSubclassWayOfTheOpenHandPushDescription Target must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.
+Reaction/&SpendMonkSubclassWayOfTheOpenHandPushPowerReactDescription Attmept to push the target.
+Feature/&MonkSubclassWayOfTheOpenHandKnockTitle Open Hand Technique: Knock
+Feature/&MonkSubclassWayOfTheOpenHandKnockDescription Target must succeed on a Dexterity saving throw or be knocked prone.
+Reaction/&SpendMonkSubclassWayOfTheOpenHandKnockPowerReactDescription Attmept to knockdown the target.
+Feature/&MonkSubclassWayOfTheOpenHandWholenessOfBodyTitle Wholeness of Body
+Feature/&MonkSubclassWayOfTheOpenHandWholenessOfBodyDescription At 6th level, you gain the ability to heal yourself. As an action, you can regain hit points equal to three times your monk level. You must finish a long rest before you can use this feature again.
+Feature/&MonkSubclassWayOfTheOpenHandTranquilityTitle	Tranquility
+Feature/&MonkSubclassWayOfTheOpenHandTranquilityDescription	You gain advantage on all Dexterity (Stealth) checks.
+Subclass/&MonkSubclassWayOfThePyrokineTitle Way of the Searing Flame
+Subclass/&MonkSubclassWayOfThePyrokineDescription When you look into flames they don't just look back at you, they gaze into your soul and light the eternal fire burning within. With practice and discipline you harness this internal blaze, manifesting it to make your strikes scorch flesh, your blows singeing foes.
+Feature/&MonkSubclassWayOfThePyrokineTechniqueTitle Blazing Technique
+Feature/&MonkSubclassWayOfThePyrokineTechniqueDescription When you choose this tradition at 3rd level, you learn to summon flame using ki. Whenever you hit a a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or it ignites. Until a creature takes an action to douse the fire, the target takes 2 (1d4) fire damage at the start of each of its turns.\n -It takes an extra 1d4 fire damage.\n -It must succeed on a Wisdom saving throw or become blind until the end of your next turn.
+Feature/&MonkSubclassWayOfThePyrokineBurnTitle Blazing Technique: Ignite
+Feature/&MonkSubclassWayOfThePyrokineBurnDescription Target must succeed on a Dexterity saving throw or it ignites. The target takes (1d4) fire damage at the start of each of its turns. Every turn the target can attempt a Dexterity savingthrow; the condition is removed in case of success.
+Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerTitle Burning
+Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerDescription You take 1d4 fire damage at the beginning of each turn, until you succeed on a Dexterity savingthrow.
+Reaction/&SpendMonkSubclassWayOfThePyrokineBurnPowerReactDescription Attempt to ignite the target.
+Feature/&MonkSubclassWayOfThePyrokineDamageTitle Blazing Technique: Damage
+Feature/&MonkSubclassWayOfThePyrokineDamageDescription Target takes extra 1d4 points of fire damage.
+Reaction/&SpendMonkSubclassWayOfThePyrokineDamagePowerReactDescription Deal extra fire damage to target.
+Feature/&MonkSubclassWayOfThePyrokineBlindTitle Blazing Technique: Blind
+Feature/&MonkSubclassWayOfThePyrokineBlindDescription Target must succeed on a Wisdom saving throw or be blinded until the end of your next turn.
+Reaction/&SpendMonkSubclassWayOfThePyrokineBlindPowerReactDescription Attmept to blind the target.
+Feature/&MonkSubclassWayOfThePyrokineBurningDevotionTitle Burning Devotion
+Feature/&MonkSubclassWayOfThePyrokineBurningDevotionDescription At 6th level, you gain resistance to fire damage.
+Feature/&MonkSubclassWayOfThePyrokineLeapingFlamesTitle	Leaping Flames
+Feature/&MonkSubclassWayOfThePyrokineLeapingFlamesDescription	You gain advantage on all your Dexterity (Acrobatics) checks.
+Subclass/&MonkSubclassWayOfIronTitle Way of Iron
+Subclass/&MonkSubclassWayOfIronDescription The monasteries scattered across the face of the world offer ways to attain enlightenment. What enlightenment means varies from monastery to monastery. For some, it could be to unite body and mind to transcend the limits of the physical form and for others, it might mean to become one with the universe.\nAdherents to the Way of Iron seek tranquility in the art of combat. Unlike other monastic traditions, the Way of Iron focuses on the use of weapons, treating them as extensions of the monk’s own body. Followers of the Way of Iron are usually front-line combatants, leaving their temples behind to join in the dance of battle shoulder-to-shoulder with the rank and file soldiers. Grandmasters of the Way of Iron wield any weapon with such grace and ease that the weapons seem to have always been a part of them, the way a hand or an eye would be, and their movement and attacks are full of graceful arcs and twirling flourishes that make battle seem to be more of a dance than a conflict.\nAdherents to the Way of Iron train relentlessly with one another, and are among the most exceptional duelists in the world, having honed their skill against the best warriors their temples have to offer.
+Feature/&MonkSubclassWayOfIronRoilingStormOfIronTitle Roiling Storm of Iron
+Feature/&MonkSubclassWayOfIronRoilingStormOfIronDescription Starting when you choose this tradition at 3rd level, you gain proficiency in all weapons and light and medium armor and shields, and if you are wearing armor you can use your all your monk features, as if you were unarmored, except unarmored defense. Furthermore, all melee weapons that do not have the heavy property are monk weapons for you.
+Feature/&MonkSubclassWayOfIronShiftingBladesTitle Shifting Blades
+Feature/&MonkSubclassWayOfIronShiftingBladesDescription At 6th level, attacks you make with monk weapons count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.
+Feature/&MonkSubclassWayOfIronTestOfSkillTitle Test of Skill
+Feature/&MonkSubclassWayOfIronTestOfSkillDescription You can compel other creatures to engage you in a test of martial skill. One creature that you can see that is within 30 feet of you and that can hear and understand you must make a Wisdom saving throw. On a failed save, for 1 minute the creature has disadvantage on attack rolls made against creatures other than you. This effect ends if a creature friendly to you damages the affected creature or casts a harmful spell on it.
+Rules/&ConditionMonkSubclassWayOfIronTestOfSkillTitle	Compelled to Test of Skill
+Rules/&ConditionMonkSubclassWayOfIronTestOfSkillDescription	Disadvantage on attack rolls made against creatures other than caster.
+Feature/&MonkSubclassWayOfIronWhirlwindOfIronTitle	Whirlwind Of Steel
+Feature/&MonkSubclassWayOfIronWhirlwindOfIronDescription	Beginning at 11th level, when you would use a bonus action to make one or more unarmed attacks (either the attack granted by your Martial Arts feature, or when spending a ki point to make a Flurry of Blows), you can make attacks with monk weapons instead.

@@ -1,18 +1,28 @@
 # Extra Content for Solasta
 
 This is a mod for the game Solasta: Crown of the Magister.
-This mod adds Gnome race, Arcane Knight fighter archetype and following spells:
+
+New classes: Alchemist, Bard, Monk, Warlock.
+
+New subclasses: Arcane Knight (Fighter), Frozen Fury (Barbarian), War Shaman (Barbarian), Circle of Spirits (Druid).
+
+New race: Gnomes.
+
+New spells:
 
 Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh, Touch of Frost, Air Blast, Sound Burst, Burst of Radiance, Bloody Claws.
 
 Lvl 1: Hellish Rebuke, Vulnerability Hex.
 
-Lvl 2: Heat Metal, Flame Blade, Conjure Spirit Beast, Spike Growth.
+Lvl 2: Conjure Spirit Beast.
 
-Lvl 3: Call Lightning, Earth Tremor, Winter's Breath.
+Lvl 3: Earth Tremor, Winter's Breath.
 
-In addition it gives loremaster wizard a lvl 2 feature that allows to add one cantrip and one spell of any class to his/her spellbook,
-and changes cleric subclasses to match better Solasta sourcebook description.
+Extra Features:
+Loremaster wizard can add one cantrip and one spell of any class to his/her spellbook at lvl 2,
+Cleric subclasses are modified to match better Solasta sourcebook description (optional),
+Quarterstaves can be used as arcane/druidic foci.
+
 
 Mod requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
 

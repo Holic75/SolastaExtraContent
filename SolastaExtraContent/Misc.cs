@@ -19,8 +19,15 @@ namespace SolastaExtraContent
 
         static internal void run()
         {
-            createStaffFocus();
-            fixBarbarianUnarmoredDefense();
+            if (Main.settings.use_staff_as_arcane_or_druidic_focus)
+            {
+                createStaffFocus();
+            }
+            
+            if (Main.settings.fix_barbarian_unarmed_defense_stacking)
+            {
+                fixBarbarianUnarmoredDefense();
+            }
         }
 
 
