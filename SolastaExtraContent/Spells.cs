@@ -32,7 +32,7 @@ namespace SolastaExtraContent
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
             fixSurfaceSpell(DatabaseHelper.SpellDefinitions.SpikeGrowth);
             fixGiantInsects();
-            fixConjureMinorElemental();
+            //fixConjureMinorElemental();
             fixConjureAnimals();
 
             createVulnerabilityHex();
@@ -60,19 +60,25 @@ namespace SolastaExtraContent
 
         static void fixConjureMinorElemental()
         {
-           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsTwo.guiPresentation.description = "Spell/&SolastaExtraContentConjureMinorElementalsTwoDescription";
-           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.guiPresentation.description = "Spell/&SolastaExtraContentConjureMinorElementalsOneDescription";
-           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsOne.guiPresentation.description = "Spell/&SolastaExtraContentConjureMinorElementalsOne2Description";
-           //DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.effectDescription.effectForms.Find(f => f.formType == EffectForm.EffectFormType.Summon).summonForm.number = 1;
-           DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.effectDescription.targetParameter = 1;
-            DatabaseHelper.SpellDefinitions.ConjureMinorElementalsFour.guiPresentation.title = DatabaseHelper.SpellDefinitions.ConjureMinorElementalsOne.guiPresentation.title;
+            for (int i = 0; i < DatabaseHelper.SpellDefinitions.ConjureMinorElementals.subspellsList.Count; i++)
+            {
+                var variant = DatabaseHelper.SpellDefinitions.ConjureMinorElementals.subspellsList[i];
+                variant.effectDescription.effectAdvancement.Clear();
+                variant.effectDescription.effectAdvancement.incrementMultiplier = 2;
+                variant.effectDescription.effectAdvancement.additionalSummonsPerIncrement = variant.effectDescription.targetParameter;
+                variant.effectDescription.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
+            }
+            DatabaseHelper.SpellDefinitions.ConjureMinorElementals.effectDescription.effectAdvancement.Clear();
+            DatabaseHelper.SpellDefinitions.ConjureMinorElementals.effectDescription.effectAdvancement.incrementMultiplier = 2;
+            DatabaseHelper.SpellDefinitions.ConjureMinorElementals.effectDescription.effectAdvancement.additionalSummonsPerIncrement = 1;
+            DatabaseHelper.SpellDefinitions.ConjureMinorElementals.effectDescription.effectAdvancement.effectIncrementMethod = RuleDefinitions.EffectIncrementMethod.PerAdditionalSlotLevel;
         }
 
 
 
         static void fixGiantInsects()
         {
-            //Deep spider is actually similar in stats to giant spider (even worse since it has light sensitivity), dnd spell allows to su
+            //Deep spider is actually similar in stats to giant spider (even worse since it has light sensitivity), dnd spell allows to summon up to 3 spiders
             var spell = DatabaseHelper.SpellDefinitions.GiantInsect;
             spell.effectDescription.effectForms.Find(f => f.formType == EffectForm.EffectFormType.Summon).summonForm.number = 3;
         }

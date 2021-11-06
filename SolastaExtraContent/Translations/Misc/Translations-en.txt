@@ -76,9 +76,6 @@ Feature/&GnomeCunningTitle	Gnomish Cunning
 Feature/&GnomeCunningDescription	You have advantage on all Intelligence, Wisdom, and Charisma saves against magic.
 Feature/&GnomeNaturalIllusionistTitle	Natural Magic
 Feature/&GnomeNaturalIllusionistDescription	You know the Annoying Bee cantrip. Intelligence is your spellcasting modifier for it.
-Spell/&SolastaExtraContentConjureMinorElementalsTwoDescription	2 elementals are conjured (CR 1).
-Spell/&SolastaExtraContentConjureMinorElementalsOneDescription  Conjure Wind Snake (CR2)
-Spell/&SolastaExtraContentConjureMinorElementalsOne2Description  Conjure Skarn Ghoul (CR2)
 Feature/&PotentSpellcastingCantirpTitle	Potent Spellcasting
 Feature/&PotentSpellcastingCantirpDescription	Add your Wisdom modifier to the damage you deal with any cleric cantrip.
 Feedback/&AdditionalDamagePotentSpellcastingFormat	Extra damage due to Potent Spellcasting
