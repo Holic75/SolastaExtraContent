@@ -1268,7 +1268,7 @@ namespace SolastaExtraContent
                     .SetGuiPresentation(gui_presentation)
                     .AddFeatureAtLevel(open_hand_technique, 3)
                     .AddFeatureAtLevel(wholeness_of_body, 6)
-                    .AddFeatureAtLevel(tranquility, 6)
+                    .AddFeatureAtLevel(tranquility, 11)
                     .AddToDB();
 
             return definition;

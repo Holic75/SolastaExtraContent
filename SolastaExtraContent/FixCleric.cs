@@ -206,7 +206,8 @@ namespace SolastaExtraContent
             var cantrips = new List<SpellDefinition> {  DatabaseHelper.SpellDefinitions.FireBolt,
                                                         DatabaseHelper.SpellDefinitions.ShockingGrasp,
                                                         Cantrips.frostbite,
-                                                        DatabaseHelper.SpellDefinitions.RayOfFrost};
+                                                        DatabaseHelper.SpellDefinitions.RayOfFrost,
+                                                        DatabaseHelper.SpellDefinitions.ProduceFlame};
 
 
             var spelllist = Helpers.SpelllistBuilder.create9LevelSpelllist("DomainElementalBonusCantripSpelllist",

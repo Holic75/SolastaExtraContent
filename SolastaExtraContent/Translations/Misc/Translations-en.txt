@@ -85,7 +85,7 @@ Feedback/&AdditionalDamagePotentSpellcastingFormat	Extra damage due to Potent Sp
 Feedback/&AdditionalDamagePotentSpellcastingLine	Extra damage due to Potent Spellcasting
 Feature/&AdditionalDamageDomainLawForceStrikeOblivionDescription	+1D8 force damage on weapon attacks, once per turn.
 Feature/&PowerDomainOblivionHeraldOfPainLevelDescription	Channel Divinity to cause pain to enemies within 6 cells. Enemies failing a Wisdom save receive 1d8 + your cleric level necrotic damage and are posioned.
-Feature/&DomainSunIndomitableLightFixedDescription	Channel divinity to summon a sphere of sunlight, which affects light sensitive creatures and negates areas of darkness.	The sphere blinds hostile creatures for one minute, when appears.
+Feature/&DomainSunIndomitableLightFixedDescription	Channel divinity to summon a sphere of sunlight, which affects light sensitive creatures and negates areas of darkness. The sphere blinds hostile creatures for one minute, when appears.
 Subclass/&DomainElementalTitle	Elemental
 Subclass/&DomainElementalDescription	The Elemental domain allows a cleric to become one with the elements. Clerics who choose the elemental domain can harness the primal forces of nature to their will, causing terrifying destruction and shrugging off attacks that use those forces.
 Feature/&DomainElementalHeraldOfTheElementsTitle	Herald of the Elements
