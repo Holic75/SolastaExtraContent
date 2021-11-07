@@ -1067,7 +1067,7 @@ namespace SolastaExtraContent
             damage.damageForm.damageType = Helpers.DamageTypes.Force;
             damage.damageForm.diceNumber = 1;
             damage.damageForm.dieType = RuleDefinitions.DieType.D10;
-            damage.addBonusMode = RuleDefinitions.AddBonusMode.AbilityBonus;
+            damage.addBonusMode = RuleDefinitions.AddBonusMode.None;
             effect.effectForms.Add(damage);
 
             eldritch_blast = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellWithCasterFeatureDependentEffects>

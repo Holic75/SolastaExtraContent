@@ -92,3 +92,7 @@ Rules/&ConditionMonkSubclassWayOfIronTestOfSkillTitle	Compelled to Test of Skill
 Rules/&ConditionMonkSubclassWayOfIronTestOfSkillDescription	Disadvantage on attack rolls made against creatures other than caster.
 Feature/&MonkSubclassWayOfIronWhirlwindOfIronTitle	Whirlwind Of Steel
 Feature/&MonkSubclassWayOfIronWhirlwindOfIronDescription	Beginning at 11th level, when you would use a bonus action to make one or more unarmed attacks (either the attack granted by your Martial Arts feature, or when spending a ki point to make a Flurry of Blows), you can make attacks with monk weapons instead.
+Subclass/&MonkSubclassWayOfZenArcheryTitle	Way of Zen Archery
+Subclass/&MonkSubclassWayOfZenArcheryDescription	Some monks seek to become one with another weapon entirely—the bow. Those who follow way of Zen Archery take a weapon most other monks eschew and seek perfection in the pull of a taut bowstring, the flex of a bow’s limbs, and the flight of an arrow fired true.
+Feature/&MonkSubclassWayOfZenArcheryWayOfTheBowTitle	Way of the Bow
+Feature/&MonkSubclassWayOfZenArcheryWayOfTheBowDescription	You are proficient with longbows and shortbows and consider them as monk weapons. You also gain proficiency in archery fighting style. In addition, you do not suffer a disadvantage on attack rolls when attacking enemies in close range with longbows or shortbows.

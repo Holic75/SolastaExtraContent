@@ -40,6 +40,12 @@ namespace SolastaExtraContent
             Helpers.WeaponProficiencies.LongSword
         };
 
+        static public List<string> way_of_zen_archery_weapons = new List<string>
+        {
+            Helpers.WeaponProficiencies.Shortbow,
+            Helpers.WeaponProficiencies.Longbow,
+        };
+
         static public CharacterClassDefinition monk_class;
         static public NewFeatureDefinitions.ArmorClassStatBonus unarmored_defense;
         static public FeatureDefinitionFeatureSet martial_arts;
@@ -82,7 +88,12 @@ namespace SolastaExtraContent
         static public FeatureDefinitionPower test_of_skill;
         static public NewFeatureDefinitions.AddAttackTagForSpecificWeaponType shifting_blades;
         static public FeatureDefinition whirlwind_of_iron;
-        //whirlwind of steel - allow make attacks with monk weapons (i.e. all meelee ones)
+
+        //Way of Zen Archery
+        static public FeatureDefinitionFeatureSet way_of_the_bow; //bows - monk weapons, archery, do not receive disadvantage in close quarters
+        static public FeatureDefinitionFeatureSet ki_arrows; //bow attacks considered magical, can use stunning fist with bow attacks
+        static public FeatureDefinitionFeatureSet flurry_of_arrows; //like a volley feature of ranger hunter
+
 
         
         protected MonkClassBuilder(string name, string guid) : base(name, guid)
@@ -1608,7 +1619,7 @@ namespace SolastaExtraContent
                                                                                                                                 a.weaponTypes = way_of_iron_weapons;
                                                                                                                                 a.restrictions = new List<NewFeatureDefinitions.IRestriction>()
                                                                                                                                 {
-                                                                                                                                   new NewFeatureDefinitions.HasFeatureRestriction(way_of_iron_allow_using_monk_features_in_armor)
+                                                                                                                                   no_armor_restriction
                                                                                                                                 };
                                                                                                                             }
                                                                                                                             );
@@ -1623,7 +1634,7 @@ namespace SolastaExtraContent
                                                                                                                                         a.weaponTypes = way_of_iron_weapons;
                                                                                                                                         a.restrictions = new List<NewFeatureDefinitions.IRestriction>()
                                                                                                                                         {
-                                                                                                                                           new NewFeatureDefinitions.HasFeatureRestriction(way_of_iron_allow_using_monk_features_in_armor)
+                                                                                                                                           no_armor_restriction
                                                                                                                                         };
                                                                                                                                         a.characterClass = monk_class;
                                                                                                                                         a.levelDamageList = new List<(int, int, RuleDefinitions.DieType)>
@@ -1673,7 +1684,7 @@ namespace SolastaExtraContent
                                                                                DatabaseHelper.FeatureDefinitionProficiencys.ProficiencyRangerWeapon,
                                                                                dex_on_weapons,
                                                                                damage_dice,
-                                                                               bonus_unarmed_attack,
+                                                                               //bonus_unarmed_attack, - the base one will already work
                                                                                attacked_with_monk_weapon_watcher
                                                                                );
 
@@ -1825,6 +1836,125 @@ namespace SolastaExtraContent
         }
 
 
+
+        static void createWayOfTheBow()
+        {
+            string way_of_the_bow_title_string = "Feature/&MonkSubclassWayOfZenArcheryWayOfTheBowTitle";
+            string way_of_the_bow_description_string = "Feature/&MonkSubclassWayOfZenArcheryWayOfTheBowDescription";
+
+            var attacked_with_monk_weapon_condition = Helpers.ConditionBuilder.createConditionWithInterruptions("MonkSubclassWayOfZenArcheryWayOfTheBowAttackedWithMonkWeaponCondition",
+                                                                                                    "",
+                                                                                                    Common.common_no_title,
+                                                                                                    Common.common_no_title,
+                                                                                                    Common.common_no_icon,
+                                                                                                    DatabaseHelper.ConditionDefinitions.ConditionDummy,
+                                                                                                    new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.AnyBattleTurnEnd }
+                                                                                                    );
+            attacked_with_monk_weapon_condition.silentWhenAdded = true;
+            attacked_with_monk_weapon_condition.silentWhenRemoved = true;
+            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(attacked_with_monk_weapon_condition);
+            attacked_with_monk_weapon_condition.guiPresentation.hidden = true;
+            var attacked_with_monk_weapon_watcher = Helpers.FeatureBuilder<NewFeatureDefinitions.InitiatorApplyConditionOnAttackToAttackerOnlyWithWeaponCategory>.createFeature("MonkSubclassWayOfZenArcheryWayOfTheBowhMonkWeaponWatcher",
+                                                                                                                                                                                "",
+                                                                                                                                                                                Common.common_no_title,
+                                                                                                                                                                                Common.common_no_title,
+                                                                                                                                                                                Common.common_no_icon,
+                                                                                                                                                                                a =>
+                                                                                                                                                                                {
+                                                                                                                                                                                    a.allowedWeaponTypes = way_of_zen_archery_weapons;
+                                                                                                                                                                                    a.condition = attacked_with_monk_weapon_condition;
+                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Turn;
+                                                                                                                                                                                    a.durationValue = 1;
+                                                                                                                                                                                    a.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+                                                                                                                                                                                }
+                                                                                                                                                                                );
+
+            attacked_with_monk_weapon_restriction.conditions.Add(attacked_with_monk_weapon_condition);
+
+            var damage_dice = Helpers.FeatureBuilder<NewFeatureDefinitions.OverwriteDamageOnSpecificWeaponTypesBasedOnClassLevel>.createFeature("MonkSubclassWayOfZenArcheryMartialArtsDamageDice",
+                                                                                                                                    "",
+                                                                                                                                    Common.common_no_title,
+                                                                                                                                    Common.common_no_title,
+                                                                                                                                    null,
+                                                                                                                                    a =>
+                                                                                                                                    {
+                                                                                                                                        a.weaponTypes = way_of_zen_archery_weapons;
+                                                                                                                                        a.restrictions = new List<NewFeatureDefinitions.IRestriction>()
+                                                                                                                                        {
+                                                                                                                                           no_armor_restriction
+                                                                                                                                        };
+                                                                                                                                        a.characterClass = monk_class;
+                                                                                                                                        a.levelDamageList = new List<(int, int, RuleDefinitions.DieType)>
+                                                                                                                                        {
+                                                                                                                                            (4, 1, RuleDefinitions.DieType.D4),
+                                                                                                                                            (10, 1, RuleDefinitions.DieType.D6),
+                                                                                                                                            (16, 1, RuleDefinitions.DieType.D8),
+                                                                                                                                            (20, 1, RuleDefinitions.DieType.D10)
+                                                                                                                                        };
+                                                                                                                                    }
+                                                                                                                                    );
+            var archery = Helpers.CopyFeatureBuilder<FeatureDefinitionProficiency>.createFeatureCopy("MonkSubclassWayOfZenArcheryArchery",
+                                                               "",
+                                                               "",
+                                                               "",
+                                                               null,
+                                                               DatabaseHelper.FeatureDefinitionProficiencys.ProficiencyGreenmageWardenOfTheForestStyle);
+
+            var ignore_proximity_penalty = Helpers.FeatureBuilder<NewFeatureDefinitions.IgnorePhysicalRangeProximityPenaltyWithWeaponCategory>
+                                                                        .createFeature("MonkSubclassWayOfZenArcheryIgnoreProximityPenalty",
+                                                                                       "",
+                                                                                       Common.common_no_title,
+                                                                                       Common.common_no_title,
+                                                                                       Common.common_no_icon,
+                                                                                       a =>
+                                                                                       {
+                                                                                           a.weaponCategories = way_of_zen_archery_weapons;
+                                                                                           a.only_for_close_range_attacks = true;
+                                                                                       }
+                                                                                       );
+
+            way_of_the_bow = Helpers.FeatureSetBuilder.createFeatureSet("MonkSubclassWayOfZenArcheryWayOfTheBow",
+                                                                               "",
+                                                                               way_of_the_bow_title_string,
+                                                                               way_of_the_bow_description_string,
+                                                                               false,
+                                                                               FeatureDefinitionFeatureSet.FeatureSetMode.Union,
+                                                                               false,
+                                                                               way_of_iron_allow_using_monk_features_in_armor,
+                                                                               DatabaseHelper.FeatureDefinitionProficiencys.ProficiencyRangerArmor,
+                                                                               DatabaseHelper.FeatureDefinitionProficiencys.ProficiencyRangerWeapon,
+                                                                               ignore_proximity_penalty,
+                                                                               damage_dice,
+                                                                               archery,
+                                                                               attacked_with_monk_weapon_watcher
+                                                                               );
+        }
+
+
+        static CharacterSubclassDefinition createWayOfZenArchery()
+        {
+            createWayOfTheBow();
+
+            //createKiArrows();
+            //createFlurryOfArrows();
+
+            var gui_presentation = new GuiPresentationBuilder(
+                    "Subclass/&MonkSubclassWayOfZenArcheryDescription",
+                    "Subclass/&MonkSubclassWayOfZenArcheryTitle")
+                    .SetSpriteReference(DatabaseHelper.CharacterSubclassDefinitions.RangerMarksman.GuiPresentation.SpriteReference)
+                    .Build();
+
+            CharacterSubclassDefinition definition = new CharacterSubclassDefinitionBuilder("MonkSubclassWayOfZenArchery", "f1b84dec-65ff-46d1-a874-d724d0564e1f")
+                    .SetGuiPresentation(gui_presentation)
+                    .AddFeatureAtLevel(way_of_the_bow, 3)
+                    //.AddFeatureAtLevel(ki_arrows, 6)
+                    //.AddFeatureAtLevel(flurry_of_arrows, 11)
+                    .AddToDB();
+
+            return definition;
+        }
+
+
         public static void BuildAndAddClassToDB()
         {
             var MonkClass = new MonkClassBuilder(MonkClassName, MonkClassNameGuid).AddToDB();
@@ -1833,10 +1963,10 @@ namespace SolastaExtraContent
                                               return a.Level - b.Level;
                                           }
                                          );
-
+            MonkFeatureDefinitionSubclassChoice.Subclasses.Add(createWayOfIron().Name);
             MonkFeatureDefinitionSubclassChoice.Subclasses.Add(createWayOfTheOpenHand().Name);
             MonkFeatureDefinitionSubclassChoice.Subclasses.Add(createWayOfThePyrokine().Name);
-            MonkFeatureDefinitionSubclassChoice.Subclasses.Add(createWayOfIron().Name);
+            MonkFeatureDefinitionSubclassChoice.Subclasses.Add(createWayOfZenArchery().Name);
         }
 
         private static FeatureDefinitionSubclassChoice MonkFeatureDefinitionSubclassChoice;
