@@ -91,8 +91,8 @@ namespace SolastaExtraContent
 
         //Way of Zen Archery
         static public FeatureDefinitionFeatureSet way_of_the_bow; //bows - monk weapons, archery, do not receive disadvantage in close quarters
-        static public FeatureDefinitionFeatureSet ki_arrows; //bow attacks considered magical, can use stunning fist with bow attacks
-        static public FeatureDefinitionFeatureSet flurry_of_arrows; //like a volley feature of ranger hunter
+        static public NewFeatureDefinitions.AddAttackTagForSpecificWeaponType ki_arrows; //bow attacks considered magical, can use stunning fist with bow attacks
+        static public FeatureDefinitionActionAffinity flurry_of_arrows; //like a volley feature of ranger hunter
 
 
         
@@ -704,6 +704,13 @@ namespace SolastaExtraContent
                                                                                                                     }
                                                                                                                     );
 
+            var fob_extra_attack = Helpers.CopyFeatureBuilder<FeatureDefinitionAttributeModifier>.createFeatureCopy("MonkClassFlurryOfBlowsExtraAttack",
+                                                                                                                    "",
+                                                                                                                    "",
+                                                                                                                    "",
+                                                                                                                    null,
+                                                                                                                    DatabaseHelper.FeatureDefinitionAttributeModifiers.AttributeModifierFighterExtraAttack
+                                                                                                                    );
 
             flurry_of_blows_condition = Helpers.ConditionBuilder.createConditionWithInterruptions("MonkClassFlurryOfBlowsCondition",
                                                                                                   "",
@@ -713,7 +720,7 @@ namespace SolastaExtraContent
                                                                                                   DatabaseHelper.ConditionDefinitions.ConditionHasted,
                                                                                                   new RuleDefinitions.ConditionInterruption[] {RuleDefinitions.ConditionInterruption.AnyBattleTurnEnd },
                                                                                                   unarmed_attack,
-                                                                                                  DatabaseHelper.FeatureDefinitionAttributeModifiers.AttributeModifierFighterExtraAttack,
+                                                                                                  fob_extra_attack,
                                                                                                   flurry_of_blows_feature_extra_attack
                                                                                                   );
             flurry_of_blows_condition.SetSubsequentOnRemoval(null);
@@ -1893,6 +1900,23 @@ namespace SolastaExtraContent
                                                                                                                                         };
                                                                                                                                     }
                                                                                                                                     );
+
+            var wis_on_weapons = Helpers.FeatureBuilder<NewFeatureDefinitions.ReplaceWeaponAbilityScoreForWeapons>.createFeature("MonkSubclassWayOfZenArcheryArcheryWisForWeapons",
+                                                                                                                            "",
+                                                                                                                            Common.common_no_title,
+                                                                                                                            Common.common_no_title,
+                                                                                                                            null,
+                                                                                                                            a =>
+                                                                                                                            {
+                                                                                                                                a.abilityScores = new List<string> { Helpers.Stats.Wisdom };
+                                                                                                                                a.weaponTypes = way_of_zen_archery_weapons;
+                                                                                                                                a.restrictions = new List<NewFeatureDefinitions.IRestriction>()
+                                                                                                                                {
+                                                                                                                                     no_armor_restriction
+                                                                                                                                };
+                                                                                                                            }
+                                                                                                                            );
+
             var archery = Helpers.CopyFeatureBuilder<FeatureDefinitionProficiency>.createFeatureCopy("MonkSubclassWayOfZenArcheryArchery",
                                                                "",
                                                                "",
@@ -1913,6 +1937,12 @@ namespace SolastaExtraContent
                                                                                        }
                                                                                        );
 
+            var bow_proficiency = Helpers.ProficiencyBuilder.CreateWeaponProficiency("MonkSubclassWayOfZenArcheryWayOfTheBowProficiency",
+                                                                                     "",
+                                                                                     "",
+                                                                                     "",
+                                                                                     way_of_zen_archery_weapons.ToArray()
+                                                                                     );
             way_of_the_bow = Helpers.FeatureSetBuilder.createFeatureSet("MonkSubclassWayOfZenArcheryWayOfTheBow",
                                                                                "",
                                                                                way_of_the_bow_title_string,
@@ -1921,9 +1951,9 @@ namespace SolastaExtraContent
                                                                                FeatureDefinitionFeatureSet.FeatureSetMode.Union,
                                                                                false,
                                                                                way_of_iron_allow_using_monk_features_in_armor,
-                                                                               DatabaseHelper.FeatureDefinitionProficiencys.ProficiencyRangerArmor,
-                                                                               DatabaseHelper.FeatureDefinitionProficiencys.ProficiencyRangerWeapon,
+                                                                               bow_proficiency,
                                                                                ignore_proximity_penalty,
+                                                                               wis_on_weapons,
                                                                                damage_dice,
                                                                                archery,
                                                                                attacked_with_monk_weapon_watcher
@@ -1931,12 +1961,53 @@ namespace SolastaExtraContent
         }
 
 
+        static void createKiArrows()
+        {
+            string ki_arrows_title_string = "Feature/&MonkSubclassWayOfZenArcheryKiArrowsTitle";
+            string ki_arrows_description_string = "Feature/&MonkSubclassWayOfZenArcheryKiArrowsDescription";
+
+            ki_arrows = Helpers.FeatureBuilder<NewFeatureDefinitions.AddAttackTagForSpecificWeaponType>.createFeature("MonkSubclassWayOfZenArcheryKiArrows",
+                                                                                                                                "",
+                                                                                                                                ki_arrows_title_string,
+                                                                                                                                ki_arrows_description_string,
+                                                                                                                                Common.common_no_icon,
+                                                                                                                                a =>
+                                                                                                                                {
+                                                                                                                                    a.weaponTypes = new List<string>();
+                                                                                                                                    a.weaponTypes.AddRange(way_of_zen_archery_weapons);
+                                                                                                                                    a.tag = "Magical";
+                                                                                                                                }
+                                                                                                                                );
+            stunning_strike.restrictions[0] = new NewFeatureDefinitions.AndRestriction(stunning_strike.restrictions[0],
+                                                                                       //ki arrows allows to use stunning strike with ranged weapon
+                                                                                       new NewFeatureDefinitions.OrRestriction(new NewFeatureDefinitions.HasFeatureRestriction(ki_arrows),
+                                                                                                                               new NewFeatureDefinitions.SpecificWeaponInMainHandRestriction(way_of_zen_archery_weapons)),
+                                                                                       //we should be able to use stunning strike if we receive bonus unarmed attack
+                                                                                       new NewFeatureDefinitions.OrRestriction(new NewFeatureDefinitions.UsedAllMainAttacksRestriction(),
+                                                                                                                               attacked_with_monk_weapon_restriction),
+                                                                                       //we should be able to use stunning strike if we are under flurry of blows effect (again, because it will grant only unarmed attacks)
+                                                                                       new NewFeatureDefinitions.HasConditionRestriction(flurry_of_blows_condition)
+                                                                                       );
+        }
+
+        
+        static void createFlurryOfArrows()
+        {
+            flurry_of_arrows = Helpers.CopyFeatureBuilder<FeatureDefinitionActionAffinity>.createFeatureCopy("MonkSubclassWayOfZenArcheryFlurryOfArrows",
+                                                                                                             "",
+                                                                                                             "",
+                                                                                                             "",
+                                                                                                             null,
+                                                                                                             DatabaseHelper.FeatureDefinitionActionAffinitys.ActionAffinityRangerHunterVolley
+                                                                                                             );
+        }
+
+
         static CharacterSubclassDefinition createWayOfZenArchery()
         {
             createWayOfTheBow();
-
-            //createKiArrows();
-            //createFlurryOfArrows();
+            createKiArrows();
+            createFlurryOfArrows();
 
             var gui_presentation = new GuiPresentationBuilder(
                     "Subclass/&MonkSubclassWayOfZenArcheryDescription",
@@ -1947,8 +2018,8 @@ namespace SolastaExtraContent
             CharacterSubclassDefinition definition = new CharacterSubclassDefinitionBuilder("MonkSubclassWayOfZenArchery", "f1b84dec-65ff-46d1-a874-d724d0564e1f")
                     .SetGuiPresentation(gui_presentation)
                     .AddFeatureAtLevel(way_of_the_bow, 3)
-                    //.AddFeatureAtLevel(ki_arrows, 6)
-                    //.AddFeatureAtLevel(flurry_of_arrows, 11)
+                    .AddFeatureAtLevel(ki_arrows, 6)
+                    .AddFeatureAtLevel(flurry_of_arrows, 11)
                     .AddToDB();
 
             return definition;

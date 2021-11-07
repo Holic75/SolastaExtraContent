@@ -9,6 +9,9 @@ namespace SolastaExtraContent.Patches
 {
     class GameLocationCharacterPatcher
     {
+        //prevent rage from being removed on first round if it was shared by war shaman 
+        //(since the game checks rage validity attack/received damage conditions on unit turn start,
+        //but if the rage was shared the target unit likely did not have time to attack before the start of his turn)
         [HarmonyPatch(typeof(GameLocationCharacter), "StartBattleTurn")]
         class GameLocationCharacter_StartBattleTurn
         {

@@ -8,7 +8,7 @@ New race: Gnomes.
 
 New spells:  
 Cantrips: Vicious Mockery, Sunlight Blade, Shillelagh, Touch of Frost, Air Blast, Sound Burst, Burst of Radiance, Bloody Claws.  
-Lvl 1: Hellish Rebuke, Vulnerability Hex.  
+Lvl 1: Eldritch Blast, Hellish Rebuke, Vulnerability Hex.  
 Lvl 2: Conjure Spirit Beast.  
 Lvl 3: Earth Tremor, Winter's Breath.  
 
