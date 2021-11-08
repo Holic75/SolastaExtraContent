@@ -287,26 +287,26 @@ namespace SolastaExtraContent
                                                                                                               4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
                                                                                               new List<int> { 2,  3,  4,  5,  6,  7,  8, 9,  10, 10,
                                                                                                              11, 11, 12, 12, 13, 13, 14, 14, 15, 15},
-                                                                                              Helpers.Misc.createSpellSlotsByLevel(new List<int> { 1, 0, 0, 0, 0, 0, 0},
-                                                                                                                                   new List<int> { 2, 0, 0, 0, 0, 0, 0},
-                                                                                                                                   new List<int> { 2, 2, 0, 0, 0, 0, 0},//3
-                                                                                                                                   new List<int> { 2, 2, 0, 0, 0, 0, 0},//4
-                                                                                                                                   new List<int> { 2, 2, 2, 0, 0, 0, 0},//5
-                                                                                                                                   new List<int> { 2, 2, 2, 0, 0, 0, 0},//6
-                                                                                                                                   new List<int> { 2, 2, 2, 2, 0, 0, 0},//7
-                                                                                                                                   new List<int> { 2, 2, 2, 2, 0, 0, 0 },//8
-                                                                                                                                   new List<int> { 2, 2, 2, 2, 2, 0, 0 },//9
-                                                                                                                                   new List<int> { 2, 2, 2, 2, 2, 0, 0 },//10
-                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 0 },//11
-                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 0 },//12
-                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1 },//13
-                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1 },//14
-                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1 },//15
-                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1 },//16
-                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1 },//17
-                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1 },//18
-                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1 },//19
-                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1 }//20
+                                                                                              Helpers.Misc.createSpellSlotsByLevel(new List<int> { 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                                                                                                                                   new List<int> { 2, 0, 0, 0, 0, 0, 0, 0, 0},
+                                                                                                                                   new List<int> { 2, 2, 0, 0, 0, 0, 0, 0, 0},//3
+                                                                                                                                   new List<int> { 2, 2, 0, 0, 0, 0, 0, 0 ,0},//4
+                                                                                                                                   new List<int> { 2, 2, 2, 0, 0, 0, 0, 0 ,0},//5
+                                                                                                                                   new List<int> { 2, 2, 2, 0, 0, 0, 0, 0, 0},//6
+                                                                                                                                   new List<int> { 2, 2, 2, 2, 0, 0, 0, 0, 0},//7
+                                                                                                                                   new List<int> { 2, 2, 2, 2, 0, 0, 0, 0, 0},//8
+                                                                                                                                   new List<int> { 2, 2, 2, 2, 2, 0, 0, 0, 0},//9
+                                                                                                                                   new List<int> { 2, 2, 2, 2, 2, 0, 0, 0, 0},//10
+                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 0, 0, 0},//11
+                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 0, 0, 0},//12
+                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1, 0, 0},//13
+                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1, 0, 0},//14
+                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1, 1, 0},//15
+                                                                                                                                   new List<int> { 3, 3, 3, 3, 3, 1, 1, 1, 0},//16
+                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1, 1, 1},//17
+                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1, 1, 1},//18
+                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1, 1, 1},//19
+                                                                                                                                   new List<int> { 4, 4, 4, 4, 4, 1, 1, 1, 1}//20
                                                                                                                                    )
                                                                                               );
             warlock_spellcasting.SetSlotsRecharge(RuleDefinitions.RechargeRate.ShortRest);
@@ -334,7 +334,7 @@ namespace SolastaExtraContent
                 {
                 }
             };
-            for (int i = 6; i < warlock_spellcasting.SpellListDefinition.SpellsByLevel.Count; i++)
+            for (int i = 6; i < 10; i++)
             {
                 var spells_by_lvl = new List<SpellDefinition>[10];
                 for (var j = 0; j < 10; j++)
@@ -394,8 +394,11 @@ namespace SolastaExtraContent
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(mystic_arcanum[0], 11));
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(DatabaseHelper.FeatureDefinitionFeatureSets.FeatureSetAbilityScoreChoice, 12));
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(invocations[12], 12));
+            Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(mystic_arcanum[1], 13));
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(DatabaseHelper.FeatureDefinitionFeatureSets.FeatureSetAbilityScoreChoice, 16));
+            Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(mystic_arcanum[2], 15));
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(invocations[15], 15));
+            Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(mystic_arcanum[3], 17));
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(invocations[18], 18));
             Definition.FeatureUnlocks.Add(new FeatureUnlockByLevel(DatabaseHelper.FeatureDefinitionFeatureSets.FeatureSetAbilityScoreChoice, 19));
 

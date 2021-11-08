@@ -1043,3 +1043,7 @@ MonkSubclassWayOfZenArcheryFlurryOfArrows	9663c6c7-6416-43c5-9095-3d1df2a3141a
 MonkSubclassWayOfZenArcheryWayOfTheBowProficiency	4c715441-57b2-4769-8640-f3748475fac0
 MonkSubclassWayOfZenArcheryArcheryWisForWeapons	7e66fe90-86ae-4f72-8a14-2a31870b41ea
 MonkClassFlurryOfBlowsExtraAttack	f26bed3b-50d8-4007-8655-18024e2a8577
+WarlockClassMysticArcanumSpellList8	d8812dc5-2bd1-4fe5-b520-f2107968c815
+WarlockClassMysticArcanum8	75584a0a-6613-4c34-be03-63abe9a1038f
+WarlockClassMysticArcanumSpellList9	34f181f3-c945-42d8-a295-d7d476dacb6e
+WarlockClassMysticArcanum9	1af92745-98c8-420f-86dc-ace1cdea4246
