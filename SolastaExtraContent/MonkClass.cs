@@ -1654,31 +1654,6 @@ namespace SolastaExtraContent
                                                                                                                                     }
                                                                                                                                     );
 
-
-            var bonus_unarmed_attack = Helpers.FeatureBuilder<NewFeatureDefinitions.ExtraUnarmedAttack>.createFeature("MonkSubclassWayOfIronMartialArtsBonusUnarmedAttack",
-                                                                                                                        "",
-                                                                                                                        Common.common_no_title,
-                                                                                                                        Common.common_no_title,
-                                                                                                                        null,
-                                                                                                                        a =>
-                                                                                                                        {
-                                                                                                                            a.allowedWeaponTypesIfHasRequiredFeature = new List<string>();
-                                                                                                                            a.allowedWeaponTypesIfHasRequiredFeature.AddRange(monk_weapons);
-                                                                                                                            a.allowedWeaponTypesIfHasRequiredFeature.AddRange(way_of_iron_weapons);
-                                                                                                                            a.allowedWeaponTypesIfHasRequiredFeature.Remove(Helpers.WeaponProficiencies.Unarmed);
-                                                                                                                            a.requiredFeature = whirlwind_of_iron;
-                                                                                                                            a.restrictions = new List<NewFeatureDefinitions.IRestriction>()
-                                                                                                                            {
-                                                                                                                                attacked_with_monk_weapon_restriction,
-                                                                                                                                new NewFeatureDefinitions.HasFeatureRestriction(way_of_iron_allow_using_monk_features_in_armor),
-                                                                                                                                new NewFeatureDefinitions.UsedAllMainAttacksRestriction(),
-                                                                                                                                new NewFeatureDefinitions.FreeOffHandRestriciton()
-                                                                                                                            };
-                                                                                                                            a.clearAllAttacks = false;
-                                                                                                                            a.actionType = ActionDefinitions.ActionType.Bonus;
-                                                                                                                        }
-                                                                                                                        );
-
             roiling_storm_of_iron = Helpers.FeatureSetBuilder.createFeatureSet("MonkSubclassWayOfIronRoilingStormOfIron",
                                                                                "",
                                                                                roiling_storm_of_iron_title_string,
@@ -1694,30 +1669,6 @@ namespace SolastaExtraContent
                                                                                //bonus_unarmed_attack, - the base one will already work
                                                                                attacked_with_monk_weapon_watcher
                                                                                );
-
-            var flurry_unarmed_attack_way_of_iron = Helpers.FeatureBuilder<NewFeatureDefinitions.ExtraUnarmedAttack>.createFeature("MonkSubclassWayOfIronFlurryOfBlowsUnarmedAttack",
-                                                                                                                "",
-                                                                                                                Common.common_no_title,
-                                                                                                                Common.common_no_title,
-                                                                                                                null,
-                                                                                                                a =>
-                                                                                                                {
-                                                                                                                    a.allowedWeaponTypesIfHasRequiredFeature = new List<string>();
-                                                                                                                    a.allowedWeaponTypesIfHasRequiredFeature.AddRange(monk_weapons);
-                                                                                                                    a.allowedWeaponTypesIfHasRequiredFeature.AddRange(way_of_iron_weapons);
-                                                                                                                    a.allowedWeaponTypesIfHasRequiredFeature.Remove(Helpers.WeaponProficiencies.Unarmed);
-                                                                                                                    a.requiredFeature = whirlwind_of_iron;
-                                                                                                                    a.restrictions = new List<NewFeatureDefinitions.IRestriction>()
-                                                                                                                    {
-                                                                                                                        new NewFeatureDefinitions.HasFeatureRestriction(way_of_iron_allow_using_monk_features_in_armor)
-                                                                                                                    };
-                                                                                                                    a.clearAllAttacks = true;
-                                                                                                                    a.actionType = ActionDefinitions.ActionType.Main;
-                                                                                                                }
-                                                                                                                );
-
-            //flurry_of_blows_condition.features.Add(flurry_unarmed_attack_way_of_iron);
-
         }
 
 

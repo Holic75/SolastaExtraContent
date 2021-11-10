@@ -762,7 +762,6 @@ namespace SolastaExtraContent
                 effect.EffectForms.Add(effect_form);
 
                 lvl_effects[i] = effect;
-
             }
 
             var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictionsAndCasterLevelDependentEffect>
@@ -1493,22 +1492,10 @@ namespace SolastaExtraContent
                                                                                                                    a.familiesDiceNumber = 0;
                                                                                                                    a.damageDiceNumber = 1;
                                                                                                                    a.damageAdvancement = RuleDefinitions.AdditionalDamageAdvancement.None;
-                                                                                                                   a.requiredProperty = RuleDefinitions.AdditionalDamageRequiredProperty.MeleeWeapon;
+                                                                                                                   a.requiredProperty = RuleDefinitions.AdditionalDamageRequiredProperty.None;
                                                                                                                    a.attackModeOnly = true;
                                                                                                                }
                                                                                                                );
-            var extra_damage_ranged = Helpers.CopyFeatureBuilder<FeatureDefinitionAdditionalDamage>.createFeatureCopy("WarlockAngelSubclassWrackedByDivinityRanged",
-                                                                                                                      "",
-                                                                                                                      title_string,
-                                                                                                                      Common.common_no_title,
-                                                                                                                      null,
-                                                                                                                      extra_damage,
-                                                                                                                      a =>
-                                                                                                                      {
-                                                                                                                          a.requiredProperty = RuleDefinitions.AdditionalDamageRequiredProperty.RangeWeapon;
-                                                                                                                      }
-                                                                                                                      );
-
 
             var condition = Helpers.ConditionBuilder.createConditionWithInterruptions("WarlockAngelSubclassWrackedByDivinityCondition",
                                                                                       "",
@@ -1518,7 +1505,6 @@ namespace SolastaExtraContent
                                                                                       DatabaseHelper.ConditionDefinitions.ConditionBrandingSmite,
                                                                                       new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.AttacksAndDamages },
                                                                                       extra_damage,
-                                                                                      extra_damage_ranged,
                                                                                       use_charisma_for_weapons,
                                                                                       DatabaseHelper.FeatureDefinitionAttackModifiers.AttackModifierMartialSpellBladeMagicWeapon
                                                                                       );
