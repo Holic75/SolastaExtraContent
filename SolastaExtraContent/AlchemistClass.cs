@@ -1327,7 +1327,7 @@ namespace SolastaExtraContent
                                                                                                  a.characterFamily = "Monstrosity";
                                                                                                  a.challengeRating = (level / 2);
                                                                                                  a.droppedLootDefinition = null;
-                                                                                                 //a.inDungeonEditor = false;
+                                                                                                 a.dungeonMakerPresence = MonsterDefinition.DungeonMaker.None;
                                                                                              }
                                                                                              );
             homunculus.bestiaryEntry = BestiaryDefinitions.BestiaryEntry.None;

@@ -36,11 +36,11 @@ namespace SolastaExtraContent
                 allowToControlSummonedCreatures();
             }
 
-            fixMonsterAttacksAttacks();
+            fixMonsterAttacks();
         }
 
 
-        static void fixMonsterAttacksAttacks()
+        static void fixMonsterAttacks()
         {
             DatabaseHelper.MonsterDefinitions.WildShapeGiant_Eagle.groupAttacks = true;
             DatabaseHelper.MonsterDefinitions.Giant_Eagle.groupAttacks = true;
@@ -143,6 +143,11 @@ namespace SolastaExtraContent
                 if (c.classesAndLevels.ContainsKey(DatabaseHelper.CharacterClassDefinitions.Sorcerer))
                 {
                     c.activeFeatures[AttributeDefinitions.GetClassTag(DatabaseHelper.CharacterClassDefinitions.Sorcerer, 1)].Add(staff_focus);
+                }
+
+                if (c.classesAndLevels.ContainsKey(DatabaseHelper.CharacterClassDefinitions.Druid))
+                {
+                    c.activeFeatures[AttributeDefinitions.GetClassTag(DatabaseHelper.CharacterClassDefinitions.Druid, 1)].Add(staff_focus);
                 }
             };
 

@@ -345,6 +345,10 @@ namespace SolastaExtraContent
 
         static void createConjureSpiritAnimal()
         {
+            var sprite = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("ConjureSpiritBeastCantripImage",
+                                        $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/ConjureSpiritBeast.png",
+                                        128, 128);
+
             var attack_bonus = Helpers.FeatureBuilder<NewFeatureDefinitions.AttackBonusEqualToCasterSpellcastingBonus>
                                                        .createFeature("ConjureSpiritBeastAttackBonus",
                                                                        "",
@@ -367,8 +371,8 @@ namespace SolastaExtraContent
             List<(MonsterDefinition base_monster, MonsterDefinition fx_monster, string prefix, int base_hd, FeatureDefinition[] features)> summon_infos
                 = new List<(MonsterDefinition base_monster, MonsterDefinition fx_monster, string prefix, int base_hd, FeatureDefinition[] features)>()
                 {
-                    (DatabaseHelper.MonsterDefinitions.Wolf, DatabaseHelper.MonsterDefinitions.Earth_Elemental, "Land", 4, new FeatureDefinition[]{DatabaseHelper.FeatureDefinitionMoveModes.MoveModeMove6, DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityPackTactics }),
-                    (DatabaseHelper.MonsterDefinitions.Giant_Eagle, DatabaseHelper.MonsterDefinitions.Air_Elemental, "Air", 2, new FeatureDefinition[]{DatabaseHelper.FeatureDefinitionMoveModes.MoveModeFly12, DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityFlyby }),
+                    (DatabaseHelper.MonsterDefinitions.KindredSpiritWolf, DatabaseHelper.MonsterDefinitions.Earth_Elemental, "Land", 4, new FeatureDefinition[]{DatabaseHelper.FeatureDefinitionMoveModes.MoveModeMove6, DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityPackTactics }),
+                    (DatabaseHelper.MonsterDefinitions.KindredSpiritEagle, DatabaseHelper.MonsterDefinitions.Air_Elemental, "Air", 2, new FeatureDefinition[]{DatabaseHelper.FeatureDefinitionMoveModes.MoveModeFly12, DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityFlyby }),
                 };
 
             foreach (var summon_info in summon_infos)
@@ -403,7 +407,7 @@ namespace SolastaExtraContent
                                                                                                 "",
                                                                                                 $"Spell/&{prefix}Title",
                                                                                                 $"Spell/&{prefix}Description",
-                                                                                                DatabaseHelper.SpellDefinitions.ConjureAnimals.GuiPresentation.spriteReference,
+                                                                                                sprite,//DatabaseHelper.SpellDefinitions.ConjureAnimals.GuiPresentation.spriteReference,
                                                                                                 effect_descriptions[0],
                                                                                                 RuleDefinitions.ActivationTime.Action,
                                                                                                 2,
@@ -427,7 +431,7 @@ namespace SolastaExtraContent
                                                                                                   "",
                                                                                                   "Spell/&ConjureSpiritAnimalSpellTitle",
                                                                                                   "Spell/&ConjureSpiritAnimalSpellDescription",
-                                                                                                  null,
+                                                                                                  sprite,
                                                                                                   DatabaseHelper.SpellDefinitions.ConjureAnimals,
                                                                                                   a =>
                                                                                                   {
@@ -435,9 +439,10 @@ namespace SolastaExtraContent
                                                                                                       a.spellLevel = 2;
                                                                                                       a.effectDescription.Copy(a.EffectDescription);
                                                                                                       a.effectDescription.SetEffectAdvancement(variants[0].effectDescription.EffectAdvancement);
+                                                                                                      a.effectDescription.durationType = RuleDefinitions.DurationType.Hour;
+                                                                                                      a.effectDescription.durationParameter = 1;
                                                                                                   }
                                                                                                   );
-
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListWizardGreenmage, conjure_spirit_animal);
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListRanger, conjure_spirit_animal);
             Helpers.Misc.addSpellToSpelllist(DatabaseHelper.SpellListDefinitions.SpellListDruid, conjure_spirit_animal);
@@ -511,6 +516,7 @@ namespace SolastaExtraContent
                                                                                                  a.characterFamily = "Beast";
                                                                                                  a.challengeRating = (level / 2);
                                                                                                  a.droppedLootDefinition = null;
+                                                                                                 a.dungeonMakerPresence = MonsterDefinition.DungeonMaker.None;
                                                                                                  //a.monsterPresentation.attachedParticlesReference = fx_monster.monsterPresentation.attachedParticlesReference;
                                                                                              }
                                                                                              );
