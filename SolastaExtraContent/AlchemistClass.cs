@@ -417,17 +417,23 @@ namespace SolastaExtraContent
                 }
 
                 
-                var output_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemy{s.name}.png";
-                if (!System.IO.File.Exists(output_path))
+                var power_output_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemyPower{s.name}.png";
+                var potion_output_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemyPotion{s.name}.png";
+                if (!System.IO.File.Exists(power_output_path))
                 {
-                    var spell_icon_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/{s.name}.png";
+                    var spell_icon_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/{s.name}_For_Swift_Alchemy.png";
                     SolastaModHelpers.CustomIcons.Tools.saveSpriteFromAssetReferenceAsPNG(s.GuiPresentation.SpriteReference, spell_icon_path);
-                    SolastaModHelpers.CustomIcons.Tools.merge2Images(new string[] { potion_image_path, spell_icon_path }, (128, 64), output_path);
-                    System.IO.File.Delete(spell_icon_path);
+                    SolastaModHelpers.CustomIcons.Tools.combineImages(new string[] { potion_image_path, spell_icon_path }, (128, 64), power_output_path);
+                    SolastaModHelpers.CustomIcons.Tools.merge2Images(potion_image_path, spell_icon_path, (40, 40), (40, 70), potion_output_path);
+                    //System.IO.File.Delete(spell_icon_path);
                 }
-                var power_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon($"SwiftAlchemy{s.name}Image",
-                                                                                      output_path,
+                var power_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon($"SwiftAlchemyPower{s.name}Image",
+                                                                                      power_output_path,
                                                                                       128, 64);
+
+                var potion_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon($"SwiftAlchemyPotion{s.name}Image",
+                                                                                      potion_output_path,
+                                                                                      128, 128);
 
                 var potion_power = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower("FastAlchemyPotionFunctionPower" + s.name,
                                                                                             GuidStorage.mergeGuids(s.guid, "edcb2a48-70ea-4818-bfa2-40c9e7527a90"),
@@ -448,7 +454,7 @@ namespace SolastaExtraContent
                                                                                                                                     ("Feature/&AlchemistClassFastAlchemyPotionTitle", " "),
                                                                                                                                     (s.guiPresentation.title, "")),                                                                                                       
                                                                                         s.guiPresentation.description,
-                                                                                        null,
+                                                                                        potion_image,
                                                                                         DatabaseHelper.ItemDefinitions.PotionOfInvisibility,
                                                                                         a =>
                                                                                         {
