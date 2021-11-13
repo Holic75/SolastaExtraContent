@@ -20,6 +20,7 @@ namespace SolastaExtraContent
         static public FeatureDefinitionFeatureSet spirits;
         static public FeatureDefinitionFeatureSet spirit_summoner;
         static public NewFeatureDefinitions.AddExtraConditionToTargetOnConditionApplication guardian_spirits;
+        static public NewFeatureDefinitions.PowerBundle base_spirit;
 
         public static void create()
         {
@@ -46,6 +47,17 @@ namespace SolastaExtraContent
                                                                                             .AddToDB();
 
             DatabaseHelper.FeatureDefinitionSubclassChoices.SubclassChoiceDruidCircle.Subclasses.Add(definition.Name);
+
+
+            //regrant powers to give base_primal_harmony and wrath of the elements missing previously
+            Action<RulesetCharacterHero> fix_action = c =>
+            {
+                if (c.ClassesAndSubclasses.ContainsValue(definition) && !c.UsablePowers.Any(u => u.powerDefinition == base_spirit))
+                {
+                    c.GrantPowers();
+                }
+            };
+            Common.postload_actions.Add(fix_action);
         }
 
 
@@ -140,6 +152,29 @@ namespace SolastaExtraContent
                                                                                                                             a.effectsToTerminate = a.powers.Cast<FeatureDefinition>().ToList();
                                                                                                                         }
                                                                                                                         );
+
+            var base_effect = new EffectDescription();
+            base_effect.Copy(DatabaseHelper.SpellDefinitions.Silence.effectDescription);
+            base_effect.rangeParameter = 12;
+            base_effect.durationParameter = 1;
+            base_effect.effectForms.Clear();
+
+            base_spirit = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                                                        .createPower("DruidSubclassCircleOfSpiritsSpiritsBasePower",
+                                                                                       "",
+                                                                                       "Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetTitle",
+                                                                                       "Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetDescription",
+                                                                                       DatabaseHelper.FeatureDefinitionPowers.PowerWindShelteringBreeze.guiPresentation.spriteReference,
+                                                                                       base_effect,
+                                                                                       RuleDefinitions.ActivationTime.BonusAction,
+                                                                                       2,
+                                                                                       RuleDefinitions.UsesDetermination.Fixed,
+                                                                                       RuleDefinitions.RechargeRate.ShortRest);
+            base_spirit.linkedPower = DatabaseHelper.FeatureDefinitionPowers.PowerDruidWildShape;
+            base_spirit.addSubPower(healing_spirit);
+            base_spirit.addSubPower(hunt_spirit);
+            base_spirit.addSubPower(protection_spirit);
+
             spirits = Helpers.FeatureSetBuilder.createFeatureSet("DruidSubclassCircleOfSpiritsSpiritsFeatureSet",
                                                                 "",
                                                                 "Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetTitle",
@@ -147,6 +182,7 @@ namespace SolastaExtraContent
                                                                 true,
                                                                 FeatureDefinitionFeatureSet.FeatureSetMode.Union,
                                                                 false,
+                                                                base_spirit,
                                                                 healing_spirit,
                                                                 hunt_spirit,
                                                                 protection_spirit,
@@ -190,7 +226,7 @@ namespace SolastaExtraContent
             effect.targetSide = RuleDefinitions.Side.Ally;
             effect.canBePlacedOnCharacter = true;
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.LinkedPower>.createPower(name + "Power",
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower(name + "Power",
                                                                                                    "",
                                                                                                    title,
                                                                                                    description,

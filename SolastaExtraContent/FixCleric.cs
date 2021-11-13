@@ -75,7 +75,7 @@ namespace SolastaExtraContent
                                                                             "",
                                                                             "Feature/&DomainElementalWrathOfTheElementsTitle",
                                                                             "Feature/&DomainElementalWrathOfTheElementsDescription",
-                                                                            DatabaseHelper.FeatureDefinitionPowers.PowerWindShelteringBreeze.guiPresentation.spriteReference,
+                                                                            DatabaseHelper.FeatureDefinitionPowers.PowerSorcererManaPainterTap.guiPresentation.spriteReference,
                                                                             base_effect,
                                                                             RuleDefinitions.ActivationTime.Action,
                                                                             1,
