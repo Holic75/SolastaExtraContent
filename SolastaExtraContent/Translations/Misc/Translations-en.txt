@@ -97,6 +97,8 @@ Feature/&DomainElementalPrimalHarmonyDamageColdTitle	Primal Harmony: Cold
 Feature/&DomainElementalPrimalHarmonyDamageColdDescription	The damage type of all your spells is changed to cold, until end of your turn.
 Feature/&DomainElementalPrimalHarmonyDamageLightningTitle	Primal Harmony: Lightning
 Feature/&DomainElementalPrimalHarmonyDamageLightningDescription	The damage type of all your spells is changed to lightning, until end of your turn.
+Feature/&DomainElementalWrathOfTheElementsTitle	Wrath of the Elements
+Feature/&DomainElementalWrathOfTheElementsDescription	You can use your Channel Divinity to call upon one of the elements to aid you. 
 Feature/&DomainElementalCallUponColdTitle	Channel Divinity: Call Upon Ice
 Feature/&DomainElementalCallUponColdDescription	Deal 2d8 + your cleric level cold damage to all hostile creatures in 15-foot cone and restrain them if they fails a Constitution saving throw.
 Feature/&DomainElementalCallUponWindTitle	Channel Divinity: Call Upon Storm

@@ -19,9 +19,10 @@ namespace SolastaExtraContent
         static public CharacterSubclassDefinition elemental_domain;
         static public NewFeatureDefinitions.FeatureDefinitionExtraSpellsKnown bonus_elemental_cantrip;
         static public FeatureDefinitionFeatureSet primal_harmony;
-        static public FeatureDefinitionFeatureSet wrath_of_the_elements;
-        static public FeatureDefinitionPower wind_channel;
-        static public FeatureDefinitionPower cold_channel;
+        static public NewFeatureDefinitions.PowerBundle base_primal_harmony;
+        static public NewFeatureDefinitions.PowerBundle wrath_of_the_elements;
+        static public NewFeatureDefinitions.HiddenPower wind_channel;
+        static public NewFeatureDefinitions.HiddenPower cold_channel;
         static public FeatureDefinitionFeatureSet fire_channel;
 
 
@@ -35,7 +36,56 @@ namespace SolastaExtraContent
             createWindChannel();
             createColdChannel();
             createFireChannel();
+            createPrimalHarmony();
+            createWrathOfTheElements();
             fixElemental();
+
+            //regrant powers to give base_primal_harmony and wrath of the elements missing previously
+            Action<RulesetCharacterHero> fix_action = c =>
+            {
+                if (c.ClassesAndSubclasses.ContainsValue(elemental_domain)
+                    && c.UsablePowers.Any(u => u.powerDefinition == wind_channel) && !c.UsablePowers.Any(u => u.powerDefinition == wrath_of_the_elements)
+                   )
+                {
+                    c.ActiveFeatures[AttributeDefinitions.GetClassTag(DatabaseHelper.CharacterClassDefinitions.Cleric, 2)].Add(wrath_of_the_elements);
+                }
+                if (c.ClassesAndSubclasses.ContainsValue(elemental_domain) 
+                    && (!c.UsablePowers.Any(u => u.powerDefinition == base_primal_harmony)
+                        || (c.UsablePowers.Any(u => u.powerDefinition == wind_channel) && !c.UsablePowers.Any(u => u.powerDefinition == wrath_of_the_elements))
+                        )
+                   )
+                {
+                    c.GrantPowers();
+                }
+            };
+            Common.postload_actions.Add(fix_action);
+        }
+
+
+        static void createWrathOfTheElements()
+        {
+            var base_effect = new EffectDescription();
+            base_effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerTraditionShockArcanistArcaneFury.effectDescription);
+            base_effect.durationParameter = 1;
+            base_effect.durationType = RuleDefinitions.DurationType.Round;
+            base_effect.endOfEffect = RuleDefinitions.TurnOccurenceType.StartOfTurn;
+            base_effect.effectForms.Clear();
+
+            wrath_of_the_elements = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>.createPower("DomainElementalWrathOfTheElementsBasePower",
+                                                                            "",
+                                                                            "Feature/&DomainElementalWrathOfTheElementsTitle",
+                                                                            "Feature/&DomainElementalWrathOfTheElementsDescription",
+                                                                            DatabaseHelper.FeatureDefinitionPowers.PowerWindShelteringBreeze.guiPresentation.spriteReference,
+                                                                            base_effect,
+                                                                            RuleDefinitions.ActivationTime.Action,
+                                                                            1,
+                                                                            RuleDefinitions.UsesDetermination.Fixed,
+                                                                            RuleDefinitions.RechargeRate.ChannelDivinity,
+                                                                            ability: Helpers.Stats.Wisdom
+                                                                            ); 
+            wrath_of_the_elements.addSubPower(cold_channel);
+            wrath_of_the_elements.addSubPower(fire_channel.featureSet[0] as NewFeatureDefinitions.HiddenPower);
+            wrath_of_the_elements.addSubPower(wind_channel);
         }
 
 
@@ -86,7 +136,7 @@ namespace SolastaExtraContent
             motion_form.motionForm.type = MotionForm.MotionType.FallProne;
             wind_effect.effectForms.Add(motion_form);
 
-            wind_channel = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower("DomainElementalCallUponWind",
+            wind_channel = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower("DomainElementalCallUponWind",
                                                                                            "",
                                                                                            "Feature/&DomainElementalCallUponWindTitle",
                                                                                            "Feature/&DomainElementalCallUponWindDescription",
@@ -139,7 +189,7 @@ namespace SolastaExtraContent
                                                                                                    RuleDefinitions.RechargeRate.AtWill,
                                                                                                    ability: Helpers.Stats.Wisdom);
             fire_channel_damage.showCasting = false;
-            var fire_channel_power = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower("DomainElementalCallUponFire",
+            var fire_channel_power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower("DomainElementalCallUponFire",
                                                                                        "",
                                                                                        "Feature/&DomainElementalCallUponFireTitle",
                                                                                        "Feature/&DomainElementalCallUponFireDescription",
@@ -178,69 +228,68 @@ namespace SolastaExtraContent
 
         static void createColdChannel()
         {
-            cold_channel = Helpers.CopyFeatureBuilder<FeatureDefinitionPower>.createFeatureCopy("DomainElementalCallUponCold",
-                                                                                                "",
-                                                                                               "Feature/&DomainElementalCallUponColdTitle",
-                                                                                               "Feature/&DomainElementalCallUponColdDescription",
-                                                                                               DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalIceLance.guiPresentation.spriteReference,
-                                                                                               DatabaseHelper.FeatureDefinitionPowers.PowerWinterWolfBreath,
-                                                                                               a =>
-                                                                                               {
-                                                                                                   a.fixedUsesPerRecharge = 1;
-                                                                                                   a.rechargeRate = RuleDefinitions.RechargeRate.ChannelDivinity;
-                                                                                                   a.effectDescription.effectForms.Clear();
-                                                                                                   a.effectDescription.effectForms.AddRange(DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalHeraldOfTheElementsCold.effectDescription.effectForms);
-                                                                                               }
-                                                                                               );
+            var effect = new EffectDescription();
+            effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerWinterWolfBreath.effectDescription);
+            effect.effectForms.Clear();
+            effect.effectForms.AddRange(DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalHeraldOfTheElementsCold.effectDescription.effectForms);
+            effect.savingThrowAbility = Helpers.Stats.Dexterity;
+            effect.savingThrowDifficultyAbility = Helpers.Stats.Wisdom;
+            effect.difficultyClassComputation = RuleDefinitions.EffectDifficultyClassComputation.AbilityScoreAndProficiency;
+            effect.hasSavingThrow = true;
+            effect.effectForms[0].addBonusMode = RuleDefinitions.AddBonusMode.None;
+            effect.effectForms[0].damageForm.diceNumber = 2;
+            effect.effectForms[0].hasSavingThrow = true;
+            effect.effectForms[0].applyLevel = EffectForm.LevelApplianceType.Add;
+            effect.effectForms[0].savingThrowAffinity = RuleDefinitions.EffectSavingThrowType.HalfDamage;
+            cold_channel = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
+                                                                       .createPower("DomainElementalCallUponCold",
+                                                                                    "",
+                                                                                    "Feature/&DomainElementalCallUponColdTitle",
+                                                                                    "Feature/&DomainElementalCallUponColdDescription",
+                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalIceLance.guiPresentation.spriteReference,
+                                                                                    effect,
+                                                                                    RuleDefinitions.ActivationTime.Action,
+                                                                                    1,
+                                                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                                                    RuleDefinitions.RechargeRate.ChannelDivinity,
+                                                                                    ability: Helpers.Stats.Wisdom
+                                                                                    );            
         }
 
 
-        static void fixElemental()
+        static void createPrimalHarmony()
         {
-            var gui_presentation = new GuiPresentationBuilder(
-                                            "Subclass/&DomainElementalDescription",
-                                            "Subclass/&DomainElementalTitle")
-                                            .SetSpriteReference(DatabaseHelper.CharacterSubclassDefinitions.TraditionShockArcanist.GuiPresentation.SpriteReference)
-                                            .Build();
-
-            var cantrips = new List<SpellDefinition> {  DatabaseHelper.SpellDefinitions.FireBolt,
-                                                        DatabaseHelper.SpellDefinitions.ShockingGrasp,
-                                                        Cantrips.frostbite,
-                                                        DatabaseHelper.SpellDefinitions.RayOfFrost,
-                                                        DatabaseHelper.SpellDefinitions.ProduceFlame};
-
-
-            var spelllist = Helpers.SpelllistBuilder.create9LevelSpelllist("DomainElementalBonusCantripSpelllist",
-                                                                           "",
-                                                                           Common.common_no_title,
-                                                                           cantrips
-                                                                           );
-
-            bonus_elemental_cantrip = Helpers.ExtraSpellSelectionBuilder.createExtraCantripSelection("DomainElementalBonusCantrip",
-                                                                                                    "",
-                                                                                                    "Feature/&DomainElementalBonusCantripTitle",
-                                                                                                    "Feature/&DomainElementalBonusCantripDescription",
-                                                                                                    DatabaseHelper.CharacterClassDefinitions.Cleric,
-                                                                                                    1,
-                                                                                                    1,
-                                                                                                    spelllist
-                                                                                                    );
-
-            var primal_harmony = Helpers.FeatureSetBuilder.createFeatureSet("DomainElementalPrimalHarmony",
-                                                                        "",
-                                                                        "Feature/&DomainElementalPrimalHarmonyTitle",
-                                                                        "Feature/&DomainElementalPrimalHarmonyDescription",
-                                                                        false,
-                                                                        FeatureDefinitionFeatureSet.FeatureSetMode.Union,
-                                                                        false);
+            primal_harmony = Helpers.FeatureSetBuilder.createFeatureSet("DomainElementalPrimalHarmony",
+                                                            "",
+                                                            "Feature/&DomainElementalPrimalHarmonyTitle",
+                                                            "Feature/&DomainElementalPrimalHarmonyDescription",
+                                                            false,
+                                                            FeatureDefinitionFeatureSet.FeatureSetMode.Union,
+                                                            false);
 
             var damages = new List<(string damage_type, AssetReferenceSprite sprite)> {(Helpers.DamageTypes.Fire, DatabaseHelper.FeatureDefinitionPowers.PowerOathOfMotherlandVolcanicAura.guiPresentation.spriteReference),
                                                                                        (Helpers.DamageTypes.Cold, DatabaseHelper.FeatureDefinitionPowers.PowerOathOfTirmarAuraTruth.guiPresentation.spriteReference),
                                                                                        (Helpers.DamageTypes.Lightning, DatabaseHelper.FeatureDefinitionPowers.PowerPaladinAuraOfProtection.guiPresentation.spriteReference)};
 
+            var base_effect = new EffectDescription();
+            base_effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerTraditionShockArcanistArcaneFury.effectDescription);
+            base_effect.durationParameter = 1;
+            base_effect.durationType = RuleDefinitions.DurationType.Round;
+            base_effect.endOfEffect = RuleDefinitions.TurnOccurenceType.StartOfTurn;
+            base_effect.effectForms.Clear();
+            base_primal_harmony = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>.createPower("DomainElementalPrimalHarmonyBasePower",
+                                                                            "",
+                                                                            $"Feature/&DomainElementalPrimalHarmonyTitle",
+                                                                            $"Feature/&DomainElementalPrimalHarmonyDescription",
+                                                                            DatabaseHelper.FeatureDefinitionPowers.PowerOathOfDevotionAuraDevotion.guiPresentation.spriteReference,
+                                                                            base_effect,
+                                                                            RuleDefinitions.ActivationTime.BonusAction,
+                                                                            1,
+                                                                            RuleDefinitions.UsesDetermination.Fixed,
+                                                                            RuleDefinitions.RechargeRate.AtWill
+                                                                            );
 
-
-
+            primal_harmony.featureSet.Add(base_primal_harmony);
             foreach (var d in damages)
             {
                 var feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ModifySpellDamageType>.createFeature($"DomainElementalHeraldOfTheElements{d.damage_type}Feature",
@@ -278,7 +327,7 @@ namespace SolastaExtraContent
                 form.conditionForm.operation = ConditionForm.ConditionOperation.Add;
                 effect.effectForms.Add(form);
 
-                var power = Helpers.GenericPowerBuilder<FeatureDefinitionPower>.createPower($"DomainElementalHeraldOfTheElements{d.damage_type}Power",
+                var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower($"DomainElementalHeraldOfTheElements{d.damage_type}Power",
                                                                                             "",
                                                                                             $"Feature/&DomainElementalPrimalHarmony{d.damage_type}Title",
                                                                                             $"Feature/&DomainElementalPrimalHarmony{d.damage_type}Description",
@@ -290,7 +339,43 @@ namespace SolastaExtraContent
                                                                                             RuleDefinitions.RechargeRate.AtWill
                                                                                             );
                 primal_harmony.featureSet.Add(power);
+                base_primal_harmony.addSubPower(power);
             }
+        }
+
+
+        static void fixElemental()
+        {
+            var gui_presentation = new GuiPresentationBuilder(
+                                            "Subclass/&DomainElementalDescription",
+                                            "Subclass/&DomainElementalTitle")
+                                            .SetSpriteReference(DatabaseHelper.CharacterSubclassDefinitions.TraditionShockArcanist.GuiPresentation.SpriteReference)
+                                            .Build();
+
+            var cantrips = new List<SpellDefinition> {  DatabaseHelper.SpellDefinitions.FireBolt,
+                                                        DatabaseHelper.SpellDefinitions.ShockingGrasp,
+                                                        Cantrips.frostbite,
+                                                        DatabaseHelper.SpellDefinitions.RayOfFrost,
+                                                        DatabaseHelper.SpellDefinitions.ProduceFlame};
+
+
+            var spelllist = Helpers.SpelllistBuilder.create9LevelSpelllist("DomainElementalBonusCantripSpelllist",
+                                                                           "",
+                                                                           Common.common_no_title,
+                                                                           cantrips
+                                                                           );
+
+            bonus_elemental_cantrip = Helpers.ExtraSpellSelectionBuilder.createExtraCantripSelection("DomainElementalBonusCantrip",
+                                                                                                    "",
+                                                                                                    "Feature/&DomainElementalBonusCantripTitle",
+                                                                                                    "Feature/&DomainElementalBonusCantripDescription",
+                                                                                                    DatabaseHelper.CharacterClassDefinitions.Cleric,
+                                                                                                    1,
+                                                                                                    1,
+                                                                                                    spelllist
+                                                                                                    );
+
+
 
             var herald_of_the_elements = Helpers.FeatureSetBuilder.createFeatureSet("DomainElementalHeraldOfTheElements",
                                                                         "",
@@ -327,18 +412,19 @@ namespace SolastaExtraContent
 
             DatabaseHelper.FeatureDefinitionAutoPreparedSpellss.AutoPreparedSpellsDomainElemental.autoPreparedSpellsGroups[3].spellsList[1] = DatabaseHelper.SpellDefinitions.Stoneskin;
 
-            CharacterSubclassDefinition elemental_domain = new CharacterSubclassDefinitionBuilder("DomainElemental", "90dddcb0-bb0d-46a5-ba92-83bdbaec21fd")
-                                                                                            .SetGuiPresentation(gui_presentation)
-                                                                                            .AddFeatureAtLevel(DatabaseHelper.FeatureDefinitionAutoPreparedSpellss.AutoPreparedSpellsDomainElemental, 1)
-                                                                                            .AddFeatureAtLevel(bonus_elemental_cantrip, 1)
-                                                                                            .AddFeatureAtLevel(primal_harmony, 1)
-                                                                                            .AddFeatureAtLevel(cold_channel, 2)
-                                                                                            .AddFeatureAtLevel(fire_channel, 2)
-                                                                                            .AddFeatureAtLevel(wind_channel, 2)
-                                                                                            .AddFeatureAtLevel(herald_of_the_elements, 6)
-                                                                                            .AddFeatureAtLevel(potent_spellcasting, 8)
-                                                                                            .AddFeatureAtLevel(DatabaseHelper.FeatureDefinitionPowers.PowerClericDivineInterventionWizard, 10)
-                                                                                            .AddToDB();
+            elemental_domain = new CharacterSubclassDefinitionBuilder("DomainElemental", "90dddcb0-bb0d-46a5-ba92-83bdbaec21fd")
+                                                                        .SetGuiPresentation(gui_presentation)
+                                                                        .AddFeatureAtLevel(DatabaseHelper.FeatureDefinitionAutoPreparedSpellss.AutoPreparedSpellsDomainElemental, 1)
+                                                                        .AddFeatureAtLevel(bonus_elemental_cantrip, 1)
+                                                                        .AddFeatureAtLevel(primal_harmony, 1)
+                                                                        .AddFeatureAtLevel(wrath_of_the_elements, 2)
+                                                                        .AddFeatureAtLevel(cold_channel, 2)
+                                                                        .AddFeatureAtLevel(fire_channel, 2)
+                                                                        .AddFeatureAtLevel(wind_channel, 2)
+                                                                        .AddFeatureAtLevel(herald_of_the_elements, 6)
+                                                                        .AddFeatureAtLevel(potent_spellcasting, 8)
+                                                                        .AddFeatureAtLevel(DatabaseHelper.FeatureDefinitionPowers.PowerClericDivineInterventionWizard, 10)
+                                                                        .AddToDB();
             var arun = DatabaseHelper.DeityDefinitions.Arun;
             arun.subclasses.Add(elemental_domain.Name);
             DatabaseHelper.FeatureDefinitionSubclassChoices.SubclassChoiceClericDivineDomains.subclasses.Add(elemental_domain.Name);
