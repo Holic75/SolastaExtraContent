@@ -9,6 +9,7 @@ using static FeatureDefinitionSavingThrowAffinity;
 using Helpers = SolastaModHelpers.Helpers;
 using NewFeatureDefinitions = SolastaModHelpers.NewFeatureDefinitions;
 using ExtendedEnums = SolastaModHelpers.ExtendedEnums;
+using System;
 
 namespace SolastaExtraContent
 {
@@ -23,7 +24,7 @@ namespace SolastaExtraContent
         static public FeatureDefinitionCastSpell alchemist_spellcasting;
         static public FeatureDefinitionFeatureSet mutagen;
         static public FeatureDefinitionFeatureSet mutagen_selection;
-        static public NewFeatureDefinitions.HiddenPower base_mutagen;
+        static public NewFeatureDefinitions.PowerBundle base_mutagen;
         static public List<FeatureDefinitionPower> mutagen_powers = new List<FeatureDefinitionPower>();
         static public FeatureDefinitionCraftingAffinity crafting_expertise;
         static public FeatureDefinitionCraftingAffinity crafting_adept;
@@ -46,6 +47,8 @@ namespace SolastaExtraContent
         //Runemaster
         static public FeatureDefinitionFeatureSet runemaster_proficiencies;
         static public FeatureDefinitionAutoPreparedSpells runemaster_spells;
+        static public NewFeatureDefinitions.PowerBundle base_weapon_runes;
+        static public NewFeatureDefinitions.PowerBundle base_armor_runes;
         static public FeatureDefinitionFeatureSet weapon_runes;
         static public FeatureDefinitionFeatureSet armor_runes;
         static public List<FeatureDefinitionPower> rune_powers = new List<FeatureDefinitionPower>();
@@ -339,14 +342,23 @@ namespace SolastaExtraContent
         static void createFastAlchemy()
         {
             string potion_image_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemy.png";
+            var base_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("SwiftAlchemyBaseImage",
+                                                                                  $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemyBase.png",
+                                                                                  128, 64);
+            var base_eff = new EffectDescription();
+            base_eff.Copy(DatabaseHelper.SpellDefinitions.CureWounds.EffectDescription);
+            base_eff.effectForms.Clear();
+            base_eff.targetType = RuleDefinitions.TargetType.Self;
+            base_eff.rangeType = RuleDefinitions.RangeType.Self;
+            base_eff.durationType = RuleDefinitions.DurationType.UntilLongRest;
 
-            var base_fast_alchemy = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
+            var base_fast_alchemy = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
                                        .createPower("AlchemistClassFastAlchemyBasePower",
                                                        "",
                                                        "Feature/&AlchemistClassFastAlchemyFeatureSetTitle",
-                                                       Common.common_no_title,
-                                                       Common.common_no_icon,
-                                                       DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalFireBurst.effectDescription,
+                                                       "Feature/&AlchemistClassFastAlchemyFeatureSetDescription",
+                                                       base_image,
+                                                       base_eff,
                                                        RuleDefinitions.ActivationTime.Action,
                                                        4,
                                                        RuleDefinitions.UsesDetermination.AbilityBonusPlusFixed,
@@ -356,7 +368,6 @@ namespace SolastaExtraContent
                                                        1,
                                                        true
                                                        );
-            base_fast_alchemy.guiPresentation.hidden = true;
 
             fast_alchemy = Helpers.FeatureSetBuilder.createFeatureSet("AlchemistClassFastAlchemyFeatureSet",
                                                                         "",
@@ -367,8 +378,6 @@ namespace SolastaExtraContent
                                                                         false,
                                                                         base_fast_alchemy
                                                                         );
-
-
 
             var spells = new List<SpellDefinition>
             {
@@ -417,19 +426,19 @@ namespace SolastaExtraContent
                 }
 
                 
-                var power_output_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemyPower{s.name}.png";
+                //var power_output_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemyPower{s.name}.png";
                 var potion_output_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/SwiftAlchemyPotion{s.name}.png";
-                if (!System.IO.File.Exists(power_output_path))
+                if (!System.IO.File.Exists(potion_output_path))
                 {
                     var spell_icon_path = $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/{s.name}_For_Swift_Alchemy.png";
                     SolastaModHelpers.CustomIcons.Tools.saveSpriteFromAssetReferenceAsPNG(s.GuiPresentation.SpriteReference, spell_icon_path);
-                    SolastaModHelpers.CustomIcons.Tools.combineImages(new string[] { potion_image_path, spell_icon_path }, (128, 64), power_output_path);
+                    //SolastaModHelpers.CustomIcons.Tools.combineImages(new string[] { potion_image_path, spell_icon_path }, (128, 64), power_output_path);
                     SolastaModHelpers.CustomIcons.Tools.merge2Images(potion_image_path, spell_icon_path, (40, 40), (40, 70), potion_output_path);
                     //System.IO.File.Delete(spell_icon_path);
                 }
-                var power_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon($"SwiftAlchemyPower{s.name}Image",
+                /*var power_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon($"SwiftAlchemyPower{s.name}Image",
                                                                                       power_output_path,
-                                                                                      128, 64);
+                                                                                      128, 64);*/
 
                 var potion_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon($"SwiftAlchemyPotion{s.name}Image",
                                                                                       potion_output_path,
@@ -447,7 +456,6 @@ namespace SolastaExtraContent
                                                                                             RuleDefinitions.RechargeRate.None,
                                                                                             show_casting: false);
 
-                //TODO: items ideally also require custom icons
                 var item = Helpers.CopyFeatureBuilder<ItemDefinition>.createFeatureCopy("FastAlchemyPotion" + s.name,
                                                                                         GuidStorage.mergeGuids(s.guid, "8aa17aa7-6832-4412-a55e-f1187ad9908c"),
                                                                                         Helpers.StringProcessing.concatenateStrings($"Feature/&AlchemistClassFastAlchemyPotion{s.name}Title",
@@ -487,13 +495,13 @@ namespace SolastaExtraContent
                 effect_form.summonForm.number = 1;
                 effect.effectForms.Add(effect_form);
                 effect.effectParticleParameters = DatabaseHelper.FeatureDefinitionPowers.PowerFunctionRemedyOther.effectDescription.effectParticleParameters;
-                var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.LinkedPower>.createPower("FastAlchemyFunctionCreatePotion" + s.name,
+                var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>.createPower("FastAlchemyFunctionCreatePotion" + s.name,
                                                                             GuidStorage.mergeGuids(s.guid, "6e7865ec-5323-4065-968e-689ffd1bf504"),
                                                                             Helpers.StringProcessing.concatenateStrings($"Feature/&AlchemistClassFastAlchemyCreatePotion{s.name}Title",
                                                                                                                                     ("Feature/&AlchemistClassFastAlchemyFeatureSetTitle", ": "),
                                                                                                                                     (s.guiPresentation.title, "")),
                                                                             s.guiPresentation.description,
-                                                                            power_image,//DatabaseHelper.ItemDefinitions.PotionOfHeroism.GuiPresentation.spriteReference,
+                                                                            s.GuiPresentation.spriteReference,
                                                                             effect,
                                                                             RuleDefinitions.ActivationTime.Action,
                                                                             4,
@@ -501,6 +509,7 @@ namespace SolastaExtraContent
                                                                             RuleDefinitions.RechargeRate.LongRest,
                                                                             Helpers.Stats.Intelligence,
                                                                             Helpers.Stats.Intelligence);
+                base_fast_alchemy.addSubPower(power);
                 power.linkedPower = base_fast_alchemy;
                 fast_alchemy.featureSet.Add(power);
                 power.showCasting = false;
@@ -604,24 +613,31 @@ namespace SolastaExtraContent
 
         static void createMutagen()
         {
-            base_mutagen = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
-                                                .createPower("AlchemistClassBaseMutagenPower",
-                                                                "",
-                                                                "Feature/&AlchemistClassMutagenFeatureSetTitle",
-                                                                Common.common_no_title,
-                                                                Common.common_no_icon,
-                                                                DatabaseHelper.FeatureDefinitionPowers.PowerDomainElementalFireBurst.effectDescription,
-                                                                RuleDefinitions.ActivationTime.Action,
-                                                                2,
-                                                                RuleDefinitions.UsesDetermination.Fixed,
-                                                                RuleDefinitions.RechargeRate.LongRest,
-                                                                Helpers.Stats.Intelligence,
-                                                                Helpers.Stats.Intelligence,
-                                                                1,
-                                                                true
-                                                                );
-            base_mutagen.guiPresentation.hidden = true;
+            var base_image = SolastaModHelpers.CustomIcons.Tools.storeCustomIcon("MutagenBaseImage",
+                                                                      $@"{UnityModManagerNet.UnityModManager.modsPath}/SolastaExtraContent/Sprites/Mutagen.png",
+                                                                      128, 64);
+            var base_eff = new EffectDescription();
+            base_eff.Copy(DatabaseHelper.SpellDefinitions.CureWounds.EffectDescription);
+            base_eff.effectForms.Clear();
+            base_eff.durationType = RuleDefinitions.DurationType.UntilLongRest;
 
+
+            base_mutagen = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                                .createPower("AlchemistClassBaseMutagenPower",
+                                                             "",
+                                                             "Feature/&AlchemistClassMutagenFeatureSetTitle",
+                                                             "Feature/&AlchemistClassMutagenFeatureSetDescription",
+                                                             base_image,
+                                                             base_eff,
+                                                             RuleDefinitions.ActivationTime.Action,
+                                                             2,
+                                                             RuleDefinitions.UsesDetermination.Fixed,
+                                                             RuleDefinitions.RechargeRate.LongRest,
+                                                             Helpers.Stats.Intelligence,
+                                                             Helpers.Stats.Intelligence,
+                                                             1,
+                                                             true
+                                                             );
             mutagen_powers.Add(base_mutagen);
             var strength_feature = Helpers.CopyFeatureBuilder<FeatureDefinitionAttributeModifier>.createFeatureCopy("AlchemistClassMutagenStrenghtBonus",
                                                                                                                     "",
@@ -889,7 +905,7 @@ namespace SolastaExtraContent
             effect.durationType = RuleDefinitions.DurationType.UntilLongRest;
             effect.immuneCreatureFamilies.Add(Helpers.Misc.createImmuneIfHasConditionFamily(condition));
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.LinkedPower>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                                .createPower(name + "Power",
                                                                             "",
                                                                             title_string,
@@ -907,6 +923,7 @@ namespace SolastaExtraContent
                                                                             );
             power.linkedPower = base_mutagen;
             mutagen_powers.Add(power);
+            base_mutagen.addSubPower(power);
             return power;
         }
 
@@ -1738,6 +1755,15 @@ namespace SolastaExtraContent
                                                                                             .AddFeatureAtLevel(rune_specialist, 9)
                                                                                             .AddToDB();
 
+            Action<RulesetCharacterHero> fix_action = c =>
+            {
+                if (c.ClassesAndSubclasses.ContainsValue(definition) && !c.UsablePowers.Any(u => u.powerDefinition == base_weapon_runes))
+                {
+                    c.GrantPowers();
+                }
+            };
+            Common.postload_actions.Add(fix_action);
+
             return definition;
         }
 
@@ -1760,6 +1786,31 @@ namespace SolastaExtraContent
 
         static void createArmorRunes()
         {
+            var base_eff = new EffectDescription();
+            base_eff.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
+            base_eff.effectForms.Clear();
+            base_eff.targetType = RuleDefinitions.TargetType.Self;
+            base_eff.rangeType = RuleDefinitions.RangeType.Self;
+            base_eff.durationParameter = 1;
+            base_eff.itemSelectionType = ActionDefinitions.ItemSelectionType.Equiped;
+            base_eff.targetType = RuleDefinitions.TargetType.Self;
+            base_eff.rangeType = RuleDefinitions.RangeType.Self;
+            base_eff.durationType = RuleDefinitions.DurationType.UntilAnyRest;
+
+            base_armor_runes = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                       .createPower("AlchemistRunemasterSubclassArmorRunePower",
+                                                    "",
+                                                    "Feature/&AlchemistRunemasterSubclassArmorRunesTitle",
+                                                    "Feature/&AlchemistRunemasterSubclassArmorRunesDescription",
+                                                    DatabaseHelper.SpellDefinitions.MageArmor.GuiPresentation.spriteReference,
+                                                    base_eff,
+                                                    RuleDefinitions.ActivationTime.Action,
+                                                    1,
+                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                    RuleDefinitions.RechargeRate.ShortRest
+                                                    );
+            rune_powers.Add(base_armor_runes);
+
             var protection_rune = createArmorRunePower("AlchemistRunemasterSubclassProtectionArmorRune", DatabaseHelper.FeatureDefinitionPowers.PowerOathOfTirmarAuraTruth.guiPresentation.spriteReference);
 
             var effect = new EffectDescription();
@@ -1843,18 +1894,47 @@ namespace SolastaExtraContent
                                                                     protection_rune_power,
                                                                     trigger_stealth_advantage,
                                                                     trigger_speed_bonus,
+                                                                    base_armor_runes,
                                                                     protection_rune.power,
                                                                     dampening_rune.power,
                                                                     propulsion_rune.power
                                                                     );
 
-            dampening_rune.power.linkedPower = protection_rune.power;
-            propulsion_rune.power.linkedPower = protection_rune.power;
+            protection_rune.power.linkedPower = base_armor_runes;
+            dampening_rune.power.linkedPower = base_armor_runes;
+            propulsion_rune.power.linkedPower = base_armor_runes;
+
+            base_armor_runes.addSubPower(protection_rune.power);
+            base_armor_runes.addSubPower(dampening_rune.power);
+            base_armor_runes.addSubPower(propulsion_rune.power);
         }
 
 
         static void createWeaponRunes()
         {
+            var base_eff = new EffectDescription();
+            base_eff.Copy(DatabaseHelper.SpellDefinitions.MagicWeapon.EffectDescription);
+            base_eff.effectForms.Clear();
+            base_eff.durationParameter = 1;
+            base_eff.itemSelectionType = ActionDefinitions.ItemSelectionType.Weapon;
+            base_eff.targetType = RuleDefinitions.TargetType.Self;
+            base_eff.rangeType = RuleDefinitions.RangeType.Self;
+            base_eff.durationType = RuleDefinitions.DurationType.UntilAnyRest;
+
+            base_weapon_runes = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                       .createPower("AlchemistRunemasterSubclassWeaponRunePower",
+                                                    "",
+                                                    "Feature/&AlchemistRunemasterSubclassWeaponRunesTitle",
+                                                    "Feature/&AlchemistRunemasterSubclassWeaponRunesDescription",
+                                                    DatabaseHelper.SpellDefinitions.MagicWeapon.GuiPresentation.spriteReference,
+                                                    base_eff,
+                                                    RuleDefinitions.ActivationTime.Action,
+                                                    1,
+                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                    RuleDefinitions.RechargeRate.ShortRest
+                                                    );
+            rune_powers.Add(base_weapon_runes);
+
             var connection_rune = createWeaponRunePower("AlchemistRunemasterSubclassConnectionWeaponRune", DatabaseHelper.FeatureDefinitionPowers.PowerFighterActionSurge.guiPresentation.spriteReference);
             var use_int_stat_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ReplaceWeaponAbilityScoreWithHighestStatIfWeaponHasFeature>
                                                   .createFeature("AlchemistRunemasterSubclassConnectionWeaponRuneUseIntStatFeature",
@@ -1961,8 +2041,10 @@ namespace SolastaExtraContent
                                                  a.weaponFeature = guardian_rune.weapon_feature;
                                              }
                                              );
-            destruction_rune.power.linkedPower = connection_rune.power;
-            guardian_rune.power.linkedPower = connection_rune.power;
+
+            connection_rune.power.linkedPower = base_weapon_runes;
+            destruction_rune.power.linkedPower = base_weapon_runes;
+            guardian_rune.power.linkedPower = base_weapon_runes;
 
             weapon_runes = Helpers.FeatureSetBuilder.createFeatureSet("AlchemistRunemasterSubclassWeaponRunes",
                                                                                 "",
@@ -1975,14 +2057,19 @@ namespace SolastaExtraContent
                                                                                 use_weapon_as_spellfocus,
                                                                                 trigger_destruction_rune_feature,
                                                                                 trigger_guardian_rune_feature,
+                                                                                base_weapon_runes,
                                                                                 connection_rune.power,
                                                                                 destruction_rune.power,
                                                                                 guardian_rune.power
                                                                                 );
+
+            base_weapon_runes.addSubPower(connection_rune.power);
+            base_weapon_runes.addSubPower(destruction_rune.power);
+            base_weapon_runes.addSubPower(guardian_rune.power);
         }
 
 
-        static (NewFeatureDefinitions.PowerWithRestrictions power, FeatureDefinition weapon_feature) createWeaponRunePower(string prefix, AssetReferenceSprite sprite)
+        static (NewFeatureDefinitions.HiddenPower power, FeatureDefinition weapon_feature) createWeaponRunePower(string prefix, AssetReferenceSprite sprite)
         {
             var title_string = "Feature/&" + prefix + "Title";
             var description_string = "Feature/&" + prefix + "Description";
@@ -2010,7 +2097,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Add(effect_form);
             effect.effectAdvancement.Clear();
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                                         .createPower(prefix + "Power",
                                                                                      "",
                                                                                      title_string,
@@ -2029,7 +2116,7 @@ namespace SolastaExtraContent
         }
 
 
-        static (NewFeatureDefinitions.PowerWithRestrictions power, FeatureDefinition armor_feature) createArmorRunePower(string prefix, AssetReferenceSprite sprite)
+        static (NewFeatureDefinitions.HiddenPower power, FeatureDefinition armor_feature) createArmorRunePower(string prefix, AssetReferenceSprite sprite)
         {
             var title_string = "Feature/&" + prefix + "Title";
             var description_string = "Feature/&" + prefix + "Description";
@@ -2058,7 +2145,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Add(effect_form);
             effect.effectAdvancement.Clear();
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                                         .createPower(prefix + "Power",
                                                                                      "",
                                                                                      title_string,

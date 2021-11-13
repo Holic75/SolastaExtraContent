@@ -131,7 +131,7 @@ Feature/&AlchemistRunemasterSubclassProtectionArmorRuneTitle	Armor Rune: Protect
 Feature/&AlchemistRunemasterSubclassProtectionArmorRuneDescription	While wearing a suit of armor empowered by this rune, as a bonus action, you can gain temporary hit points equal to your level in this class, replacing any temporary hit points you already have. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.
 Feature/&AlchemistRunemasterSubclassProtectionArmorRuneUsePowerTitle Activate Protection Rune
 Feature/&AlchemistRunemasterSubclassProtectionArmorRuneUsePowerDescription	Activate rune to receive temporary hit points.
-Feature/&AlchemistRunemasterSubclassDampeningArmorRuneTitle	Armor Rune:	Dampening
+Feature/&AlchemistRunemasterSubclassDampeningArmorRuneTitle	Armor Rune: Dampening
 Feature/&AlchemistRunemasterSubclassDampeningArmorRuneDescription	While wearing a suit of armor empowered by this rune, you have advantage on Dexterity (Stealth) checks. If the armor normally imposes disadvantage on such checks, the advantage and disadvantage cancel each other, as normal.
 Feature/&AlchemistRunemasterSubclassPropulsionArmorRuneTitle	Armor Rune: Propulsion
 Feature/&AlchemistRunemasterSubclassPropulsionArmorRuneDescription	While wearing armor empowered by this rune, you gain a 10 feet walking speed increase.

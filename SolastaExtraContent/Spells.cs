@@ -363,8 +363,10 @@ namespace SolastaExtraContent
                                                                         Common.common_no_title,
                                                                         null,
                                                                         DatabaseHelper.ConditionDefinitions.ConditionDummy,
+                                                                        //DatabaseHelper.FeatureDefinitionAttackModifiers.AttackModifierKindredSpiritBondMeleeAttack
                                                                         attack_bonus
                                                                         );
+            //condition.amountOrigin = ConditionDefinition.OriginOfAmount.SourceSpellAttack;
 
             List<SpellDefinition> variants = new List<SpellDefinition>();
 
@@ -517,6 +519,7 @@ namespace SolastaExtraContent
                                                                                                  a.challengeRating = (level / 2);
                                                                                                  a.droppedLootDefinition = null;
                                                                                                  a.dungeonMakerPresence = MonsterDefinition.DungeonMaker.None;
+                                                                                                 a.creatureTags = new List<string>();
                                                                                                  //a.monsterPresentation.attachedParticlesReference = fx_monster.monsterPresentation.attachedParticlesReference;
                                                                                              }
                                                                                              );
