@@ -9,6 +9,7 @@ using static FeatureDefinitionSavingThrowAffinity;
 using Helpers = SolastaModHelpers.Helpers;
 using NewFeatureDefinitions = SolastaModHelpers.NewFeatureDefinitions;
 using ExtendedEnums = SolastaModHelpers.ExtendedEnums;
+using System;
 
 namespace SolastaExtraContent
 {
@@ -71,16 +72,18 @@ namespace SolastaExtraContent
         static public FeatureDefinitionFeatureSet purity_of_body;
         //way of the open hand
         static public FeatureDefinitionFeatureSet open_hand_technique;
-        static public NewFeatureDefinitions.PowerWithRestrictions open_hand_technique_knock;
-        static public NewFeatureDefinitions.PowerWithRestrictions open_hand_technique_push;
-        static public NewFeatureDefinitions.PowerWithRestrictions open_hand_technique_forbid_reaction;
+        static public NewFeatureDefinitions.HiddenPower open_hand_technique_knock;
+        static public NewFeatureDefinitions.HiddenPower open_hand_technique_push;
+        static public NewFeatureDefinitions.HiddenPower open_hand_technique_forbid_reaction;
+        static public NewFeatureDefinitions.PowerBundle open_hand_techniques_base;
         static public FeatureDefinitionPower wholeness_of_body;
         static public FeatureDefinitionAbilityCheckAffinity tranquility;
         //Way of Pyrokine
         static public FeatureDefinitionFeatureSet blazing_technique;
-        static public NewFeatureDefinitions.PowerWithRestrictions blazing_technique_burn;
-        static public NewFeatureDefinitions.PowerWithRestrictions blazing_technique_damage;
-        static public NewFeatureDefinitions.PowerWithRestrictions blazing_technique_blind;
+        static public NewFeatureDefinitions.HiddenPower blazing_technique_burn;
+        static public NewFeatureDefinitions.HiddenPower blazing_technique_damage;
+        static public NewFeatureDefinitions.HiddenPower blazing_technique_blind;
+        static public NewFeatureDefinitions.PowerBundle blazing_techniques_base;
         static public FeatureDefinitionFeatureSet burning_devotion;
         static public FeatureDefinitionAbilityCheckAffinity leaping_flames;
         //Way of Iron
@@ -1004,37 +1007,35 @@ namespace SolastaExtraContent
         {
             string open_hand_technique_title_string = "Feature/&MonkSubclassWayOfTheOpenHandTechniqueTitle";
             string open_hand_technique_description_string = "Feature/&MonkSubclassWayOfTheOpenHandTechniqueDescription";
-
-            var open_hand_used_condition = Helpers.ConditionBuilder.createConditionWithInterruptions("MonkSubclassWayOfTheOpenHandUsedCondition",
-                                                                                                    "",
-                                                                                                    "",
-                                                                                                    "",
-                                                                                                    null,
-                                                                                                    DatabaseHelper.ConditionDefinitions.ConditionDummy,
-                                                                                                    new RuleDefinitions.ConditionInterruption[] {RuleDefinitions.ConditionInterruption.AttacksAndDamages }
-                                                                                                    );
-            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(open_hand_used_condition);
                                                                                                          
             createOpenHandTechniqueKnock();
             createOpenHandTechniquePush();
             createOpenHandTechniqueForbidReaction();
 
-            var open_hand_used_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyConditionOnPowerUseToSelf>.createFeature("MonkSubclassWayOfTheOpenHandUsedFeature",
-                                                                                                                                      "",
-                                                                                                                                      Common.common_no_title,
-                                                                                                                                      Common.common_no_title,
-                                                                                                                                      Common.common_no_icon,
-                                                                                                                                      a =>
-                                                                                                                                      {
-                                                                                                                                          a.condition = open_hand_used_condition;
-                                                                                                                                          a.durationType = RuleDefinitions.DurationType.Round;
-                                                                                                                                          a.durationValue = 1;
-                                                                                                                                          a.powers = new List<FeatureDefinitionPower> { open_hand_technique_knock, open_hand_technique_push, open_hand_technique_forbid_reaction };
-
-
-                                                                                                                                      }
-                                                                                                                                      );
-
+            var base_eff = new EffectDescription();
+            base_eff.Copy(open_hand_technique_knock.effectDescription);
+            base_eff.effectForms.Clear();
+        
+            open_hand_techniques_base = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                                       .createPower("MonkSubclassWayOfTheOpenHandTechniqueBasePower",
+                                                                    "",
+                                                                    open_hand_technique_title_string,
+                                                                    open_hand_technique_description_string,
+                                                                    flurry_of_blows.GuiPresentation.SpriteReference,
+                                                                    base_eff,
+                                                                    RuleDefinitions.ActivationTime.OnAttackHit,
+                                                                    2,
+                                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                                    RuleDefinitions.RechargeRate.AtWill
+                                                                   );
+            open_hand_techniques_base.restrictions = new List<NewFeatureDefinitions.IRestriction>()
+                                            {
+                                                new NewFeatureDefinitions.HasAtLeastOneConditionFromListRestriction(flurry_of_blows_condition)
+                                            };
+            open_hand_techniques_base.checkReaction = true;
+            open_hand_techniques_base.addSubPower(open_hand_technique_knock);
+            open_hand_techniques_base.addSubPower(open_hand_technique_push);
+            open_hand_techniques_base.addSubPower(open_hand_technique_forbid_reaction);
 
             open_hand_technique = Helpers.FeatureSetBuilder.createFeatureSet("MonkSubclassWayOfTheOpenHandTechnique",
                                                                              "",
@@ -1043,14 +1044,17 @@ namespace SolastaExtraContent
                                                                              false,
                                                                              FeatureDefinitionFeatureSet.FeatureSetMode.Union,
                                                                              false,
+                                                                             open_hand_techniques_base,
                                                                              open_hand_technique_knock,
                                                                              open_hand_technique_push,
-                                                                             open_hand_technique_forbid_reaction,
-                                                                             open_hand_used_feature
+                                                                             open_hand_technique_forbid_reaction
                                                                              );
-            open_hand_technique_knock.restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(open_hand_used_condition));
-            open_hand_technique_push.restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(open_hand_used_condition));
-            open_hand_technique_forbid_reaction.restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(open_hand_used_condition));
+            string open_hand_short_description_string = "Feature/&MonkSubclassWayOfTheOpenHandTechniqueShortDescription";
+            string use_open_hand_react_description = "Reaction/&SpendMonkSubclassWayOfTheOpenHandReactDescription";
+            string use_open_hand_react_title = "Reaction/&CommonUsePowerReactTitle";
+
+            Helpers.StringProcessing.addPowerReactStrings(open_hand_techniques_base, open_hand_technique_title_string, open_hand_short_description_string,
+                                                        use_open_hand_react_title, use_open_hand_react_description, "SpendPower");
         }
 
 
@@ -1058,8 +1062,6 @@ namespace SolastaExtraContent
         {
             string open_hand_forbid_reaction_title_string = "Feature/&MonkSubclassWayOfTheOpenHandForbidReactionTitle";
             string open_hand_forbid_reaction_description_string = "Feature/&MonkSubclassWayOfTheOpenHandForbidReactionDescription";
-            string use_open_hand_forbid_reaction_react_description = "Reaction/&SpendMonkSubclassWayOfTheOpenHandForbidReactionPowerReactDescription";
-            string use_open_hand_forbid_reaction_react_title = "Reaction/&CommonUsePowerReactTitle";
 
             string open_hand_forbid_reaction_condition_title_string = "Rules/&ConditionMonkSubclassWayOfTheOpenHandForbidReactionPowerTitle";
             string open_hand_forbid_reaction_condition_description_string = "Rules/&ConditionMonkSubclassWayOfTheOpenHandForbidReactionPowerDescription";
@@ -1090,7 +1092,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Add(effect_form);
             effect.SetEndOfEffect(RuleDefinitions.TurnOccurenceType.EndOfTurn);
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                         .createPower("MonkSubclassWayOfTheOpenHandForbidReaction",
                                                                      "",
                                                                      open_hand_forbid_reaction_title_string,
@@ -1109,9 +1111,6 @@ namespace SolastaExtraContent
             power.checkReaction = true;
 
             open_hand_technique_forbid_reaction = power;
-
-            Helpers.StringProcessing.addPowerReactStrings(open_hand_technique_forbid_reaction, open_hand_forbid_reaction_title_string, use_open_hand_forbid_reaction_react_description,
-                                                                    use_open_hand_forbid_reaction_react_title, use_open_hand_forbid_reaction_react_description, "SpendPower");
         }
 
 
@@ -1119,8 +1118,6 @@ namespace SolastaExtraContent
         {
             string open_hand_push_title_string = "Feature/&MonkSubclassWayOfTheOpenHandPushTitle";
             string open_hand_push_description_string = "Feature/&MonkSubclassWayOfTheOpenHandPushDescription";
-            string use_open_hand_push_react_description = "Reaction/&SpendMonkSubclassWayOfTheOpenHandPushPowerReactDescription";
-            string use_open_hand_push_react_title = "Reaction/&CommonUsePowerReactTitle";
 
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerDomainBattleDecisiveStrike.EffectDescription);
@@ -1141,7 +1138,7 @@ namespace SolastaExtraContent
             effect_form.SavingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
             effect.EffectForms.Add(effect_form);
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                         .createPower("MonkSubclassWayOfTheOpenHandPush",
                                                                      "",
                                                                      open_hand_push_title_string,
@@ -1160,9 +1157,6 @@ namespace SolastaExtraContent
             power.checkReaction = true;
 
             open_hand_technique_push = power;
-
-            Helpers.StringProcessing.addPowerReactStrings(open_hand_technique_push, open_hand_push_title_string, use_open_hand_push_react_description,
-                                                        use_open_hand_push_react_title, use_open_hand_push_react_description, "SpendPower");
         }
 
 
@@ -1170,8 +1164,6 @@ namespace SolastaExtraContent
         {
             string open_hand_knock_title_string = "Feature/&MonkSubclassWayOfTheOpenHandKnockTitle";
             string open_hand_knock_description_string = "Feature/&MonkSubclassWayOfTheOpenHandKnockDescription";
-            string use_open_hand_knock_react_description = "Reaction/&SpendMonkSubclassWayOfTheOpenHandKnockPowerReactDescription";
-            string use_open_hand_knock_react_title = "Reaction/&CommonUsePowerReactTitle";
 
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerDomainBattleDecisiveStrike.EffectDescription);
@@ -1191,7 +1183,7 @@ namespace SolastaExtraContent
             effect_form.SavingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
             effect.EffectForms.Add(effect_form);
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                         .createPower("MonkSubclassWayOfTheOpenHandKnock",
                                                                      "",
                                                                      open_hand_knock_title_string,
@@ -1210,9 +1202,6 @@ namespace SolastaExtraContent
             power.checkReaction = true;
 
             open_hand_technique_knock = power;
-
-            Helpers.StringProcessing.addPowerReactStrings(open_hand_technique_knock, open_hand_knock_title_string, use_open_hand_knock_react_description,
-                                            use_open_hand_knock_react_title, use_open_hand_knock_react_description, "SpendPower");
         }
 
 
@@ -1289,6 +1278,15 @@ namespace SolastaExtraContent
                     .AddFeatureAtLevel(tranquility, 11)
                     .AddToDB();
 
+            Action<RulesetCharacterHero> fix_action = c =>
+            {
+                if (c.ClassesAndSubclasses.ContainsValue(definition) && !c.UsablePowers.Any(u => u.powerDefinition == open_hand_techniques_base))
+                {
+                    c.GrantPowers();
+                }
+            };
+            Common.postload_actions.Add(fix_action);
+
             return definition;
         }
 
@@ -1310,6 +1308,16 @@ namespace SolastaExtraContent
                     .AddFeatureAtLevel(burning_devotion, 6)
                     .AddFeatureAtLevel(leaping_flames, 11)
                     .AddToDB();
+
+
+            Action<RulesetCharacterHero> fix_action = c =>
+            {
+                if (c.ClassesAndSubclasses.ContainsValue(definition) && !c.UsablePowers.Any(u => u.powerDefinition == blazing_techniques_base))
+                {
+                    c.GrantPowers();
+                }
+            };
+            Common.postload_actions.Add(fix_action);
 
             return definition;
         }
@@ -1355,35 +1363,35 @@ namespace SolastaExtraContent
             string blazing_technique_title_string = "Feature/&MonkSubclassWayOfThePyrokineTechniqueTitle";
             string blazing_technique_description_string = "Feature/&MonkSubclassWayOfThePyrokineTechniqueDescription";
 
-            var blazing_technique_used_condition = Helpers.ConditionBuilder.createConditionWithInterruptions("MonkSubclassWayOfThePyrokineUsedCondition",
-                                                                                                    "",
-                                                                                                    "",
-                                                                                                    "",
-                                                                                                    null,
-                                                                                                    DatabaseHelper.ConditionDefinitions.ConditionDummy,
-                                                                                                    new RuleDefinitions.ConditionInterruption[] { RuleDefinitions.ConditionInterruption.AttacksAndDamages }
-                                                                                                    );
-            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(blazing_technique_used_condition);
-
             createBlazingTechniqueBurn();
             createBlazingTechniqueDamage();
             createBlazingTechniqueBlind();
 
-            var open_hand_used_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyConditionOnPowerUseToSelf>.createFeature("MonkSubclassWayOfThePyrokineUsedFeature",
-                                                                                                                                      "",
-                                                                                                                                      Common.common_no_title,
-                                                                                                                                      Common.common_no_title,
-                                                                                                                                      Common.common_no_icon,
-                                                                                                                                      a =>
-                                                                                                                                      {
-                                                                                                                                          a.condition = blazing_technique_used_condition;
-                                                                                                                                          a.durationType = RuleDefinitions.DurationType.Round;
-                                                                                                                                          a.durationValue = 1;
-                                                                                                                                          a.powers = new List<FeatureDefinitionPower> { blazing_technique_burn, blazing_technique_damage, blazing_technique_blind };
 
+            var base_eff = new EffectDescription();
+            base_eff.Copy(open_hand_technique_knock.effectDescription);
+            base_eff.effectForms.Clear();
 
-                                                                                                                                      }
-                                                                                                                                      );
+            blazing_techniques_base = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                                       .createPower("MonkSubclassWayOfThePyrokineTechniqueBasePower",
+                                                                    "",
+                                                                    blazing_technique_title_string,
+                                                                    blazing_technique_description_string,
+                                                                    flurry_of_blows.GuiPresentation.SpriteReference,
+                                                                    base_eff,
+                                                                    RuleDefinitions.ActivationTime.OnAttackHit,
+                                                                    2,
+                                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                                    RuleDefinitions.RechargeRate.AtWill
+                                                                   );
+            blazing_techniques_base.restrictions = new List<NewFeatureDefinitions.IRestriction>()
+                                            {
+                                                new NewFeatureDefinitions.HasAtLeastOneConditionFromListRestriction(flurry_of_blows_condition)
+                                            };
+            blazing_techniques_base.checkReaction = true;
+            blazing_techniques_base.addSubPower(blazing_technique_burn);
+            blazing_techniques_base.addSubPower(blazing_technique_damage);
+            blazing_techniques_base.addSubPower(blazing_technique_blind);
 
 
             blazing_technique = Helpers.FeatureSetBuilder.createFeatureSet("MonkSubclassWayOfThePyrokineTechnique",
@@ -1393,23 +1401,26 @@ namespace SolastaExtraContent
                                                                              false,
                                                                              FeatureDefinitionFeatureSet.FeatureSetMode.Union,
                                                                              false,
+                                                                             blazing_techniques_base,
                                                                              blazing_technique_burn,
                                                                              blazing_technique_damage,
-                                                                             blazing_technique_blind,
-                                                                             open_hand_used_feature
+                                                                             blazing_technique_blind
                                                                              );
-            blazing_technique_burn.restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(blazing_technique_used_condition));
-            blazing_technique_damage.restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(blazing_technique_used_condition));
-            blazing_technique_blind.restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(blazing_technique_used_condition));
+
+            string blazing_technique_short_description_string = "Feature/&MonkSubclassWayOfTheOpenHandTechniqueShortDescription";
+            string use_blazing_technique_react_description = "Reaction/&SpendMonkSubclassWayOfTheOpenHandReactDescription";
+            string use_blazing_technique_react_title = "Reaction/&CommonUsePowerReactTitle";
+
+            Helpers.StringProcessing.addPowerReactStrings(blazing_techniques_base, blazing_technique_title_string, blazing_technique_short_description_string,
+                                                        use_blazing_technique_react_title, use_blazing_technique_react_description, "SpendPower");
         }
+
 
 
         static void createBlazingTechniqueBurn()
         {
             string pyrokine_burn_title_string = "Feature/&MonkSubclassWayOfThePyrokineBurnTitle";
             string pyrokine_burn_description_string = "Feature/&MonkSubclassWayOfThePyrokineBurnDescription";
-            string use_pyrokine_burn_react_description = "Reaction/&SpendMonkSubclassWayOfThePyrokineBurnPowerReactDescription";
-            string use_pyrokine_burn_react_title = "Reaction/&CommonUsePowerReactTitle";
 
             string burning_title_string = "Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerTitle";
             string burning_description_string = "Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerDescription";
@@ -1454,7 +1465,7 @@ namespace SolastaExtraContent
             effect_form.SavingThrowAffinity = RuleDefinitions.EffectSavingThrowType.Negates;
             effect.EffectForms.Add(effect_form);
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                         .createPower("MonkSubclassWayOfThePyrokineBurn",
                                                                      "",
                                                                      pyrokine_burn_title_string,
@@ -1473,9 +1484,6 @@ namespace SolastaExtraContent
             power.checkReaction = true;
 
             blazing_technique_burn = power;
-
-            Helpers.StringProcessing.addPowerReactStrings(blazing_technique_burn, pyrokine_burn_title_string, use_pyrokine_burn_react_description,
-                                                        use_pyrokine_burn_react_title, use_pyrokine_burn_react_description, "SpendPower");
         }
 
 
@@ -1483,8 +1491,6 @@ namespace SolastaExtraContent
         {
             string pyrokine_blind_title_string = "Feature/&MonkSubclassWayOfThePyrokineBlindTitle";
             string pyrokine_blind_description_string = "Feature/&MonkSubclassWayOfThePyrokineBlindDescription";
-            string use_pyrokine_blind_react_description = "Reaction/&SpendMonkSubclassWayOfThePyrokineBlindPowerReactDescription";
-            string use_pyrokine_blind_react_title = "Reaction/&CommonUsePowerReactTitle";
 
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerDomainBattleDecisiveStrike.EffectDescription);
@@ -1507,7 +1513,7 @@ namespace SolastaExtraContent
             effect.EffectForms.Add(effect_form);
             effect.SetEndOfEffect(RuleDefinitions.TurnOccurenceType.EndOfTurn);
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                         .createPower("MonkSubclassWayOfThePyrokineBlind",
                                                                      "",
                                                                      pyrokine_blind_title_string,
@@ -1526,9 +1532,6 @@ namespace SolastaExtraContent
             power.checkReaction = true;
 
             blazing_technique_blind = power;
-
-            Helpers.StringProcessing.addPowerReactStrings(blazing_technique_blind, pyrokine_blind_title_string, use_pyrokine_blind_react_description,
-                                                        use_pyrokine_blind_react_title, use_pyrokine_blind_react_description, "SpendPower");
         }
 
 
@@ -1536,8 +1539,6 @@ namespace SolastaExtraContent
         {
             string pyrokine_damage_title_string = "Feature/&MonkSubclassWayOfThePyrokineDamageTitle";
             string pyrokine_damage_description_string = "Feature/&MonkSubclassWayOfThePyrokineDamageDescription";
-            string use_pyrokine_damage_react_description = "Reaction/&SpendMonkSubclassWayOfThePyrokineDamagePowerReactDescription";
-            string use_pyrokine_damage_react_title = "Reaction/&CommonUsePowerReactTitle";
 
             var effect = new EffectDescription();
             effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerDomainBattleDecisiveStrike.EffectDescription);
@@ -1558,7 +1559,7 @@ namespace SolastaExtraContent
             effect_form.DamageForm.damageType = Helpers.DamageTypes.Fire;
             effect.EffectForms.Add(effect_form);
 
-            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
                                                         .createPower("MonkSubclassWayOfThePyrokineDamage",
                                                                      "",
                                                                      pyrokine_damage_title_string,
@@ -1577,9 +1578,6 @@ namespace SolastaExtraContent
             power.checkReaction = true;
 
             blazing_technique_damage = power;
-
-            Helpers.StringProcessing.addPowerReactStrings(blazing_technique_damage, pyrokine_damage_title_string, use_pyrokine_damage_react_description,
-                                                        use_pyrokine_damage_react_title, use_pyrokine_damage_react_description, "SpendPower");
         }
 
         static void createRoilingStormOfIron()

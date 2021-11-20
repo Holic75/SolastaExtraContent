@@ -45,18 +45,21 @@ Feature/&MonkClassPurityOfBodyDescription Your mastery of the ki flowing through
 Subclass/&MonkSubclassWayOfTheOpenHandTitle Way of the Open Hand
 Subclass/&MonkSubclassWayOfTheOpenHandDescription Monks of the Way of the Open Hand are the ultimate masters of martial arts combat, whether armed or unarmed. They learn techniques to push and trip their opponents, manipulate ki to heal damage to their bodies, and practice advanced meditation that can protect them from harm.
 Feature/&MonkSubclassWayOfTheOpenHandTechniqueTitle Open Hand Technique
-Feature/&MonkSubclassWayOfTheOpenHandTechniqueDescription Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or be knocked prone.\n- It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.\n- It can't take reactions until the end of your next turn.
-Feature/&MonkSubclassWayOfTheOpenHandForbidReactionTitle Open Hand Technique: Forbid Reactions
+Feature/&MonkSubclassWayOfTheOpenHandTechniqueDescription You can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or be knocked prone.\n- It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.\n- It can't take reactions until the end of your next turn.
+Feature/&MonkSubclassWayOfTheOpenHandTechniqueShortDescription	Select one of the following effects to apply to the target.
+Feature/&MonkSubclassWayOfTheOpenHandForbidReactionTitle Forbid Reactions
 Feature/&MonkSubclassWayOfTheOpenHandForbidReactionDescription Target can't take reactions until the end of your next turn.
 Rules/&ConditionMonkSubclassWayOfTheOpenHandForbidReactionPowerTitle Reactions Forbidden
 Rules/&ConditionMonkSubclassWayOfTheOpenHandForbidReactionPowerDescription You can not take reactions.
 Reaction/&SpendMonkSubclassWayOfTheOpenHandForbidReactionPowerReactDescription Prevent target from using reactions.
-Feature/&MonkSubclassWayOfTheOpenHandPushTitle Open Hand Technique: Push
+Feature/&MonkSubclassWayOfTheOpenHandPushTitle Push Back
 Feature/&MonkSubclassWayOfTheOpenHandPushDescription Target must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.
 Reaction/&SpendMonkSubclassWayOfTheOpenHandPushPowerReactDescription Attmept to push the target.
-Feature/&MonkSubclassWayOfTheOpenHandKnockTitle Open Hand Technique: Knock
+Feature/&MonkSubclassWayOfTheOpenHandKnockTitle Knock Down
 Feature/&MonkSubclassWayOfTheOpenHandKnockDescription Target must succeed on a Dexterity saving throw or be knocked prone.
 Reaction/&SpendMonkSubclassWayOfTheOpenHandKnockPowerReactDescription Attmept to knockdown the target.
+Reaction/&SpendMonkSubclassWayOfTheOpenHandReactDescription Attempt to apply selected effect to the target.
+Reaction/&SubitemSelectMonkSubclassWayOfTheOpenHandTechniqueBasePowerTitle Effects List
 Feature/&MonkSubclassWayOfTheOpenHandWholenessOfBodyTitle Wholeness of Body
 Feature/&MonkSubclassWayOfTheOpenHandWholenessOfBodyDescription At 6th level, you gain the ability to heal yourself. As an action, you can regain hit points equal to three times your monk level. You must finish a long rest before you can use this feature again.
 Feature/&MonkSubclassWayOfTheOpenHandTranquilityTitle	Tranquility
@@ -65,21 +68,22 @@ Subclass/&MonkSubclassWayOfThePyrokineTitle Way of the Searing Flame
 Subclass/&MonkSubclassWayOfThePyrokineDescription When you look into flames they don't just look back at you, they gaze into your soul and light the eternal fire burning within. With practice and discipline you harness this internal blaze, manifesting it to make your strikes scorch flesh, your blows singeing foes.
 Feature/&MonkSubclassWayOfThePyrokineTechniqueTitle Blazing Technique
 Feature/&MonkSubclassWayOfThePyrokineTechniqueDescription When you choose this tradition at 3rd level, you learn to summon flame using ki. Whenever you hit a a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or it ignites. Until a creature takes an action to douse the fire, the target takes 2 (1d4) fire damage at the start of each of its turns.\n -It takes an extra 1d4 fire damage.\n -It must succeed on a Wisdom saving throw or become blind until the end of your next turn.
-Feature/&MonkSubclassWayOfThePyrokineBurnTitle Blazing Technique: Ignite
+Feature/&MonkSubclassWayOfThePyrokineBurnTitle Set on Fire
 Feature/&MonkSubclassWayOfThePyrokineBurnDescription Target must succeed on a Dexterity saving throw or it ignites. The target takes (1d4) fire damage at the start of each of its turns. Every turn the target can attempt a Dexterity savingthrow; the condition is removed in case of success.
-Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerTitle Burning
-Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerDescription You take 1d4 fire damage at the beginning of each turn, until you succeed on a Dexterity savingthrow.
+Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerTitle Set on Fire
+Rules/&ConditionMonkSubclassWayOfThePyrokineBurnPowerDescription You take 1d4 fire damage at the beginning of each turn, until it succeeds on a Dexterity savingthrow.
 Reaction/&SpendMonkSubclassWayOfThePyrokineBurnPowerReactDescription Attempt to ignite the target.
-Feature/&MonkSubclassWayOfThePyrokineDamageTitle Blazing Technique: Damage
+Feature/&MonkSubclassWayOfThePyrokineDamageTitle Burn
 Feature/&MonkSubclassWayOfThePyrokineDamageDescription Target takes extra 1d4 points of fire damage.
 Reaction/&SpendMonkSubclassWayOfThePyrokineDamagePowerReactDescription Deal extra fire damage to target.
-Feature/&MonkSubclassWayOfThePyrokineBlindTitle Blazing Technique: Blind
+Feature/&MonkSubclassWayOfThePyrokineBlindTitle Blind
 Feature/&MonkSubclassWayOfThePyrokineBlindDescription Target must succeed on a Wisdom saving throw or be blinded until the end of your next turn.
 Reaction/&SpendMonkSubclassWayOfThePyrokineBlindPowerReactDescription Attmept to blind the target.
 Feature/&MonkSubclassWayOfThePyrokineBurningDevotionTitle Burning Devotion
 Feature/&MonkSubclassWayOfThePyrokineBurningDevotionDescription At 6th level, you gain resistance to fire damage.
 Feature/&MonkSubclassWayOfThePyrokineLeapingFlamesTitle	Leaping Flames
 Feature/&MonkSubclassWayOfThePyrokineLeapingFlamesDescription	You gain advantage on all your Dexterity (Acrobatics) checks.
+Reaction/&SubitemSelectMonkSubclassWayOfThePyrokineTechniqueBasePowerTitle Effects List
 Subclass/&MonkSubclassWayOfIronTitle Way of Iron
 Subclass/&MonkSubclassWayOfIronDescription The monasteries scattered across the face of the world offer ways to attain enlightenment. What enlightenment means varies from monastery to monastery. For some, it could be to unite body and mind to transcend the limits of the physical form and for others, it might mean to become one with the universe.\nAdherents to the Way of Iron seek tranquility in the art of combat. Unlike other monastic traditions, the Way of Iron focuses on the use of weapons, treating them as extensions of the monk’s own body. Followers of the Way of Iron are usually front-line combatants, leaving their temples behind to join in the dance of battle shoulder-to-shoulder with the rank and file soldiers. Grandmasters of the Way of Iron wield any weapon with such grace and ease that the weapons seem to have always been a part of them, the way a hand or an eye would be, and their movement and attacks are full of graceful arcs and twirling flourishes that make battle seem to be more of a dance than a conflict.\nAdherents to the Way of Iron train relentlessly with one another, and are among the most exceptional duelists in the world, having honed their skill against the best warriors their temples have to offer.
 Feature/&MonkSubclassWayOfIronRoilingStormOfIronTitle Roiling Storm of Iron
