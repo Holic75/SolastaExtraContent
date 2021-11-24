@@ -1432,7 +1432,7 @@ namespace SolastaExtraContent
                                                                                               DatabaseHelper.ConditionDefinitions.ConditionAcidArrowed
                                                                                               );
             condition.specialDuration = false;
-            condition.SetTurnOccurence(RuleDefinitions.TurnOccurenceType.EndOfTurn);
+            condition.turnOccurence =  RuleDefinitions.TurnOccurenceType.EndOfTurn;
 
             var damage_form = new EffectForm();
             damage_form.DamageForm = new DamageForm();
