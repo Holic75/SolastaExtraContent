@@ -483,6 +483,9 @@
 		<None Update="Translations\Bard\Translations-en.txt">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="Translations\Feats\Translations-en.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="Translations\Misc\Translations-en.txt">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

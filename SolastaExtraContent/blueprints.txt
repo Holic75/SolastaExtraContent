@@ -1112,3 +1112,11 @@ SpellMonkSubclassWayOfThePyrokineBurn	d51b8b46-32e1-4afa-b686-8b2783e73ef3
 SpellMonkSubclassWayOfThePyrokineTechniqueBasePower	16d9d4c2-caa3-4979-b686-8b2783e73ef3
 SpellMonkSubclassWayOfThePyrokineDamage	ec09caa5-62f5-4491-b686-8b2783e73ef3
 SpellMonkSubclassWayOfThePyrokineBlind	23566a89-0b8e-4c8b-b686-8b2783e73ef3
+PolearmMasterFeatBonusActionAttack	9ff2482a-33f1-46cf-af10-e8be2739228b
+PolearmMasterFeatAoo	476385f5-f5ff-46a6-aeaa-03bca960fc76
+PolearmMasterFeat	9d2f29c6-90c7-46bc-8fbc-416d5630fac4
+SentinelFeatIgnoreDisengage	5cd82608-883c-4857-8e33-95ea3b89306f
+SentinelFeatAooIfAllyIsAttacked	81a35169-c62d-484a-8be5-8d6804e41d6e
+SentinielFeatConditionCannotMove	0d768184-ad78-4071-851b-e3e0f08dd4db
+SentineFeatApplyCannotMove	52270dcb-6eed-4a94-b3eb-dea908efcf8e
+SentinelFeat	30d977d9-9d86-407e-9094-2bf47137ad75

@@ -47,8 +47,6 @@ namespace SolastaExtraContent
         static public FeatureDefinitionFeatureSet pact_of_blade;
         static public FeatureDefinitionFeatureSet pact_of_arrow;
         //static public FeatureDefinitionFeatureSet pact_of_aegis;
-
-
         static NewFeatureDefinitions.SpellWithCasterFeatureDependentEffects eldritch_blast;
         static NewFeatureDefinitions.SpellWithCasterFeatureDependentEffects repelling_eldritch_blast;
 

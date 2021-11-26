@@ -12,6 +12,11 @@ Lvl 1: Eldritch Blast, Hellish Rebuke, Vulnerability Hex.
 Lvl 2: Conjure Spirit Beast.  
 Lvl 3: Earth Tremor, Winter's Breath.  
 
+New Feats:
+Sentinel  
+Polearm Master  
+
+
 Extra Features:  
 Loremaster wizard can add one cantrip and one spell of any class to his/her spellbook at lvl 2,  
 Cleric subclasses are modified to match better Solasta sourcebook description (optional),  

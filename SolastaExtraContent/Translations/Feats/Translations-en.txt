@@ -1,0 +1,6 @@
+﻿Rules/&SentinielFeatConditionCannotMoveTitle	Unable to Move
+Rules/&SentinielFeatConditionCannotMoveDescription	Character is unable to move
+Feature/&SentinelFeatTitle	Sentinel
+Feature/&SentinelFeatDescription	When you hit a creature with an ooportunity attack, its speed is reduced to 0 until the end of the turn.\nCreatures provoke opportunity attack from you even if they take the Disengage action.\nIf the creature within you melee weapon reach attack your ally, it provokes an opportunity attack from you.
+Feature/&PolearmMasterFeatTitle	Polearm Expert
+Feature/&PolearmMasterFeatDescription	After you perform an attack action using a spear or a quarterstaff, you can make an extra melee attack with the opposite side of the weapon as a bonus action. This attack deals 1d4 + corresponding weapon ability modifier points of bludgeoning damage.\nWhile you are wielding a spear or a quarterstaff, other creatures provoke an opportunity attack from you when they enter you reach zone.

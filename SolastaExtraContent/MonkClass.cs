@@ -546,8 +546,8 @@ namespace SolastaExtraContent
                 effect.Copy(DatabaseHelper.SpellDefinitions.Haste.EffectDescription);
                 effect.SetRangeType(RuleDefinitions.RangeType.Self);
                 effect.SetRangeParameter(1);
-                effect.DurationParameter = 1;
-                effect.DurationType = RuleDefinitions.DurationType.Turn;
+                effect.DurationParameter = 0;
+                effect.DurationType = RuleDefinitions.DurationType.Round;
                 effect.EffectForms.Clear();
                 effect.SetTargetType(RuleDefinitions.TargetType.Self);
 
@@ -905,8 +905,8 @@ namespace SolastaExtraContent
                                                                                                                                                                                 {
                                                                                                                                                                                     a.allowedWeaponTypes = monk_weapons;
                                                                                                                                                                                     a.condition = attacked_with_monk_weapon_condition;
-                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Turn;
-                                                                                                                                                                                    a.durationValue = 1;
+                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Round;
+                                                                                                                                                                                    a.durationValue = 0;
                                                                                                                                                                                     a.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
                                                                                                                                                                                 }
                                                                                                                                                                                 );
@@ -1606,8 +1606,8 @@ namespace SolastaExtraContent
                                                                                                                                                                                 {
                                                                                                                                                                                     a.allowedWeaponTypes = way_of_iron_weapons;
                                                                                                                                                                                     a.condition = attacked_with_monk_weapon_condition;
-                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Turn;
-                                                                                                                                                                                    a.durationValue = 1;
+                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Round;
+                                                                                                                                                                                    a.durationValue = 0;
                                                                                                                                                                                     a.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
                                                                                                                                                                                 }
                                                                                                                                                                                 );
@@ -1819,8 +1819,8 @@ namespace SolastaExtraContent
                                                                                                                                                                                 {
                                                                                                                                                                                     a.allowedWeaponTypes = way_of_zen_archery_weapons;
                                                                                                                                                                                     a.condition = attacked_with_monk_weapon_condition;
-                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Turn;
-                                                                                                                                                                                    a.durationValue = 1;
+                                                                                                                                                                                    a.durationType = RuleDefinitions.DurationType.Round;
+                                                                                                                                                                                    a.durationValue = 0;
                                                                                                                                                                                     a.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
                                                                                                                                                                                 }
                                                                                                                                                                                 );

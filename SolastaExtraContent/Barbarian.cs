@@ -354,9 +354,9 @@ namespace SolastaExtraContent
                                                                                                    a.durationType = RuleDefinitions.DurationType.Round;
                                                                                                });
 
-            condition_started_rage.durationType = RuleDefinitions.DurationType.Turn;
+            condition_started_rage.durationType = RuleDefinitions.DurationType.Round;
             condition_started_rage.specialDuration = true;
-            condition_started_rage.durationParameter = 1;
+            condition_started_rage.durationParameter = 0;
 
             var effect_form = new EffectForm();
             effect_form.ConditionForm = new ConditionForm();

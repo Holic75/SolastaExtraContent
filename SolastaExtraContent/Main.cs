@@ -98,6 +98,7 @@ namespace SolastaExtraContent
             BardClassBuilder.BuildAndAddClassToDB();
             MonkClassBuilder.BuildAndAddClassToDB();
             WarlockClassBuilder.BuildAndAddClassToDB();
+            Feats.load();
         }
     }
 }
