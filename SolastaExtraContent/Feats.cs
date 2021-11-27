@@ -16,17 +16,85 @@ namespace SolastaExtraContent
     {
         static public FeatDefinition polearm_master;
         static public FeatDefinition sentinel;
+        static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
         //power attack
         //elemental adept
         //mobile
         //combat casting
-        //magic initiate
 
 
         internal static void load()
         {
             createPolearmMaster();
             createSentinel();
+            createMagicInitiate();
+        }
+
+
+        static void createMagicInitiate()
+        {
+            var spellcasting_classes = new CharacterClassDefinition[]
+            {
+                DatabaseHelper.CharacterClassDefinitions.Cleric,
+                DatabaseHelper.CharacterClassDefinitions.Druid,
+                DatabaseHelper.CharacterClassDefinitions.Wizard,
+                BardClassBuilder.bard_class,
+                WarlockClassBuilder.warlock_class
+            };
+
+            foreach (var cls in spellcasting_classes)
+            {
+                var feature = cls.featureUnlocks.Where(fu => fu.level == 1 && fu.featureDefinition is FeatureDefinitionCastSpell).FirstOrDefault().featureDefinition as FeatureDefinitionCastSpell;
+                var cantrip_spelllist = Helpers.SpelllistBuilder.createCombinedSpellListWithLevelRestriction(cls.Name + "MagicInititateFeatCantripsList", "", "",
+                                                                         (feature.SpellListDefinition, 0)
+                                                                         );
+
+                var extra_cantrip = Helpers.ExtraSpellSelectionFromFeatBuilder.createExtraCantripSelection(cls.Name + "MagicInititateFeatCantripsFeature",
+                                                                                                            "",
+                                                                                                            Common.common_no_title,
+                                                                                                            Common.common_no_title,
+                                                                                                            2,
+                                                                                                            cantrip_spelllist
+                                                                                                            );
+
+                var spell_spelllist = Helpers.SpelllistBuilder.createCombinedSpellListWithLevelRestriction(cls.Name + "MagicInititateFeatSpellsList", "", "",
+                                                                                                             (feature.spellListDefinition, 1)
+                                                                                                             );
+
+                var extra_spell = Helpers.ExtraSpellSelectionFromFeatBuilder.createExtraSpellSelection(cls.Name + "MagicInititateFeatSpellsFeature",
+                                                                                                        "",
+                                                                                                        Common.common_no_title,
+                                                                                                        Common.common_no_title,
+                                                                                                        1,
+                                                                                                        spell_spelllist
+                                                                                                        );
+
+                var title_string = Helpers.StringProcessing.insertStrings("Feature/&MagicInititateFeatTitle",
+                                                          cls.guiPresentation.title,
+                                                          $"Feature/&MagicInititateFeat{cls.name}Title",
+                                                          "<CLASS>"
+                                                          );
+                var description_string = Helpers.StringProcessing.insertStrings("Feature/&MagicInititateFeatDescription",
+                                                                                  cls.guiPresentation.title,
+                                                                                  $"Feature/&MagicInititateFeat{cls.name}Description",
+                                                                                  "<CLASS>"
+                                                                                  );
+                magic_initiate[cls] = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy(cls.Name + "MagicInititateFeat",
+                                                                                                   "",
+                                                                                                    title_string,
+                                                                                                    description_string,
+                                                                                                    null,
+                                                                                                    DatabaseHelper.FeatDefinitions.PowerfulCantrip,
+                                                                                                    a =>
+                                                                                                    {
+                                                                                                        a.features = new List<FeatureDefinition>
+                                                                                                        {
+                                                                                                            extra_cantrip,
+                                                                                                            extra_spell,
+                                                                                                        };
+                                                                                                    }
+                                                                                                    );
+            }
         }
 
 

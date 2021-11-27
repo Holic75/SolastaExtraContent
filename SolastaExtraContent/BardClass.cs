@@ -26,6 +26,7 @@ namespace SolastaExtraContent
         static public FeatureDefinitionAbilityCheckAffinity jack_of_all_trades;
         static public Dictionary<RuleDefinitions.DieType, NewFeatureDefinitions.FeatureDefinitionExtraHealingDieOnShortRest> song_of_rest = new Dictionary<RuleDefinitions.DieType, NewFeatureDefinitions.FeatureDefinitionExtraHealingDieOnShortRest>();
         static public SpellListDefinition bard_spelllist;
+        static public FeatureDefinitionCastSpell bard_spellcasting;
         static public SpellListDefinition magical_secrets_spelllist;
         static public NewFeatureDefinitions.FeatureDefinitionExtraSpellSelection magical_secrets;
         static public NewFeatureDefinitions.FeatureDefinitionExtraSpellSelection magical_secrets14;
@@ -271,7 +272,7 @@ namespace SolastaExtraContent
                                                                                 }
                                                                                 );
 
-            var bard_spellcasting = Helpers.SpellcastingBuilder.createSpontaneousSpellcasting("BardClassSpellcasting",
+            bard_spellcasting = Helpers.SpellcastingBuilder.createSpontaneousSpellcasting("BardClassSpellcasting",
                                                                                               "f720edaf-92c4-43e3-8228-c48c0b41b93b",
                                                                                               "Feature/&BardClassSpellcastingTitle",
                                                                                               "Feature/&BardClassSpellcastingDescription",
