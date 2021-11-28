@@ -695,8 +695,8 @@ namespace SolastaExtraContent
                                                                                                                     a.requiredProperty = RuleDefinitions.AdditionalDamageRequiredProperty.RangeWeapon;
                                                                                                                 }
                                                                                                                 );
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(lifedrinker_melee, new NewFeatureDefinitions.HasFeatureRestriction(pact_of_blade));
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(lifedrinker_ranged, new NewFeatureDefinitions.HasFeatureRestriction(pact_of_arrow));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(lifedrinker_melee, new NewFeatureDefinitions.HasFeaturePrerequisite(pact_of_blade));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(lifedrinker_ranged, new NewFeatureDefinitions.HasFeaturePrerequisite(pact_of_arrow));
         }
 
 
@@ -797,7 +797,7 @@ namespace SolastaExtraContent
             Helpers.StringProcessing.addPowerReactStrings(power, title_string, use_react_description,
                                             use_react_title, use_react_description, "SpendPower");
             eldritch_smite = power;
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(eldritch_smite, new NewFeatureDefinitions.HasAnyFeatureFromListRestriction(pact_of_blade, pact_of_arrow));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(eldritch_smite, new NewFeatureDefinitions.HasAnyFeatureFromListPrerequisite(pact_of_blade, pact_of_arrow));
         }
 
         static void createThirstingBlade()
@@ -829,7 +829,7 @@ namespace SolastaExtraContent
                                                                                             };
                                                                                         }
                                                                                         );
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(thirsting_blade, new NewFeatureDefinitions.HasFeatureRestriction(pact_of_blade));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(thirsting_blade, new NewFeatureDefinitions.HasFeaturePrerequisite(pact_of_blade));
         }
 
 
@@ -850,7 +850,7 @@ namespace SolastaExtraContent
                                                                                             };
                                                                                         }
                                                                                         );
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(eldritch_archery, new NewFeatureDefinitions.HasFeatureRestriction(pact_of_arrow));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(eldritch_archery, new NewFeatureDefinitions.HasFeaturePrerequisite(pact_of_arrow));
         }
 
 
@@ -960,7 +960,7 @@ namespace SolastaExtraContent
                                                                                                spelllist
                                                                                                );
                 book_of_secrets[lvl] = feature;
-                NewFeatureDefinitions.FeatureData.addFeatureRestrictions(feature, new NewFeatureDefinitions.HasFeatureRestriction(pact_of_tome));
+                NewFeatureDefinitions.FeatureData.addFeatureRestrictions(feature, new NewFeatureDefinitions.HasFeaturePrerequisite(pact_of_tome));
             }
         }
 
@@ -1010,9 +1010,7 @@ namespace SolastaExtraContent
                                                                                    repelling_blast_description_string,
                                                                                    repelling_eldritch_blast);
 
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(repelling_blast, new NewFeatureDefinitions.CanCastSpellRestriction(eldritch_blast, false));
-
-
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(repelling_blast, new NewFeatureDefinitions.CanCastSpellPrerequisite(eldritch_blast));
         }
 
         static void createEldritchBlast()
@@ -1115,8 +1113,8 @@ namespace SolastaExtraContent
                 (new List<FeatureDefinition>{miring_blast}, mire_effect),
             };
 
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(agonizing_blast, new NewFeatureDefinitions.CanCastSpellRestriction(eldritch_blast, false));
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(miring_blast, new NewFeatureDefinitions.CanCastSpellRestriction(eldritch_blast, false));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(agonizing_blast, new NewFeatureDefinitions.CanCastSpellPrerequisite(eldritch_blast));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(miring_blast, new NewFeatureDefinitions.CanCastSpellPrerequisite(eldritch_blast));
 
             var loremaster_pursuit_of_knowledege = DatabaseRepository.GetDatabase<FeatureDefinition>().GetElement("TraditionLoremasterSubclassPursuitOfKnowledgeCantrip", true) as NewFeatureDefinitions.FeatureDefinitionExtraSpellSelection;
 

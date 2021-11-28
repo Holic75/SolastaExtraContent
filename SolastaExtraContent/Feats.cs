@@ -94,7 +94,7 @@ namespace SolastaExtraContent
                                                                                                         };
                                                                                                     }
                                                                                                     );
-
+                NewFeatureDefinitions.FeatureData.addFeatureRestrictions(magic_initiate[cls], new NewFeatureDefinitions.CanCastSpellOfSpecifiedLevelPrerequisite(1));
             }
 
             DatabaseHelper.SpellListDefinitions.SpellListRanger.hasCantrips = true;

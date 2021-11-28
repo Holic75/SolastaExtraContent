@@ -808,11 +808,11 @@ namespace SolastaExtraContent
                                                     DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityAdamantinePlateArmor
                                                     );
 
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(darkvision_mutagen, new NewFeatureDefinitions.MinClassLevelRestriction(alchemist_class, 6));
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(initiative_mutagen, new NewFeatureDefinitions.MinClassLevelRestriction(alchemist_class, 6));
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(poison_immunity_mutagen, new NewFeatureDefinitions.MinClassLevelRestriction(alchemist_class, 10));
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(spider_climb, new NewFeatureDefinitions.MinClassLevelRestriction(alchemist_class, 10));
-            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(critical_hit_immunity, new NewFeatureDefinitions.MinClassLevelRestriction(alchemist_class, 10));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(darkvision_mutagen, new NewFeatureDefinitions.MinClassLevelPrerequisite(alchemist_class, 6));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(initiative_mutagen, new NewFeatureDefinitions.MinClassLevelPrerequisite(alchemist_class, 6));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(poison_immunity_mutagen, new NewFeatureDefinitions.MinClassLevelPrerequisite(alchemist_class, 10));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(spider_climb, new NewFeatureDefinitions.MinClassLevelPrerequisite(alchemist_class, 10));
+            NewFeatureDefinitions.FeatureData.addFeatureRestrictions(critical_hit_immunity, new NewFeatureDefinitions.MinClassLevelPrerequisite(alchemist_class, 10));
 
 
             var extra_mutagens = Helpers.FeatureBuilder<NewFeatureDefinitions.IncreaseNumberOfPowerUsesPerClassLevel>.createFeature("AlchemistClassMutagenExtraUses",
