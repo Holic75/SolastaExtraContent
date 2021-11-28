@@ -94,7 +94,21 @@ namespace SolastaExtraContent
                                                                                                         };
                                                                                                     }
                                                                                                     );
+
             }
+
+            DatabaseHelper.SpellListDefinitions.SpellListRanger.hasCantrips = true;
+            DatabaseHelper.SpellListDefinitions.SpellListRanger.spellsByLevel.Insert(0, new SpellListDefinition.SpellsByLevelDuplet()
+            {
+                level = 0,
+                spells = new List<SpellDefinition>() { }
+            });
+            DatabaseHelper.SpellListDefinitions.SpellListPaladin.hasCantrips = true;
+            DatabaseHelper.SpellListDefinitions.SpellListPaladin.spellsByLevel.Insert(0, new SpellListDefinition.SpellsByLevelDuplet()
+            {
+                level = 0,
+                spells = new List<SpellDefinition>() { }
+            });
         }
 
 

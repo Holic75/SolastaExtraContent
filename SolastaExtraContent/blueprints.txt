@@ -1145,8 +1145,8 @@ WarlockClassMagicInititateFeatCantripsFeature	3fd80ce9-08da-45ce-8705-598356a9ea
 WarlockClassMagicInititateFeatSpellsList	479ea3a5-cb7c-4cfd-94f6-d1bb2095392d
 WarlockClassMagicInititateFeatSpellsFeature	c3c82bd4-dbe8-4597-befd-93b9acaff4e7
 WarlockClassMagicInititateFeat	a745cdc2-ce96-4d32-bd90-5b5fc584cf3e
-WizardMagicInititateFeatCantripsList	6f7a4cda-8bc6-4d57-a7d9-a3fc2646bd2c
-WizardMagicInititateFeatCantripsFeature	b2704035-6a1e-474f-8ab8-8347402658c5
-WizardMagicInititateFeatSpellsList	3a0a6e54-4c34-422f-8f3a-b257cf7335f8
-WizardMagicInititateFeatSpellsFeature	60138d80-1d75-4917-962d-5dcd89f7faaf
-WizardMagicInititateFeat	a207534d-c0f7-46bd-b4c7-67231bad57ac
+WizardMagicInititateFeatCantripsList	28407af3-5157-4084-99b4-03303932fa6c
+WizardMagicInititateFeatCantripsFeature	f92c0ec9-c459-43b3-b2f8-5cb252725c2a
+WizardMagicInititateFeatSpellsList	0b9fb88c-54f4-417c-8d8f-42baa14ba96c
+WizardMagicInititateFeatSpellsFeature	fc5cb131-d66d-4ae2-8bde-44726a9f5b7d
+WizardMagicInititateFeat	88648edf-f967-4fc8-8466-341a50556d10
