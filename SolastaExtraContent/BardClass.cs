@@ -1150,8 +1150,8 @@ namespace SolastaExtraContent
                                                                              DatabaseHelper.SpellListDefinitions.SpellListDruid
                                                                              );
             spelllist.SpellsByLevel[0].Spells = bard_spelllist.SpellsByLevel[0].Spells; //do not affect cantrips for the time being
-            Helpers.Misc.addSpellToSpelllist(bard_spelllist, Spells.hellish_rebuke);
-            Helpers.Misc.addSpellToSpelllist(bard_spelllist, Spells.vulnerability_hex);
+            Helpers.Misc.addSpellToSpelllist(spelllist, Spells.hellish_rebuke);
+            Helpers.Misc.addSpellToSpelllist(spelllist, Spells.vulnerability_hex);
 
             magical_secrets = Helpers.ExtraSpellSelectionBuilder.createExtraSpellSelection("BardClassMagicalSecrets",
                                                                                             "",
