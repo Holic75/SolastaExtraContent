@@ -1,10 +1,10 @@
 ﻿Rules/&SentinielFeatConditionCannotMoveTitle	Unable to Move
 Rules/&SentinielFeatConditionCannotMoveDescription	Character is unable to move
-Feature/&SentinelFeatTitle	Sentinel
+Feature/&SentinelFeatTitle	Opportunist
 Feature/&SentinelFeatDescription	When you hit a creature with an ooportunity attack, its speed is reduced to 0 until the end of the turn.\nCreatures provoke opportunity attack from you even if they take the Disengage action.\nIf the creature within you melee weapon reach attack your ally, it provokes an opportunity attack from you.
-Feature/&PolearmMasterFeatTitle	Polearm Expert
+Feature/&PolearmMasterFeatTitle	Polearm Expertise
 Feature/&PolearmMasterFeatDescription	After you perform an attack action using a spear or a quarterstaff, you can make an extra melee attack with the opposite side of the weapon as a bonus action. This attack deals 1d4 + corresponding weapon ability modifier points of bludgeoning damage.\nWhile you are wielding a spear or a quarterstaff, other creatures provoke an opportunity attack from you when they enter you reach zone.
-Feature/&MagicInititateFeatTitle	Magic Initiate (<CLASS>)
+Feature/&MagicInititateFeatTitle	Magic Heritage (<CLASS>)
 Feature/&MagicInititateFeatDescription	Learn two cantrips and one 1st-level spell from <CLASS> spelllist.
 Feature/&WarcasterFeatTitle	Combat Casting
 Feature/&WarcasterFeatDescription	You have advantage on Constitution saving throws that you make to maintain your concentration on a spell.\nYou can cast spells with a somatic component without a free hand, provided a weapon or shield is being wielded.\nWhen a hostile creature's movement provokes an opportunity attack from you, you can use your reaction to cast a cantrip at the creature, rather than making an opportunity attack.
