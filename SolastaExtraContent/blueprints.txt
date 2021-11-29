@@ -1150,3 +1150,6 @@ WizardMagicInititateFeatCantripsFeature	f92c0ec9-c459-43b3-b2f8-5cb252725c2a
 WizardMagicInititateFeatSpellsList	0b9fb88c-54f4-417c-8d8f-42baa14ba96c
 WizardMagicInititateFeatSpellsFeature	fc5cb131-d66d-4ae2-8bde-44726a9f5b7d
 WizardMagicInititateFeat	88648edf-f967-4fc8-8466-341a50556d10
+WarcasterFeatConcentrationBonus	70726180-3b98-4aee-8918-d81416b40494
+WarcasterFeatAooCantrips	4fb1aa3f-9941-4326-a577-d33f990ff7d0
+WarcasterFeat	5119de18-f7c1-4aa5-a397-58ff2744f18c

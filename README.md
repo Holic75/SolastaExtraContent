@@ -16,6 +16,7 @@ New Feats:
 Sentinel  
 Polearm Master  
 Magic Initiate  
+Combat Casting (aka Warcaster)  
 
 
 Extra Features:  

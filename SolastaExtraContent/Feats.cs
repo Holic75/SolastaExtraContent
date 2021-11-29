@@ -16,11 +16,11 @@ namespace SolastaExtraContent
     {
         static public FeatDefinition polearm_master;
         static public FeatDefinition sentinel;
+        static public FeatDefinition warcaster;
         static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
         //power attack
         //elemental adept
         //mobile
-        //combat casting
 
 
         internal static void load()
@@ -28,6 +28,47 @@ namespace SolastaExtraContent
             createPolearmMaster();
             createSentinel();
             createMagicInitiate();
+            createWarcaster();
+        }
+
+
+        static void createWarcaster()
+        {
+            var concentration_advantage = Helpers.CopyFeatureBuilder<FeatureDefinitionMagicAffinity>
+                                                .createFeatureCopy("WarcasterFeatConcentrationBonus",
+                                                                   "",
+                                                                   "",
+                                                                   "",
+                                                                   null,
+                                                                   DatabaseHelper.FeatureDefinitionMagicAffinitys.MagicAffinityFeatFlawlessConcentration,
+                                                                   a =>
+                                                                   {
+                                                                       a.overConcentrationThreshold = 0;
+                                                                   }
+                                                                   );
+
+            var aoo_cantrips = Helpers.FeatureBuilder<NewFeatureDefinitions.Warcaster>.createFeature("WarcasterFeatAooCantrips",
+                                                                                                     "",
+                                                                                                     Common.common_no_title,
+                                                                                                     Common.common_no_title,
+                                                                                                     Common.common_no_icon);
+
+            warcaster = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy("WarcasterFeat",
+                                                                  "",
+                                                                  "Feature/&WarcasterFeatTitle",
+                                                                  "Feature/&WarcasterFeatDescription",
+                                                                  null,
+                                                                  DatabaseHelper.FeatDefinitions.FlawlessConcentration,
+                                                                  a =>
+                                                                  {
+                                                                      a.features = new List<FeatureDefinition>
+                                                                      {
+                                                                            DatabaseHelper.FeatureDefinitionMagicAffinitys.MagicAffinityBattleMagic,
+                                                                            concentration_advantage,
+                                                                            aoo_cantrips
+                                                                      };
+                                                                  }
+                                                                  );
         }
 
 
