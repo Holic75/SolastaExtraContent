@@ -71,7 +71,8 @@ namespace SolastaExtraContent
                                                             Helpers.WeaponProficiencies.Scimitar,
                                                             Helpers.WeaponProficiencies.MorningStar,
                                                             Helpers.WeaponProficiencies.BattleAxe,
-                                                            Helpers.WeaponProficiencies.Warhammer
+                                                            Helpers.WeaponProficiencies.Warhammer,
+                                                            Helpers.WeaponProficiencies.Maul
                                                         };
         static List<string> arrow_pact_weapon_types = new List<string>()
                                                         {

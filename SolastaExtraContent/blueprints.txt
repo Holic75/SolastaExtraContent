@@ -1153,3 +1153,13 @@ WizardMagicInititateFeat	88648edf-f967-4fc8-8466-341a50556d10
 WarcasterFeatConcentrationBonus	70726180-3b98-4aee-8918-d81416b40494
 WarcasterFeatAooCantrips	4fb1aa3f-9941-4326-a577-d33f990ff7d0
 WarcasterFeat	5119de18-f7c1-4aa5-a397-58ff2744f18c
+FuriousFeatScoredCriticalCondition	4908e6f8-d05f-4199-a7c1-2b945f10cba8
+FuriousFeatHitCondition	77c0fc58-d60c-477c-8170-8ba27e36b3bd
+FuriousFocusHitWatcher	6d4a8101-b7d1-405a-baf6-dc14bacc1271
+FuriousFocusCriticalHitWatcher	404393f9-b7de-4487-bcb1-9456cf7873bc
+FuriousFeatExtraAttack	621e091d-814b-41d8-945b-684ed92359ca
+FuriousFeatDisadvantageFeature	17f8f7c4-46df-4f44-bd94-5d17e9c2c8ae
+FuriousFeatDoubleDamageFeature	bd1c88f0-3689-4208-a94c-12b31d690861
+FuriousFeatPowerAttackCondition	5bfe9810-148e-4558-acb9-759d177ca7ce
+FuriousFeatPowerAttackPower	eb601634-3cdf-49cb-8c55-e90851e29664
+FuriousFeat	78c36dd0-0d03-48ce-b416-e0ec1edc7c2b

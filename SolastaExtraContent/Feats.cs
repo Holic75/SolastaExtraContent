@@ -18,6 +18,7 @@ namespace SolastaExtraContent
         static public FeatDefinition sentinel;
         static public FeatDefinition warcaster;
         static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
+        static public FeatDefinition furious;
         //power attack
         //elemental adept
         //mobile
@@ -29,6 +30,167 @@ namespace SolastaExtraContent
             createSentinel();
             createMagicInitiate();
             createWarcaster();
+            createFurious();
+        }
+
+
+        static void createFurious()
+        {
+            var condition_scored_critical_hit = Helpers.ConditionBuilder.createCondition("FuriousFeatScoredCriticalCondition", "", "", "", null, DatabaseHelper.ConditionDefinitions.ConditionDummy);
+            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_scored_critical_hit);
+            var condition_hit = Helpers.ConditionBuilder.createCondition("FuriousFeatHitCondition", "", "", "", null, DatabaseHelper.ConditionDefinitions.ConditionDummy);
+            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_hit);
+
+            var apply_condition_on_attack_hit = Helpers.FeatureBuilder<NewFeatureDefinitions.InitiatorApplyConditionOnDamageDone>
+                                                            .createFeature("FuriousFocusHitWatcher",
+                                                                           "",
+                                                                           Common.common_no_title,
+                                                                           Common.common_no_title,
+                                                                           Common.common_no_icon,
+                                                                           a =>
+                                                                           {
+                                                                               a.apply_to_self = true;
+                                                                               a.condition = condition_hit;
+                                                                               a.durationType = RuleDefinitions.DurationType.Round;
+                                                                               a.durationValue = 0;
+                                                                               a.onlyWeapon = true;
+                                                                               a.onlyMelee = true;
+                                                                           }
+                                                                           );
+
+            var apply_condition_on_critical_hit = Helpers.FeatureBuilder<NewFeatureDefinitions.InitiatorApplyConditionOnDamageDone>
+                                                                            .createFeature("FuriousFocusCriticalHitWatcher",
+                                                                                           "",
+                                                                                           Common.common_no_title,
+                                                                                           Common.common_no_title,
+                                                                                           Common.common_no_icon,
+                                                                                           a =>
+                                                                                           {
+                                                                                               a.apply_to_self = true;
+                                                                                               a.condition = condition_scored_critical_hit;
+                                                                                               a.durationType = RuleDefinitions.DurationType.Round;
+                                                                                               a.durationValue = 0;
+                                                                                               a.onlyWeapon = true;
+                                                                                               a.onlyMelee = true;
+                                                                                           }
+                                                                                           );
+
+            List<string> allowed_weapon_types = new List<string>()
+                                                {
+                                                    Helpers.WeaponProficiencies.QuarterStaff,
+                                                    Helpers.WeaponProficiencies.Spear,
+                                                    Helpers.WeaponProficiencies.Mace,
+                                                    Helpers.WeaponProficiencies.Dagger,
+                                                    Helpers.WeaponProficiencies.Handaxe,
+                                                    Helpers.WeaponProficiencies.Club,
+                                                    Helpers.WeaponProficiencies.LongSword,
+                                                    Helpers.WeaponProficiencies.GreatAxe,
+                                                    Helpers.WeaponProficiencies.Rapier,
+                                                    Helpers.WeaponProficiencies.ShortSword,
+                                                    Helpers.WeaponProficiencies.GreatSword,
+                                                    Helpers.WeaponProficiencies.Scimitar,
+                                                    Helpers.WeaponProficiencies.MorningStar,
+                                                    Helpers.WeaponProficiencies.BattleAxe,
+                                                    Helpers.WeaponProficiencies.Warhammer,
+                                                    Helpers.WeaponProficiencies.Maul
+                                                };
+
+            var add_bonus_attack = Helpers.FeatureBuilder<NewFeatureDefinitions.ExtraMainWeaponAttack>.createFeature("FuriousFeatExtraAttack",
+                                                                                                                     "",
+                                                                                                                     Common.common_no_title,
+                                                                                                                     Common.common_no_title,
+                                                                                                                     Common.common_no_icon,
+                                                                                                                     a =>
+                                                                                                                     {
+                                                                                                                         a.actionType = ActionDefinitions.ActionType.Bonus;
+                                                                                                                         a.restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(condition_hit));
+                                                                                                                         a.restrictions.Add(new NewFeatureDefinitions.AndRestriction(new NewFeatureDefinitions.HasConditionRestriction(condition_scored_critical_hit),
+                                                                                                                                                                                     new NewFeatureDefinitions.DownedAnEnemy()
+                                                                                                                                                                                     )
+                                                                                                                                           );
+                                                                                                                         a.restrictions.Add(new NewFeatureDefinitions.SpecificWeaponInMainHandRestriction(allowed_weapon_types));
+                                                                                                                     }
+                                                                                                                     );
+
+            var disadvantage_on_attacks = Helpers.FeatureBuilder<NewFeatureDefinitions.DisadvantageOnWeaponAttack>.createFeature("FuriousFeatDisadvantageFeature",
+                                                                                                                                 "",
+                                                                                                                                 Common.common_no_title,
+                                                                                                                                 Common.common_no_title,
+                                                                                                                                 Common.common_no_icon,
+                                                                                                                                 a =>
+                                                                                                                                 {
+                                                                                                                                     a.onlyMelee = true;
+                                                                                                                                 }
+                                                                                                                                 );
+
+            var double_damage_on_attacks = Helpers.FeatureBuilder<NewFeatureDefinitions.DoubleDamageOnSpecificWeaponTypes>.createFeature("FuriousFeatDoubleDamageFeature",
+                                                                                                                                         "",
+                                                                                                                                         Common.common_no_title,
+                                                                                                                                         Common.common_no_title,
+                                                                                                                                         Common.common_no_icon,
+                                                                                                                                         a =>
+                                                                                                                                         {
+                                                                                                                                             a.weaponTypes = allowed_weapon_types;
+                                                                                                                                         }
+                                                                                                                                         );
+
+            var condition_power_attack = Helpers.ConditionBuilder.createCondition("FuriousFeatPowerAttackCondition", 
+                                                                                  "",
+                                                                                 "Rules/&FuriousFeatConditionPowerAttackTitle",
+                                                                                 "Rules/&FuriousFeatConditionPowerAttackDescription",
+                                                                                  null, 
+                                                                                  DatabaseHelper.ConditionDefinitions.ConditionReckless,
+                                                                                  double_damage_on_attacks,
+                                                                                  disadvantage_on_attacks);
+            condition_power_attack.possessive = false;
+
+            var effect_description = new EffectDescription();
+            effect_description.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerReckless.effectDescription);
+            effect_description.effectForms.Clear();
+
+            var effect_form = new EffectForm();
+            effect_form.createdByCharacter = true;
+            effect_form.ConditionForm = new ConditionForm();
+            effect_form.FormType = EffectForm.EffectFormType.Condition;
+            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
+            effect_form.ConditionForm.ConditionDefinition = condition_power_attack;
+            effect_description.EffectForms.Add(effect_form);
+            effect_description.durationParameter = 0;
+
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+                                                                    .createPower("FuriousFeatPowerAttackPower",
+                                                                                 "",
+                                                                                 "Feature/&FuriousFeatPowerAttackPowerTitle",
+                                                                                 "Feature/&FuriousFeatPowerAttackPowerDescription",
+                                                                                 DatabaseHelper.FeatureDefinitionPowers.PowerDomainLawHolyRetribution.guiPresentation.SpriteReference,
+                                                                                 effect_description,
+                                                                                 RuleDefinitions.ActivationTime.NoCost,
+                                                                                 1,
+                                                                                 RuleDefinitions.UsesDetermination.Fixed,
+                                                                                 RuleDefinitions.RechargeRate.AtWill
+                                                                                 );
+            power.restrictions = new List<NewFeatureDefinitions.IRestriction>()
+            {
+                new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.AttackedRestriction())
+            };
+
+            furious = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy("FuriousFeat",
+                                                                      "",
+                                                                      "Feature/&FuriousFeatTitle",
+                                                                      "Feature/&FuriousFeatDescription",
+                                                                      null,
+                                                                      DatabaseHelper.FeatDefinitions.FollowUpStrike,
+                                                                      a =>
+                                                                      {
+                                                                          a.features = new List<FeatureDefinition>
+                                                                          {
+                                                                            apply_condition_on_attack_hit,
+                                                                            apply_condition_on_critical_hit,
+                                                                            add_bonus_attack,
+                                                                            power
+                                                                          };
+                                                                      }
+                                                                      );
         }
 
 

@@ -9,3 +9,9 @@ Feature/&MagicInititateFeatDescription	Learn two cantrips and one 1st-level spel
 Feature/&WarcasterFeatTitle	Combat Casting
 Feature/&WarcasterFeatDescription	You have advantage on Constitution saving throws that you make to maintain your concentration on a spell.\nYou can cast spells with a somatic component without a free hand, provided a weapon or shield is being wielded.\nWhen a hostile creature's movement provokes an opportunity attack from you, you can use your reaction to cast a cantrip at the creature, rather than making an opportunity attack.
 Reaction/&SubitemSelectWarcasterTitle Attacks List
+Feature/&FuriousFeatPowerAttackPowerTitle	Furious Attack
+Feature/&FuriousFeatPowerAttackPowerDescription	Double your melee weapon base damage, but suffer a disadvantage on all melee weapon attacks.
+Rules/&FuriousFeatConditionPowerAttackTitle	Furious
+Rules/&FuriousFeatConditionPowerAttackDescription	Your melee weapon base damage is doubled, but you suffer a disadvantage on all melee weapon attacks.
+Feature/&FuriousFeatTitle	Furious
+Feature/&FuriousFeatDescription	On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action.\nWhen you make your first Attack on your turn, you can decide to attack furiously. Doing so doubles your base melee weapon damage during this turn, but you suffer a disadvantage on all your attacks.

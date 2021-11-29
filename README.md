@@ -13,10 +13,12 @@ Lvl 2: Conjure Spirit Beast.
 Lvl 3: Earth Tremor, Winter's Breath.  
 
 New Feats:
-Sentinel  
-Polearm Master  
-Magic Initiate  
-Combat Casting (aka Warcaster)  
+Opportunist  
+Combat Casting  
+Polearm Expertise  
+Magic Heritage  
+Furious  
+
 
 
 Extra Features:  
