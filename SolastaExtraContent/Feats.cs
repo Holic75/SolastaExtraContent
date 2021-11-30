@@ -19,7 +19,6 @@ namespace SolastaExtraContent
         static public FeatDefinition warcaster;
         static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
         static public FeatDefinition furious;
-        //power attack
         //elemental adept
         //mobile
 
@@ -72,6 +71,7 @@ namespace SolastaExtraContent
                                                                                                a.durationValue = 0;
                                                                                                a.onlyWeapon = true;
                                                                                                a.onlyMelee = true;
+                                                                                               a.onlyOnCritical = true;
                                                                                            }
                                                                                            );
 
