@@ -19,7 +19,7 @@ namespace SolastaExtraContent
         static public FeatDefinition warcaster;
         static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
         static public FeatDefinition furious;
-        //elemental adept
+        static public Dictionary<string, FeatDefinition> elemental_adept = new Dictionary<string, FeatDefinition>();
         //mobile
 
 
@@ -30,6 +30,73 @@ namespace SolastaExtraContent
             createMagicInitiate();
             createWarcaster();
             createFurious();
+            createElementalAdept();
+        }
+
+
+        static void createElementalAdept()
+        {
+            string[] damage_types = new string[] { Helpers.DamageTypes.Acid, Helpers.DamageTypes.Cold, Helpers.DamageTypes.Fire, Helpers.DamageTypes.Lightning };
+
+            foreach (var damage_type in damage_types)
+            {
+                var ignore_resistance = Helpers.FeatureBuilder<NewFeatureDefinitions.IgnoreDamageResistance>
+                                                                    .createFeature($"ElementalAdeptFeatIgnore{damage_type}Resistance",
+                                                                                   "",
+                                                                                   Common.common_no_title,
+                                                                                   Common.common_no_title,
+                                                                                   Common.common_no_icon,
+                                                                                   a =>
+                                                                                   {
+                                                                                       a.damageTypes = new List<string> { damage_type };
+                                                                                   }
+                                                                                   );
+
+                var reroll_dice = Helpers.FeatureBuilder<NewFeatureDefinitions.ModifyDamageRollTypeDependent>
+                                                                .createFeature($"ElementalAdeptFeatReroll{damage_type}",
+                                                                               "",
+                                                                               Common.common_no_title,
+                                                                               Common.common_no_title,
+                                                                               Common.common_no_icon,
+                                                                               a =>
+                                                                               {
+                                                                                   a.damageTypes = new List<string> { damage_type };
+                                                                                   a.minRollValue = 1;
+                                                                                   a.validityContext = RuleDefinitions.RollContext.MagicDamageValueRoll;
+                                                                                   a.rerollLocalizationKey = "Feature/&ElementalAdeptFeatRerollDescription";
+                                                                               }
+                                                                               );
+
+
+                string damage_title = DatabaseRepository.GetDatabase<DamageDefinition>().GetElement(damage_type).GuiPresentation.Title;
+
+                var title_string = Helpers.StringProcessing.insertStrings("Feature/&ElementalAdeptFeatTitle",
+                                                                          damage_title,
+                                                                          $"Feature/&ElementalAdeptFeat{damage_type}Title",
+                                                                          "<DAMAGE>"
+                                                                          );
+                var description_string = Helpers.StringProcessing.insertStrings("Feature/&ElementalAdeptFeatDescription",
+                                                                                damage_title,
+                                                                                $"Feature/&ElementalAdeptFeat{damage_type}Description",
+                                                                                "<DAMAGE>"
+                                                                               );
+
+                elemental_adept[damage_type] = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy("ElementalAdeptFeat" + damage_type,
+                                                                                                            "",
+                                                                                                            title_string,
+                                                                                                            description_string,
+                                                                                                            null,
+                                                                                                            DatabaseHelper.FeatDefinitions.PowerfulCantrip,
+                                                                                                            a =>
+                                                                                                            {
+                                                                                                                a.features = new List<FeatureDefinition>
+                                                                                                                {
+                                                                                                                     ignore_resistance,
+                                                                                                                     reroll_dice,
+                                                                                                                };
+                                                                                                            }
+                                                                                                            );
+            }
         }
 
 

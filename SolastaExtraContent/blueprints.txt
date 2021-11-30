@@ -1163,3 +1163,15 @@ FuriousFeatDoubleDamageFeature	bd1c88f0-3689-4208-a94c-12b31d690861
 FuriousFeatPowerAttackCondition	5bfe9810-148e-4558-acb9-759d177ca7ce
 FuriousFeatPowerAttackPower	eb601634-3cdf-49cb-8c55-e90851e29664
 FuriousFeat	78c36dd0-0d03-48ce-b416-e0ec1edc7c2b
+ElementalAdeptFeatIgnoreDamageAcidResistance	b8aad8f7-2841-49da-a128-bd4ee828eb2a
+ElementalAdeptFeatRerollDamageAcid	993f4f69-d072-409e-9f14-feb227c98951
+ElementalAdeptFeatDamageAcid	8a088953-6cba-4253-bac3-57c16572af42
+ElementalAdeptFeatIgnoreDamageColdResistance	3093e251-f23a-420f-896f-651db4cc6b3b
+ElementalAdeptFeatRerollDamageCold	1d11d4b6-fbcb-4f47-978e-c48d151df1c4
+ElementalAdeptFeatDamageCold	e1428654-57b2-49f3-a831-985182524458
+ElementalAdeptFeatIgnoreDamageFireResistance	25e0aaa4-1194-4120-a6f4-d80a10c563b2
+ElementalAdeptFeatRerollDamageFire	f2717eea-2560-47a5-a2c5-30e7f1b8da38
+ElementalAdeptFeatDamageFire	1c7d57a7-44e5-47a5-afa3-75e2cf768e14
+ElementalAdeptFeatIgnoreDamageLightningResistance	5a8e6650-f48f-4e9e-8b5c-81b96f0e6456
+ElementalAdeptFeatRerollDamageLightning	04a0ac2b-3e0c-4304-8f78-dcd85ab8913e
+ElementalAdeptFeatDamageLightning	9e0466bd-4cf4-45ea-8686-9dbb96d72598
