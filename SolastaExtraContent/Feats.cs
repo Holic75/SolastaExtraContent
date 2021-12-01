@@ -61,7 +61,7 @@ namespace SolastaExtraContent
                                                                                a =>
                                                                                {
                                                                                    a.damageTypes = new List<string> { damage_type };
-                                                                                   a.minRollValue = 1;
+                                                                                   a.minRerollValue = 1;
                                                                                    a.validityContext = RuleDefinitions.RollContext.MagicDamageValueRoll;
                                                                                    a.rerollLocalizationKey = "Feature/&ElementalAdeptFeatRerollDescription";
                                                                                }

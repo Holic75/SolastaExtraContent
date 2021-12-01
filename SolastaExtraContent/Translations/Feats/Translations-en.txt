@@ -17,4 +17,4 @@ Feature/&FuriousFeatTitle	Furious
 Feature/&FuriousFeatDescription	On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action.\nWhen you make your first Attack on your turn, you can decide to attack furiously. Doing so doubles your base melee weapon damage during this turn, but you suffer a disadvantage on all your attacks.
 Feature/&ElementalAdeptFeatTitle	Elemental Focus (<DAMAGE>)
 Feature/&ElementalAdeptFeatDescription	<DAMAGE> spells you cast ignore target's resistance to damage. In addition, when you roll damage for these spells, you can reroll any 1s.
-Feature/&ElementalAdeptFeatRerollDescription	Elemental Focus
+Feature/&ElementalAdeptFeatRerollDescription	{0} rerolls {1} die from {2} to {3} due to Elemental Focus
