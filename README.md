@@ -18,7 +18,7 @@ Combat Casting
 Polearm Expertise  
 Magic Heritage  
 Furious  
-
+Elemental Focus
 
 
 Extra Features:  

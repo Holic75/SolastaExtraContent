@@ -20,6 +20,7 @@ namespace SolastaExtraContent
         static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
         static public FeatDefinition furious;
         static public Dictionary<string, FeatDefinition> elemental_adept = new Dictionary<string, FeatDefinition>();
+        //fast_shooter
         //mobile
 
 
