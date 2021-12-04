@@ -123,7 +123,9 @@ namespace SolastaExtraContent
                                                                                       a.featureUnlocks.Add(new FeatureUnlockByLevel(gnome_cunning, 1));
                                                                                       a.featureUnlocks.Add(new FeatureUnlockByLevel(natural_illusionist, 1));
                                                                                       a.featureUnlocks.Add(new FeatureUnlockByLevel(language_proficiency, 1));
-                                                                                      a.racePresentation = DatabaseHelper.CharacterRaceDefinitions.Halfling.racePresentation;
+                                                                                      
+                                                                                      a.racePresentation = Helpers.Accessors.memberwiseClone(DatabaseHelper.CharacterRaceDefinitions.Halfling.racePresentation);
+                                                                                      a.racePresentation.preferedHairColors = new TA.RangedInt(26, 47);
                                                                                   }                                                                               
                                                                                   );
 

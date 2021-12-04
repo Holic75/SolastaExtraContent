@@ -9,6 +9,7 @@ using NewFeatureDefinitions = SolastaModHelpers.NewFeatureDefinitions;
 using ExtendedEnums = SolastaModHelpers.ExtendedEnums;
 using SolastaModHelpers;
 using SolastaModApi;
+using SolastaModHelpers.NewFeatureDefinitions;
 
 namespace SolastaExtraContent
 {
@@ -242,6 +243,32 @@ namespace SolastaExtraContent
                 new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.AttackedRestriction())
             };
 
+
+            var furious_attack_action = SolastaModHelpers.Helpers.CopyFeatureBuilder<ActionDefinition>
+                     .createFeatureCopy("FuriousAttack", 
+                                        "8b7ff00c-be0a-4cb3-b18b-a07d27c666de",
+                                        power.guiPresentation.title,
+                                        power.guiPresentation.description,
+                                        Common.common_no_icon,
+                                        DatabaseHelper.ActionDefinitions.RecklessAttack);
+            furious_attack_action.id = (ActionDefinitions.Id)ExtendedActionId.Furious;
+            furious_attack_action.usesPerTurn = -1;
+            ActionData.addActionRestrictions(furious_attack_action, new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.AttackedRestriction()),
+                                                                    new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.HasConditionRestriction(condition_power_attack)));
+
+            var action_affinity = Helpers.CopyFeatureBuilder<FeatureDefinitionActionAffinity>
+                                                .createFeatureCopy("ActionAffinityFuriousAttack",
+                                                                   "",
+                                                                   Common.common_no_title,
+                                                                   Common.common_no_title,
+                                                                   Common.common_no_icon,
+                                                                   DatabaseHelper.FeatureDefinitionActionAffinitys.ActionAffinityBarbarianRecklessAttack,
+                                                                   a =>
+                                                                   {
+                                                                       a.authorizedActions = new List<ActionDefinitions.Id> { furious_attack_action.id };
+                                                                   }
+                                                                   );
+
             furious = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy("FuriousFeat",
                                                                       "",
                                                                       "Feature/&FuriousFeatTitle",
@@ -255,7 +282,8 @@ namespace SolastaExtraContent
                                                                             apply_condition_on_attack_hit,
                                                                             apply_condition_on_critical_hit,
                                                                             add_bonus_attack,
-                                                                            power
+                                                                            action_affinity
+                                                                            //power
                                                                           };
                                                                       }
                                                                       );

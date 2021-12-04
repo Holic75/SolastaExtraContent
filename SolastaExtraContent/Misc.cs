@@ -37,6 +37,14 @@ namespace SolastaExtraContent
             }
 
             fixMonsterAttacks();
+            fixRecklessAttackRestrictions();
+        }
+
+
+        static void fixRecklessAttackRestrictions()
+        {
+            NewFeatureDefinitions.ActionData.addActionRestrictions(DatabaseHelper.ActionDefinitions.RecklessAttack, new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.AttackedRestriction()),
+                                                                   new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.HasConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionReckless)));
         }
 
 

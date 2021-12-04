@@ -1175,3 +1175,6 @@ ElementalAdeptFeatDamageFire	1c7d57a7-44e5-47a5-afa3-75e2cf768e14
 ElementalAdeptFeatIgnoreDamageLightningResistance	5a8e6650-f48f-4e9e-8b5c-81b96f0e6456
 ElementalAdeptFeatRerollDamageLightning	04a0ac2b-3e0c-4304-8f78-dcd85ab8913e
 ElementalAdeptFeatDamageLightning	9e0466bd-4cf4-45ea-8686-9dbb96d72598
+CharacterActionFuriousAttack	8b7ff00c-be0a-4cb3-b18b-a07d27c666de
+ActionAffinityFuriousAttack	eb21c0ae-c1fc-4c59-84ae-81292b590c3f
+FuriousAttack	8b7ff00c-be0a-4cb3-b18b-a07d27c666de
