@@ -33,6 +33,7 @@ namespace SolastaExtraContent
             fixLaw();
             fixOblivion();
             fixSun();
+
             createWindChannel();
             createColdChannel();
             createFireChannel();
@@ -41,7 +42,7 @@ namespace SolastaExtraContent
             fixElemental();
 
             //regrant powers to give base_primal_harmony and wrath of the elements missing previously
-            Action<RulesetCharacterHero> fix_action = c =>
+            Action<RulesetCharacterHero> fix_action_elemental = c =>
             {
                 if (c.ClassesAndSubclasses.ContainsValue(elemental_domain)
                     && c.UsablePowers.Any(u => u.powerDefinition == wind_channel) && !c.UsablePowers.Any(u => u.powerDefinition == wrath_of_the_elements)
@@ -58,7 +59,18 @@ namespace SolastaExtraContent
                     c.GrantPowers();
                 }
             };
-            Common.postload_actions.Add(fix_action);
+            Common.postload_actions.Add(fix_action_elemental);
+
+            Action<RulesetCharacterHero> fix_action_sun = c =>
+            {
+                if (c.ClassesAndSubclasses.ContainsValue(DatabaseHelper.CharacterSubclassDefinitions.DomainSun)
+                    && c.UsablePowers.Any(u => u.powerDefinition == DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight)
+                   )
+                {
+                    c.GrantPowers();
+                }
+            };
+            Common.postload_actions.Add(fix_action_sun);
         }
 
 
@@ -439,10 +451,26 @@ namespace SolastaExtraContent
             DatabaseHelper.FeatureDefinitionBonusCantripss.BonusCantripsDomainSun.bonusCantrips[0] = DatabaseHelper.SpellDefinitions.SacredFlame;
             DatabaseHelper.FeatureDefinitionBonusCantripss.BonusCantripsDomainSun.guiPresentation.description = DatabaseHelper.SpellDefinitions.SacredFlame.guiPresentation.title;
 
-            var power = DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight;
+            /*var power = DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight;
             power.rechargeRate = RuleDefinitions.RechargeRate.ChannelDivinity;
             power.usesDetermination = RuleDefinitions.UsesDetermination.Fixed;
-            power.guiPresentation.title = DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunHeraldOfTheSun.guiPresentation.title;
+            power.guiPresentation.title = DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunHeraldOfTheSun.guiPresentation.title;*/
+
+
+            var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.ChainedPower>.createPower("PowerDomainSunIndomitableLightChained",
+                                                                                                    "",
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunHeraldOfTheSun.guiPresentation.title,
+                                                                                                    "Feature/&DomainSunIndomitableLightFixedDescription",
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.guiPresentation.spriteReference,
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.effectDescription,
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.activationTime,
+                                                                                                    DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.FixedUsesPerRecharge,
+                                                                                                    RuleDefinitions.UsesDetermination.Fixed,
+                                                                                                    RuleDefinitions.RechargeRate.ChannelDivinity,
+                                                                                                    Helpers.Stats.Charisma,
+                                                                                                    Helpers.Stats.Wisdom
+                                                                                                    );
+            power.effectDescription.targetSide = RuleDefinitions.Side.Enemy;
             var feature_set = Helpers.FeatureSetBuilder.createFeatureSet("HeraldOfTheSunFeatureSet",
                                                                          "",
                                                                          DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight.GuiPresentation.title,
@@ -478,7 +506,8 @@ namespace SolastaExtraContent
                                                                                                           ability: Helpers.Stats.Wisdom,
                                                                                                           show_casting: false);
             proxy_power.guiPresentation.hidden = true;
-            var apply_proxy_power = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyPowerOnProxySummon>.createFeature("HeralOfTheSunApplyProxyPowerFeature",
+            power.next_power = proxy_power;
+            /*var apply_proxy_power = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyPowerOnProxySummon>.createFeature("HeralOfTheSunApplyProxyPowerFeature",
                                                                                                                         "",
                                                                                                                         Common.common_no_title,
                                                                                                                         Common.common_no_title,
@@ -488,9 +517,9 @@ namespace SolastaExtraContent
                                                                                                                             a.power = proxy_power;
                                                                                                                             a.proxy = DatabaseHelper.EffectProxyDefinitions.ProxyIndomitableLight;
                                                                                                                         }
-                                                                                                                        );
+                                                                                                                        );*/
             feature_set.featureSet.Add(proxy_power);
-            feature_set.featureSet.Add(apply_proxy_power);
+            //feature_set.featureSet.Add(apply_proxy_power);
             DatabaseHelper.CharacterSubclassDefinitions.DomainSun.featureUnlocks.RemoveAll(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunIndomitableLight);
             DatabaseHelper.CharacterSubclassDefinitions.DomainSun.featureUnlocks.Find(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionPowers.PowerDomainSunHeraldOfTheSun).featureDefinition = feature_set;
             DatabaseHelper.CharacterSubclassDefinitions.DomainSun.featureUnlocks.Find(f => f.featureDefinition == DatabaseHelper.FeatureDefinitionAdditionalDamages.AdditionalDamageDomainLifeDivineStrike).featureDefinition = potent_spellcasting;

@@ -1178,3 +1178,4 @@ ElementalAdeptFeatDamageLightning	9e0466bd-4cf4-45ea-8686-9dbb96d72598
 CharacterActionFuriousAttack	8b7ff00c-be0a-4cb3-b18b-a07d27c666de
 ActionAffinityFuriousAttack	eb21c0ae-c1fc-4c59-84ae-81292b590c3f
 FuriousAttack	8b7ff00c-be0a-4cb3-b18b-a07d27c666de
+PowerDomainSunIndomitableLightChained	16499acf-0ba6-4847-bdfd-c40e7b9cc3a9
