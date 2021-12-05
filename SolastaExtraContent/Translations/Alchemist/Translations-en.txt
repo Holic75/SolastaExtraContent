@@ -110,8 +110,8 @@ Feature/&AlchemistGrenadierSubclassProtectiveBurst2PowerDescription	You emit a b
 Feature/&AlchemistGrenadierSubclassProtectiveBurst3PowerDescription	You emit a burst of positive energy that grants you and all your allies within 10 feet of it a number of temporary hit points equal to 2d8 + your Intelligence modifier.
 Feature/&AlchemistGrenadierSubclassDestructionAffinityTitle	Destruction Specialist
 Feature/&AlchemistGrenadierSubclassDestructionAffinityDescription	You add 1d8 to all your evocation spells damage.
-Feedback/&AdditionalDamageAlchemistGrenadierSubclassDestructionAffinityLine	Extra 1d8 damage due to Destruction Specialist
-Feedback/&AdditionalDamageAlchemistGrenadierSubclassDestructionAffinityFormat	Destruction Specialist
+Feedback/&AdditionalDamageAlchemistGrenadierSubclassDestructionAffinityLine	Destruction Specialist
+Feedback/&AdditionalDamageAlchemistGrenadierSubclassDestructionAffinityFormat	{0} deals extra damage to {1} due to Destruction Specialist (+{2})
 Subclass/&AlchemistSubclassSpecializationRunemasterTitle	Runemaster
 Subclass/&AlchemistSubclassSpecializationRunemasterDescription	While most alchemists practice in mainstream alchemy - extracts, mutagens, or bombs - some diverge into the obscure path of magic that combines both alchemical knowledge with arcane runes. Runemasters have adapted their alchemical magical techniques to inscribe mystical runes on their weapons or armors, in order to strengthen their skills on the battlefield.
 Feature/&AlchemistRunemasterSubclassBonusProficienciesTitle Tools of the Trade
@@ -120,8 +120,8 @@ Feature/&AlchemistRunemasterSubclassConnectionWeaponRuneTitle	Weapon Rune: Conne
 Feature/&AlchemistRunemasterSubclassConnectionWeaponRuneDescription	Inscribing this rune on your weapon allows you add your Intelligence modifier, instead of Strength or Dexterity, to the attack and damage rolls. You can also use this weapon as spellcasting focus.
 Feature/&AlchemistRunemasterSubclassDestructionWEaponRuneTitle	Weapon Rune: Destruction
 Feature/&AlchemistRunemasterSubclassDestructionWEaponRuneDescription	Once on each of your turns when you hit a creature with a weapon empowered wih this rune, you can deal an extra 1d8 radiant damage to that target.
-Feedback/&AdditionalDamageAlchemistRunemasterSubclassDestructionWeaponRuneDestructionAffinityLine	Extra 1d8 radiant damage due to Destruction Rune
-Feedback/&AdditionalDamageAlchemistRunemasterSubclassDestructionWeaponRuneDestructionAffinityFormat	Destruction Rune
+Feedback/&AdditionalDamageAlchemistRunemasterSubclassDestructionWeaponRuneDestructionAffinityLine	Destruction Rune
+Feedback/&AdditionalDamageAlchemistRunemasterSubclassDestructionWeaponRuneDestructionAffinityFormat	{0} deals extra damage to {1} due to Destruction Rune (+{2})
 Feature/&AlchemistRunemasterSubclassGuardianRuneTitle	Weapon Rune: Ward
 Feature/&AlchemistRunemasterSubclassGuardianRuneDescription	A creature you hit with the weapon empowered with this rune, has disadvantage on attack rolls against targets other than you until the start of your next turn, as the rune emits a distracting pulse when the creature attacks someone else.
 Rules/&AlchemistRunemasterSubclassGuardianRuneConditionTitle	Affected by Weapon Rune: Ward

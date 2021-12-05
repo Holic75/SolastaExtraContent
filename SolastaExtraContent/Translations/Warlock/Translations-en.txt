@@ -79,10 +79,10 @@ Feature/&WarlockAngelSubclassRadiantSoulTitle	Radiant Soul
 Feature/&WarlockAngelSubclassRadiantSoulDescription	Your link to your Patron allows you to serve as a conduit for radiant energy. You have resistance to radiant damage, and when you cast any instantaneous effect spell that deals radiant or fire damage, you add your <MAIN_STAT> modifier to one radiant or fire damage roll of that spell. 
 Feature/&WarlockAngelSubclassHealingBurstTitle	Healing Burst
 Feature/&WarlockAngelSubclassHealingBurstDescription	As a bonus action you can fill the 30-foot radius sphere around you with healing energy, restoring a number of hit points equal to your warlock level + your <MAIN_STAT> modifier to all your allies in the area. Once you use this feature, you can't use it again until you finish a short rest.
-Feedback/&AdditionalDamageWrackedByDivinityFormat	Extra damage due to Wracked with Divinity
-Feedback/&AdditionalDamageWrackedByDivinityLine	Extra damage due to Wracked with Divinity
-Feedback/&AdditionalDamageRadiantSoulLine	Extra damage due to Radiant Soul
-Feedback/&AdditionalDamageRadiantSoulFormat	Radiant Soul
+Feedback/&AdditionalDamageWrackedByDivinityFormat	Wracked with Divinity
+Feedback/&AdditionalDamageWrackedByDivinityLine	{0} deals extra damage to {1} due to Wracked with Divinty (+{2})
+Feedback/&AdditionalDamageRadiantSoulLine	Radiant Soul
+Feedback/&AdditionalDamageRadiantSoulFormat	{0} deals extra damage to {1} due to Radiant Soul (+{2})
 Subclass/&WarlockSubclassPatronArchmageTitle	Archmage Patron
 Subclass/&WarlockSubclassPatronArchmageDescription	A warlock beholden to an Archmage either serves an extremely powerful mage who bestows power upon them, or channels the echos of a long dead mage, one who's magical presence while alive still allows them some communication with the living. The Archmage Patron allows the warlock to increase the power of their casting ability.
 Feature/&WarlockAngelSubclassArchmageSpellsTitle	Expanded Spell List
