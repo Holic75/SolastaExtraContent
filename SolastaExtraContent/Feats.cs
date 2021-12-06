@@ -21,8 +21,8 @@ namespace SolastaExtraContent
         static public Dictionary<CharacterClassDefinition, FeatDefinition> magic_initiate = new Dictionary<CharacterClassDefinition, FeatDefinition>();
         static public FeatDefinition furious;
         static public Dictionary<string, FeatDefinition> elemental_adept = new Dictionary<string, FeatDefinition>();
+        static public FeatDefinition mobile;
         //fast_shooter
-        //mobile
 
 
         internal static void load()
@@ -33,6 +33,94 @@ namespace SolastaExtraContent
             createWarcaster();
             createFurious();
             createElementalAdept();
+            createCombatMobility();
+        }
+
+
+        static void createCombatMobility()
+        {
+            var speed_bonus = DatabaseHelper.FeatureDefinitionMovementAffinitys.MovementAffinityLongstrider;
+
+            var ignore_difficult_terrain = Helpers.CopyFeatureBuilder<FeatureDefinitionMovementAffinity>
+                                                        .createFeatureCopy("MobileFeatIgnoreDifficultTerrain",
+                                                                           "",
+                                                                           "",
+                                                                           "",
+                                                                           null,
+                                                                           DatabaseHelper.FeatureDefinitionMovementAffinitys.MovementAffinityFreedomOfMovement,
+                                                                           a =>
+                                                                           {
+                                                                               a.appliesToAllModes = false;
+                                                                           }
+                                                                           );
+
+            var ignore_difficult_terrain_if_dashing = Helpers.FeatureBuilder<NewFeatureDefinitions.MovementBonusWithRestrictions>
+                                                                .createFeature("MobileFeatIgnoreDifficultTerrainIfDashing",
+                                                                               "",
+                                                                               Common.common_no_title,
+                                                                               Common.common_no_title,
+                                                                               Common.common_no_icon,
+                                                                               a =>
+                                                                               {
+                                                                                   a.modifiers = new List<FeatureDefinition> { ignore_difficult_terrain };
+                                                                                   a.restrictions.Add(new NewFeatureDefinitions.HasAtLeastOneConditionFromListRestriction(DatabaseHelper.ConditionDefinitions.ConditionDashing,
+                                                                                                                                                                          DatabaseHelper.ConditionDefinitions.ConditionDashingAdditional,
+                                                                                                                                                                          DatabaseHelper.ConditionDefinitions.ConditionDashingBonus,
+                                                                                                                                                                          DatabaseHelper.ConditionDefinitions.ConditionDashingExpeditiousRetreat));
+                                                                               }
+                                                                               );
+            var condition_no_aoo_mark = Helpers.ConditionBuilder.createCondition("MobileFeatPreventAooCondition",
+                                                                      "",
+                                                                     "Rules/&MobileFeatPreventAooConditionTitle",
+                                                                     "Rules/&MobileFeatPreventAooConditionDescription",
+                                                                      null,
+                                                                      DatabaseHelper.ConditionDefinitions.ConditionMarkedByHunter
+                                                                      );
+
+            var feature_no_aoo = Helpers.FeatureBuilder<NewFeatureDefinitions.OpportunityAttackImmunityIfAttackerHasConditionFromCaster>.createFeature("MobileFeatPreventAooCasterFeature",
+                                                                                                                                                         "",
+                                                                                                                                                         Common.common_no_title,
+                                                                                                                                                         Common.common_no_title,
+                                                                                                                                                         Common.common_no_icon,
+                                                                                                                                                         a =>
+                                                                                                                                                         {
+                                                                                                                                                             a.condition = condition_no_aoo_mark;
+                                                                                                                                                         }
+                                                                                                                                                         );
+
+            var apply_no_aoo_mark = Helpers.FeatureBuilder<NewFeatureDefinitions.InitiatorApplyConditionOnAttackToTarget>
+                                                        .createFeature("MobileFeatApplyPreventAooMark",
+                                                                       "",
+                                                                       Common.common_no_title,
+                                                                       Common.common_no_title,
+                                                                       Common.common_no_icon,
+                                                                       a =>
+                                                                       {
+                                                                           a.condition = condition_no_aoo_mark;
+                                                                           a.durationType = RuleDefinitions.DurationType.Round;
+                                                                           a.durationValue = 0;
+                                                                           a.turnOccurence = RuleDefinitions.TurnOccurenceType.EndOfTurn;
+                                                                           a.onlyMelee = true;
+                                                                       }
+                                                                       );
+
+            mobile = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy("MobileFeat",
+                                                                                  "",
+                                                                                  "Feature/&MobileFeatTitle",
+                                                                                  "Feature/&MobileFeatDescription",
+                                                                                  null,
+                                                                                  DatabaseHelper.FeatDefinitions.FollowUpStrike,
+                                                                                  a =>
+                                                                                  {
+                                                                                      a.features = new List<FeatureDefinition>
+                                                                                      {
+                                                                                        speed_bonus,
+                                                                                        ignore_difficult_terrain_if_dashing,
+                                                                                        apply_no_aoo_mark,
+                                                                                        feature_no_aoo
+                                                                                      };
+                                                                                  }
+                                                                                  );
         }
 
 

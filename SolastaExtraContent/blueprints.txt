@@ -1179,3 +1179,9 @@ CharacterActionFuriousAttack	8b7ff00c-be0a-4cb3-b18b-a07d27c666de
 ActionAffinityFuriousAttack	eb21c0ae-c1fc-4c59-84ae-81292b590c3f
 FuriousAttack	8b7ff00c-be0a-4cb3-b18b-a07d27c666de
 PowerDomainSunIndomitableLightChained	16499acf-0ba6-4847-bdfd-c40e7b9cc3a9
+MobileFeatIgnoreDifficultTerrain	6794bab1-6d33-46d6-b8be-3d4c911774f6
+MobileFeatIgnoreDifficultTerrainIfDashing	6bfa42d9-312c-4cc4-a2cd-f2a12594f938
+MobileFeatPreventAooCondition	ea1f006f-d3d3-4e15-907f-bfd200d48b5a
+MobileFeatPreventAooCasterFeature	d600afb3-ebc0-47bf-9933-00194114e237
+MobileFeatApplyPreventAooMark	f4f68a5b-165b-4bbc-967f-fd3a65ebeb5e
+MobileFeat	095c8b50-ff3f-4bc4-b5de-af86621d8937

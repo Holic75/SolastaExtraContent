@@ -18,3 +18,7 @@ Feature/&FuriousFeatDescription	On your turn, when you score a critical hit with
 Feature/&ElementalAdeptFeatTitle	Elemental Focus (<DAMAGE>)
 Feature/&ElementalAdeptFeatDescription	<DAMAGE> spells you cast ignore target's resistance to damage. In addition, when you roll damage for these spells, you can reroll any 1s.
 Feature/&ElementalAdeptFeatRerollDescription	{0} rerolls {1} die from {2} to {3} due to Elemental Focus
+Rules/&MobileFeatPreventAooConditionTitle	Cannot make AOO
+Rules/&MobileFeatPreventAooConditionDescription	You can not make Opportunity Attacks against character with Combat Mobility Feat that hit you.
+Feature/&MobileFeatTitle	Combat Mobility
+Feature/&MobileFeatDescription	Your speed increases by 10 feet.\nWhen you use the Dash action, difficult terrain does not slow you.\nWhen you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not.

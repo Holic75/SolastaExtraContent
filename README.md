@@ -19,6 +19,7 @@ Polearm Expertise
 Magic Heritage  
 Furious  
 Elemental Focus
+Combat Mobility
 
 
 Extra Features:  

@@ -291,6 +291,8 @@ namespace SolastaExtraContent
                                                                                                {
                                                                                                    a.requiredCondition = DatabaseHelper.ConditionDefinitions.ConditionConjuredCreature;
                                                                                                    a.extraCondition = condition;
+                                                                                                   a.durationValue = 1;
+                                                                                                   a.durationType = RuleDefinitions.DurationType.Permanent;
                                                                                                }
                                                                                                );
 
@@ -357,6 +359,8 @@ namespace SolastaExtraContent
                                                                                                {
                                                                                                    a.requiredCondition = DatabaseHelper.ConditionDefinitions.ConditionConjuredCreature;
                                                                                                    a.extraCondition = condition;
+                                                                                                   a.durationValue = 1;
+                                                                                                   a.durationType = RuleDefinitions.DurationType.Permanent;
                                                                                                }
                                                                                                );
         }
