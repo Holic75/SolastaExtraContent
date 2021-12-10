@@ -4,7 +4,7 @@ Stage/&SubclassSelectionStageMonasticTraditionHeader Monastic Tradion
 Stage/&SubclassSelectionStageMonasticTraditionTitle Monk Monastic Tradition
 Stage/&SubclassSelectionStageMonasticTraditionFeatures Monastic Tradition Features
 Class/&MonkClassTitle Monk
-Class/&MonkClassDescription For the truly exemplary, martial skill transcends the battlefield - it is a lifestyle, a doctrine, a state of mind. These warrior-artists search out methods of battle beyond swords and shields, finding weapons within themselves just as capable of crippling or killing as any blade. These monks (so called since they adhere to ancient philosophies and strict martial disciplines) elevate their bodies to become weapons of war, from battle-minded ascetics to self-taught brawlers. Monks tread the path of discipline, and those with the will to endure that path discover within themselves not what they are, but what they are meant to be.
+Class/&MonkClassDescription Monks are the warrior-artists who search out methods of battle beyond swords and shields, finding weapons within themselves just as capable of crippling or killing as any blade. They tread the path of discipline, and those with the will to endure that path discover within themselves not what they are, but what they are meant to be.
 Feature/&MonkWeaponProficiencyTitle Monk Weapon Proficiencies
 Feature/&MonkArmorProficiencyTitle Monk Armor Proficiencies
 Feature/&MonkClassSkillPointPoolTitle	Monk Skills

@@ -11,7 +11,7 @@ Feature/&FighterSubclassEldritchKnightSpellcastingDescription	Spontaneously cast
 Feature/&FighterSubclassEldritchKnightAnySpellSelectionTitle	Extra Spell
 Feature/&FighterSubclassEldritchKnightAnySpellSelectionDescription	At 3rd, 8th, 14th and 20th level you can add a wizard spell of any school to your list of known spells.
 Spell/&SunlightBladeTitle	Sunlight Blade
-Spell/&SunlightBladeDescription	Make a melee attack with a weapon against one creature within the spell's range. On a hit, the target suffers the attack's normal effects, and is enveloped in glowing radiant energy, shedding bright light until the spell ends. Until the end of your next turn, next attack against this creature is done with advantage, after it the spell ends.\n At 5th level, the melee attack deals an extra 1d8 radiant damage to the target. The damage increases by another 1d8 at 11th level and 17th level.
+Spell/&SunlightBladeDescription	Make a melee attack with a weapon. On a hit, the target suffers the attack's normal effects, and is enveloped in glowing radiant energy, shedding bright light until the spell ends. Until the end of your next turn, next attack against this creature is done with advantage, after it the spell ends.\n At 5th level, the melee attack deals an extra 1d8 radiant damage to the target. The damage increases by another 1d8 at 11th level and 17th level.
 Feedback/&AdditionalDamageSunlightBladeFormat	Sunlight Blade
 Feedback/&AdditionalDamageSunlightBladeLine	{0} deals extra damage to {1} due to Potent Spellcasting (+{2})
 Spell/&ViciousMockeryTitle	Vicious Mockery
@@ -110,7 +110,7 @@ Subclass/&BarbarianSubclassPrimalPathOfWarShamanDescription	The Path of the War 
 Feature/&BarbarianSubclassWarShamanClassSpellcastingTitle	War Shaman Spellcasting
 Feature/&BarbarianSubclassWarShamanClassSpellcastingDescription	When you choose this path at 3rd level, you gain the ability to cast a limited selection of druid spells and cantrips. While you cannot cast spells while raging, you can maintain concentration on druid spells while doing so.\nWisdom is your spellcasting ability for your druid spells. You use Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast, or when you make an attack roll with one.
 Feature/&BarbarianSubclassWarShamanClassShareRageTitle	Share Rage
-Feature/&BarbarianSubclassWarShamanClassShareRageDescription	As part of the same bonus action you use to enter a rage, you can expend a spell slot of 1st level or higher. If you do so, choose a willing creature you can see within 30 feet of you. Provided your target can see or hear you, and it isn't wearing heavy armor, it also rages. It gains the effects of the Rage feature, including your Rage Damage bonus. 
+Feature/&BarbarianSubclassWarShamanClassShareRageDescription	As a free action, immediately after you enter a rage, you can expend a spell slot of 1st level or higher. If you do so, choose a willing creature you can see within 30 feet of you. Provided your target can see or hear you, and it isn't wearing heavy armor, it also rages. It gains the effects of the Rage feature, including your Rage Damage bonus. 
 Feature/&BarbarianSubclassWarShamanClassRagecasterTitle	Ragecaster
 Feature/&BarbarianSubclassWarShamanClassRagecasterDescription	You can cast druid spells while raging. The range of your share rage power increases to 120 feet.
 Subclass/&BarbarianSubclassPrimalPathOfFrozenFuryTitle	Path of the Frozen Fury
