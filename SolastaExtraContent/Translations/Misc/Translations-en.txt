@@ -148,8 +148,8 @@ Feature/&FirbolgLanguagesDescription	Common, Elvish and Giant
 Feature/&FirbolgDruidicMagicTitle	Druidic Magic
 Feature/&FirbolgDruidicMagicDescription	You know one cantrip of your choice from the druid spell list. Wisdom is your spellcasting ability for it.
 Feature/&PowerfulBuildTitle	Powerful Build
-Feature/&PowerfulBuildDescription	Your size is considered Large for the purpose of encumbrance level calculation.
+Feature/&PowerfulBuildDescription	You count your size as Large when determining your carrying capacity.
 Feature/&FirbolgInvisibilityPowerTitle	Vanish
 Feature/&FirbolgInvisibilityPowerDescription	As a bonus action, you can magically turn invisible for 1 round. This invisibility breaks if you take any offensive action. Once you use this ability, you can't use it again until you finish a short or long rest.
-Race/&FirbolgTitle	Firbolg
-Race/&FirbolgDescription Firbolgs are half-giants living in the frozen highlands of Solasta. They are crafty, cautious, reclusive, distrust most humanoids except elves and prefer to live far from civilization in tight-knit clans. If pressed into battle, firbolgs demonstrate formidable skills with weapons and nature magic.
+Race/&FirbolgTitle	Ogier
+Race/&FirbolgDescription Ogiers are half-giants living in the frozen highlands of Solasta. They are crafty, cautious, reclusive, distrust most humanoids except elves and prefer to live far from civilization in tight-knit clans. If pressed into battle, ogiers demonstrate formidable skills with weapons and nature magic.
