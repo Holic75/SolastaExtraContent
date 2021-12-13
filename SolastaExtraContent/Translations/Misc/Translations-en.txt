@@ -144,3 +144,12 @@ Rules/&DruidSubclassCircleOfSpiritsSpiritSummonerConditionDescription	This summo
 Feature/&DruidSubclassCircleOfSpiritsGuardianSpiritsTitle	Guardian Spirits
 Feature/&DruidSubclassCircleOfSpiritsGuardianSpiritsDescription	The spirits safeguard the creatures you summon with your magic. When the creature you summoned ends its turn in your spirit area, that creature regains a number of hit points equal to half your druid level.
 Rules/&DruidSubclassCircleOfSpiritsGuardianSpiritsConditionDescription	The creature regains a number of hit points equal to half its summoner's druid level if it ends its turn in the summoners's spirit area.
+Feature/&FirbolgLanguagesDescription	Common, Elven and Giant
+Feature/&FirbolgDruidicMagicTitle	Druidic Magic
+Feature/&FirbolgDruidicMagicDescription	You know one cantrip of your choice from the druid spell list. Wisdom is your spellcasting ability for it.
+Feature/&PowerfulBuildTitle	Powerful Build
+Feature/&PowerfulBuildDescription	Your size is considered Large for the purpose of encumbrance level calculation.
+Feature/&FirbolgInvisibilityPowerTitle	Vanish
+Feature/&FirbolgInvisibilityPowerDescription	As a bonus action, you can magically turn invisible for 1 round. This invisibility breaks if you take any offensive action. Once you use this ability, you can't use it again until you finish a short or long rest.
+Race/&FirbolgTitle	Fir Bolg
+Race/&FirbolgDescription Fir Bolgs are half-giants living in the frozen highlands of Solasta. Their tribes live in the remote strongholds, preferring to spend their days in quite harmony with the nature. If provoked, fir bolgs demonstrate formidable skills with weapons and druidic magic.

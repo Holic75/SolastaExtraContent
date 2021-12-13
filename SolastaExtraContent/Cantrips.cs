@@ -508,7 +508,6 @@ namespace SolastaExtraContent
                 effect_form.ConditionForm.ConditionDefinition = condition;
                 effect_form.conditionForm.applyToSelf = true;
                 effect.EffectForms.Add(effect_form);
-
                 effects.Add((lvl, effect));
             }
             sunlight_blade = Helpers.GenericSpellBuilder<NewFeatureDefinitions.SpellFollowedByMeleeAttack>.createSpell("SunlightBladeSpell",

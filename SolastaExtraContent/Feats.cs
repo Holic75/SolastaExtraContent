@@ -337,7 +337,7 @@ namespace SolastaExtraContent
                                         "8b7ff00c-be0a-4cb3-b18b-a07d27c666de",
                                         power.guiPresentation.title,
                                         power.guiPresentation.description,
-                                        Common.common_no_icon,
+                                        DatabaseHelper.ActionDefinitions.RecallItem.guiPresentation.spriteReference,
                                         DatabaseHelper.ActionDefinitions.RecklessAttack);
             furious_attack_action.id = (ActionDefinitions.Id)ExtendedActionId.Furious;
             furious_attack_action.usesPerTurn = -1;
