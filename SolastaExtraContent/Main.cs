@@ -81,9 +81,9 @@ namespace SolastaExtraContent
         internal static void ModEntryPoint()
         {
             Misc.run();
-            Races.create();
             Cantrips.create();
             Spells.create();
+            Races.create();
             EldritchKnight.create();
             LoremasterFix.run();
             if (settings.fix_cleric_subclasses)
