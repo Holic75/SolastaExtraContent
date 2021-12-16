@@ -161,6 +161,13 @@ namespace SolastaExtraContent
                                                                     3,
                                                                     Helpers.Skills.getAllSkills());
 
+            var skills_multiclass = Helpers.PoolBuilder.createSkillProficiency("BardSkillProficiencyMulticlass",
+                                                                                "70c7a7e8-58ab-4598-8a7a-140b01312a84",
+                                                                                "Feature/&BardClassSkillPointPoolTitle",
+                                                                                "Feature/&BardClassSkillPointPoolMulticlassDescription",
+                                                                                1,
+                                                                                Helpers.Skills.getAllSkills());
+
             var tools_proficiency2 = Helpers.PoolBuilder.createToolProficiency("BardToolsProficiency2",
                                                                                "8333d184-c6d2-4429-a5fd-6810e2003833",
                                                                                "Feature/&BardToolsProficiencyTitle",
@@ -255,6 +262,7 @@ namespace SolastaExtraContent
                                                                                 },
                                                                                 new List<SpellDefinition>
                                                                                 {
+                                                                                    DatabaseHelper.SpellDefinitions.DominatePerson,
                                                                                     DatabaseHelper.SpellDefinitions.DominatePerson,
                                                                                     DatabaseHelper.SpellDefinitions.GreaterRestoration,
                                                                                     DatabaseHelper.SpellDefinitions.HoldMonster,

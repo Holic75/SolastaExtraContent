@@ -7,7 +7,8 @@ Feature/&BardArmorProficiencyTitle	Bard Armor Proficiencies
 Feature/&BardToolsProficiencyTitle	Bard Tool Proficiencies
 Feature/&BardToolsProficiencyDescription	Lyre and either Manacalon Rosary or Thieves' Tools
 Feature/&BardClassSkillPointPoolTitle	Bard Skills
-Feature/&BardClassSkillPointPoolDescription	Choose any 3 skills
+Feature/&BardClassSkillPointPoolDescription	Gain proficiency in 3 skills of your choice
+Feature/&BardClassSkillPointPoolMulticlassDescription	Gain proficiency in 1 skills of you choice
 Feature/&BardClassSpellcastingTitle	Bard Spellcasting
 Feature/&BardClassSpellcastingDescription	Can cast spells from Bard Spells list
 Rules/&BardClassInspiredCondition Inspired
