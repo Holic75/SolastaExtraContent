@@ -193,9 +193,9 @@ namespace SolastaExtraContent
         static void createFurious()
         {
             var condition_scored_critical_hit = Helpers.ConditionBuilder.createCondition("FuriousFeatScoredCriticalCondition", "", "", "", null, DatabaseHelper.ConditionDefinitions.ConditionDummy);
-            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_scored_critical_hit);
+            //NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_scored_critical_hit);
             var condition_hit = Helpers.ConditionBuilder.createCondition("FuriousFeatHitCondition", "", "", "", null, DatabaseHelper.ConditionDefinitions.ConditionDummy);
-            NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_hit);
+            //NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_hit);
 
             var apply_condition_on_attack_hit = Helpers.FeatureBuilder<NewFeatureDefinitions.InitiatorApplyConditionOnDamageDone>
                                                             .createFeature("FuriousFocusHitWatcher",
