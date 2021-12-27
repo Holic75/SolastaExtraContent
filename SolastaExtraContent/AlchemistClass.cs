@@ -1593,7 +1593,7 @@ namespace SolastaExtraContent
                 effect.SetTargetProximityDistance(6);
                 effect.hasSavingThrow = false;
                 effect.restrictedCreatureFamilies = new List<string>();
-                effect.DurationType = RuleDefinitions.DurationType.Instantaneous;
+                effect.DurationType = RuleDefinitions.DurationType.UntilAnyRest;
                 effect.SetTargetType(RuleDefinitions.TargetType.Sphere);
                 effect.EffectForms.Clear();
                 effect.effectAdvancement.Clear();
