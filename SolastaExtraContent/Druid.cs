@@ -186,7 +186,7 @@ namespace SolastaExtraContent
                 power.spellcastingFeature = DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid;
                 elemental_healing.addSubPower(power);
                 elemetal_healing_powers.Add(power);
-                power.restrictions.Add(new NewFeatureDefinitions.HasAvailableSpellSlot(i, DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid));
+                power.restrictions.Add(new NewFeatureDefinitions.HasAvailableSpellSlot(i, DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid, exact: true));
             }
 
             elemental_healing_description = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("DruidSubclassCircleOfElementsElementalHealing",
