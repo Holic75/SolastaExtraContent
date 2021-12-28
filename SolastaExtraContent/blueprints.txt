@@ -1193,3 +1193,13 @@ FirbolgDruidicMagicSpellList	3ac97eec-8d09-4ce3-8d29-40ea8b423798
 FirbolgDruidicMagic	ea2a9c8e-6ca9-490b-a056-d768182b5cd2
 FirbolgPowerfulBuild	3f635935-28a3-4bfd-8f51-77417ad7eb8a
 FirbolgInvisibilityPower	36dcb055-372c-4abf-83b7-4405475d9295
+BardSkillProficiencyMulticlass	70c7a7e8-58ab-4598-8a7a-140b01312a84
+FastShooterFeatAttackCondition	14431559-999a-4479-9424-fef5ff7a3da2
+FastShooterFeatAttackWatcher	bf3faf3a-3fdd-417b-ae1b-9c919a726a13
+FastShooterFeatExtraAttack	284bddb2-1613-48d8-9850-718e66c1d54c
+FastShooterFeatAttackPenaltyFeature	ecf99cb2-c0a4-41b7-99de-9a81c66c9813
+FastShooterFeatRapidShotIgnoreProximityPenalty	08c28c2b-2c0c-48f8-aae9-970a814a394e
+FastShooterFeatRapidShotCondition	6a78503f-ffbb-4347-b429-27df8f3cd7b2
+RapidShot	d7952a41-4c14-402a-9316-a13bc2ce5323
+ActionAffinityRapidShot	0ce4f306-849b-4bab-a4da-3203ca37d2f0
+FastShooterFeat	2dba59c1-4318-4ef8-9df7-18484b7c1254

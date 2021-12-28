@@ -22,7 +22,7 @@ namespace SolastaExtraContent
         static public FeatDefinition furious;
         static public Dictionary<string, FeatDefinition> elemental_adept = new Dictionary<string, FeatDefinition>();
         static public FeatDefinition mobile;
-        //fast_shooter
+        static public FeatDefinition fast_shooter;
 
 
         internal static void load()
@@ -34,6 +34,136 @@ namespace SolastaExtraContent
             createFurious();
             createElementalAdept();
             createCombatMobility();
+            createFastShooter();
+        }
+
+
+        static void createFastShooter()
+        {
+            var condition_attacked = Helpers.ConditionBuilder.createCondition("FastShooterFeatAttackCondition", "", "", "", null, DatabaseHelper.ConditionDefinitions.ConditionDummy);
+            //NewFeatureDefinitions.ConditionsData.no_refresh_conditions.Add(condition_hit);
+
+            var apply_condition_on_attack = Helpers.FeatureBuilder<NewFeatureDefinitions.InitiatorApplyConditionOnAttackToAttacker>
+                                                                    .createFeature("FastShooterFeatAttackWatcher",
+                                                                                   "",
+                                                                                   Common.common_no_title,
+                                                                                   Common.common_no_title,
+                                                                                   Common.common_no_icon,
+                                                                                   a =>
+                                                                                   {
+                                                                                       a.condition = condition_attacked;
+                                                                                       a.durationType = RuleDefinitions.DurationType.Round;
+                                                                                       a.durationValue = 0;
+                                                                                       a.onlyRanged = true;
+                                                                                   }
+                                                                                   );
+
+            List<string> allowed_weapon_types = new List<string>()
+                                                {
+                                                    Helpers.WeaponProficiencies.Longbow,
+                                                    Helpers.WeaponProficiencies.Shortbow,
+                                                    Helpers.WeaponProficiencies.HeavyCrossbow,
+                                                    Helpers.WeaponProficiencies.LightCrossbow,
+                                                    Helpers.WeaponProficiencies.Dagger,
+                                                    Helpers.WeaponProficiencies.Javelin
+                                                };
+
+            var add_bonus_attack = Helpers.FeatureBuilder<NewFeatureDefinitions.ExtraMainWeaponAttack>.createFeature("FastShooterFeatExtraAttack",
+                                                                                                                     "",
+                                                                                                                     Common.common_no_title,
+                                                                                                                     Common.common_no_title,
+                                                                                                                     Common.common_no_icon,
+                                                                                                                     a =>
+                                                                                                                     {
+                                                                                                                         a.actionType = ActionDefinitions.ActionType.Bonus;
+                                                                                                                         a.restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(condition_attacked));
+                                                                                                                         a.restrictions.Add(new NewFeatureDefinitions.SpecificWeaponInMainHandRestriction(allowed_weapon_types));
+                                                                                                                     }
+                                                                                                                     );
+            var attack_penalty = Helpers.CopyFeatureBuilder<FeatureDefinitionCombatAffinity>.createFeatureCopy("FastShooterFeatAttackPenaltyFeature",
+                                                                                                               "",
+                                                                                                               Common.common_no_title,
+                                                                                                               Common.common_no_title,
+                                                                                                               Common.common_no_icon,
+                                                                                                               DatabaseHelper.FeatureDefinitionCombatAffinitys.CombatAffinityCursedByBestowCurseOnAttackRoll,
+                                                                                                               a =>
+                                                                                                               {
+                                                                                                                   a.myAttackModifierSign = RuleDefinitions.AttackModifierSign.Substract;
+                                                                                                                   a.myAttackModifierValueDetermination = RuleDefinitions.CombatAddinityValueDetermination.Die;
+                                                                                                                   a.myAttackModifierDiceNumber = 2;
+                                                                                                                   a.myAttackModifierDieType = RuleDefinitions.DieType.D1;
+                                                                                                                   a.myAttackAdvantage = RuleDefinitions.AdvantageType.None;
+                                                                                                                   a.situationalContext = RuleDefinitions.SituationalContext.AttackingWithRangedWeapon;
+                                                                                                               }
+                                                                                                               );
+
+            var ignore_proximity_penalty = Helpers.FeatureBuilder<NewFeatureDefinitions.IgnorePhysicalRangeProximityPenaltyWithWeaponCategory>
+                                                            .createFeature("FastShooterFeatRapidShotIgnoreProximityPenalty",
+                                                                           "",
+                                                                           Common.common_no_title,
+                                                                           Common.common_no_title,
+                                                                           Common.common_no_icon,
+                                                                           a =>
+                                                                           {
+                                                                               a.weaponCategories = allowed_weapon_types;
+                                                                               a.only_for_close_range_attacks = false;
+                                                                           }
+                                                                           );
+
+            var condition_fast_shooter = Helpers.ConditionBuilder.createCondition("FastShooterFeatRapidShotCondition",
+                                                                      "",
+                                                                     "Rules/&FastShooterConditionRapidShotTitle",
+                                                                     "Rules/&FastShooterConditionRapidShotDescription",
+                                                                      null,
+                                                                      DatabaseHelper.ConditionDefinitions.ConditionReckless,
+                                                                      apply_condition_on_attack,
+                                                                      ignore_proximity_penalty,
+                                                                      attack_penalty,
+                                                                      add_bonus_attack);
+            condition_fast_shooter.possessive = false;
+
+
+            var rapid_shot_action = SolastaModHelpers.Helpers.CopyFeatureBuilder<ActionDefinition>
+                     .createFeatureCopy("RapidShot",
+                                        "d7952a41-4c14-402a-9316-a13bc2ce5323",
+                                        "Feature/&FastShooterFeatRapidShotActionTitle",
+                                        "Feature/&FastShooterFeatRapidShotActionDescription",
+                                        DatabaseHelper.ActionDefinitions.Volley.guiPresentation.spriteReference,
+                                        DatabaseHelper.ActionDefinitions.RecklessAttack);
+            rapid_shot_action.id = (ActionDefinitions.Id)ExtendedActionId.RapidShot;
+            rapid_shot_action.usesPerTurn = -1;
+            ActionData.addActionRestrictions(rapid_shot_action, new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.AttackedRestriction()),
+                                                                new NewFeatureDefinitions.InverseRestriction(new NewFeatureDefinitions.HasConditionRestriction(condition_fast_shooter)));
+
+            var action_affinity = Helpers.CopyFeatureBuilder<FeatureDefinitionActionAffinity>
+                                                .createFeatureCopy("ActionAffinityRapidShot",
+                                                                   "",
+                                                                   Common.common_no_title,
+                                                                   Common.common_no_title,
+                                                                   Common.common_no_icon,
+                                                                   DatabaseHelper.FeatureDefinitionActionAffinitys.ActionAffinityBarbarianRecklessAttack,
+                                                                   a =>
+                                                                   {
+                                                                       a.authorizedActions = new List<ActionDefinitions.Id> { rapid_shot_action.id };
+                                                                   }
+                                                                   );
+
+
+
+            fast_shooter = Helpers.CopyFeatureBuilder<FeatDefinition>.createFeatureCopy("FastShooterFeat",
+                                                                      "",
+                                                                      "Feature/&FastShooterFeatTitle",
+                                                                      "Feature/&FastShooterFeatDescription",
+                                                                      null,
+                                                                      DatabaseHelper.FeatDefinitions.TakeAim,
+                                                                      a =>
+                                                                      {
+                                                                          a.features = new List<FeatureDefinition>
+                                                                          {
+                                                                            action_affinity
+                                                                          };
+                                                                      }
+                                                                      );
         }
 
 

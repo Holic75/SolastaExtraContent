@@ -22,3 +22,9 @@ Rules/&MobileFeatPreventAooConditionTitle	Cannot make AOO
 Rules/&MobileFeatPreventAooConditionDescription	You can not make Opportunity Attacks against character with Combat Mobility Feat that hit you.
 Feature/&MobileFeatTitle	Combat Mobility
 Feature/&MobileFeatDescription	Your speed increases by 10 feet.\nWhen you use the Dash action, difficult terrain does not slow you.\nWhen you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not.
+Feature/&FastShooterFeatTitle	Fast Shooter
+Feature/&FastShooterFeatDescription	When you make your first attack on your turn, you can decide to shoot faster than usual. Doing so permits you to ignore disadvantage on your ranged attack rolls if you within 5 feet of a hostile creature, and also make one extra ranged attack as a bonus action this turn, but you suffer a -2 penalty on all your ranged attacks.
+Feature/&FastShooterFeatRapidShotActionTitle	Fast Shot
+Feature/&FastShooterFeatRapidShotActionDescription	Ignore ranged proximity disadvantage and make one extra ranged attack as a bonus action, but suffer a -2 penalty on all your ranged attacks.
+Rules/&FastShooterConditionRapidShotTitle	Fast Shot
+Rules/&FastShooterConditionRapidShotDescription	Target ignores ranged proximity disadvantage and can make one extra ranged attack as a bonus action, but suffers a -2 penalty on all ranged attacks.

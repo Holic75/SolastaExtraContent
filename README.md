@@ -20,6 +20,7 @@ Magic Heritage
 Furious  
 Elemental Focus
 Combat Mobility
+Fast Shooter
 
 
 Extra Features:  

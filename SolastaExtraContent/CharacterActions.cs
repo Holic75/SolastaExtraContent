@@ -17,3 +17,18 @@ public class CharacterActionFuriousAttack : CharacterActionApplyConditionsToSelf
         return new string[] { "FuriousFeatPowerAttackCondition" };
     }
 }
+
+
+
+public class CharacterActionRapidShot : CharacterActionApplyConditionsToSelfUntilRoundEnd
+{
+    public CharacterActionRapidShot(CharacterActionParams actionParams)
+        : base(actionParams)
+    {
+    }
+
+    public override string[] getConditions()
+    {
+        return new string[] { "FastShooterFeatRapidShotCondition" };
+    }
+}
