@@ -54,6 +54,7 @@ namespace SolastaExtraContent
             DatabaseHelper.MonsterDefinitions.Giant_Eagle.groupAttacks = true;
             DatabaseHelper.MonsterDefinitions.Fire_Jester.AttackIterations[1].monsterAttackDefinition.projectile = DatabaseHelper.ItemDefinitions.Arrow_Alchemy_Flaming.name;
             DatabaseHelper.MonsterDefinitions.Fire_Jester.AttackIterations[1].monsterAttackDefinition.guiPresentation.title = DatabaseHelper.SpellDefinitions.FireBolt.guiPresentation.title;
+            DatabaseHelper.MonsterDefinitions.WindSnake.AttackIterations[1].monsterAttackDefinition.projectile = DatabaseHelper.ItemDefinitions.Arrow_Alchemy_Flash.name;
         }
 
 

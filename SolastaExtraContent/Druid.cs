@@ -10,6 +10,7 @@ using NewFeatureDefinitions = SolastaModHelpers.NewFeatureDefinitions;
 using ExtendedEnums = SolastaModHelpers.ExtendedEnums;
 using SolastaModHelpers;
 using UnityEngine.AddressableAssets;
+using SolastaModHelpers.NewFeatureDefinitions;
 
 namespace SolastaExtraContent
 {
@@ -22,9 +23,314 @@ namespace SolastaExtraContent
         static public NewFeatureDefinitions.AddExtraConditionToTargetOnConditionApplication guardian_spirits;
         static public NewFeatureDefinitions.PowerBundle base_spirit;
 
+        static public FeatureDefinition elemental_form_mark;
+        static public NewFeatureDefinitions.LinkedPower elemental_form;
+        static public NewFeatureDefinitions.PowerBundle elemental_healing;
+        static public FeatureDefinitionActionAffinity elemental_form_affinity;
+        static public FeatureDefinition elemental_healing_description;
+        static public List<FeatureDefinitionPower> elemetal_healing_powers = new List<FeatureDefinitionPower>();
+        static public NewFeatureDefinitions.AddAttackTagIfHasFeature primal_attacks;
+        static public NewFeatureDefinitions.MonsterAdditionalDamage elemental_damage;
+        static public NewFeatureDefinitions.MonsterAdditionalDamage elemental_strike;
+
+
+
+
         public static void create()
         {
+            createCircleOfElements();
             createCircleOfSpirits();
+        }
+
+
+        static void createCircleOfElements()
+        {
+            createElementalHealing();
+            createElementalForms();
+            createPrimalAttacks();
+            createElementalStrike();
+            var gui_presentation = new GuiPresentationBuilder(
+                    "Subclass/&DruidSubclassCircleOfElementsDescription",
+                    "Subclass/&DruidSubclassCircleOfElementsTitle")
+                    .SetSpriteReference(DatabaseHelper.CharacterSubclassDefinitions.TraditionShockArcanist.GuiPresentation.SpriteReference)
+                    .Build();
+
+            CharacterSubclassDefinition definition = new CharacterSubclassDefinitionBuilder("DruidSubclassCircleOfElements", "fce3fd2e-0bba-4fdc-98da-460c0249108e")
+                                                                                            .SetGuiPresentation(gui_presentation)
+                                                                                            .AddFeatureAtLevel(elemental_form, 2)
+                                                                                            .AddFeatureAtLevel(elemental_form_affinity, 2)
+                                                                                            .AddFeatureAtLevel(elemental_healing_description, 2)
+                                                                                            .AddFeatureAtLevel(primal_attacks, 6)
+                                                                                            .AddFeatureAtLevel(elemental_strike, 10)
+                                                                                            .AddToDB();
+            DatabaseHelper.FeatureDefinitionSubclassChoices.SubclassChoiceDruidCircle.Subclasses.Add(definition.Name);
+        }
+
+
+
+        static void createElementalStrike()
+        {
+            var additional_damage_proxy = Helpers.FeatureBuilder<NewFeatureDefinitions.MonsterAdditionalDamageProxy>
+                .createFeature("DruidSubclassCircleOfElementsElementalStrikeProxy",
+                               "",
+                               Common.common_no_title,
+                               Common.common_no_title,
+                               Common.common_no_icon,
+                               a =>
+                               {
+                                   a.additionalDamageType = RuleDefinitions.AdditionalDamageType.SameAsBaseDamage;
+                                   a.damageAdvancement = RuleDefinitions.AdditionalDamageAdvancement.SlotLevel;
+                                   a.triggerCondition = RuleDefinitions.AdditionalDamageTriggerCondition.SpendSpellSlot;
+                                   a.spellcastingFeature = DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid;
+                                   a.limitedUsage = RuleDefinitions.FeatureLimitedUsage.OnceInMyturn;
+                                   a.notificationTag = "DruidSubclassCircleOfElementsElementalStrike";
+                                   a.damageDieType = RuleDefinitions.DieType.D8;
+                                   a.damageValueDetermination = RuleDefinitions.AdditionalDamageValueDetermination.Die;
+                                   a.damageDiceNumber = 1;
+                                   var list = new (int, int)[10];
+                                   for (int i = 0; i < 10; i++)
+                                   {
+                                       list[i] = (i + 1, i + 1);
+                                   }
+
+                                   a.diceByRankTable = Helpers.Misc.createDiceRankTable(10, list);
+                                   a.impactParticle = DatabaseHelper.FeatureDefinitionAdditionalDamages.AdditionalDamageHuntersMark.ImpactParticle;
+                                   a.restricitons.Add(new NewFeatureDefinitions.HasFeatureRestriction(elemental_form_mark));
+                               }
+                               );
+
+            elemental_strike = Helpers.FeatureBuilder<NewFeatureDefinitions.MonsterAdditionalDamage>.createFeature("DruidSubclassCircleOfElementsElementalStrike",
+                                                                                                                   "",
+                                                                                                                   "Feature/&DruidSubclassCircleOfElementsElementalStrikeTitle",
+                                                                                                                   "Feature/&DruidSubclassCircleOfElementsElementalStrikeDescription",
+                                                                                                                   Common.common_no_icon,
+                                                                                                                   b =>
+                                                                                                                   {
+                                                                                                                       b.provider = additional_damage_proxy;
+                                                                                                                   }
+                                                                                                                   );
+        }
+
+
+        static void createPrimalAttacks()
+        {
+            primal_attacks = Helpers.FeatureBuilder<NewFeatureDefinitions.AddAttackTagIfHasFeature>.createFeature("DruidSubclassCircleOfElementsPrimalAttacks",
+                                                                                                                  "",
+                                                                                                                  "Feature/&DruidSubclassCircleOfElementsPrimalAttacksTitle",
+                                                                                                                  "Feature/&DruidSubclassCircleOfElementsPrimalAttacksDescription",
+                                                                                                                  Common.common_no_icon,
+                                                                                                                  a =>
+                                                                                                                  {
+                                                                                                                      a.requiredFeature = elemental_form_mark;
+                                                                                                                      a.tag = "Magical";
+                                                                                                                  }
+                                                                                                                  );
+        }
+
+
+        static void createElementalHealing()
+        {
+            var base_eff = new EffectDescription();
+            base_eff.Copy(DatabaseHelper.SpellDefinitions.CureWounds.EffectDescription);
+            base_eff.effectForms.Clear();
+            base_eff.durationType = RuleDefinitions.DurationType.UntilLongRest;
+
+            elemental_healing = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerBundle>
+                                    .createPower("DruidSubclassCircleOfElementsElementalHealingPower",
+                                                 "",
+                                                 "Feature/&DruidSubclassCircleOfElementsElementalHealingPowerTitle",
+                                                 "Feature/&DruidSubclassCircleOfElementsElementalHealingPowerDescription",
+                                                 DatabaseHelper.FeatureDefinitionPowers.PowerTraditionShockArcanistArcaneFury.guiPresentation.SpriteReference,
+                                                 base_eff,
+                                                 RuleDefinitions.ActivationTime.BonusAction,
+                                                 2,
+                                                 RuleDefinitions.UsesDetermination.Fixed,
+                                                 RuleDefinitions.RechargeRate.SpellSlot
+                                                 );
+            elemental_healing.spellcastingFeature = DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid;
+            elemetal_healing_powers.Add(elemental_healing);
+            for (int i = 1; i < 10; i++)
+            {
+                var effect = new EffectDescription();
+                effect.Copy(DatabaseHelper.SpellDefinitions.CureWounds.EffectDescription);
+                effect.effectForms.Clear();
+                effect.effectAdvancement.Clear();
+                effect.targetType = RuleDefinitions.TargetType.Self;
+                effect.rangeParameter = 1;
+                effect.rangeType = RuleDefinitions.RangeType.Self;
+                effect.createdByCharacter = true;
+                var effect_form = new EffectForm();
+                effect_form.formType = EffectForm.EffectFormType.Healing;
+                effect_form.healingForm = new HealingForm();
+                effect_form.healingForm.diceNumber = i;
+                effect_form.healingForm.dieType = RuleDefinitions.DieType.D8;
+                effect_form.healingForm.healingComputation = RuleDefinitions.HealingComputation.Dice;
+                effect.EffectForms.Add(effect_form);
+                
+                var power = Helpers.GenericPowerBuilder<NewFeatureDefinitions.HiddenPower>
+                                                                   .createPower($"DruidSubclassCircleOfElementsElementalHealingPower{i}",
+                                                                                "",
+                                                                                Helpers.StringProcessing.appendToString("Feature/&DruidSubclassCircleOfElementsElementalHealingPowerTitle",
+                                                                                                                        $"Feature/&DruidSubclassCircleOfElementsElementalHealingPower{i}Title",
+                                                                                                                        $" {Gui.ToRoman(i)}"
+                                                                                                                        ),
+                                                                                "Feature/&DruidSubclassCircleOfElementsElementalHealingPowerDescription",
+                                                                                elemental_healing.guiPresentation.spriteReference,
+                                                                                effect,
+                                                                                RuleDefinitions.ActivationTime.BonusAction,
+                                                                                2,
+                                                                                RuleDefinitions.UsesDetermination.Fixed,
+                                                                                RuleDefinitions.RechargeRate.SpellSlot,
+                                                                                cost_per_use: i
+                                                                                );
+                power.spellcastingFeature = DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid;
+                elemental_healing.addSubPower(power);
+                elemetal_healing_powers.Add(power);
+                power.restrictions.Add(new NewFeatureDefinitions.HasAvailableSpellSlot(i, DatabaseHelper.FeatureDefinitionCastSpells.CastSpellDruid));
+            }
+
+            elemental_healing_description = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("DruidSubclassCircleOfElementsElementalHealing",
+                                                                                                                "",
+                                                                                                                "Feature/&DruidSubclassCircleOfElementsElementalHealingPowerTitle",
+                                                                                                                "Feature/&DruidSubclassCircleOfElementsElementalHealingPowerDescription");
+        }
+
+
+        static void createElementalForms()
+        {
+            DatabaseHelper.MonsterDefinitions.SkarnGhoul.armorClass = 15;
+            DatabaseHelper.MonsterDefinitions.SkarnGhoul.features.Add(DatabaseHelper.FeatureDefinitionDamageAffinitys.DamageAffinityBludgeoningResistance);
+            DatabaseHelper.MonsterDefinitions.SkarnGhoul.features.Add(DatabaseHelper.FeatureDefinitionDamageAffinitys.DamageAffinityPiercingResistance);
+            DatabaseHelper.MonsterDefinitions.SkarnGhoul.features.Add(DatabaseHelper.FeatureDefinitionDamageAffinitys.DamageAffinitySlashingResistance);
+
+            elemental_form_mark = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("DruidSubclassCircleOfElementsElementalFormMark",
+                                                                                                     "",
+                                                                                                     Common.common_no_title,
+                                                                                                     Common.common_no_title);
+            Dictionary<string, MonsterDefinition> monsters = new Dictionary<string, MonsterDefinition>
+            {
+                {"FireJester", DatabaseHelper.MonsterDefinitions.Fire_Jester},
+                {"FireOsprey", DatabaseHelper.MonsterDefinitions.Fire_Osprey},
+                {"WindSnake", DatabaseHelper.MonsterDefinitions.WindSnake},
+                {"SkarnGhoul", DatabaseHelper.MonsterDefinitions.SkarnGhoul},
+                {"AirElemental", DatabaseHelper.MonsterDefinitions.Air_Elemental},
+                {"FireElemental", DatabaseHelper.MonsterDefinitions.Fire_Elemental},
+                {"EarthElemental", DatabaseHelper.MonsterDefinitions.Earth_Elemental},
+            };
+
+            foreach (var key in monsters.Keys.ToArray())
+            {
+                var old_tags = monsters[key].creatureTags;
+                monsters[key] = Helpers.CopyFeatureBuilder<MonsterDefinition>.createFeatureCopy($"DruidSubclassCircleOfElements{key}Unit",
+                                                                                                "",
+                                                                                                "",
+                                                                                                "",
+                                                                                                null,
+                                                                                                monsters[key]);
+                monsters[key].alignment = "Unaligned";
+                monsters[key].creatureTags = new List<string>() { "WildShape" };
+                monsters[key].creatureTags.AddRange(old_tags);
+                monsters[key].features.Add(elemental_form_mark);
+                monsters[key].features.AddRange(elemetal_healing_powers);
+                monsters[key].fullyControlledWhenAllied = false;
+                monsters[key].dungeonMakerPresence = MonsterDefinition.DungeonMaker.None;
+                monsters[key].bestiaryEntry = BestiaryDefinitions.BestiaryEntry.None;
+            }
+
+            var effect_description = new EffectDescription();
+            effect_description.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerDruidWildShape.effectDescription);
+            effect_description.effectForms.Clear();
+            var form = new EffectForm();
+            form.formType = EffectForm.EffectFormType.ShapeChange;
+            form.createdByCharacter = true;
+            form.shapeChangeForm = new ShapeChangeForm();
+            form.shapeChangeForm.keepMentalAbilityScores = true;
+            form.shapeChangeForm.shapeChangeType = ShapeChangeForm.Type.ClassLevelListSelection;
+            form.shapeChangeForm.specialSubstituteCondition = DatabaseHelper.FeatureDefinitionPowers.PowerDruidWildShape.effectDescription.effectForms[0].shapeChangeForm.specialSubstituteCondition;
+            form.shapeChangeForm.shapeOptions = new List<ShapeOptionDescription>()
+            {
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 2,
+                    substituteMonster = monsters["FireJester"]
+                },
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 5,
+                    substituteMonster = monsters["WindSnake"]
+                },
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 5,
+                    substituteMonster = monsters["SkarnGhoul"]
+                },
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 8,
+                    substituteMonster = monsters["FireOsprey"]
+                },
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 11,
+                    substituteMonster = monsters["AirElemental"]
+                },
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 11,
+                    substituteMonster = monsters["FireElemental"]
+                },
+                new ShapeOptionDescription()
+                {
+                    requiredLevel = 11,
+                    substituteMonster = monsters["EarthElemental"]
+                }
+            };
+            effect_description.EffectForms.Add(form);
+            elemental_form = Helpers.GenericPowerBuilder<NewFeatureDefinitions.LinkedPower>.createPower("DruidSubclassCircleOfElementsElementalFormPower",
+                                                                                                          "",
+                                                                                                          "Feature/&DruidSubclassCircleOfElementsElementalFormTitle",
+                                                                                                          "Feature/&DruidSubclassCircleOfElementsElementalFormDescription",
+                                                                                                          null,
+                                                                                                          effect_description,
+                                                                                                          RuleDefinitions.ActivationTime.BonusAction,
+                                                                                                          2,
+                                                                                                          RuleDefinitions.UsesDetermination.Fixed,
+                                                                                                          RuleDefinitions.RechargeRate.ShortRest);
+            elemental_form.delegatedToAction = true;
+            elemental_form.linkedPower = DatabaseHelper.FeatureDefinitionPowers.PowerDruidWildShape;
+
+
+            var elemental_form_action = SolastaModHelpers.Helpers.CopyFeatureBuilder<ActionDefinition>
+                                                                    .createFeatureCopy("ElementalForm",
+                                                                        "9d796b3e-8d9c-485f-b906-2272da28cc92",
+                                                                        elemental_form.guiPresentation.title,
+                                                                        elemental_form.guiPresentation.description,
+                                                                        DatabaseHelper.ActionDefinitions.WildShape.guiPresentation.spriteReference,
+                                                                        DatabaseHelper.ActionDefinitions.WildShape);
+            elemental_form_action.id = (ActionDefinitions.Id)ExtendedActionId.ElementalForm;
+            elemental_form_action.usesPerTurn = -1;
+            elemental_form_action.activatedPower = elemental_form;
+            elemental_form_action.actionType = ActionDefinitions.ActionType.Bonus;
+            elemental_form_action.requiresAuthorization = true;
+            ActionData.addActionRestrictions(elemental_form_action, 
+                                             new NewFeatureDefinitions.NoConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionWildShapeSubstituteForm),
+                                             new NewFeatureDefinitions.HasAvailablePowerUses(elemental_form));
+
+            elemental_form_affinity = Helpers.CopyFeatureBuilder<FeatureDefinitionActionAffinity>.createFeatureCopy("DruidSubclassCircleOfElementsElementalFormActionAffinity",
+                                                                                                                    "",
+                                                                                                                    "",
+                                                                                                                    "",
+                                                                                                                    null,
+                                                                                                                    DatabaseHelper.FeatureDefinitionActionAffinitys.ActionAffinityWildShapeRevertShape,
+                                                                                                                    a =>
+                                                                                                                    {
+                                                                                                                        a.authorizedActions = new List<ActionDefinitions.Id>
+                                                                                                                        {
+                                                                                                                            elemental_form_action.id
+                                                                                                                        };
+                                                                                                                    }
+                                                                                                                    );
+            elemental_form_affinity.guiPresentation.hidden = true;
         }
 
 
