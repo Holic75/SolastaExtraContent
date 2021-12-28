@@ -1255,7 +1255,7 @@ namespace SolastaExtraContent
                                                                                  RuleDefinitions.ActivationTime.NoCost,
                                                                                  1,
                                                                                  RuleDefinitions.UsesDetermination.Fixed,
-                                                                                 RuleDefinitions.RechargeRate.ShortRest
+                                                                                 RuleDefinitions.RechargeRate.None
                                                                                  );
                 use_power_saves.diceNumber = 1;
                 use_power_saves.dieType = dice[i];
@@ -1323,7 +1323,7 @@ namespace SolastaExtraContent
                                                                     RuleDefinitions.ActivationTime.NoCost,
                                                                     1,
                                                                     RuleDefinitions.UsesDetermination.Fixed,
-                                                                    previous_use_power == null ? RuleDefinitions.RechargeRate.LongRest : RuleDefinitions.RechargeRate.ShortRest,
+                                                                    RuleDefinitions.RechargeRate.None,
                                                                     Helpers.Stats.Charisma,
                                                                     Helpers.Stats.Charisma
                                                                     );
@@ -1362,7 +1362,9 @@ namespace SolastaExtraContent
                                                                                         null,
                                                                                         DatabaseHelper.ConditionDefinitions.ConditionGuided,
                                                                                         grant_power_feature,
-                                                                                        grant_power_feature2
+                                                                                        grant_power_feature2,
+                                                                                        use_power,
+                                                                                        use_power_saves
                                                                                         );
                 grant_power_feature.condition = inspiration_condition;
                 grant_power_feature2.condition = inspiration_condition;
