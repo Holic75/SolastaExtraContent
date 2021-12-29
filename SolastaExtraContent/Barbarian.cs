@@ -18,8 +18,8 @@ namespace SolastaExtraContent
         static public NewFeatureDefinitions.SpellcastingForbidden rage_spellcasting_forbiden;
         static public SpellListDefinition war_shaman_spelllist;
         static public FeatureDefinitionCastSpell war_shaman_spellcasting;
-        static public NewFeatureDefinitions.PowerWithRestrictions share_rage_power;
-        static public NewFeatureDefinitions.PowerWithRestrictions share_rage_power_60;
+        static public NewFeatureDefinitions.ShareRagePower share_rage_power;
+        static public NewFeatureDefinitions.ShareRagePower share_rage_power_60;
         static public FeatureDefinitionFeatureSet ragecaster;
 
         //Frozen Fury
@@ -187,8 +187,8 @@ namespace SolastaExtraContent
 
             frozen_fury_rage_feature = Helpers.FeatureBuilder<NewFeatureDefinitions.ApplyPowerOnTurnEndBasedOnClassLevel>.createFeature("BarbarianSubclassFrozenFuryWintersFuryRageFeature",
                                                                                                                                           "",
-                                                                                                                                          winters_fury_title_string,
-                                                                                                                                          winters_fury_description_string,
+                                                                                                                                          Common.common_no_title,
+                                                                                                                                          Common.common_no_title,
                                                                                                                                           null,
                                                                                                                                           f =>
                                                                                                                                           {
@@ -198,7 +198,7 @@ namespace SolastaExtraContent
                                                                                                                                           }
                                                                                                                                           );
 
-
+            frozen_fury_rage_feature.guiPresentation.hidden = true;
             DatabaseHelper.ConditionDefinitions.ConditionRaging.features.Add(frozen_fury_rage_feature);
 
             frozen_fury = Helpers.OnlyDescriptionFeatureBuilder.createOnlyDescriptionFeature("BarbarianSubclassFrozenFuryWintersFuryFeature",
@@ -330,17 +330,11 @@ namespace SolastaExtraContent
 
         static void createShareRage()
         {
-            //TODO fix damage calculation
             string share_rage_title_string = "Feature/&BarbarianSubclassWarShamanClassShareRageTitle";
             string share_rage_description_string = "Feature/&BarbarianSubclassWarShamanClassShareRageDescription";
 
             DatabaseHelper.FeatureDefinitionActionAffinitys.ActionAffinityConditionRaging.authorizedActions.Add(ActionDefinitions.Id.RageStop);
-            var condition_started_rage = Helpers.CopyFeatureBuilder<ConditionDefinition>.createFeatureCopy("BarbarianStartedRageCondition",
-                                                                                                           "",
-                                                                                                           Common.common_no_title,
-                                                                                                           Common.common_no_title,
-                                                                                                           Common.common_no_icon,
-                                                                                                           DatabaseHelper.ConditionDefinitions.ConditionDummy);
+
             shared_rage_condition = Helpers.CopyFeatureBuilder<ConditionDefinition>.createFeatureCopy("BarbarianShareRageCondition",
                                                                                                "",
                                                                                                Common.common_no_title,
@@ -353,31 +347,18 @@ namespace SolastaExtraContent
                                                                                                    a.durationParameter = 2;
                                                                                                    a.durationType = RuleDefinitions.DurationType.Round;
                                                                                                });
-
-            condition_started_rage.durationType = RuleDefinitions.DurationType.Round;
-            condition_started_rage.specialDuration = true;
-            condition_started_rage.durationParameter = 0;
-
-            var effect_form = new EffectForm();
-            effect_form.ConditionForm = new ConditionForm();
-            effect_form.FormType = EffectForm.EffectFormType.Condition;
-            effect_form.ConditionForm.Operation = ConditionForm.ConditionOperation.Add;
-            effect_form.ConditionForm.ConditionDefinition = condition_started_rage;
-            DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.effectDescription.EffectForms.Add(effect_form);
-            condition_started_rage.specialInterruptions = new List<RuleDefinitions.ConditionInterruption> {RuleDefinitions.ConditionInterruption.AnyBattleTurnEnd,
-                                                                                                           RuleDefinitions.ConditionInterruption.Attacked,
-                                                                                                           RuleDefinitions.ConditionInterruption.UsePower};
-            var share_rage_powers = new NewFeatureDefinitions.PowerWithRestrictions[2];
+          
+            var share_rage_powers = new NewFeatureDefinitions.ShareRagePower[2];
             for (int i = 0; i < share_rage_powers.Length; i++)
             {
-                share_rage_powers[i] = Helpers.GenericPowerBuilder<NewFeatureDefinitions.PowerWithRestrictions>
+                share_rage_powers[i] = Helpers.GenericPowerBuilder<NewFeatureDefinitions.ShareRagePower>
                                                                                     .createPower($"BarbarianSubclassWarshamanShareRagePower{(i + 1) * 60}",
                                                                                                     "",
                                                                                                     share_rage_title_string,
                                                                                                     share_rage_description_string,
                                                                                                     DatabaseHelper.FeatureDefinitionPowers.PowerDomainLawHolyRetribution.GuiPresentation.SpriteReference,
                                                                                                     DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.effectDescription,
-                                                                                                    RuleDefinitions.ActivationTime.NoCost,
+                                                                                                    RuleDefinitions.ActivationTime.BonusAction,
                                                                                                     10,
                                                                                                     RuleDefinitions.UsesDetermination.Fixed,
                                                                                                     RuleDefinitions.RechargeRate.SpellSlot
@@ -385,6 +366,7 @@ namespace SolastaExtraContent
 
                 var effect = new EffectDescription();
                 effect.Copy(DatabaseHelper.FeatureDefinitionPowers.PowerBarbarianRageStart.EffectDescription);
+                effect.EffectForms.Clear();
                 effect.rangeType = RuleDefinitions.RangeType.Distance;
                 effect.rangeParameter = 6 + 6*i;
                 effect.targetParameter = 1;
@@ -403,8 +385,8 @@ namespace SolastaExtraContent
                 effect_form_share.ConditionForm.ConditionDefinition = shared_rage_condition;
                 effect.EffectForms.Add(effect_form_share);
 
-                share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionRaging));
-                share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.HasConditionRestriction(condition_started_rage));
+                share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.NoConditionRestriction(DatabaseHelper.ConditionDefinitions.ConditionRaging));
+                share_rage_powers[i].restrictions.Add(new NewFeatureDefinitions.ArmorTypeRestriction(DatabaseHelper.ArmorCategoryDefinitions.HeavyArmorCategory, inverted: true));
                 share_rage_powers[i].effectDescription = effect;
                 share_rage_powers[i].effectDescription.immuneCreatureFamilies = new List<string> { Helpers.Misc.createImmuneIfHasConditionFamily(DatabaseHelper.ConditionDefinitions.ConditionRaging) };
                 share_rage_powers[i].spellcastingFeature = war_shaman_spellcasting;

@@ -470,7 +470,7 @@ namespace SolastaExtraContent
                                                                                        "",
                                                                                        "Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetTitle",
                                                                                        "Feature/&DruidSubclassCircleOfSpiritsSpiritsFeatureSetDescription",
-                                                                                       DatabaseHelper.FeatureDefinitionPowers.PowerWindShelteringBreeze.guiPresentation.spriteReference,
+                                                                                       DatabaseHelper.FeatureDefinitionPowers.PowerSorcererCreateSorceryPoints.guiPresentation.spriteReference,
                                                                                        base_effect,
                                                                                        RuleDefinitions.ActivationTime.BonusAction,
                                                                                        2,
