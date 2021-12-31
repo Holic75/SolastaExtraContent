@@ -33,14 +33,15 @@ Magic Heritage
 Furious  
 Elemental Focus  
 Combat Mobility  
-Fast Shooter
+Fast Shooter.
 
 
 ### Extra Features:  
-Loremaster wizard can add one cantrip and one spell of any class to his/her spellbook at lvl 2,  
-Cleric subclasses are modified to match better Solasta sourcebook description (optional),  
-Quarterstaves can be used as arcane/druidic foci (optional).  
-Controllable summons (optional).
+Loremaster wizard can add one cantrip and one spell of any class to his/her spellbook at lvl 2    
+Cleric subclasses are modified to match better Solasta sourcebook description (optional)    
+Quarterstaves can be used as arcane/druidic foci (optional)  
+Controllable summons (optional)  
+Surface spells (like entangle) only affect those staying on the ground (optional).
 
 All optional features can be enabled/disabled in /your_solasta_game_folder/Mods/SolastaExtraContent/settings.json  
 Mod requires SolastaModApi and SolastaModHelpers (https://github.com/Holic75/SolastaModHelpers) mods.
