@@ -27,10 +27,15 @@ namespace SolastaExtraContent
             createConjureSpiritAnimal();
             createWinterBlast();
 
-            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Entangle);
-            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Grease);
-            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
-            fixSurfaceSpell(DatabaseHelper.SpellDefinitions.SpikeGrowth);
+            if (Main.settings.fix_surface_spells)
+            {
+                fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Entangle);
+                fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Grease);
+                fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
+                //fixSurfaceSpell(DatabaseHelper.SpellDefinitions.SpikeGrowth);
+                DatabaseHelper.SpellDefinitions.SpikeGrowth.effectDescription.targetType = RuleDefinitions.TargetType.Cylinder;
+                DatabaseHelper.SpellDefinitions.SpikeGrowth.effectDescription.targetParameter2 = 1;
+            }
             fixGiantInsects();
             //fixConjureMinorElemental();
             fixConjureAnimals();
@@ -104,7 +109,7 @@ namespace SolastaExtraContent
             effect.targetType = RuleDefinitions.TargetType.Cylinder;
             effect.rangeParameter = 24;
             effect.rangeType = RuleDefinitions.RangeType.Distance;
-            effect.targetParameter = 2;
+            effect.targetParameter = 1;
             effect.targetParameter2 = 1;
             effect.EffectForms.Clear();
             effect.targetExcludeCaster = false;
@@ -277,7 +282,14 @@ namespace SolastaExtraContent
         {
             var effect = spell.effectDescription;
             effect.targetType = RuleDefinitions.TargetType.Cylinder;
-            effect.targetParameter--;
+            if (effect.targetParameter > 2)
+            {
+                effect.targetParameter--;
+            }
+            if (effect.targetParameter > 1)
+            {
+                effect.targetParameter--;
+            }
             effect.targetParameter2 = 1;
             effect.effectParticleParameters.zoneParticleReference = null;            
         }

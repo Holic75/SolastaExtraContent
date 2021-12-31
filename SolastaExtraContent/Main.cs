@@ -29,6 +29,7 @@ namespace SolastaExtraContent
             public bool fix_barbarian_unarmed_defense_stacking { get; }
             public bool use_staff_as_arcane_or_druidic_focus { get; }
             public bool allow_control_summoned_creatures { get; }
+            public bool fix_surface_spells { get; }
 
             internal Settings()
             {
@@ -42,6 +43,7 @@ namespace SolastaExtraContent
                     fix_barbarian_unarmed_defense_stacking = (bool)jo["fix_barbarian_unarmed_defense_stacking"];
                     use_staff_as_arcane_or_druidic_focus = (bool)jo["use_staff_as_arcane_or_druidic_focus"];
                     allow_control_summoned_creatures = (bool)jo["allow_control_summoned_creatures"];
+                    fix_surface_spells = (bool)jo["fix_surface_spells"];
                 }
             }
         }
