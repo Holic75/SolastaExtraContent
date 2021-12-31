@@ -18,8 +18,8 @@ Combat Casting
 Polearm Expertise  
 Magic Heritage  
 Furious  
-Elemental Focus
-Combat Mobility
+Elemental Focus  
+Combat Mobility  
 Fast Shooter
 
 
