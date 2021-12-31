@@ -2,9 +2,22 @@
 
 This is a mod for the game Solasta: Crown of the Magister.
 
-### New classes: Alchemist, Bard, Monk, Warlock.  
-### New subclasses: Arcane Knight (Fighter), Frozen Fury (Barbarian), War Shaman (Barbarian), Circle of Spirits (Druid), Circle of the Elements (Druid).  
-### New races: Gnomes, Bolgrifs.  
+### New classes:
+Alchemist  
+Bard  
+Monk  
+Warlock.  
+
+### New subclasses:
+Arcane Knight (Fighter)  
+Frozen Fury (Barbarian)  
+War Shaman (Barbarian)  
+Circle of Spirits (Druid)  
+Circle of the Elements (Druid).
+
+### New races:
+Gnomes  
+Bolgrifs.
 
 ### New spells:
 Cantrips: Eldritch Blast, Vicious Mockery, Sunlight Blade, Shillelagh, Touch of Frost, Air Blast, Sound Burst, Burst of Radiance, Bloody Claws.  
@@ -23,7 +36,7 @@ Combat Mobility
 Fast Shooter
 
 
-Extra Features:  
+### Extra Features:  
 Loremaster wizard can add one cantrip and one spell of any class to his/her spellbook at lvl 2,  
 Cleric subclasses are modified to match better Solasta sourcebook description (optional),  
 Quarterstaves can be used as arcane/druidic foci (optional).  
