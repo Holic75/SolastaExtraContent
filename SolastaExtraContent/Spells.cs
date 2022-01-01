@@ -17,7 +17,6 @@ namespace SolastaExtraContent
         static public NewFeatureDefinitions.ReactionOnDamageSpell hellish_rebuke;
         static public SpellDefinition conjure_spirit_animal;
         static public SpellDefinition winter_blast;
-        static public SpellDefinition spike_growth;
         static public SpellDefinition vulnerability_hex;
         static public SpellDefinition earth_tremor;
 
@@ -32,7 +31,6 @@ namespace SolastaExtraContent
                 fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Entangle);
                 fixSurfaceSpell(DatabaseHelper.SpellDefinitions.Grease);
                 fixSurfaceSpell(DatabaseHelper.SpellDefinitions.BlackTentacles);
-                //fixSurfaceSpell(DatabaseHelper.SpellDefinitions.SpikeGrowth);
                 DatabaseHelper.SpellDefinitions.SpikeGrowth.effectDescription.targetType = RuleDefinitions.TargetType.Cylinder;
                 DatabaseHelper.SpellDefinitions.SpikeGrowth.effectDescription.targetParameter2 = 1;
             }
