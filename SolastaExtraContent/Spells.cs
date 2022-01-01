@@ -282,14 +282,7 @@ namespace SolastaExtraContent
         {
             var effect = spell.effectDescription;
             effect.targetType = RuleDefinitions.TargetType.Cylinder;
-            if (effect.targetParameter > 2)
-            {
-                effect.targetParameter--;
-            }
-            if (effect.targetParameter > 1)
-            {
-                effect.targetParameter--;
-            }
+            effect.targetParameter /= 2;
             effect.targetParameter2 = 1;
             effect.effectParticleParameters.zoneParticleReference = null;            
         }
