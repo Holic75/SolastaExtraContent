@@ -609,6 +609,7 @@ namespace SolastaExtraContent
                                                                                                             extra_cantrip,
                                                                                                             extra_spell,
                                                                                                         };
+                                                                                                        a.mustCastSpellsPrerequisite = false;
                                                                                                     }
                                                                                                     );
                 NewFeatureDefinitions.FeatureData.addFeatureRestrictions(magic_initiate[cls], new NewFeatureDefinitions.CanCastSpellOfSpecifiedLevelPrerequisite(1));
